@@ -1,0 +1,85 @@
+# Publish Moyne Ross to the official MCP Registry.
+#
+# Trigger from:
+# GitHub → Actions → Publish to MCP Registry → Run workflow
+
+name: Publish to MCP Registry
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write  # to create the GitHub Release with its SBOM
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Validate release before publication
+        run: npm run check
+
+      - name: Install pinned mcp-publisher
+        env:
+          MCP_PUBLISHER_VERSION: v1.8.1
+          MCP_PUBLISHER_SHA256: a06c9096dcb9727c13555b6be26c7effa707b01f06a4c561ba7a3635443cf2cc
+        run: |
+          set -euo pipefail
+          ARCHIVE="mcp-publisher_linux_amd64.tar.gz"
+          curl --fail --location --silent --show-error \
+            --output "$ARCHIVE" \
+            "https://github.com/modelcontextprotocol/registry/releases/download/${MCP_PUBLISHER_VERSION}/${ARCHIVE}"
+          echo "${MCP_PUBLISHER_SHA256}  ${ARCHIVE}" | sha256sum --check --strict
+          tar xzf "$ARCHIVE" mcp-publisher
+          rm "$ARCHIVE"
+          ./mcp-publisher --help >/dev/null
+
+      - name: Authenticate to MCP Registry
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish server metadata
+        run: |
+          set +e
+          OUTPUT=$(./mcp-publisher publish 2>&1)
+          EXIT_CODE=$?
+          set -e
+
+          echo "$OUTPUT"
+
+          if [ "$EXIT_CODE" -ne 0 ]; then
+            if echo "$OUTPUT" | grep -qi "duplicate version"; then
+              echo "This package version is already published in the MCP Registry."
+            else
+              exit "$EXIT_CODE"
+            fi
+          fi
+
+      - name: Verify official listing
+        run: node scripts/verify-registry-release.mjs
+
+      - name: Create the GitHub Release, with its SBOM
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          TAG="v$VERSION"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists."
+            exit 0
+          fi
+          npm sbom --sbom-format cyclonedx --omit dev > "moyneross-mcp-$VERSION.cdx.json"
+          awk -v v="## $VERSION" '$0==v{f=1;next} /^## /{f=0} f' CHANGELOG.md > release-notes.md
+          gh release create "$TAG" --target "$GITHUB_SHA" --title "Moyne Ross MCP $VERSION" --notes-file release-notes.md "moyneross-mcp-$VERSION.cdx.json"
