@@ -1,0 +1,26 @@
+{
+  "name": "moyneross",
+  "owner": {
+    "name": "Moyne Ross"
+  },
+  "metadata": {
+    "description": "Moyne Ross machine-readable research on commercial property and capital.",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "moyneross",
+      "description": "Commercial property capital research from Moyne Ross, backed by the read-only Moyne Ross MCP.",
+      "version": "1.1.0",
+      "source": ".",
+      "author": {
+        "name": "Moyne Ross",
+        "url": "https://moyneross.com"
+      },
+      "homepage": "https://moyneross.com/assistants",
+      "repository": "https://github.com/Steven3265/moyneross-mcp",
+      "license": "MIT",
+      "keywords": ["commercial-property", "capital-planning", "capex", "real-estate", "asset-management", "due-diligence", "mcp"]
+    }
+  ]
+}
