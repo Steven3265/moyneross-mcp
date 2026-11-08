@@ -1,0 +1,74 @@
+# Refresh the bundled corpus from moyneross.com.
+#
+# Runs daily and on demand (Actions → "Refresh corpus snapshot" → Run
+# workflow). It rebuilds data/corpus.json from the live public files, runs the
+# complete check, and opens a pull request only if the content changed. The
+# snapshot is dated from its content, so an unchanged site gives an identical
+# file and nothing happens. Merging the pull request redeploys on Vercel.
+#
+# ONE-TIME REPO SETTING: Settings → Actions → General → "Allow GitHub
+# Actions to create and approve pull requests" must be ticked.
+
+name: Refresh corpus snapshot
+
+on:
+  schedule:
+    - cron: '23 19 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: moyneross-snapshot-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          package-manager-cache: false
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Rebuild the snapshot from moyneross.com
+        run: node scripts/snapshot.mjs
+      - name: Validate complete repository
+        run: npm run check
+      - name: Open or update a pull request if the corpus changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if git diff --quiet -- data/corpus.json; then
+            echo "The snapshot already matches moyneross.com. Nothing to do."
+            exit 0
+          fi
+          BRANCH="automation/corpus-snapshot-refresh"
+          if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
+            git fetch origin "$BRANCH:refs/remotes/origin/$BRANCH"
+            if git diff --quiet "origin/$BRANCH" -- data/corpus.json; then
+              echo "The open refresh pull request already has this content."
+              exit 0
+            fi
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add data/corpus.json
+          git commit -m "Refresh corpus snapshot from moyneross.com"
+          git push --force-with-lease origin "$BRANCH"
+          PR_NUMBER=$(gh pr list --state open --head "$BRANCH" --base "$BASE_BRANCH" --json number --jq '.[0].number // empty')
+          if [ -n "$PR_NUMBER" ]; then
+            echo "Updated refresh pull request #$PR_NUMBER."
+            exit 0
+          fi
+          gh pr create --base "$BASE_BRANCH" --head "$BRANCH" \
+            --title "Refresh corpus snapshot" \
+            --body "Rebuilt \`data/corpus.json\` from the public files on moyneross.com. The complete check passed in this run (snapshot validation, core tests, the 56-question retrieval benchmark, protocol and HTTP). Merging redeploys the connector on Vercel."
