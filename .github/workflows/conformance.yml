@@ -1,0 +1,61 @@
+name: MCP conformance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  conformance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+
+      # Do not fetch an executable through npx at test time. Pin the
+      # conformance source itself to the exact alpha.11 release commit, then
+      # let its committed package-lock provide npm integrity verification.
+      - name: Checkout pinned MCP conformance runner
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          repository: modelcontextprotocol/conformance
+          ref: c321dd32035556e6769d3724a8ee97d87c3faaac
+          path: .conformance-runner
+          persist-credentials: false
+      - name: Build pinned MCP conformance runner
+        working-directory: .conformance-runner
+        # Deliberate exception to this repo's --ignore-scripts policy: build the
+        # source-pinned upstream runner exactly from its reviewed lockfile. The
+        # checkout is immutable, read-only and has persisted credentials off.
+        run: npm ci && npm run build
+
+      - name: Run frozen MCP 2026-07-28 conformance suite
+        run: |
+          npm run serve:conformance > /tmp/moyneross-conformance-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:3000/healthz >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:3000/healthz >/dev/null || {
+            cat /tmp/moyneross-conformance-server.log
+            exit 1
+          }
+          node .conformance-runner/dist/index.js server \
+            --url http://127.0.0.1:3000/mcp \
+            --suite active \
+            --spec-version 2026-07-28 \
+            --expected-failures conformance/expected-failures.yml
