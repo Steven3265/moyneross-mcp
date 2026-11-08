@@ -38,4 +38,4 @@ Each tool call writes one JSON line to stderr (`evt: "tool_call"`): tool name, q
 
 ## Reporting
 
-Report a security issue to hello@moyneross.com (see `/.well-known/security.txt`).
+Report a security issue through https://moyneross.com/contact (see `/.well-known/security.txt`).
