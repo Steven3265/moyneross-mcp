@@ -31,6 +31,7 @@ function card() {
         serviceMetadata: 'https://mcp.moyneross.com/server-card.json',
         openapi: 'https://mcp.moyneross.com/openapi.json',
         llms: 'https://moyneross.com/llms.txt',
+        ard: 'https://moyneross.com/.well-known/ard.json',
       },
     },
   };
