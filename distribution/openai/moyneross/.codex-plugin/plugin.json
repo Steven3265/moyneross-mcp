@@ -1,0 +1,11 @@
+{
+  "name": "moyneross",
+  "version": "1.1.0",
+  "description": "Commercial property capital research from Moyne Ross, backed by the read-only Moyne Ross MCP.",
+  "skills": "../skills",
+  "mcpServers": {
+    "moyneross": {
+      "url": "https://mcp.moyneross.com/mcp/openai"
+    }
+  }
+}
