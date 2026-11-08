@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "moyneross": {
+      "type": "http",
+      "url": "https://mcp.moyneross.com/mcp"
+    }
+  }
+}
