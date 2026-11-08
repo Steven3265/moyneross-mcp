@@ -1,0 +1,112 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Moyne Ross",
+    "identifier": "moyneross.com",
+    "documentationUrl": "https://moyneross.com/assistants",
+    "logoUrl": "https://mcp.moyneross.com/moyneross-icon-256.png"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:moyneross.com:server:moyneross",
+      "displayName": "Moyne Ross",
+      "type": "application/mcp-server-card+json",
+      "url": "https://mcp.moyneross.com/mcp/server-card",
+      "description": "Moyne Ross research on commercial property and capital: search and cite 49 Capital Made Physical papers and 103 Technical Library pages on building elements and spaces to the section, the Capital Register and MR Index methodology, and a sample Capital Strategy.",
+      "tags": [
+        "commercial-property",
+        "capital-planning",
+        "capex",
+        "asset-management",
+        "due-diligence",
+        "research",
+        "building-pathology",
+        "technical-due-diligence",
+        "read-only"
+      ],
+      "capabilities": [
+        "search_research",
+        "list_papers",
+        "get_paper",
+        "list_technical_pages",
+        "get_technical_page",
+        "explain_method",
+        "get_sample_strategy",
+        "cite_paper",
+        "working_with_moyne_ross",
+        "start_strategy_link"
+      ],
+      "representativeQueries": [
+        "should we refurbish or redevelop an ageing 1970s office",
+        "is deferred maintenance a form of debt",
+        "who pays for make good and dilapidations at lease end",
+        "how do MEES and EPC rules affect letting offices in England",
+        "what does a ten-year capital plan for a warehouse contain",
+        "how do NABERS ratings and disclosure affect commercial property in Australia",
+        "what is the MR Index and how are its bands read",
+        "what should vendor due diligence on a commercial building cover",
+        "what causes horizontal cracking in a brick cavity wall",
+        "how serious is corroding reinforcement in a car park slab",
+        "when is a membrane roof due for replacement rather than repair"
+      ],
+      "updatedAt": "2026-11-07T00:00:00Z",
+      "metadata": {
+        "publisher": "Moyne Ross",
+        "jurisdiction": [
+          "Australia",
+          "United Kingdom",
+          "United States"
+        ],
+        "authentication": "none",
+        "readOnly": true,
+        "canonicalSite": "https://moyneross.com",
+        "openapi": "https://mcp.moyneross.com/openapi.json",
+        "repository": "https://github.com/Steven3265/moyneross-mcp"
+      }
+    },
+    {
+      "identifier": "urn:air:moyneross.com:skill:commercial-capital-research",
+      "displayName": "Commercial Capital Research",
+      "type": "application/ai-skill+md",
+      "url": "https://mcp.moyneross.com/skills/commercial-capital-research/SKILL.md",
+      "description": "Answer capital-planning and building-element questions for commercial and multi-unit buildings from Moyne Ross research and the Technical Library, cited to the section, with limitations carried through.",
+      "tags": [
+        "commercial-property",
+        "capital-planning",
+        "research",
+        "citations"
+      ],
+      "representativeQueries": [
+        "what drives capital expenditure in an ageing office building",
+        "when does a building become obsolete",
+        "how should a capex plan treat uncertainty",
+        "cite the research on deferred maintenance"
+      ],
+      "updatedAt": "2026-11-07T00:00:00Z",
+      "metadata": {
+        "publisher": "Moyne Ross",
+        "repository": "https://github.com/Steven3265/moyneross-mcp/tree/main/skills/commercial-capital-research"
+      }
+    },
+    {
+      "identifier": "urn:air:moyneross.com:skill:capital-strategy-handover",
+      "displayName": "Capital Strategy Hand-over",
+      "type": "application/ai-skill+md",
+      "url": "https://mcp.moyneross.com/skills/capital-strategy-handover/SKILL.md",
+      "description": "Help a person who asks for one to request a Moyne Ross Capital Strategy for a commercial or multi-unit building, with only the details they give.",
+      "tags": [
+        "commercial-property",
+        "capital-strategy"
+      ],
+      "representativeQueries": [
+        "I want a ten-year capital plan for my office building",
+        "how do I get a capital strategy for a warehouse in the UK"
+      ],
+      "updatedAt": "2026-11-07T00:00:00Z",
+      "metadata": {
+        "publisher": "Moyne Ross",
+        "repository": "https://github.com/Steven3265/moyneross-mcp/tree/main/skills/capital-strategy-handover"
+      }
+    }
+  ]
+}
