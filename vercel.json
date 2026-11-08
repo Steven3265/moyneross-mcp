@@ -1,0 +1,91 @@
+{
+  "version": 2,
+  "installCommand": "npm ci --ignore-scripts",
+  "functions": {
+    "api/mcp.ts": {
+      "maxDuration": 10
+    },
+    "api/mcp-openai.ts": {
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/api/index"
+    },
+    {
+      "source": "/mcp",
+      "destination": "/api/mcp"
+    },
+    {
+      "source": "/mcp/openai",
+      "destination": "/api/mcp-openai"
+    },
+    {
+      "source": "/health",
+      "destination": "/api/health"
+    },
+    {
+      "source": "/mcp/server-card",
+      "destination": "/api/mcp-server-card"
+    },
+    {
+      "source": "/server-card.json",
+      "destination": "/api/server-card"
+    },
+    {
+      "source": "/openapi.json",
+      "destination": "/api/openapi"
+    },
+    {
+      "source": "/v1/search",
+      "destination": "/api/v1/search"
+    },
+    {
+      "source": "/v1/papers",
+      "destination": "/api/v1/papers"
+    },
+    {
+      "source": "/v1/paper",
+      "destination": "/api/v1/paper"
+    },
+    {
+      "source": "/v1/method",
+      "destination": "/api/v1/method"
+    },
+    {
+      "source": "/v1/sample",
+      "destination": "/api/v1/sample"
+    },
+    {
+      "source": "/v1/engage",
+      "destination": "/api/v1/engage"
+    },
+    {
+      "source": "/v1/cite",
+      "destination": "/api/v1/cite"
+    },
+    {
+      "source": "/v1/technical",
+      "destination": "/api/v1/technical"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/.well-known/mcp/server-card.json",
+      "destination": "/mcp/server-card",
+      "permanent": true
+    },
+    {
+      "source": "/.well-known/mcp/server-card",
+      "destination": "/mcp/server-card",
+      "permanent": true
+    },
+    {
+      "source": "/.well-known/mcp",
+      "destination": "/mcp/server-card",
+      "permanent": true
+    }
+  ]
+}

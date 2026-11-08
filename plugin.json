@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "moyneross",
+  "version": "1.1.0",
+  "description": "Commercial property capital research from Moyne Ross, backed by the read-only Moyne Ross MCP.",
+  "author": {
+    "name": "Moyne Ross",
+    "email": "hello@moyneross.com",
+    "url": "https://moyneross.com"
+  },
+  "homepage": "https://moyneross.com/assistants",
+  "repository": "https://github.com/Steven3265/moyneross-mcp",
+  "license": "MIT",
+  "keywords": ["commercial-property", "capital-planning", "capex", "real-estate", "asset-management", "due-diligence", "mcp"]
+}

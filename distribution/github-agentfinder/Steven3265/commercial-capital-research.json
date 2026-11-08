@@ -1,0 +1,11 @@
+{
+  "identifier": "urn:ai:github.com:Steven3265:moyneross-mcp:commercial-capital-research",
+  "displayName": "Commercial Capital Research",
+  "mediaType": "application/ai-skill",
+  "url": "https://github.com/Steven3265/moyneross-mcp/blob/main/skills/commercial-capital-research/SKILL.md",
+  "description": "Answer capital-planning questions for commercial and multi-unit buildings from Moyne Ross research, with citations and limitations.",
+  "metadata": {
+    "sourceSet": "moyneross-mcp",
+    "repoPath": "skills/commercial-capital-research/SKILL.md"
+  }
+}

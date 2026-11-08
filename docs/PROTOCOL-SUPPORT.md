@@ -1,0 +1,10 @@
+# Protocol support
+
+- **MCP revision:** `2026-07-28`, served statelessly through the MCP TypeScript SDK v2 (`@modelcontextprotocol/server` 2.4.0, `createMcpHandler`), with the SDK's stateless compatibility path for 2025-era clients (`2025-11-25` initialize).
+- **Transports:** Streamable HTTP at `/mcp` and `/mcp/openai`; stdio via `dist/src/stdio.js`.
+- **Capabilities:** tools (input and output schemas, `structuredContent`, `resource_link` blocks), prompts (3), completion (prompt arguments and the paper template) and resources (`moyneross://catalogue`, the template `moyneross://papers/{slug}`, `moyneross://methods/{id}`, `moyneross://sample`).
+- **2026-07-28 core, tested:** `server/discover`; `ttlMs` and `cacheScope: public` on every list, read and discover result; a stable `tools/list` order; `resultType: complete` and `io.modelcontextprotocol/serverInfo` in every result's `_meta`; unknown resources answered with `-32602`; no unsolicited log notifications.
+- **Deliberately not implemented:** Tasks, input-required results (elicitation), Sampling, Roots, Logging and `subscriptions/listen`. A fast, public, read-only corpus gains nothing from them, and Sampling, Roots and Logging are deprecated.
+- **Discovery:** the server card at `/mcp/server-card` (`application/mcp-server-card+json`, with an `ETag`), redirected from `/.well-known/mcp/server-card.json`, `/.well-known/mcp/server-card` and `/.well-known/mcp`; its identity is tested to agree with `server/discover`.
+- **Routing headers:** `Mcp-Method` and `Mcp-Name` are validated against the JSON-RPC body; a mismatch is rejected (`-32020`).
+- **Conformance:** the official MCP conformance runner, pinned to commit `c321dd3` (0.2.0-alpha.11), active suite, runs in CI: 25 live checks pass, including `prompts-list` against the real prompts and DNS-rebinding protection. The only baselined exclusions are checks that request the runner's own fixture tools, resources and prompts by name; every wire-schema check stays live.

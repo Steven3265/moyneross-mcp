@@ -1,0 +1,11 @@
+{
+  "identifier": "urn:ai:github.com:Steven3265:moyneross-mcp:capital-strategy-handover",
+  "displayName": "Capital Strategy Hand-over",
+  "mediaType": "application/ai-skill",
+  "url": "https://github.com/Steven3265/moyneross-mcp/blob/main/skills/capital-strategy-handover/SKILL.md",
+  "description": "Help a person start a Moyne Ross Capital Strategy for one commercial or multi-unit building, with only the details they give.",
+  "metadata": {
+    "sourceSet": "moyneross-mcp",
+    "repoPath": "skills/capital-strategy-handover/SKILL.md"
+  }
+}

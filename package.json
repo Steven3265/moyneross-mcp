@@ -1,0 +1,36 @@
+{
+  "name": "moyneross-mcp",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Moyne Ross research on commercial property capital, and a technical library of building elements.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start:stdio": "node dist/src/stdio.js",
+    "snapshot": "node scripts/snapshot.mjs",
+    "snapshot:check": "node scripts/snapshot.mjs --check",
+    "validate:snapshot": "node scripts/validate-snapshot.mjs",
+    "validate:metadata": "node scripts/validate-release-metadata.mjs",
+    "test:core": "node scripts/test-core.mjs",
+    "test:protocol": "node scripts/test-protocol.mjs",
+    "test:http": "node scripts/test-http.mjs",
+    "benchmark": "node scripts/run-benchmark.mjs",
+    "test": "npm run validate:metadata && node scripts/sync-skills.mjs --check && npm run validate:snapshot && npm run build && npm run test:core && npm run benchmark",
+    "check": "npm test && npm run test:protocol && npm run test:http && npm run test:edge",
+    "serve:conformance": "node scripts/serve-conformance.mjs",
+    "sync:skills": "node scripts/sync-skills.mjs",
+    "test:edge": "node scripts/test-edge.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.1",
+    "typescript": "5.9.2"
+  }
+}

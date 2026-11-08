@@ -1,0 +1,43 @@
+# Moyne Ross intentionally exposes a narrow read-only surface: seven tools and
+# corpus resources. The official conformance server runner also exercises its
+# own reference fixture names/content and capabilities this server does not
+# advertise (prompts and completion).
+#
+# IMPORTANT: these are CHECK-level exclusions, not whole-scenario exclusions.
+# The runner's synthetic wire-schema checks inside the same scenarios therefore
+# remain live. A new protocol/schema failure still fails CI even when the known
+# fixture/capability check is expected to fail.
+#
+# Baseline established against modelcontextprotocol/conformance commit
+# c321dd32035556e6769d3724a8ee97d87c3faaac (npm 0.2.0-alpha.11), active
+# suite, protocol 2026-07-28.
+
+server:
+  # The runner calls fixed reference tool names/content that Moyne Ross does
+  # not implement. tools/list and wire-schema-valid remain unbaselined.
+  - tools-call-with-progress:tools-call-with-progress
+  - tools-call-simple-text:tools-call-simple-text
+  - tools-call-mixed-content:tools-call-mixed-content
+  - tools-call-image:tools-call-image
+  - tools-call-error:tools-call-error
+  - tools-call-embedded-resource:tools-call-embedded-resource
+  - tools-call-audio:tools-call-audio
+
+  # The runner reads fixed fixture resources/templates rather than the
+  # Moyne Ross corpus URIs. resources/list and wire-schema-valid remain live.
+  - resources-read-text:resources-read-text
+  - resources-read-binary:resources-read-binary
+  - resources-templates-read:resources-templates-read
+
+  # Moyne Ross offers three prompts and completion (prompt arguments and the
+  # paper template). prompts-list runs live against them and passes. The
+  # runner's prompts/get and completion checks request its own fixture prompts
+  # by name (test_simple_prompt and so on), so only those fixture checks are
+  # excluded; wire-schema checks remain enforceable.
+  - prompts-get-simple:prompts-get-simple
+  - prompts-get-with-args:prompts-get-with-args
+  - prompts-get-embedded-resource:prompts-get-embedded-resource
+  - prompts-get-with-image:prompts-get-with-image
+  - completion-complete:completion-complete
+
+client: []

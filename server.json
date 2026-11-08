@@ -1,0 +1,27 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Steven3265/moyneross",
+  "title": "Moyne Ross",
+  "description": "Moyne Ross research on commercial property capital, and a technical library of building elements.",
+  "repository": {
+    "url": "https://github.com/Steven3265/moyneross-mcp",
+    "source": "github"
+  },
+  "version": "1.1.0",
+  "websiteUrl": "https://moyneross.com/assistants",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.moyneross.com/mcp"
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://mcp.moyneross.com/moyneross-icon-32.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "32x32"
+      ]
+    }
+  ]
+}

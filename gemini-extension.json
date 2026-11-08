@@ -1,0 +1,12 @@
+{
+  "name": "moyneross",
+  "version": "1.1.0",
+  "description": "Moyne Ross research on commercial property and capital: search and cite the Capital Made Physical papers, the Technical Library of building elements, the Capital Register and MR Index, and a sample Capital Strategy, through a public, read-only MCP server.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "moyneross": {
+      "httpUrl": "https://mcp.moyneross.com/mcp",
+      "timeout": 30000
+    }
+  }
+}
