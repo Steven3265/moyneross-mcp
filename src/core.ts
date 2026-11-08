@@ -93,6 +93,11 @@ const siteDocs = snapshot.search.docs.map((d) => indexed(d, siteCollection, 1));
 const libraryDocs = technicalDocs.map((d) => indexed(d, corpusCollection, TECHNICAL_WEIGHT));
 Object.assign(siteCollection, statsOf(siteDocs));
 Object.assign(corpusCollection, statsOf([...siteDocs, ...libraryDocs]));
+// Length is normalised against the library's own average: library pages are
+// enriched over time and grow longer than the website's documents, and
+// measuring them against the mixed average would penalise every page for
+// being thorough. Word distinctiveness still comes from the whole corpus.
+corpusCollection.AVG = statsOf(libraryDocs).AVG;
 const docs: IndexedDoc[] = [...siteDocs, ...libraryDocs];
 
 // Each document's headline terms: for a paper, its title, question, short
