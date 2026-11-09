@@ -1,3 +1,4 @@
+import { RANKING } from './ranking.js';
 import snapshotJson from '../data/corpus.json' with { type: 'json' };
 import type {
   CorpusSnapshot,
@@ -61,7 +62,8 @@ export function tokens(text: string): string[] {
 // question four times, answer three, framework element and typologies twice,
 // then the full text.
 export const TECHNICAL_KIND = 'Technical Library';
-export const TECHNICAL_WEIGHT = 0.72;
+
+
 function technicalSearchText(p: TechnicalPage): string {
   const rep = (t: string, n: number) => Array(n).fill(t).join(' ');
   return [
@@ -74,6 +76,11 @@ const technicalDocs: SearchDoc[] = technicalPages.map((p) => ({ url: p.canonical
 const searchDocs: SearchDoc[] = [...snapshot.search.docs, ...technicalDocs];
 
 type Collection = { df: Map<string, number>; N: number; AVG: number };
+
+function idfIn(col: Collection, term: string): number {
+  const n = col.df.get(term) ?? 0;
+  return Math.log(1 + (col.N - n + 0.5) / (n + 0.5));
+}
 type IndexedDoc = SearchDoc & { tf: Map<string, number>; len: number; terms: Set<string>; col: Collection; weight: number };
 
 function indexed(d: SearchDoc, col: Collection, weight: number): IndexedDoc {
@@ -90,7 +97,7 @@ function statsOf(source: IndexedDoc[]): Collection {
 const siteCollection: Collection = { df: new Map(), N: 0, AVG: 0 };
 const corpusCollection: Collection = { df: new Map(), N: 0, AVG: 0 };
 const siteDocs = snapshot.search.docs.map((d) => indexed(d, siteCollection, 1));
-const libraryDocs = technicalDocs.map((d) => indexed(d, corpusCollection, TECHNICAL_WEIGHT));
+const libraryDocs = technicalDocs.map((d) => indexed(d, corpusCollection, 1));
 Object.assign(siteCollection, statsOf(siteDocs));
 Object.assign(corpusCollection, statsOf([...siteDocs, ...libraryDocs]));
 // Length is normalised against the library's own average: library pages are
@@ -98,12 +105,42 @@ Object.assign(corpusCollection, statsOf([...siteDocs, ...libraryDocs]));
 // measuring them against the mixed average would penalise every page for
 // being thorough. Word distinctiveness still comes from the whole corpus.
 corpusCollection.AVG = statsOf(libraryDocs).AVG;
+
+// ─── Putting the two collections on one scale ────────────────────────────
+//
+// Website documents are scored on the website's own statistics so that adding
+// or enriching the library can never reorder the research results. That makes
+// the two sets of BM25 scores incomparable: they are computed from different
+// vocabularies, so the same word is worth a different amount in each.
+//
+// The factor between them used to be a hand-set constant, and it had to be
+// re-tuned after every enrichment batch. The reason is that enriching a page
+// adds words it did not have before, which raises how many pages contain each
+// word, which lowers how distinctive that word is inside the library, which
+// lowers every library score against an unchanged website. The constant was
+// chasing a moving target.
+//
+// So derive it. A word that is equally distinctive in each collection should
+// be worth the same in each, which makes the factor the ratio of the two
+// collections' typical word weights, measured over the words they share. As
+// the library grows, its typical weight falls and the factor rises to match,
+// with nothing to re-tune.
+export const TECHNICAL_WEIGHT = RANKING.libraryWeight;
+for (const d of libraryDocs) d.weight = TECHNICAL_WEIGHT;
+
 const docs: IndexedDoc[] = [...siteDocs, ...libraryDocs];
+
+// scripts/calibrate.mjs sweeps these two settings against the benchmarks
+// without rebuilding the index for each trial. Nothing else should call them:
+// the shipped values live in src/ranking.ts.
+export function __setWeight(w: number): void { for (const d of libraryDocs) d.weight = w; }
+export function __setBoost(b: number): void { HEADLINE_BOOST = b; }
 
 // Each document's headline terms: for a paper, its title, question, short
 // answer, summary and topics; for a library page, its title, question,
 // answer, framework element and typologies; otherwise its title and blurb.
 const headTerms = new Map<string, Set<string>>();
+const aboutTerms = new Map<string, Set<string>>();
 for (const d of searchDocs) {
   const p = snapshot.papers.find((x) => x.canonicalUrl === d.url);
   const t = p ? undefined : technicalPages.find((x) => x.canonicalUrl === d.url);
@@ -111,12 +148,18 @@ for (const d of searchDocs) {
     : t ? [t.title, t.question, t.answer, t.frameworkElement, t.frameworkDescription, t.typologies.join(' ')].join(' ')
     : `${d.title} ${d.blurb}`;
   headTerms.set(d.url, new Set(tokens(head)));
+  // What the document is about, kept deliberately short and the same size for
+  // every kind: its name and the one question it answers. The headline set
+  // above is wider (it carries the whole abstract) and is reported to callers;
+  // using it to rank would favour whichever kind of document happens to carry
+  // the most headline text, which is not a measure of relevance.
+  const about = p ? [p.title, p.question].join(' ')
+    : t ? [t.title, t.frameworkElement, t.question].join(' ')
+    : `${d.title} ${d.blurb}`;
+  aboutTerms.set(d.url, new Set(tokens(about)));
 }
 
-function idfIn(col: Collection, term: string): number {
-  const n = col.df.get(term) ?? 0;
-  return Math.log(1 + (col.N - n + 0.5) / (n + 0.5));
-}
+
 
 function bm25(d: IndexedDoc, q: Map<string, number>): number {
   let s = 0;
@@ -190,16 +233,45 @@ export function queryTerms(query: string): QueryTerm[] {
   return out;
 }
 
+// ─── What a document is about ────────────────────────────────────────────
+//
+// BM25 alone cannot tell a document that is about the question from one that
+// merely mentions it: a paper discussing roofs in passing and the library page
+// on roof coverings both match "roof". The difference is in the headline — the
+// title, question and, for a library page, the element it covers — so a match
+// there is worth more than a match in the body.
+//
+// This matters beyond ranking quality. Without it, the only thing deciding
+// between a paper and a library page is the scale factor between the two
+// collections, so that one number has to serve two opposing jobs at once:
+// keep papers on top for capital questions and let library pages through for
+// element questions. That leaves a narrow band where both hold, which is why
+// it needed re-tuning after every enrichment batch. Judging aboutness
+// directly separates the two jobs, and the scale factor stops being load
+// bearing.
+export let HEADLINE_BOOST = RANKING.headlineBoost;
+function headlineFraction(url: string, qts: QueryTerm[]): number {
+  let total = 0, hit = 0;
+  const head = aboutTerms.get(url);
+  if (!head) return 0;
+  for (const qt of qts) {
+    total += qt.idf;
+    if (head.has(qt.term) || qt.alternatives.some((a) => head.has(a))) hit += qt.idf;
+  }
+  return total > 0 ? hit / total : 0;
+}
+
 export type SearchOptions = { query: string; scope?: SearchScope; limit?: number };
 
 export function searchResearch({ query, scope = 'all', limit = 5 }: SearchOptions): SearchResult[] {
   const q = new Map<string, number>();
   for (const t of tokens(query)) q.set(t, (q.get(t) ?? 0) + 1);
   if (!q.size) return [];
-  for (const qt of queryTerms(query)) for (const alt of qt.alternatives) if (!q.has(alt)) q.set(alt, 0.6);
+  const qts = queryTerms(query);
+  for (const qt of qts) for (const alt of qt.alternatives) if (!q.has(alt)) q.set(alt, 0.6);
   return docs
     .filter((d) => scope === 'all' || scopeOf(d) === scope)
-    .map((d) => ({ d, score: bm25(d, q) * d.weight }))
+    .map((d) => ({ d, score: bm25(d, q) * d.weight * (1 + HEADLINE_BOOST * headlineFraction(d.url, qts)) }))
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score || a.d.url.localeCompare(b.d.url))
     .slice(0, Math.max(1, Math.min(10, limit)))

@@ -23,14 +23,15 @@
     "check": "npm test && npm run test:protocol && npm run test:http && npm run test:edge",
     "serve:conformance": "node scripts/serve-conformance.mjs",
     "sync:skills": "node scripts/sync-skills.mjs",
-    "test:edge": "node scripts/test-edge.mjs"
+    "test:edge": "node scripts/test-edge.mjs",
+    "calibrate": "tsc -p tsconfig.core.json && node scripts/calibrate.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.4.0",
     "zod": "4.6.7"
   },
   "devDependencies": {
-    "@types/node": "26.6.6",
-    "typescript": "7.0.2"
+    "@types/node": "22.20.1",
+    "typescript": "5.9.2"
   }
 }
