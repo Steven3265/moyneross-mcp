@@ -61,7 +61,7 @@ export function tokens(text: string): string[] {
 // question four times, answer three, framework element and typologies twice,
 // then the full text.
 export const TECHNICAL_KIND = 'Technical Library';
-export const TECHNICAL_WEIGHT = 0.7;
+export const TECHNICAL_WEIGHT = 0.72;
 function technicalSearchText(p: TechnicalPage): string {
   const rep = (t: string, n: number) => Array(n).fill(t).join(' ');
   return [
