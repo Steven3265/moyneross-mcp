@@ -39,6 +39,12 @@ jobs:
         run: npm ci --ignore-scripts
       - name: Rebuild the snapshot from moyneross.com
         run: node scripts/snapshot.mjs
+      # Enriching the library lengthens its pages, which shifts how distinctive
+      # each word is inside it and so how library pages rank against the
+      # website's. Refit the two ranking settings to the benchmarks here, so a
+      # batch of enrichment arrives already tuned instead of failing the checks.
+      - name: Refit the ranking to the new corpus
+        run: npm run calibrate
       - name: Validate complete repository
         run: npm run check
       - name: Open or update a pull request if the corpus changed
@@ -46,14 +52,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BASE_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
-          if git diff --quiet -- data/corpus.json; then
+          if git diff --quiet -- data/corpus.json src/ranking.ts; then
             echo "The snapshot already matches moyneross.com. Nothing to do."
             exit 0
           fi
           BRANCH="automation/corpus-snapshot-refresh"
           if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
             git fetch origin "$BRANCH:refs/remotes/origin/$BRANCH"
-            if git diff --quiet "origin/$BRANCH" -- data/corpus.json; then
+            if git diff --quiet "origin/$BRANCH" -- data/corpus.json src/ranking.ts; then
               echo "The open refresh pull request already has this content."
               exit 0
             fi
@@ -61,7 +67,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add data/corpus.json
+          git add data/corpus.json src/ranking.ts
           git commit -m "Refresh corpus snapshot from moyneross.com"
           git push --force-with-lease origin "$BRANCH"
           PR_NUMBER=$(gh pr list --state open --head "$BRANCH" --base "$BASE_BRANCH" --json number --jq '.[0].number // empty')
@@ -71,4 +77,4 @@ jobs:
           fi
           gh pr create --base "$BASE_BRANCH" --head "$BRANCH" \
             --title "Refresh corpus snapshot" \
-            --body "Rebuilt \`data/corpus.json\` from the public files on moyneross.com. The complete check passed in this run (snapshot validation, core tests, the 56-question retrieval benchmark, protocol and HTTP). Merging redeploys the connector on Vercel."
+            --body "Rebuilt \`data/corpus.json\` from the public files on moyneross.com, and refit \`src/ranking.ts\` to the benchmarks. The complete check passed in this run (snapshot validation, core tests, the 56-question retrieval benchmark, protocol and HTTP). Merging redeploys the connector on Vercel."
