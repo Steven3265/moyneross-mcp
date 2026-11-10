@@ -41,7 +41,7 @@ jobs:
         run: node scripts/snapshot.mjs
       # Enriching the library lengthens its pages, which shifts how distinctive
       # each word is inside it and so how library pages rank against the
-      # website's. Refit the two ranking settings to the benchmarks here, so a
+      # website's. Refit the two ranking settings to the retrieval gate here, so a
       # batch of enrichment arrives already tuned instead of failing the checks.
       - name: Refit the ranking to the new corpus
         run: npm run calibrate
@@ -57,19 +57,25 @@ jobs:
             exit 0
           fi
           BRANCH="automation/corpus-snapshot-refresh"
+          # Leave an open refresh alone only if it already carries this content
+          # AND is built on the current main. A branch built on an older main
+          # (main has moved since) can conflict and block the merge, so it is
+          # rebuilt from main and force-pushed instead.
           if git ls-remote --exit-code --heads origin "$BRANCH" >/dev/null 2>&1; then
-            git fetch origin "$BRANCH:refs/remotes/origin/$BRANCH"
-            if git diff --quiet "origin/$BRANCH" -- data/corpus.json src/ranking.ts; then
-              echo "The open refresh pull request already has this content."
+            git fetch --depth=2 origin "$BRANCH:refs/remotes/origin/$BRANCH"
+            BRANCH_BASE=$(git rev-parse --verify --quiet "origin/$BRANCH^" || true)
+            if [ "$BRANCH_BASE" = "$(git rev-parse HEAD)" ] && git diff --quiet "origin/$BRANCH" -- data/corpus.json src/ranking.ts; then
+              echo "The open refresh pull request already has this content, built on the current main."
               exit 0
             fi
+            echo "Rebuilding the refresh branch from the current main."
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b "$BRANCH"
+          git checkout -B "$BRANCH"
           git add data/corpus.json src/ranking.ts
           git commit -m "Refresh corpus snapshot from moyneross.com"
-          git push --force-with-lease origin "$BRANCH"
+          git push --force origin "$BRANCH"
           PR_NUMBER=$(gh pr list --state open --head "$BRANCH" --base "$BASE_BRANCH" --json number --jq '.[0].number // empty')
           if [ -n "$PR_NUMBER" ]; then
             echo "Updated refresh pull request #$PR_NUMBER."
@@ -77,4 +83,4 @@ jobs:
           fi
           gh pr create --base "$BASE_BRANCH" --head "$BRANCH" \
             --title "Refresh corpus snapshot" \
-            --body "Rebuilt \`data/corpus.json\` from the public files on moyneross.com, and refit \`src/ranking.ts\` to the benchmarks. The complete check passed in this run (snapshot validation, core tests, the 56-question retrieval benchmark, protocol and HTTP). Merging redeploys the connector on Vercel."
+            --body "Rebuilt \`data/corpus.json\` from the public files on moyneross.com, and refit \`src/ranking.ts\` to the retrieval gate. The complete check passed in this run (snapshot validation, core tests, the retrieval gate, protocol, HTTP and edge). Merging redeploys the connector on Vercel."
