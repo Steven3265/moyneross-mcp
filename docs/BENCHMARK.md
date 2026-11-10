@@ -1,45 +1,51 @@
-# Retrieval benchmarks
+# Retrieval gate
 
-Three benchmarks, run on every change (`npm run benchmark`) against the connector's own snapshot and ranking.
+Every retrieval expectation the connector is held to lives in one place, `data/retrieval-cases.json`, with the website's own public benchmark kept in `data/benchmark.json`. `scripts/retrieval-gate.mjs` evaluates them, and the same evaluation is used three ways:
 
-| Set | Questions | Top 3 | First | MRR | Strong |
-|---|---|---|---|---|---|
-| `data/benchmark.json`: the website's public benchmark, allocator questions | 56 | 56 | 54 | 0.979 | 56 |
-| `data/benchmark-paraphrase.json`: practitioners' shorthand (capex, dilaps, MEES, LL97, PV, ACP, TDD, HOA) | 24 | 23 | 19 | 0.861 | 22 |
-| `data/benchmark-technical.json`: building-element questions, `scope: technical` | 26 | 26 | 24 | 0.962 | 25 |
-| `data/benchmark-technical.json`: the same, unscoped | 26 | 24 | 14 | 0.731 | 26 |
+- `npm run benchmark` prints every category and fails if any gate fails;
+- the core tests (`npm test`) fail on it;
+- `npm run calibrate` (run by the daily refresh) only chooses ranking settings that pass it.
 
-A release requires all 56 main questions in the top three and strong; at least 23 and 21 of the paraphrased ones; and, for the building-element set, all 26 in the top three with `scope: technical`, at least 24 unscoped, and at least 25 strong.
+Because there is one evaluation, the calibrator can no longer pick a setting that the tests then reject.
 
-## The Technical Library in the ranking (1.1.0)
+## Categories and gates
 
-The website's documents (papers, methodology, sample, practice pages) are scored on the website's own statistics: their document frequencies, count and average length. Adding 103 library pages therefore cannot change a paper's score or its order against other papers; a test holds every website score equal with and without the library, and the main benchmark is identical to 1.0.
+| Category | Cases | Gate | Measured (10 Nov 2026 corpus) |
+|---|---|---|---|
+| `website`: the website's public benchmark, allocator questions | 56 | every question in the top three and strong | 56 found, 54 first, MRR 0.979, 56 strong |
+| `shorthand`: practitioners' shorthand (capex, dilaps, MEES, LL97, PV, ACP, TDD, HOA) | 24 | at least 23 in the top three, 22 strong | 23 found, 22 strong |
+| `element`: building-element questions, `scope: technical` | 26 | all 26 in the top three, 25 strong | 26 found, 24 first, 25 strong |
+| `element-open`: the same questions, unscoped | 26 | at least 24 in the top three | 26 found, 16 first |
+| `pinned`: rankings the protocol and HTTP tests assert outright | 5 | every case, at its stated position | 5 met |
+| `weak`: property questions the corpus does not answer | 10 | every one returns background and is never strong | 0 strong |
+| `empty`: words absent from the corpus | 4 | every one returns nothing | met |
+| `outside`: off-topic questions that share the corpus's words (capital, register, index, lift, lease, frame, core, service, foundation, insulation) | 82 | **ratchet**: at most 15 strong, target 0 | 15 strong |
+| `target`: the right page exists and another wins today | 8 | reported | 2 found |
+| `faq`: one authored FAQ per library page, as moyneross.com publishes it | 103 | reported | 98 found, 73 first, 91 strong |
 
-Library pages are scored on the statistics of the whole corpus, so words that are common in the papers (capital, register, lease, tenant) count for little on a library page, then weighted 0.7 onto the papers' scale before the lists merge. The weight was measured across four designs and six weights:
+Rules: **every** means each case meets its own expectation; **count** means a minimum number found and strong; **ratchet** means a maximum that may be lowered as the ranking improves and never raised; **report** means measured and printed but never failing a run. A case can set its own `within` (how far down it may sit) and `strong`.
 
-| Design | Main top 3 | Paraphrase top 3 | Library top 3 (unscoped) | Off-topic strong |
-|---|---|---|---|---|
-| One shared index | 56 | 22 | 26 | 4 |
-| Separate statistics for each collection | 53 | 19 | 26 | 3 |
-| Website on its own statistics, library on the corpus's, weight 1.0 | 56 | 19 | 26 | 2 |
-| The same, weight 0.7 (adopted) | 56 | 23 | 24 | 1 (+ the tap question, now on topic) |
-| The same, weight 0.6 | 56 | 23 | 22 | 1 |
+## Where the gaps are
 
-A shared index reorders the papers (the website's own ranking would no longer be the connector's) and turns off-topic questions such as "mortgage interest rates today" strong. Higher weights let library pages displace papers on capital questions; lower ones bury them on element questions. Paraphrase MRR falls from 0.910 to 0.861 because library pages now sit beside the papers in the top ten, often legitimately ("chiller and BMS end of life" finds the BMS page).
+The gate is deliberately honest about two weaknesses, both in how strength and ranking are judged on whole pages:
+
+- **Off-topic false strongs.** 15 of 82 off-topic questions are judged strong, against Homechecker's 0 of 109. A long library page contains most ordinary words somewhere, so "lease a new phone plan" is strong on the communications page. Strength is judged on the whole page rather than on a passage that actually answers the question.
+- **Wrong page.** Six of the eight `target` cases find a different page: fire doors land on lifts, switchboard thermal imaging on solar PV, "concrete cancer" on two papers, "tin roof leaking" on a paper.
+
+The planned work answers both. Search will index the aliases (`alsoKnownAs`), search titles and authored FAQs that the website export already publishes, and score and judge strength by section rather than by page. When a `target` case passes it moves to a gated category; when the `outside` count falls, `maxStrong` comes down with it.
 
 ## Method
 
-BM25 (k1 1.4, b 0.72) over the index the website builds with the public benchmark's own field weights (title ×4, question ×4, answer ×3, summary ×2, topics ×2, retrieval terms ×3, then the text), with the benchmark's tokenizer ported exactly; `test/core.test.mjs` pins it to the Python output. On top, a curated map of practitioner shorthand adds each expansion to the query at 0.6 weight, so exact wording still ranks first. Semantic (embedding) retrieval was not adopted: on a 49-paper corpus this lexical method reaches 98% MRR on the main set, and it stays deterministic and inspectable.
+BM25 (k1 1.4, b 0.72) over the index the website builds with the public benchmark's own field weights (title ×4, question ×4, answer ×3, summary ×2, topics ×2, retrieval terms ×3, then the text), with the benchmark's tokenizer ported exactly; `test/core.test.mjs` pins it to the Python output. Library pages are scored on the whole corpus's statistics, weighted onto the papers' scale (`libraryWeight`) and boosted where the question matches their headline (`headlineBoost`); both settings are fitted by `npm run calibrate`. A curated map of practitioner shorthand adds each expansion to the query at 0.6 weight, so exact wording still ranks first.
 
-## Match strength
+Match strength: coverage weighted by each word's distinctiveness (IDF), counting a word as matched if it or its shorthand expansion appears in the top document, with a floor on the score (coverage 0.6, score 3).
 
-Coverage weighted by each word's distinctiveness (IDF), counting a word as matched if it or its shorthand expansion appears in the top document, with a floor on the score. Threshold 0.6, calibrated against both sets and fourteen off-topic questions.
+## Known cases, stated plainly
 
-## Known limits, stated plainly
+- **"capex forecast for an old office block"** is not answered in the top three: three papers each answer part of it, and the ranking prefers neighbours. The `shorthand` gate allows this one miss.
+- **"cheap flights to london"** is judged strong. Its words genuinely occur in one paper's headline material (*cheap* money, *flight* to quality, London in *The 10% Office*). It is counted in the `outside` ratchet.
+- **"who is on the hook for dilaps when the tenant leaves"** can put library pages ahead of the make-good paper on literal words (*hook*, *leaves*); the `pinned` case holds the paper in the first two, and first when scoped to research.
 
-- **"obsolete building management system controllers and proprietary lock-in"** and **"main switchboard at capacity and the electricity supply upgrade"** return the services and energy papers ahead of their library pages when unscoped; with `scope: technical` both are first. The search tool's description tells assistants to scope element questions.
-- **"who is on the hook for dilaps when the tenant leaves"** puts the canopies page first on literal words (*hook*, *leaves*), with the make-good paper second; scoped to research, the paper is first.
-- **Off-topic questions** now usually match weakly rather than not at all ("symptoms" occurs in the library's signs of failure). A weak answer tells the assistant the results are background only. "How to fix a leaking tap at home" is now a library question and finds the wet areas page.
+## Adding cases
 
-- **"capex forecast for an old office block"** is not answered in the top three: three papers each answer part of it, and the ranking prefers neighbours. It stays in the set.
-- **"cheap flights to london"** is judged strong. Its words genuinely occur in one paper's headline material (*cheap* money, *flight* to quality, London in *The 10% Office*); neither word statistics nor proximity separates it without demoting real questions. The tests allow this one case and no other off-topic question. The answer still shows the matched words, so an assistant can see the mismatch.
+Add to `data/retrieval-cases.json` with a category, the `query`, and `expected` canonical URLs where there is a right answer. A new off-topic case that is judged strong today needs `maxStrong` raised in the same change, with a note why; otherwise the gate fails. Run `npm run benchmark` to see the effect, and `npm run calibrate` if the ranking needs refitting.

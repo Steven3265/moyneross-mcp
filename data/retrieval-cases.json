@@ -1,0 +1,2145 @@
+{
+  "$comment": "Every retrieval expectation the connector is held to, in one place. scripts/retrieval-gate.mjs evaluates it; npm run benchmark, npm run calibrate and the core tests all use that one evaluation. The website's own public benchmark stays in data/benchmark.json as the \"website\" category. See docs/BENCHMARK.md.",
+  "gates": {
+    "website": {
+      "rule": "every",
+      "within": 3,
+      "strong": true,
+      "note": "the website's public benchmark: every question in the top three and strong"
+    },
+    "shorthand": {
+      "rule": "count",
+      "within": 3,
+      "minHit": 23,
+      "minStrong": 22
+    },
+    "element": {
+      "rule": "count",
+      "within": 3,
+      "minHit": 26,
+      "minStrong": 25
+    },
+    "element-open": {
+      "rule": "count",
+      "within": 3,
+      "minHit": 24
+    },
+    "pinned": {
+      "rule": "every",
+      "note": "rankings the protocol and HTTP tests assert outright"
+    },
+    "weak": {
+      "rule": "every",
+      "note": "returns background, never strong"
+    },
+    "empty": {
+      "rule": "every",
+      "note": "returns nothing"
+    },
+    "outside": {
+      "rule": "ratchet",
+      "maxStrong": 15,
+      "target": 0,
+      "note": "off-topic questions that share the corpus's words; may never get worse; target zero"
+    },
+    "target": {
+      "rule": "report",
+      "within": 3,
+      "note": "the right page exists and a different one wins today; promoted to a gated category once fixed"
+    },
+    "faq": {
+      "rule": "report",
+      "within": 3,
+      "note": "one authored FAQ per library page; should find its own page"
+    }
+  },
+  "cases": [
+    {
+      "id": "shorthand:capex-forecast-for-an-old-office-block",
+      "category": "shorthand",
+      "query": "capex forecast for an old office block",
+      "expected": [
+        "https://moyneross.com/insights/the-1970s-office",
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/what-a-capital-strategy-is"
+      ]
+    },
+    {
+      "id": "shorthand:who-is-on-the-hook-for-dilaps-when-the-tenant-leaves",
+      "category": "shorthand",
+      "query": "who is on the hook for dilaps when the tenant leaves",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ]
+    },
+    {
+      "id": "shorthand:mees-and-minimum-epc-for-letting-offices-in-england",
+      "category": "shorthand",
+      "query": "MEES and minimum EPC for letting offices in England",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule"
+      ]
+    },
+    {
+      "id": "shorthand:nyc-ll97-carbon-caps-on-buildings",
+      "category": "shorthand",
+      "query": "NYC LL97 carbon caps on buildings",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ]
+    },
+    {
+      "id": "shorthand:nabers-ratings-and-mandatory-disclosure",
+      "category": "shorthand",
+      "query": "NABERS ratings and mandatory disclosure",
+      "expected": [
+        "https://moyneross.com/insights/the-markets-right-to-know",
+        "https://moyneross.com/insights/australia-supply-constraint-and-the-staircase-code"
+      ]
+    },
+    {
+      "id": "shorthand:putting-pv-panels-on-a-warehouse-roof",
+      "category": "shorthand",
+      "query": "putting PV panels on a warehouse roof",
+      "expected": [
+        "https://moyneross.com/insights/the-roof-nobody-designed-for-solar",
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station"
+      ]
+    },
+    {
+      "id": "shorthand:turning-an-office-tower-into-apartments",
+      "category": "shorthand",
+      "query": "turning an office tower into apartments",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ]
+    },
+    {
+      "id": "shorthand:strata-sinking-fund-too-small-for-the-repairs",
+      "category": "shorthand",
+      "query": "strata sinking fund too small for the repairs",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ]
+    },
+    {
+      "id": "shorthand:hoa-reserve-study-requirements-in-the-us",
+      "category": "shorthand",
+      "query": "HOA reserve study requirements in the US",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study",
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ]
+    },
+    {
+      "id": "shorthand:flammable-acp-cladding-and-hidden-hazards-in-older-buildings",
+      "category": "shorthand",
+      "query": "flammable ACP cladding and hidden hazards in older buildings",
+      "expected": [
+        "https://moyneross.com/insights/what-age-conceals"
+      ]
+    },
+    {
+      "id": "shorthand:postponing-repairs-just-stores-up-cost",
+      "category": "shorthand",
+      "query": "postponing repairs just stores up cost",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ]
+    },
+    {
+      "id": "shorthand:valuers-ignoring-roof-replacement-in-the-yield",
+      "category": "shorthand",
+      "query": "valuers ignoring roof replacement in the yield",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "shorthand:vendor-dd-pack-before-selling-an-asset",
+      "category": "shorthand",
+      "query": "vendor DD pack before selling an asset",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ]
+    },
+    {
+      "id": "shorthand:tdd-across-australia-uk-and-us",
+      "category": "shorthand",
+      "query": "TDD across Australia UK and US",
+      "expected": [
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ]
+    },
+    {
+      "id": "shorthand:contingency-allowance-when-you-have-not-opened-up-the-ceilin",
+      "category": "shorthand",
+      "query": "contingency allowance when you have not opened up the ceiling",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know"
+      ]
+    },
+    {
+      "id": "shorthand:rating-buildings-by-condition-score-rather-than-dollars",
+      "category": "shorthand",
+      "query": "rating buildings by condition score rather than dollars",
+      "expected": [
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/methodology/mr-index"
+      ]
+    },
+    {
+      "id": "shorthand:chiller-and-bms-end-of-life-in-a-90s-office",
+      "category": "shorthand",
+      "query": "chiller and BMS end of life in a 90s office",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation"
+      ]
+    },
+    {
+      "id": "shorthand:stranded-asset-risk-from-functional-and-economic-obsolescenc",
+      "category": "shorthand",
+      "query": "stranded asset risk from functional and economic obsolescence",
+      "expected": [
+        "https://moyneross.com/insights/three-kinds-of-obsolescence"
+      ]
+    },
+    {
+      "id": "shorthand:flood-and-heat-exposure-for-commercial-property-insurance",
+      "category": "shorthand",
+      "query": "flood and heat exposure for commercial property insurance",
+      "expected": [
+        "https://moyneross.com/insights/climate-as-physical-risk"
+      ]
+    },
+    {
+      "id": "shorthand:upgrading-the-switchboard-to-get-off-gas",
+      "category": "shorthand",
+      "query": "upgrading the switchboard to get off gas",
+      "expected": [
+        "https://moyneross.com/insights/energy-becomes-a-building-function"
+      ]
+    },
+    {
+      "id": "shorthand:lithium-battery-fire-risk-in-buildings-full-of-machines",
+      "category": "shorthand",
+      "query": "lithium battery fire risk in buildings full of machines",
+      "expected": [
+        "https://moyneross.com/insights/the-building-as-host-to-machines"
+      ]
+    },
+    {
+      "id": "shorthand:what-can-you-learn-about-a-building-from-a-desktop-review-wi",
+      "category": "shorthand",
+      "query": "what can you learn about a building from a desktop review with satellite photos",
+      "expected": [
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you"
+      ]
+    },
+    {
+      "id": "shorthand:hold-refurb-reposition-or-sell",
+      "category": "shorthand",
+      "query": "hold, refurb, reposition or sell",
+      "expected": [
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ]
+    },
+    {
+      "id": "shorthand:keeping-the-building-record-live-after-the-report",
+      "category": "shorthand",
+      "query": "keeping the building record live after the report",
+      "expected": [
+        "https://moyneross.com/insights/the-living-record",
+        "https://moyneross.com/insights/the-register-not-the-report"
+      ]
+    },
+    {
+      "id": "element:horizontal-cracks-in-a-brick-cavity-wall-at-regular-courses:technical",
+      "category": "element",
+      "query": "horizontal cracks in a brick cavity wall at regular courses",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork"
+      ]
+    },
+    {
+      "id": "element-open:horizontal-cracks-in-a-brick-cavity-wall-at-regular-courses",
+      "category": "element-open",
+      "query": "horizontal cracks in a brick cavity wall at regular courses",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork"
+      ]
+    },
+    {
+      "id": "element:why-is-the-brickwork-cracking-over-the-window-openings:technical",
+      "category": "element",
+      "query": "why is the brickwork cracking over the window openings",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/load-bearing-masonry"
+      ]
+    },
+    {
+      "id": "element-open:why-is-the-brickwork-cracking-over-the-window-openings",
+      "category": "element-open",
+      "query": "why is the brickwork cracking over the window openings",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/load-bearing-masonry"
+      ]
+    },
+    {
+      "id": "element:subsidence-from-trees-drying-clay-soil-under-a-corner-of-the:technical",
+      "category": "element",
+      "query": "subsidence from trees drying clay soil under a corner of the building",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/foundations"
+      ]
+    },
+    {
+      "id": "element-open:subsidence-from-trees-drying-clay-soil-under-a-corner-of-the",
+      "category": "element-open",
+      "query": "subsidence from trees drying clay soil under a corner of the building",
+      "expected": [
+        "https://moyneross.com/technical/foundations"
+      ]
+    },
+    {
+      "id": "element:warehouse-slab-joints-breaking-under-forklifts:technical",
+      "category": "element",
+      "query": "warehouse slab joints breaking under forklifts",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground",
+        "https://moyneross.com/technical/loading-docks-and-goods-handling"
+      ]
+    },
+    {
+      "id": "element-open:warehouse-slab-joints-breaking-under-forklifts",
+      "category": "element-open",
+      "query": "warehouse slab joints breaking under forklifts",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground",
+        "https://moyneross.com/technical/loading-docks-and-goods-handling"
+      ]
+    },
+    {
+      "id": "element:concrete-spalling-and-rust-stains-in-a-car-park-frame:technical",
+      "category": "element",
+      "query": "concrete spalling and rust stains in a car park frame",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures"
+      ]
+    },
+    {
+      "id": "element-open:concrete-spalling-and-rust-stains-in-a-car-park-frame",
+      "category": "element-open",
+      "query": "concrete spalling and rust stains in a car park frame",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures"
+      ]
+    },
+    {
+      "id": "element:flat-roof-membrane-leaking-after-every-patch-is-the-insulati:technical",
+      "category": "element",
+      "query": "flat roof membrane leaking after every patch, is the insulation wet",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ]
+    },
+    {
+      "id": "element-open:flat-roof-membrane-leaking-after-every-patch-is-the-insulati",
+      "category": "element-open",
+      "query": "flat roof membrane leaking after every patch, is the insulation wet",
+      "expected": [
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ]
+    },
+    {
+      "id": "element:rust-on-the-laps-of-a-metal-deck-roof-near-the-gutter:technical",
+      "category": "element",
+      "query": "rust on the laps of a metal deck roof near the gutter",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ]
+    },
+    {
+      "id": "element-open:rust-on-the-laps-of-a-metal-deck-roof-near-the-gutter",
+      "category": "element-open",
+      "query": "rust on the laps of a metal deck roof near the gutter",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ]
+    },
+    {
+      "id": "element:box-gutter-overflowing-inside-the-building-in-heavy-storms:technical",
+      "category": "element",
+      "query": "box gutter overflowing inside the building in heavy storms",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ]
+    },
+    {
+      "id": "element-open:box-gutter-overflowing-inside-the-building-in-heavy-storms",
+      "category": "element-open",
+      "query": "box gutter overflowing inside the building in heavy storms",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ]
+    },
+    {
+      "id": "element:combustible-aluminium-composite-panel-cladding-remediation:technical",
+      "category": "element",
+      "query": "combustible aluminium composite panel cladding remediation",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ]
+    },
+    {
+      "id": "element-open:combustible-aluminium-composite-panel-cladding-remediation",
+      "category": "element-open",
+      "query": "combustible aluminium composite panel cladding remediation",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ]
+    },
+    {
+      "id": "element:fogged-double-glazed-units-and-curtain-wall-leaks:technical",
+      "category": "element",
+      "query": "fogged double glazed units and curtain wall leaks",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems"
+      ]
+    },
+    {
+      "id": "element-open:fogged-double-glazed-units-and-curtain-wall-leaks",
+      "category": "element-open",
+      "query": "fogged double glazed units and curtain wall leaks",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems"
+      ]
+    },
+    {
+      "id": "element:balcony-balustrade-moves-under-hand-pressure:technical",
+      "category": "element",
+      "query": "balcony balustrade moves under hand pressure",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ]
+    },
+    {
+      "id": "element-open:balcony-balustrade-moves-under-hand-pressure",
+      "category": "element-open",
+      "query": "balcony balustrade moves under hand pressure",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ]
+    },
+    {
+      "id": "element:chiller-replacement-and-refrigerant-phase-out:technical",
+      "category": "element",
+      "query": "chiller replacement and refrigerant phase-out",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/central-cooling-plant"
+      ]
+    },
+    {
+      "id": "element-open:chiller-replacement-and-refrigerant-phase-out",
+      "category": "element-open",
+      "query": "chiller replacement and refrigerant phase-out",
+      "expected": [
+        "https://moyneross.com/technical/central-cooling-plant"
+      ]
+    },
+    {
+      "id": "element:cooling-tower-legionella-risk:technical",
+      "category": "element",
+      "query": "cooling tower legionella risk",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ]
+    },
+    {
+      "id": "element-open:cooling-tower-legionella-risk",
+      "category": "element-open",
+      "query": "cooling tower legionella risk",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ]
+    },
+    {
+      "id": "element:obsolete-building-management-system-controllers-and-propriet:technical",
+      "category": "element",
+      "query": "obsolete building management system controllers and proprietary lock-in",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/building-management-and-control-system",
+        "https://moyneross.com/technical/integrated-building-systems"
+      ]
+    },
+    {
+      "id": "element-open:obsolete-building-management-system-controllers-and-propriet",
+      "category": "element-open",
+      "query": "obsolete building management system controllers and proprietary lock-in",
+      "expected": [
+        "https://moyneross.com/technical/building-management-and-control-system",
+        "https://moyneross.com/technical/integrated-building-systems"
+      ]
+    },
+    {
+      "id": "element:main-switchboard-at-capacity-and-the-electricity-supply-upgr:technical",
+      "category": "element",
+      "query": "main switchboard at capacity and the electricity supply upgrade",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply"
+      ]
+    },
+    {
+      "id": "element-open:main-switchboard-at-capacity-and-the-electricity-supply-upgr",
+      "category": "element-open",
+      "query": "main switchboard at capacity and the electricity supply upgrade",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply"
+      ]
+    },
+    {
+      "id": "element:standby-generator-and-ups-testing:technical",
+      "category": "element",
+      "query": "standby generator and UPS testing",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ]
+    },
+    {
+      "id": "element-open:standby-generator-and-ups-testing",
+      "category": "element-open",
+      "query": "standby generator and UPS testing",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ]
+    },
+    {
+      "id": "element:sprinkler-pipes-corroding-and-pinhole-leaks:technical",
+      "category": "element",
+      "query": "sprinkler pipes corroding and pinhole leaks",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "element-open:sprinkler-pipes-corroding-and-pinhole-leaks",
+      "category": "element-open",
+      "query": "sprinkler pipes corroding and pinhole leaks",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "element:fire-doors-propped-open-and-fire-stopping-missing-at-service:technical",
+      "category": "element",
+      "query": "fire doors propped open and fire stopping missing at service penetrations",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/internal-doors-and-hardware",
+        "https://moyneross.com/technical/electrical-and-communications-risers"
+      ]
+    },
+    {
+      "id": "element-open:fire-doors-propped-open-and-fire-stopping-missing-at-service",
+      "category": "element-open",
+      "query": "fire doors propped open and fire stopping missing at service penetrations",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/internal-doors-and-hardware",
+        "https://moyneross.com/technical/electrical-and-communications-risers"
+      ]
+    },
+    {
+      "id": "element:fire-alarm-panel-obsolete-and-detector-coverage-after-a-refi:technical",
+      "category": "element",
+      "query": "fire alarm panel obsolete and detector coverage after a refit",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems"
+      ]
+    },
+    {
+      "id": "element-open:fire-alarm-panel-obsolete-and-detector-coverage-after-a-refi",
+      "category": "element-open",
+      "query": "fire alarm panel obsolete and detector coverage after a refit",
+      "expected": [
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems"
+      ]
+    },
+    {
+      "id": "element:hot-water-plant-scaling-and-temperature-control-for-legionel:technical",
+      "category": "element",
+      "query": "hot water plant scaling and temperature control for legionella",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/hot-and-warm-water-plant"
+      ]
+    },
+    {
+      "id": "element-open:hot-water-plant-scaling-and-temperature-control-for-legionel",
+      "category": "element-open",
+      "query": "hot water plant scaling and temperature control for legionella",
+      "expected": [
+        "https://moyneross.com/technical/hot-and-warm-water-plant"
+      ]
+    },
+    {
+      "id": "element:lift-modernisation-when-parts-are-obsolete:technical",
+      "category": "element",
+      "query": "lift modernisation when parts are obsolete",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ]
+    },
+    {
+      "id": "element-open:lift-modernisation-when-parts-are-obsolete",
+      "category": "element-open",
+      "query": "lift modernisation when parts are obsolete",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ]
+    },
+    {
+      "id": "element:asbestos-in-an-older-building-before-refurbishment:technical",
+      "category": "element",
+      "query": "asbestos in an older building before refurbishment",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ]
+    },
+    {
+      "id": "element-open:asbestos-in-an-older-building-before-refurbishment",
+      "category": "element-open",
+      "query": "asbestos in an older building before refurbishment",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ]
+    },
+    {
+      "id": "element:shower-leaking-into-the-ceiling-of-the-apartment-below:technical",
+      "category": "element",
+      "query": "shower leaking into the ceiling of the apartment below",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ]
+    },
+    {
+      "id": "element-open:shower-leaking-into-the-ceiling-of-the-apartment-below",
+      "category": "element-open",
+      "query": "shower leaking into the ceiling of the apartment below",
+      "expected": [
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ]
+    },
+    {
+      "id": "element:anchor-points-on-the-roof-past-their-inspection-date:technical",
+      "category": "element",
+      "query": "anchor points on the roof past their inspection date",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/roof-safety-systems"
+      ]
+    },
+    {
+      "id": "element-open:anchor-points-on-the-roof-past-their-inspection-date",
+      "category": "element-open",
+      "query": "anchor points on the roof past their inspection date",
+      "expected": [
+        "https://moyneross.com/technical/roof-safety-systems"
+      ]
+    },
+    {
+      "id": "element:solar-inverter-failure-and-dc-isolator-fires:technical",
+      "category": "element",
+      "query": "solar inverter failure and DC isolator fires",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ]
+    },
+    {
+      "id": "element-open:solar-inverter-failure-and-dc-isolator-fires",
+      "category": "element-open",
+      "query": "solar inverter failure and DC isolator fires",
+      "expected": [
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ]
+    },
+    {
+      "id": "element:loading-dock-pedestrian-and-forklift-segregation:technical",
+      "category": "element",
+      "query": "loading dock pedestrian and forklift segregation",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/loading-docks-and-goods-handling"
+      ]
+    },
+    {
+      "id": "element-open:loading-dock-pedestrian-and-forklift-segregation",
+      "category": "element-open",
+      "query": "loading dock pedestrian and forklift segregation",
+      "expected": [
+        "https://moyneross.com/technical/loading-docks-and-goods-handling"
+      ]
+    },
+    {
+      "id": "pinned:should-we-refurbish-or-redevelop-an-ageing-1970s-office",
+      "category": "pinned",
+      "query": "should we refurbish or redevelop an ageing 1970s office",
+      "expected": [
+        "https://moyneross.com/insights/the-1970s-office"
+      ],
+      "within": 1,
+      "strong": true,
+      "note": "scripts/test-protocol.mjs"
+    },
+    {
+      "id": "pinned:deferred-maintenance",
+      "category": "pinned",
+      "query": "deferred maintenance",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ],
+      "within": 1,
+      "strong": true,
+      "note": "test/core.test.mjs, scripts/test-http.mjs"
+    },
+    {
+      "id": "pinned:who-is-on-the-hook-for-dilaps-when-the-tenant-leaves",
+      "category": "pinned",
+      "query": "who is on the hook for dilaps when the tenant leaves",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "within": 2,
+      "note": "scripts/test-protocol.mjs"
+    },
+    {
+      "id": "pinned:who-is-on-the-hook-for-dilaps-when-the-tenant-leaves:research",
+      "category": "pinned",
+      "query": "who is on the hook for dilaps when the tenant leaves",
+      "scope": "research",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "within": 1,
+      "note": "scripts/test-protocol.mjs"
+    },
+    {
+      "id": "pinned:horizontal-cracks-in-a-brick-cavity-wall:technical",
+      "category": "pinned",
+      "query": "horizontal cracks in a brick cavity wall",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork"
+      ],
+      "within": 1,
+      "note": "scripts/test-protocol.mjs"
+    },
+    {
+      "id": "weak:how-much-is-a-house-in-sydney",
+      "category": "weak",
+      "query": "how much is a house in sydney"
+    },
+    {
+      "id": "weak:stamp-duty-calculator-victoria",
+      "category": "weak",
+      "query": "stamp duty calculator victoria"
+    },
+    {
+      "id": "weak:how-to-choose-a-mortgage-broker",
+      "category": "weak",
+      "query": "how to choose a mortgage broker"
+    },
+    {
+      "id": "weak:best-suburb-to-buy-an-investment-apartment",
+      "category": "weak",
+      "query": "best suburb to buy an investment apartment"
+    },
+    {
+      "id": "weak:how-do-i-dispute-a-strata-levy-at-tribunal",
+      "category": "weak",
+      "query": "how do I dispute a strata levy at tribunal"
+    },
+    {
+      "id": "weak:what-is-the-auction-clearance-rate-this-week",
+      "category": "weak",
+      "query": "what is the auction clearance rate this week"
+    },
+    {
+      "id": "weak:how-to-negotiate-rent-with-my-landlord",
+      "category": "weak",
+      "query": "how to negotiate rent with my landlord"
+    },
+    {
+      "id": "weak:should-i-buy-a-house-or-keep-renting",
+      "category": "weak",
+      "query": "should I buy a house or keep renting"
+    },
+    {
+      "id": "weak:how-much-does-a-conveyancer-cost",
+      "category": "weak",
+      "query": "how much does a conveyancer cost"
+    },
+    {
+      "id": "weak:property-management-fees-for-a-rental",
+      "category": "weak",
+      "query": "property management fees for a rental"
+    },
+    {
+      "id": "empty:xylophone-quokka",
+      "category": "empty",
+      "query": "xylophone quokka"
+    },
+    {
+      "id": "empty:zeppelin-marmalade-origami",
+      "category": "empty",
+      "query": "zeppelin marmalade origami"
+    },
+    {
+      "id": "empty:quokka-sudoku",
+      "category": "empty",
+      "query": "quokka sudoku"
+    },
+    {
+      "id": "empty:flamingo-origami-tutorial",
+      "category": "empty",
+      "query": "flamingo origami tutorial"
+    },
+    {
+      "id": "outside:cheap-flights-to-london",
+      "category": "outside",
+      "query": "cheap flights to london"
+    },
+    {
+      "id": "outside:best-pizza-in-melbourne",
+      "category": "outside",
+      "query": "best pizza in melbourne"
+    },
+    {
+      "id": "outside:how-do-i-bake-sourdough-bread",
+      "category": "outside",
+      "query": "how do I bake sourdough bread"
+    },
+    {
+      "id": "outside:who-won-the-football-grand-final",
+      "category": "outside",
+      "query": "who won the football grand final"
+    },
+    {
+      "id": "outside:python-list-comprehension-syntax",
+      "category": "outside",
+      "query": "python list comprehension syntax"
+    },
+    {
+      "id": "outside:symptoms-of-the-flu",
+      "category": "outside",
+      "query": "symptoms of the flu"
+    },
+    {
+      "id": "outside:what-is-the-capital-of-france",
+      "category": "outside",
+      "query": "what is the capital of france"
+    },
+    {
+      "id": "outside:mortgage-interest-rates-today",
+      "category": "outside",
+      "query": "mortgage interest rates today"
+    },
+    {
+      "id": "outside:how-to-train-a-puppy",
+      "category": "outside",
+      "query": "how to train a puppy"
+    },
+    {
+      "id": "outside:best-restaurants-near-the-office",
+      "category": "outside",
+      "query": "best restaurants near the office"
+    },
+    {
+      "id": "outside:weather-in-london-tomorrow",
+      "category": "outside",
+      "query": "weather in london tomorrow"
+    },
+    {
+      "id": "outside:office-christmas-party-ideas",
+      "category": "outside",
+      "query": "office christmas party ideas"
+    },
+    {
+      "id": "outside:how-to-raise-capital-for-a-tech-startup",
+      "category": "outside",
+      "query": "how to raise capital for a tech startup"
+    },
+    {
+      "id": "outside:capital-gains-tax-on-shares",
+      "category": "outside",
+      "query": "capital gains tax on shares"
+    },
+    {
+      "id": "outside:venture-capital-term-sheet-explained",
+      "category": "outside",
+      "query": "venture capital term sheet explained"
+    },
+    {
+      "id": "outside:what-is-the-capital-of-australia",
+      "category": "outside",
+      "query": "what is the capital of australia"
+    },
+    {
+      "id": "outside:how-to-register-a-business-name",
+      "category": "outside",
+      "query": "how to register a business name"
+    },
+    {
+      "id": "outside:register-to-vote-in-the-election",
+      "category": "outside",
+      "query": "register to vote in the election"
+    },
+    {
+      "id": "outside:cash-register-keeps-jamming-at-the-shop",
+      "category": "outside",
+      "query": "cash register keeps jamming at the shop"
+    },
+    {
+      "id": "outside:best-low-cost-index-fund",
+      "category": "outside",
+      "query": "best low cost index fund"
+    },
+    {
+      "id": "outside:s-p-500-index-today",
+      "category": "outside",
+      "query": "S&P 500 index today"
+    },
+    {
+      "id": "outside:body-mass-index-calculator",
+      "category": "outside",
+      "query": "body mass index calculator"
+    },
+    {
+      "id": "outside:how-to-frame-a-picture",
+      "category": "outside",
+      "query": "how to frame a picture"
+    },
+    {
+      "id": "outside:core-strength-exercises-for-runners",
+      "category": "outside",
+      "query": "core strength exercises for runners"
+    },
+    {
+      "id": "outside:apple-core-recycling-at-home",
+      "category": "outside",
+      "query": "apple core recycling at home"
+    },
+    {
+      "id": "outside:how-to-lift-weights-safely-at-the-gym",
+      "category": "outside",
+      "query": "how to lift weights safely at the gym"
+    },
+    {
+      "id": "outside:lift-a-car-with-a-jack-to-change-a-tyre",
+      "category": "outside",
+      "query": "lift a car with a jack to change a tyre"
+    },
+    {
+      "id": "outside:car-lease-or-buy-which-is-cheaper",
+      "category": "outside",
+      "query": "car lease or buy which is cheaper"
+    },
+    {
+      "id": "outside:lease-a-new-phone-plan",
+      "category": "outside",
+      "query": "lease a new phone plan"
+    },
+    {
+      "id": "outside:how-often-should-i-service-my-car",
+      "category": "outside",
+      "query": "how often should I service my car"
+    },
+    {
+      "id": "outside:customer-service-complaint-letter-template",
+      "category": "outside",
+      "query": "customer service complaint letter template"
+    },
+    {
+      "id": "outside:foundation-makeup-shade-for-oily-skin",
+      "category": "outside",
+      "query": "foundation makeup shade for oily skin"
+    },
+    {
+      "id": "outside:charitable-foundation-grant-application",
+      "category": "outside",
+      "query": "charitable foundation grant application"
+    },
+    {
+      "id": "outside:strata-rock-layers-in-geology",
+      "category": "outside",
+      "query": "strata rock layers in geology"
+    },
+    {
+      "id": "outside:roof-of-the-mouth-hurts-when-eating",
+      "category": "outside",
+      "query": "roof of the mouth hurts when eating"
+    },
+    {
+      "id": "outside:glass-ceiling-for-women-in-management",
+      "category": "outside",
+      "query": "glass ceiling for women in management"
+    },
+    {
+      "id": "outside:how-to-break-the-ice-at-a-networking-event",
+      "category": "outside",
+      "query": "how to break the ice at a networking event"
+    },
+    {
+      "id": "outside:firewall-settings-on-my-router",
+      "category": "outside",
+      "query": "firewall settings on my router"
+    },
+    {
+      "id": "outside:fire-up-the-barbecue-for-a-steak",
+      "category": "outside",
+      "query": "fire up the barbecue for a steak"
+    },
+    {
+      "id": "outside:wildfire-evacuation-plan-for-a-campsite",
+      "category": "outside",
+      "query": "wildfire evacuation plan for a campsite"
+    },
+    {
+      "id": "outside:bridge-card-game-rules",
+      "category": "outside",
+      "query": "bridge card game rules"
+    },
+    {
+      "id": "outside:facade-of-confidence-in-a-job-interview",
+      "category": "outside",
+      "query": "facade of confidence in a job interview"
+    },
+    {
+      "id": "outside:how-to-hydrate-after-a-marathon",
+      "category": "outside",
+      "query": "how to hydrate after a marathon"
+    },
+    {
+      "id": "outside:electric-guitar-amplifier-recommendations",
+      "category": "outside",
+      "query": "electric guitar amplifier recommendations"
+    },
+    {
+      "id": "outside:mechanical-keyboard-switches-compared",
+      "category": "outside",
+      "query": "mechanical keyboard switches compared"
+    },
+    {
+      "id": "outside:hydraulic-brake-fluid-for-a-mountain-bike",
+      "category": "outside",
+      "query": "hydraulic brake fluid for a mountain bike"
+    },
+    {
+      "id": "outside:plumbing-the-depths-of-a-mystery-novel",
+      "category": "outside",
+      "query": "plumbing the depths of a mystery novel"
+    },
+    {
+      "id": "outside:structural-equation-modelling-in-psychology",
+      "category": "outside",
+      "query": "structural equation modelling in psychology"
+    },
+    {
+      "id": "outside:structure-of-a-cover-letter",
+      "category": "outside",
+      "query": "structure of a cover letter"
+    },
+    {
+      "id": "outside:gutter-ball-in-ten-pin-bowling",
+      "category": "outside",
+      "query": "gutter ball in ten pin bowling"
+    },
+    {
+      "id": "outside:how-to-waterproof-hiking-boots",
+      "category": "outside",
+      "query": "how to waterproof hiking boots"
+    },
+    {
+      "id": "outside:insulation-for-a-sleeping-bag-in-winter",
+      "category": "outside",
+      "query": "insulation for a sleeping bag in winter"
+    },
+    {
+      "id": "outside:lighting-for-portrait-photography",
+      "category": "outside",
+      "query": "lighting for portrait photography"
+    },
+    {
+      "id": "outside:ventilator-settings-in-intensive-care",
+      "category": "outside",
+      "query": "ventilator settings in intensive care"
+    },
+    {
+      "id": "outside:drainage-of-a-sinus-infection",
+      "category": "outside",
+      "query": "drainage of a sinus infection"
+    },
+    {
+      "id": "outside:escalate-a-complaint-to-a-manager",
+      "category": "outside",
+      "query": "escalate a complaint to a manager"
+    },
+    {
+      "id": "outside:paint-a-watercolour-landscape",
+      "category": "outside",
+      "query": "paint a watercolour landscape"
+    },
+    {
+      "id": "outside:sealant-for-a-bicycle-tubeless-tyre",
+      "category": "outside",
+      "query": "sealant for a bicycle tubeless tyre"
+    },
+    {
+      "id": "outside:coating-a-cake-with-fondant",
+      "category": "outside",
+      "query": "coating a cake with fondant"
+    },
+    {
+      "id": "outside:best-tiles-for-a-scrabble-opening-move",
+      "category": "outside",
+      "query": "best tiles for a scrabble opening move"
+    },
+    {
+      "id": "outside:dock-a-ship-in-a-storm",
+      "category": "outside",
+      "query": "dock a ship in a storm"
+    },
+    {
+      "id": "outside:loading-dock-of-a-video-game-level",
+      "category": "outside",
+      "query": "loading dock of a video game level"
+    },
+    {
+      "id": "outside:asset-allocation-for-a-retirement-portfolio",
+      "category": "outside",
+      "query": "asset allocation for a retirement portfolio"
+    },
+    {
+      "id": "outside:the-obsolescence-of-fax-machines",
+      "category": "outside",
+      "query": "the obsolescence of fax machines"
+    },
+    {
+      "id": "outside:deferred-tax-liability-accounting",
+      "category": "outside",
+      "query": "deferred tax liability accounting"
+    },
+    {
+      "id": "outside:debt-consolidation-loan-rates",
+      "category": "outside",
+      "query": "debt consolidation loan rates"
+    },
+    {
+      "id": "outside:condition-of-a-used-car-before-buying",
+      "category": "outside",
+      "query": "condition of a used car before buying"
+    },
+    {
+      "id": "outside:lifecycle-of-a-butterfly",
+      "category": "outside",
+      "query": "lifecycle of a butterfly"
+    },
+    {
+      "id": "outside:timing-belt-replacement-on-a-car",
+      "category": "outside",
+      "query": "timing belt replacement on a car"
+    },
+    {
+      "id": "outside:energy-drink-caffeine-content",
+      "category": "outside",
+      "query": "energy drink caffeine content"
+    },
+    {
+      "id": "outside:how-to-write-a-business-plan",
+      "category": "outside",
+      "query": "how to write a business plan"
+    },
+    {
+      "id": "outside:the-tenant-in-a-shakespeare-play",
+      "category": "outside",
+      "query": "the tenant in a Shakespeare play"
+    },
+    {
+      "id": "outside:make-good-on-a-promise-to-a-friend",
+      "category": "outside",
+      "query": "make good on a promise to a friend"
+    },
+    {
+      "id": "outside:rent-a-holiday-house-in-bali",
+      "category": "outside",
+      "query": "rent a holiday house in bali"
+    },
+    {
+      "id": "outside:due-diligence-on-a-used-car-dealer",
+      "category": "outside",
+      "query": "due diligence on a used car dealer"
+    },
+    {
+      "id": "outside:how-to-measure-a-room-for-a-new-carpet-in-my-flat",
+      "category": "outside",
+      "query": "how to measure a room for a new carpet in my flat"
+    },
+    {
+      "id": "outside:heat-pump-dryer-for-laundry",
+      "category": "outside",
+      "query": "heat pump dryer for laundry"
+    },
+    {
+      "id": "outside:solar-eclipse-viewing-glasses",
+      "category": "outside",
+      "query": "solar eclipse viewing glasses"
+    },
+    {
+      "id": "outside:bricks-in-a-minecraft-build",
+      "category": "outside",
+      "query": "bricks in a minecraft build"
+    },
+    {
+      "id": "outside:crack-a-walnut-without-a-nutcracker",
+      "category": "outside",
+      "query": "crack a walnut without a nutcracker"
+    },
+    {
+      "id": "outside:basement-band-rehearsal-room-acoustics",
+      "category": "outside",
+      "query": "basement band rehearsal room acoustics"
+    },
+    {
+      "id": "outside:capital-letters-in-a-formal-email",
+      "category": "outside",
+      "query": "capital letters in a formal email"
+    },
+    {
+      "id": "target:fire-door-inspection-frequency-uk",
+      "category": "target",
+      "query": "fire door inspection frequency UK",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/internal-doors-and-hardware"
+      ]
+    },
+    {
+      "id": "target:switchboard-thermal-imaging",
+      "category": "target",
+      "query": "switchboard thermal imaging",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply",
+        "https://moyneross.com/technical/power-distribution"
+      ]
+    },
+    {
+      "id": "target:concrete-cancer",
+      "category": "target",
+      "query": "concrete cancer",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures"
+      ]
+    },
+    {
+      "id": "target:tin-roof-leaking",
+      "category": "target",
+      "query": "tin roof leaking",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ]
+    },
+    {
+      "id": "target:asbestos-register-requirements-australia:technical",
+      "category": "target",
+      "query": "asbestos register requirements Australia",
+      "scope": "technical",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ],
+      "within": 1
+    },
+    {
+      "id": "target:rust-stains-coming-through-the-render-on-a-concrete-wall",
+      "category": "target",
+      "query": "rust stains coming through the render on a concrete wall",
+      "expected": [
+        "https://moyneross.com/technical/external-coating-systems",
+        "https://moyneross.com/technical/structural-frame"
+      ]
+    },
+    {
+      "id": "target:lift-keeps-breaking-down-and-the-parts-are-obsolete",
+      "category": "target",
+      "query": "lift keeps breaking down and the parts are obsolete",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ]
+    },
+    {
+      "id": "target:sprinkler-heads-painted-over",
+      "category": "target",
+      "query": "sprinkler heads painted over",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "faq:how-should-a-platform-lift-s-reliability-be-judged",
+      "category": "faq",
+      "query": "How should a platform lift's reliability be judged?",
+      "expected": [
+        "https://moyneross.com/technical/accessibility-lifts"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-air-conditioning-smell-musty-when-it-starts",
+      "category": "faq",
+      "query": "Why does the air conditioning smell musty when it starts?",
+      "expected": [
+        "https://moyneross.com/technical/air-handling-units"
+      ]
+    },
+    {
+      "id": "faq:why-do-pergolas-and-carports-lean",
+      "category": "faq",
+      "query": "Why do pergolas and carports lean?",
+      "expected": [
+        "https://moyneross.com/technical/ancillary-structures"
+      ]
+    },
+    {
+      "id": "faq:is-falling-stone-from-a-fa-ade-serious",
+      "category": "faq",
+      "query": "Is falling stone from a façade serious?",
+      "expected": [
+        "https://moyneross.com/technical/architectural-and-decorative-features"
+      ]
+    },
+    {
+      "id": "faq:does-a-sprinkler-system-cover-any-change-of-storage",
+      "category": "faq",
+      "query": "Does a sprinkler system cover any change of storage?",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "faq:is-a-leaning-retaining-wall-dangerous",
+      "category": "faq",
+      "query": "Is a leaning retaining wall dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/basement-cellars-and-retaining-walls"
+      ]
+    },
+    {
+      "id": "faq:will-regrouting-fix-a-leaking-shower",
+      "category": "faq",
+      "query": "Will regrouting fix a leaking shower?",
+      "expected": [
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ]
+    },
+    {
+      "id": "faq:can-a-bmu-be-used-if-its-inspection-is-overdue",
+      "category": "faq",
+      "query": "Can a BMU be used if its inspection is overdue?",
+      "expected": [
+        "https://moyneross.com/technical/building-maintenance-units"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-plant-run-at-night",
+      "category": "faq",
+      "query": "Why does the plant run at night?",
+      "expected": [
+        "https://moyneross.com/technical/building-management-and-control-system"
+      ]
+    },
+    {
+      "id": "faq:is-a-sagging-shop-awning-dangerous",
+      "category": "faq",
+      "query": "Is a sagging shop awning dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/canopies-and-awnings"
+      ]
+    },
+    {
+      "id": "faq:do-we-need-a-new-chiller",
+      "category": "faq",
+      "query": "Do we need a new chiller?",
+      "expected": [
+        "https://moyneross.com/technical/central-cooling-plant"
+      ]
+    },
+    {
+      "id": "faq:why-do-our-new-condensing-boilers-keep-locking-out",
+      "category": "faq",
+      "query": "Why do our new condensing boilers keep locking out?",
+      "expected": [
+        "https://moyneross.com/technical/central-heating-plant"
+      ]
+    },
+    {
+      "id": "faq:why-is-my-chimney-stack-leaning",
+      "category": "faq",
+      "query": "Why is my chimney stack leaning?",
+      "expected": [
+        "https://moyneross.com/technical/chimney-stacks-and-flues"
+      ]
+    },
+    {
+      "id": "faq:can-a-fa-ade-look-fine-and-still-have-failed",
+      "category": "faq",
+      "query": "Can a façade look fine and still have failed?",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ]
+    },
+    {
+      "id": "faq:why-does-smoke-spill-out-of-the-kitchen-hood",
+      "category": "faq",
+      "query": "Why does smoke spill out of the kitchen hood?",
+      "expected": [
+        "https://moyneross.com/technical/commercial-kitchens"
+      ]
+    },
+    {
+      "id": "faq:who-fixes-sprinkler-coverage-after-a-tenant-fit-out",
+      "category": "faq",
+      "query": "Who fixes sprinkler coverage after a tenant fit-out?",
+      "expected": [
+        "https://moyneross.com/technical/commercial-office-areas"
+      ]
+    },
+    {
+      "id": "faq:can-residents-keep-bikes-in-the-corridor",
+      "category": "faq",
+      "query": "Can residents keep bikes in the corridor?",
+      "expected": [
+        "https://moyneross.com/technical/common-circulation-areas"
+      ]
+    },
+    {
+      "id": "faq:who-pays-to-replace-non-compliant-flat-entrance-doors",
+      "category": "faq",
+      "query": "Who pays to replace non-compliant flat entrance doors?",
+      "expected": [
+        "https://moyneross.com/technical/common-internal-areas"
+      ]
+    },
+    {
+      "id": "faq:will-our-lift-phones-work-after-the-copper-network-is-switch",
+      "category": "faq",
+      "query": "Will our lift phones work after the copper network is switched off?",
+      "expected": [
+        "https://moyneross.com/technical/communications-security-and-specialist-systems"
+      ]
+    },
+    {
+      "id": "faq:does-an-older-building-have-to-meet-current-access-standards",
+      "category": "faq",
+      "query": "Does an older building have to meet current access standards?",
+      "expected": [
+        "https://moyneross.com/technical/disabled-access"
+      ]
+    },
+    {
+      "id": "faq:why-does-one-dock-have-most-of-the-incidents",
+      "category": "faq",
+      "query": "Why does one dock have most of the incidents?",
+      "expected": [
+        "https://moyneross.com/technical/dock-levellers-and-goods-hoists"
+      ]
+    },
+    {
+      "id": "faq:why-are-there-water-stains-along-the-ducts-in-summer",
+      "category": "faq",
+      "query": "Why are there water stains along the ducts in summer?",
+      "expected": [
+        "https://moyneross.com/technical/ductwork-and-air-distribution"
+      ]
+    },
+    {
+      "id": "faq:can-our-building-s-supply-handle-ev-chargers",
+      "category": "faq",
+      "query": "Can our building's supply handle EV chargers?",
+      "expected": [
+        "https://moyneross.com/technical/electric-vehicle-charging"
+      ]
+    },
+    {
+      "id": "faq:why-is-there-light-coming-through-the-riser-floor",
+      "category": "faq",
+      "query": "Why is there light coming through the riser floor?",
+      "expected": [
+        "https://moyneross.com/technical/electrical-and-communications-risers"
+      ]
+    },
+    {
+      "id": "faq:how-often-should-emergency-lighting-be-tested",
+      "category": "faq",
+      "query": "How often should emergency lighting be tested?",
+      "expected": [
+        "https://moyneross.com/technical/emergency-lighting"
+      ]
+    },
+    {
+      "id": "faq:does-a-weekly-generator-run-prove-it-works",
+      "category": "faq",
+      "query": "Does a weekly generator run prove it works?",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ]
+    },
+    {
+      "id": "faq:why-didn-t-our-energy-upgrade-save-anything",
+      "category": "faq",
+      "query": "Why didn't our energy upgrade save anything?",
+      "expected": [
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ]
+    },
+    {
+      "id": "faq:why-do-people-fall-at-the-top-of-the-escalator",
+      "category": "faq",
+      "query": "Why do people fall at the top of the escalator?",
+      "expected": [
+        "https://moyneross.com/technical/escalators-and-moving-walks"
+      ]
+    },
+    {
+      "id": "faq:why-does-paint-peel-off-at-the-bottom-of-the-wall",
+      "category": "faq",
+      "query": "Why does paint peel off at the bottom of the wall?",
+      "expected": [
+        "https://moyneross.com/technical/external-coating-systems"
+      ]
+    },
+    {
+      "id": "faq:how-do-i-know-if-a-powered-gate-is-safe",
+      "category": "faq",
+      "query": "How do I know if a powered gate is safe?",
+      "expected": [
+        "https://moyneross.com/technical/fencing-gates-and-signage"
+      ]
+    },
+    {
+      "id": "faq:does-a-current-annual-fire-safety-statement-mean-the-system-",
+      "category": "faq",
+      "query": "Does a current annual fire safety statement mean the system is fine?",
+      "expected": [
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems"
+      ]
+    },
+    {
+      "id": "faq:if-the-fire-pump-runs-every-week-does-it-work",
+      "category": "faq",
+      "query": "If the fire pump runs every week, does it work?",
+      "expected": [
+        "https://moyneross.com/technical/fire-pumping-systems"
+      ]
+    },
+    {
+      "id": "faq:what-should-i-do-if-my-gas-heater-leaves-soot",
+      "category": "faq",
+      "query": "What should I do if my gas heater leaves soot?",
+      "expected": [
+        "https://moyneross.com/technical/fireplaces"
+      ]
+    },
+    {
+      "id": "faq:why-is-new-vinyl-lifting",
+      "category": "faq",
+      "query": "Why is new vinyl lifting?",
+      "expected": [
+        "https://moyneross.com/technical/flooring"
+      ]
+    },
+    {
+      "id": "faq:is-a-wide-crack-in-my-wall-serious",
+      "category": "faq",
+      "query": "Is a wide crack in my wall serious?",
+      "expected": [
+        "https://moyneross.com/technical/foundations"
+      ]
+    },
+    {
+      "id": "faq:what-should-i-do-if-i-smell-gas",
+      "category": "faq",
+      "query": "What should I do if I smell gas?",
+      "expected": [
+        "https://moyneross.com/technical/gas-services"
+      ]
+    },
+    {
+      "id": "faq:why-did-a-toughened-glass-pane-break-on-its-own",
+      "category": "faq",
+      "query": "Why did a toughened glass pane break on its own?",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems"
+      ]
+    },
+    {
+      "id": "faq:does-a-building-need-an-asbestos-register",
+      "category": "faq",
+      "query": "Does a building need an asbestos register?",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ]
+    },
+    {
+      "id": "faq:what-happens-after-a-positive-legionella-result-in-a-cooling",
+      "category": "faq",
+      "query": "What happens after a positive Legionella result in a cooling tower?",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ]
+    },
+    {
+      "id": "faq:what-temperature-should-hot-water-be-stored-at",
+      "category": "faq",
+      "query": "What temperature should hot water be stored at?",
+      "expected": [
+        "https://moyneross.com/technical/hot-and-warm-water-plant"
+      ]
+    },
+    {
+      "id": "faq:what-makes-a-hydrant-system-fail-for-the-brigade",
+      "category": "faq",
+      "query": "What makes a hydrant system fail for the brigade?",
+      "expected": [
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ]
+    },
+    {
+      "id": "faq:why-is-my-ceiling-dripping-on-cold-mornings-with-no-rain",
+      "category": "faq",
+      "query": "Why is my ceiling dripping on cold mornings with no rain?",
+      "expected": [
+        "https://moyneross.com/technical/insulation"
+      ]
+    },
+    {
+      "id": "faq:why-did-the-lifts-not-return-in-the-fire-drill",
+      "category": "faq",
+      "query": "Why did the lifts not return in the fire drill?",
+      "expected": [
+        "https://moyneross.com/technical/integrated-building-systems"
+      ]
+    },
+    {
+      "id": "faq:can-an-exit-door-be-locked",
+      "category": "faq",
+      "query": "Can an exit door be locked?",
+      "expected": [
+        "https://moyneross.com/technical/internal-doors-and-hardware"
+      ]
+    },
+    {
+      "id": "faq:can-fire-stair-doors-be-locked-from-the-stair-side",
+      "category": "faq",
+      "query": "Can fire stair doors be locked from the stair side?",
+      "expected": [
+        "https://moyneross.com/technical/internal-stairwells"
+      ]
+    },
+    {
+      "id": "faq:is-a-sagging-ceiling-dangerous",
+      "category": "faq",
+      "query": "Is a sagging ceiling dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes"
+      ]
+    },
+    {
+      "id": "faq:how-often-should-kitchen-flexible-hoses-be-replaced",
+      "category": "faq",
+      "query": "How often should kitchen flexible hoses be replaced?",
+      "expected": [
+        "https://moyneross.com/technical/kitchen"
+      ]
+    },
+    {
+      "id": "faq:can-a-tree-damage-a-building-s-foundations",
+      "category": "faq",
+      "query": "Can a tree damage a building's foundations?",
+      "expected": [
+        "https://moyneross.com/technical/landscaping-and-irrigation"
+      ]
+    },
+    {
+      "id": "faq:why-do-our-lifts-break-down-in-hot-weather",
+      "category": "faq",
+      "query": "Why do our lifts break down in hot weather?",
+      "expected": [
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ]
+    },
+    {
+      "id": "faq:why-are-the-lights-on-all-night",
+      "category": "faq",
+      "query": "Why are the lights on all night?",
+      "expected": [
+        "https://moyneross.com/technical/lighting-control-system"
+      ]
+    },
+    {
+      "id": "faq:is-a-rusty-lighting-column-dangerous",
+      "category": "faq",
+      "query": "Is a rusty lighting column dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/lighting"
+      ]
+    },
+    {
+      "id": "faq:does-adding-solar-panels-affect-lightning-protection",
+      "category": "faq",
+      "query": "Does adding solar panels affect lightning protection?",
+      "expected": [
+        "https://moyneross.com/technical/lightning-protection"
+      ]
+    },
+    {
+      "id": "faq:is-it-safe-to-remove-a-load-bearing-wall-or-chimney-breast",
+      "category": "faq",
+      "query": "Is it safe to remove a load-bearing wall or chimney breast?",
+      "expected": [
+        "https://moyneross.com/technical/load-bearing-masonry"
+      ]
+    },
+    {
+      "id": "faq:how-should-pedestrians-be-kept-safe-in-a-loading-dock",
+      "category": "faq",
+      "query": "How should pedestrians be kept safe in a loading dock?",
+      "expected": [
+        "https://moyneross.com/technical/loading-docks-and-goods-handling"
+      ]
+    },
+    {
+      "id": "faq:can-we-add-a-mezzanine-or-bridge-in-an-atrium",
+      "category": "faq",
+      "query": "Can we add a mezzanine or bridge in an atrium?",
+      "expected": [
+        "https://moyneross.com/technical/lobbies-and-atria"
+      ]
+    },
+    {
+      "id": "faq:is-it-worth-repairing-an-old-split-system",
+      "category": "faq",
+      "query": "Is it worth repairing an old split system?",
+      "expected": [
+        "https://moyneross.com/technical/localised-hvac"
+      ]
+    },
+    {
+      "id": "faq:is-a-switchboard-that-works-safe",
+      "category": "faq",
+      "query": "Is a switchboard that works safe?",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply"
+      ]
+    },
+    {
+      "id": "faq:why-do-people-slip-just-inside-the-entrance",
+      "category": "faq",
+      "query": "Why do people slip just inside the entrance?",
+      "expected": [
+        "https://moyneross.com/technical/main-entrance-and-reception-areas"
+      ]
+    },
+    {
+      "id": "faq:is-it-safe-to-walk-on-a-suspended-ceiling",
+      "category": "faq",
+      "query": "Is it safe to walk on a suspended ceiling?",
+      "expected": [
+        "https://moyneross.com/technical/maintenance-access-areas"
+      ]
+    },
+    {
+      "id": "faq:why-are-there-horizontal-cracks-every-few-courses-in-my-bric",
+      "category": "faq",
+      "query": "Why are there horizontal cracks every few courses in my brick wall?",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork"
+      ]
+    },
+    {
+      "id": "faq:who-is-responsible-for-workplace-safety-in-a-building",
+      "category": "faq",
+      "query": "Who is responsible for workplace safety in a building?",
+      "expected": [
+        "https://moyneross.com/technical/occupational-health-and-safety"
+      ]
+    },
+    {
+      "id": "faq:can-we-remove-a-partition-wall",
+      "category": "faq",
+      "query": "Can we remove a partition wall?",
+      "expected": [
+        "https://moyneross.com/technical/partitioning-systems"
+      ]
+    },
+    {
+      "id": "faq:when-does-a-lift-need-modernising",
+      "category": "faq",
+      "query": "When does a lift need modernising?",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ]
+    },
+    {
+      "id": "faq:is-expanding-foam-a-fire-seal",
+      "category": "faq",
+      "query": "Is expanding foam a fire seal?",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-car-park-keep-getting-potholes",
+      "category": "faq",
+      "query": "Why does the car park keep getting potholes?",
+      "expected": [
+        "https://moyneross.com/technical/pavements-and-hardstand"
+      ]
+    },
+    {
+      "id": "faq:can-plant-rooms-be-used-for-storage",
+      "category": "faq",
+      "query": "Can plant rooms be used for storage?",
+      "expected": [
+        "https://moyneross.com/technical/plant-rooms"
+      ]
+    },
+    {
+      "id": "faq:why-is-my-parapet-leaning",
+      "category": "faq",
+      "query": "Why is my parapet leaning?",
+      "expected": [
+        "https://moyneross.com/technical/plant-screens-and-parapets"
+      ]
+    },
+    {
+      "id": "faq:does-it-matter-which-extinguisher-is-where",
+      "category": "faq",
+      "query": "Does it matter which extinguisher is where?",
+      "expected": [
+        "https://moyneross.com/technical/portable-fire-equipment"
+      ]
+    },
+    {
+      "id": "faq:is-old-rubber-wiring-dangerous",
+      "category": "faq",
+      "query": "Is old rubber wiring dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/power-distribution"
+      ]
+    },
+    {
+      "id": "faq:how-many-toilets-does-an-office-floor-need",
+      "category": "faq",
+      "query": "How many toilets does an office floor need?",
+      "expected": [
+        "https://moyneross.com/technical/public-amenities"
+      ]
+    },
+    {
+      "id": "faq:what-happens-if-the-basement-sump-pump-fails-in-a-storm",
+      "category": "faq",
+      "query": "What happens if the basement sump pump fails in a storm?",
+      "expected": [
+        "https://moyneross.com/technical/pumping-systems"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-box-gutter-leak-only-in-heavy-storms",
+      "category": "faq",
+      "query": "Why does the box gutter leak only in heavy storms?",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ]
+    },
+    {
+      "id": "faq:how-deep-should-playground-surfacing-be",
+      "category": "faq",
+      "query": "How deep should playground surfacing be?",
+      "expected": [
+        "https://moyneross.com/technical/recreational-facilities"
+      ]
+    },
+    {
+      "id": "faq:who-pays-for-a-leak-between-apartments",
+      "category": "faq",
+      "query": "Who pays for a leak between apartments?",
+      "expected": [
+        "https://moyneross.com/technical/residential-units-guest-rooms"
+      ]
+    },
+    {
+      "id": "faq:why-can-t-a-food-tenant-take-this-shop",
+      "category": "faq",
+      "query": "Why can't a food tenant take this shop?",
+      "expected": [
+        "https://moyneross.com/technical/retail-tenancies"
+      ]
+    },
+    {
+      "id": "faq:why-is-my-ceiling-dripping-when-it-hasn-t-rained",
+      "category": "faq",
+      "query": "Why is my ceiling dripping when it hasn't rained?",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ]
+    },
+    {
+      "id": "faq:how-often-must-roof-anchors-be-inspected",
+      "category": "faq",
+      "query": "How often must roof anchors be inspected?",
+      "expected": [
+        "https://moyneross.com/technical/roof-safety-systems"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-ridge-of-my-roof-dip",
+      "category": "faq",
+      "query": "Why does the ridge of my roof dip?",
+      "expected": [
+        "https://moyneross.com/technical/roof-structure"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-same-drain-keep-blocking",
+      "category": "faq",
+      "query": "Why does the same drain keep blocking?",
+      "expected": [
+        "https://moyneross.com/technical/sanitary-and-drainage-systems"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-sealant-keep-failing-after-repairs",
+      "category": "faq",
+      "query": "Why does the sealant keep failing after repairs?",
+      "expected": [
+        "https://moyneross.com/technical/sealants-and-joints"
+      ]
+    },
+    {
+      "id": "faq:can-tenants-store-goods-in-the-service-corridor",
+      "category": "faq",
+      "query": "Can tenants store goods in the service corridor?",
+      "expected": [
+        "https://moyneross.com/technical/service-corridors"
+      ]
+    },
+    {
+      "id": "faq:are-skylights-safe-to-walk-on",
+      "category": "faq",
+      "query": "Are skylights safe to walk on?",
+      "expected": [
+        "https://moyneross.com/technical/skylights-dormers-and-glazed-atria"
+      ]
+    },
+    {
+      "id": "faq:are-cracks-in-a-concrete-slab-serious",
+      "category": "faq",
+      "query": "Are cracks in a concrete slab serious?",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground"
+      ]
+    },
+    {
+      "id": "faq:why-can-t-the-stair-doors-be-opened-during-a-fire-test",
+      "category": "faq",
+      "query": "Why can't the stair doors be opened during a fire test?",
+      "expected": [
+        "https://moyneross.com/technical/smoke-management-systems"
+      ]
+    },
+    {
+      "id": "faq:are-burnt-solar-isolators-dangerous",
+      "category": "faq",
+      "query": "Are burnt solar isolators dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ]
+    },
+    {
+      "id": "faq:what-should-happen-when-a-fume-cupboard-alarms",
+      "category": "faq",
+      "query": "What should happen when a fume cupboard alarms?",
+      "expected": [
+        "https://moyneross.com/technical/specialised-occupancy-areas"
+      ]
+    },
+    {
+      "id": "faq:can-an-indoor-pool-damage-the-house",
+      "category": "faq",
+      "query": "Can an indoor pool damage the house?",
+      "expected": [
+        "https://moyneross.com/technical/specialist-and-non-standard-features"
+      ]
+    },
+    {
+      "id": "faq:when-must-a-pool-be-closed",
+      "category": "faq",
+      "query": "When must a pool be closed?",
+      "expected": [
+        "https://moyneross.com/technical/specialist-hydraulics"
+      ]
+    },
+    {
+      "id": "faq:why-must-room-integrity-be-retested-after-works",
+      "category": "faq",
+      "query": "Why must room integrity be retested after works?",
+      "expected": [
+        "https://moyneross.com/technical/specialist-suppression-systems"
+      ]
+    },
+    {
+      "id": "faq:can-we-put-compactus-shelving-on-an-upper-floor",
+      "category": "faq",
+      "query": "Can we put compactus shelving on an upper floor?",
+      "expected": [
+        "https://moyneross.com/technical/storage-and-archive-areas"
+      ]
+    },
+    {
+      "id": "faq:why-does-the-site-flood-only-in-big-storms",
+      "category": "faq",
+      "query": "Why does the site flood only in big storms?",
+      "expected": [
+        "https://moyneross.com/technical/stormwater-drainage"
+      ]
+    },
+    {
+      "id": "faq:can-bracing-be-removed-for-a-new-door",
+      "category": "faq",
+      "query": "Can bracing be removed for a new door?",
+      "expected": [
+        "https://moyneross.com/technical/structural-core"
+      ]
+    },
+    {
+      "id": "faq:are-cracks-around-columns-on-a-car-park-deck-serious",
+      "category": "faq",
+      "query": "Are cracks around columns on a car park deck serious?",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame"
+      ]
+    },
+    {
+      "id": "faq:why-is-my-floor-springy-under-the-bathroom",
+      "category": "faq",
+      "query": "Why is my floor springy under the bathroom?",
+      "expected": [
+        "https://moyneross.com/technical/sub-floor-and-crawlspace"
+      ]
+    },
+    {
+      "id": "faq:how-do-i-know-if-our-sub-meters-are-right",
+      "category": "faq",
+      "query": "How do I know if our sub-meters are right?",
+      "expected": [
+        "https://moyneross.com/technical/sub-metering"
+      ]
+    },
+    {
+      "id": "faq:why-is-one-zone-always-too-hot",
+      "category": "faq",
+      "query": "Why is one zone always too hot?",
+      "expected": [
+        "https://moyneross.com/technical/terminal-units"
+      ]
+    },
+    {
+      "id": "faq:why-do-the-drains-keep-blocking-with-grease",
+      "category": "faq",
+      "query": "Why do the drains keep blocking with grease?",
+      "expected": [
+        "https://moyneross.com/technical/trade-waste-systems"
+      ]
+    },
+    {
+      "id": "faq:can-i-drill-or-core-through-my-floor-slab",
+      "category": "faq",
+      "query": "Can I drill or core through my floor slab?",
+      "expected": [
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures"
+      ]
+    },
+    {
+      "id": "faq:is-grease-in-kitchen-exhaust-ductwork-a-fire-risk",
+      "category": "faq",
+      "query": "Is grease in kitchen exhaust ductwork a fire risk?",
+      "expected": [
+        "https://moyneross.com/technical/ventilation-systems"
+      ]
+    },
+    {
+      "id": "faq:is-a-balcony-with-a-dropped-edge-dangerous",
+      "category": "faq",
+      "query": "Is a balcony with a dropped edge dangerous?",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ]
+    },
+    {
+      "id": "faq:where-does-most-wasted-water-go",
+      "category": "faq",
+      "query": "Where does most wasted water go?",
+      "expected": [
+        "https://moyneross.com/technical/water-conservation"
+      ]
+    },
+    {
+      "id": "faq:why-is-the-water-brown-after-a-weekend",
+      "category": "faq",
+      "query": "Why is the water brown after a weekend?",
+      "expected": [
+        "https://moyneross.com/technical/water-supply"
+      ]
+    },
+    {
+      "id": "faq:why-does-my-flat-roof-keep-leaking-after-repairs",
+      "category": "faq",
+      "query": "Why does my flat roof keep leaking after repairs?",
+      "expected": [
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ]
+    }
+  ]
+}

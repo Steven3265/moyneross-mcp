@@ -7,14 +7,10 @@ import {
   tokens, STRONG_MIN_COVERAGE, TECHNICAL_KIND, formatTechnicalCitation, getTechnicalPage, listTechnicalPages, renderTechnicalPage,
   severityScale, technicalCandidates, technicalCitationFor, technicalLibrary, technicalMarkdown, technicalPages, technicalSection, technicalSectionName, technicalSummary,
 } from '../.core-dist/src/core.js';
+import * as core from '../.core-dist/src/core.js';
+import { evaluate, report } from '../scripts/retrieval-gate.mjs';
 
 const bench = JSON.parse(readFileSync(new URL('../data/benchmark.json', import.meta.url), 'utf8'));
-const para = JSON.parse(readFileSync(new URL('../data/benchmark-paraphrase.json', import.meta.url), 'utf8'));
-const techBench = JSON.parse(readFileSync(new URL('../data/benchmark-technical.json', import.meta.url), 'utf8'));
-const OFF_TOPIC = ['best pizza in melbourne', 'how do I bake sourdough bread', 'who won the football grand final', 'python list comprehension syntax', 'symptoms of the flu', 'cheap flights to london', 'what is the capital of france', 'mortgage interest rates today', 'how to train a puppy', 'best restaurants near the office', 'how much is a house in sydney', 'weather in london tomorrow', 'office christmas party ideas'];
-// "how to fix a leaking tap at home" was off-topic until 1.1.0; the Technical
-// Library now covers wet areas and water supply, so it is tested as a library question below.
-const expectedOf = (c) => (Array.isArray(c.expected) ? c.expected : [c.expected]);
 
 test('tokenizer matches the website benchmark: stop words, short words, stemming, 10-year', () => {
   assert.deepEqual(tokens('What is the 10-year plan for buildings?'), ['ten', 'year', 'plan', 'building']);
@@ -25,31 +21,12 @@ test('tokenizer matches the website benchmark: stop words, short words, stemming
   assert.deepEqual(tokens('a I x'), []);
 });
 
-test('every benchmark question finds its expected resource in the top three', () => {
-  const misses = bench.filter((c) => !searchResearch({ query: c.query, limit: 3 }).some((r) => expectedOf(c).includes(r.url)));
-  assert.deepEqual(misses.map((c) => c.query), []);
-});
-
-test('every benchmark question is judged a strong match', () => {
-  const weak = bench.filter((c) => matchStrength(c.query, searchResearch({ query: c.query, limit: 5 })) !== 'strong');
-  assert.deepEqual(weak.map((c) => c.query), []);
-});
-
-test('paraphrased practitioner questions: at least 23 of 24 in the top three, at least 21 strong', () => {
-  const top3 = para.filter((c) => searchResearch({ query: c.query, limit: 3 }).some((r) => c.expected.includes(r.url))).length;
-  const strong = para.filter((c) => matchStrength(c.query, searchResearch({ query: c.query, limit: 5 })) === 'strong').length;
-  assert.ok(top3 >= 23, `paraphrase top 3: ${top3}/24`);
-  assert.ok(strong >= 21, `paraphrase strong: ${strong}/24`);
-});
-
-test('off-topic questions: at most one of thirteen judged strong (the documented flights case)', () => {
-  const strong = OFF_TOPIC.filter((q) => matchStrength(q, searchResearch({ query: q, limit: 5 })) === 'strong');
-  assert.ok(strong.length <= 1, `strong off-topic: ${strong.join(', ')}`);
-  assert.ok(strong.every((q) => q === 'cheap flights to london'), `unexpected strong off-topic: ${strong.join(', ')}`);
-  // "symptoms" now occurs in the Technical Library (signs of failure), so this is weak rather than none.
-  assert.equal(matchStrength('symptoms of the flu', searchResearch({ query: 'symptoms of the flu' })), 'weak');
-  // With 103 library pages in the corpus, ordinary words find something; only words absent from it all find nothing.
-  assert.equal(matchStrength('xylophone quokka', searchResearch({ query: 'xylophone quokka' })), 'none');
+test('retrieval gate: every category in data/retrieval-cases.json meets its gate', () => {
+  // The website's benchmark, practitioner shorthand, building elements (scoped
+  // and unscoped), the rankings other tests pin, weak, empty and off-topic
+  // questions: one evaluation, shared with npm run benchmark and npm run calibrate.
+  const result = evaluate(core);
+  assert.ok(result.ok, report(result));
 });
 
 test('practitioner shorthand expands, at reduced weight, without displacing exact wording', () => {
@@ -194,16 +171,9 @@ test('the website ranking is untouched: a paper, method or sample scores the sam
   }
 });
 
-test('building-element questions: all in the top three with scope technical, at least 24 of 26 unscoped, at least 25 strong', () => {
-  const want = (c) => [].concat(c.expected);
-  const scoped = techBench.filter((c) => searchResearch({ query: c.query, scope: 'technical', limit: 3 }).some((r) => want(c).includes(r.url)));
-  const open = techBench.filter((c) => searchResearch({ query: c.query, limit: 3 }).some((r) => want(c).includes(r.url)));
-  const strong = techBench.filter((c) => matchStrength(c.query, searchResearch({ query: c.query, scope: 'technical', limit: 5 })) === 'strong');
-  assert.equal(scoped.length, techBench.length, `scoped misses: ${techBench.filter((c) => !scoped.includes(c)).map((c) => c.query).join('; ')}`);
-  assert.ok(open.length >= 24, `unscoped top 3: ${open.length}/${techBench.length}`);
-  assert.ok(strong.length >= 25, `strong: ${strong.length}/${techBench.length}`);
-  const tap = searchResearch({ query: 'how to fix a leaking tap at home' });
-  assert.equal(tap[0].kind, TECHNICAL_KIND);
+test('a leaking tap at home is a Technical Library question', () => {
+  // Off-topic until 1.1.0; the library now covers wet areas and water supply.
+  assert.equal(searchResearch({ query: 'how to fix a leaking tap at home' })[0].kind, TECHNICAL_KIND);
 });
 
 test('a library page resolves by slug, element name, title or URL, and near misses offer candidates', () => {

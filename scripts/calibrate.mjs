@@ -11,8 +11,9 @@
 // Run after the corpus changes: `npm run calibrate`. The snapshot refresh
 // workflow runs it, so an enrichment batch recalibrates itself.
 //
-// Exits non-zero, with the grid printed, if no setting clears every bar. That
-// means the corpus has moved further than tuning can absorb and wants a look.
+// Exits non-zero, with the grid printed, if no setting clears the retrieval
+// gate. That means the corpus has moved further than tuning can absorb and
+// wants a look.
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -20,65 +21,20 @@ import { dirname, join } from 'node:path';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, '..');
 const core = await import(join(root, '.core-dist/src/core.js'));
-const load = (f) => JSON.parse(readFileSync(join(root, 'data', f), 'utf8'));
+const { evaluate, loadCases } = await import(join(root, 'scripts/retrieval-gate.mjs'));
 
-const SETS = {
-  website: { set: load('benchmark.json'), top: 56, strong: 56 },
-  paraphrase: { set: load('benchmark-paraphrase.json'), top: 23, strong: 22 },
-  elements: { set: load('benchmark-technical.json'), top: 24, strong: 0 },
-  elementsScoped: { set: load('benchmark-technical.json'), scope: 'technical', top: 26, strong: 25 },
-};
-
-// The test suites also pin a few rankings: specific questions whose answer,
-// or whose position, they assert outright. The calibrator must honour them
-// too, or it can choose a setting the benchmarks accept and the tests reject,
-// and the refresh fails after calibrating. Keep this list in step with those
-// assertions (scripts/test-protocol.mjs, scripts/test-http.mjs).
-const DILAPS = ['https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases', 'https://moyneross.com/insights/same-thing-different-name'];
-const PINNED = [
-  { query: 'should we refurbish or redevelop an ageing 1970s office', within: 1, expected: ['https://moyneross.com/insights/the-1970s-office'], strong: true },
-  { query: 'deferred maintenance', within: 1, expected: ['https://moyneross.com/insights/deferred-maintenance-is-debt'], strong: true },
-  { query: 'who is on the hook for dilaps when the tenant leaves', within: 2, expected: DILAPS },
-  { query: 'who is on the hook for dilaps when the tenant leaves', scope: 'research', within: 1, expected: [DILAPS[0]] },
-  { query: 'horizontal cracks in a brick cavity wall', scope: 'technical', within: 1, expected: ['https://moyneross.com/technical/masonry-brickwork'] },
-  { query: 'how much is a house in sydney', strong: false },
-];
-
-function pinnedMiss() {
-  for (const p of PINNED) {
-    const found = core.searchResearch({ query: p.query, limit: 5, ...(p.scope ? { scope: p.scope } : {}) });
-    if (p.expected && !found.slice(0, p.within).some((r) => p.expected.includes(r.url))) return p.query;
-    if (p.strong !== undefined && (core.matchStrength(p.query, found) === 'strong') !== p.strong) return p.query;
-  }
-  return undefined;
-}
-
-function measure({ set, scope }) {
-  let top = 0, strong = 0;
-  for (const q of set) {
-    const want = [].concat(q.expected);
-    const opts = scope ? { scope } : {};
-    if (core.searchResearch({ query: q.query, limit: 3, ...opts }).some((r) => want.includes(r.url))) top++;
-    if (core.matchStrength(q.query, core.searchResearch({ query: q.query, limit: 5, ...opts })) === 'strong') strong++;
-  }
-  return { top, strong };
-}
+// The same gate npm run benchmark and the core tests apply (data/retrieval-
+// cases.json), so a setting chosen here is one the checks will accept.
+const CASES = loadCases();
 
 // Margin above the bars, so a setting sitting on a plateau is preferred to one
 // perched on a peak: the plateau survives the next enrichment batch.
 function score(weight, boost) {
   core.__setWeight(weight);
   core.__setBoost(boost);
-  let margin = 0, total = 0;
-  for (const [name, spec] of Object.entries(SETS)) {
-    const got = measure(spec);
-    if (got.top < spec.top || got.strong < spec.strong) return { ok: false, name, got, spec };
-    margin += (got.top - spec.top) + (got.strong - spec.strong);
-    total += got.top;
-  }
-  const miss = pinnedMiss();
-  if (miss) return { ok: false, name: 'pinned', got: { top: 0, strong: 0 }, spec: { query: miss } };
-  return { ok: true, margin, total };
+  const r = evaluate(core, CASES);
+  if (!r.ok) return { ok: false, name: r.results.find((x) => !x.pass)?.category ?? 'gate' };
+  return { ok: true, margin: r.margin, total: r.hits };
 }
 
 const weights = [];
@@ -93,16 +49,16 @@ for (const b of boosts) for (const w of weights) {
 }
 
 if (!passing.length) {
-  console.error('calibrate: no setting clears every benchmark bar and pinned ranking.\n');
+  console.error('calibrate: no setting clears the retrieval gate.\n');
   for (const b of boosts) {
     const row = weights.filter((_, i) => i % 4 === 0).map((w) => {
       const r = score(w, b);
-      return (r.ok ? 'pass' : `${r.name.slice(0, 4)}`).padStart(6);
+      return (r.ok ? 'pass' : `${r.name.slice(0, 5)}`).padStart(7);
     }).join('');
     console.error(`  boost ${b.toFixed(1)} ${row}`);
   }
   console.error('\nThe corpus has moved further than tuning can absorb. Look at the');
-  console.error('benchmark misses before changing the bars.');
+  console.error('failures (npm run benchmark) before changing a gate.');
   process.exit(1);
 }
 
@@ -127,8 +83,8 @@ const next = current
   .replace(/headlineBoost: [0-9.]+,/, `headlineBoost: ${best.b},`);
 writeFileSync(join(root, 'src/ranking.ts'), next);
 
-console.log(`calibrate: ${passing.length} of ${weights.length * boosts.length} settings clear every bar.`);
+console.log(`calibrate: ${passing.length} of ${weights.length * boosts.length} settings clear the retrieval gate.`);
 console.log(`  chosen  libraryWeight ${best.w}  headlineBoost ${best.b}`);
-console.log(`  it sits ${neighbours(best)} of 8 neighbours inside the passing region, with ${best.total} top-three hits.`);
+console.log(`  it sits ${neighbours(best)} of 8 neighbours inside the passing region, with ${best.total} gated hits.`);
 if (next !== current) console.log('  src/ranking.ts updated — commit it.');
 else console.log('  src/ranking.ts already correct.');
