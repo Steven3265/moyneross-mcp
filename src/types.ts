@@ -34,6 +34,7 @@ export type SearchDoc = { url: string; id: string; title: string; kind: string; 
 // anchors: the other addresses inside a section (its headings, table rows,
 // and earlier addresses kept alive, such as #diagnosis on a converted page).
 export type TechnicalSection = { id: string; heading: string; url: string; markdown: string; anchors?: string[] };
+export type TechnicalQuestion = { question: string; answer: string; url: string };
 export type TechnicalSource = { title: string; publisher: string; url: string };
 export type TechnicalPage = {
   slug: string;
@@ -63,6 +64,11 @@ export type TechnicalPage = {
   resourceUri: string;
   // "topic": the topic layout; "eleven": the earlier eleven fixed sections.
   layout?: string;
+  // Retrieval aids published by moyneross.com: the search title, the names
+  // people use for the element, and authored questions answered on the page.
+  searchTitle?: string;
+  alsoKnownAs?: string[];
+  questions?: TechnicalQuestion[];
   sections: TechnicalSection[];
 };
 export type SeveritySituation = { id: string; timingBasis: string | null; meaning: string };
@@ -102,6 +108,8 @@ export type SearchResult = {
   slug: string | null;
   answer: string;
   score: number;
+  // For a Technical Library page: the section that best answers the query.
+  section?: { heading: string; url: string };
 };
 
 export type PaperSummary = Omit<PaperRecord, 'contentMarkdown'>;

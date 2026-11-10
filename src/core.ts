@@ -130,6 +130,71 @@ for (const d of libraryDocs) d.weight = TECHNICAL_WEIGHT;
 
 const docs: IndexedDoc[] = [...siteDocs, ...libraryDocs];
 
+// ─── Library passages ────────────────────────────────────────────────────
+//
+// A library page is long and covers many things, so most ordinary words occur
+// on it somewhere. Scored as one document, a page wins on words scattered
+// across unrelated sections (fire doors finding the lifts page), and a
+// question looks answered when its words are merely present. So a library page
+// is scored by its best passage: its headline (title, search title, the names
+// people use for the element, question and answer), each section, and each
+// authored question with its answer. A page answers a question when one
+// passage does.
+type Passage = { url: string; heading: string; anchor: string | null; tf: Map<string, number>; len: number; terms: Set<string> };
+const passageCollection: Collection = { df: new Map(), N: 0, AVG: 0 };
+const passagesByUrl = new Map<string, Passage[]>();
+{
+  const all: Passage[] = [];
+  const make = (url: string, heading: string, anchor: string | null, text: string): Passage => {
+    const toks = tokens(text);
+    const tf = new Map<string, number>();
+    for (const t of toks) tf.set(t, (tf.get(t) ?? 0) + 1);
+    const ps = { url, heading, anchor, tf, len: toks.length, terms: new Set(tf.keys()) };
+    all.push(ps);
+    return ps;
+  };
+  for (const p of technicalPages) {
+    const list: Passage[] = [];
+    list.push(make(p.canonicalUrl, p.title, null, [p.title, p.title, p.searchTitle ?? '', p.frameworkElement, p.frameworkDescription, (p.alsoKnownAs ?? []).join(' '), (p.alsoKnownAs ?? []).join(' '), p.question, p.answer, p.typologies.join(' ')].join(' ')));
+    for (const x of p.sections) list.push(make(p.canonicalUrl, x.heading, x.url, `${x.heading} ${x.heading} ${x.markdown}`));
+    for (const f of p.questions ?? []) list.push(make(p.canonicalUrl, f.question, f.url, `${f.question} ${f.question} ${f.answer}`));
+    passagesByUrl.set(p.canonicalUrl, list);
+  }
+  passageCollection.N = all.length;
+  passageCollection.AVG = all.reduce((n, x) => n + x.len, 0) / Math.max(1, all.length);
+  for (const x of all) for (const t of x.terms) passageCollection.df.set(t, (passageCollection.df.get(t) ?? 0) + 1);
+}
+
+function bm25Passage(x: Passage, q: Map<string, number>): number {
+  let s = 0;
+  const { AVG } = passageCollection;
+  for (const [term, qf] of q) {
+    const f = x.tf.get(term); if (!f) continue;
+    const idf = idfIn(passageCollection, term);
+    s += ((idf * (f * 2.4)) / (f + 1.4 * (1 - 0.72 + (0.72 * x.len) / AVG))) * qf;
+  }
+  return s;
+}
+
+// A page's best passages for a query, best first. Strength is judged on the
+// best two, so a question that needs two sections of the same page (the
+// switchboard's capacity, and the supply upgrade) still counts as answered.
+export const PASSAGE_SPAN = 2;
+function topPassages(url: string, q: Map<string, number>, n: number): { passage: Passage; score: number }[] {
+  return (passagesByUrl.get(url) ?? []).map((passage) => ({ passage, score: bm25Passage(passage, q) }))
+    .filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, n);
+}
+
+// The page's best passage for a query, and its score.
+function bestPassage(url: string, q: Map<string, number>): { passage: Passage; score: number } | undefined {
+  let best: { passage: Passage; score: number } | undefined;
+  for (const x of passagesByUrl.get(url) ?? []) {
+    const score = bm25Passage(x, q);
+    if (!best || score > best.score) best = { passage: x, score };
+  }
+  return best;
+}
+
 // scripts/calibrate.mjs sweeps these two settings against the benchmarks
 // without rebuilding the index for each trial. Nothing else should call them:
 // the shipped values live in src/ranking.ts.
@@ -145,7 +210,7 @@ for (const d of searchDocs) {
   const p = snapshot.papers.find((x) => x.canonicalUrl === d.url);
   const t = p ? undefined : technicalPages.find((x) => x.canonicalUrl === d.url);
   const head = p ? [p.title, p.question, p.answer, p.summary, p.topics.join(' ')].join(' ')
-    : t ? [t.title, t.question, t.answer, t.frameworkElement, t.frameworkDescription, t.typologies.join(' ')].join(' ')
+    : t ? [t.title, t.question, t.answer, t.frameworkElement, t.frameworkDescription, t.typologies.join(' '), ...(t.alsoKnownAs ?? []), t.searchTitle ?? ''].join(' ')
     : `${d.title} ${d.blurb}`;
   headTerms.set(d.url, new Set(tokens(head)));
   // What the document is about, kept deliberately short and the same size for
@@ -154,7 +219,7 @@ for (const d of searchDocs) {
   // using it to rank would favour whichever kind of document happens to carry
   // the most headline text, which is not a measure of relevance.
   const about = p ? [p.title, p.question].join(' ')
-    : t ? [t.title, t.frameworkElement, t.question].join(' ')
+    : t ? [t.title, t.frameworkElement, t.question, ...(t.alsoKnownAs ?? [])].join(' ')
     : `${d.title} ${d.blurb}`;
   aboutTerms.set(d.url, new Set(tokens(about)));
 }
@@ -263,21 +328,49 @@ function headlineFraction(url: string, qts: QueryTerm[]): number {
 
 export type SearchOptions = { query: string; scope?: SearchScope; limit?: number };
 
+// A library page's score is half its whole-page score and half its best
+// passage's: the page keeps credit for covering a subject broadly, and the
+// passage decides which page actually answers. Measured on the retrieval gate
+// (docs/BENCHMARK.md); the two settings in src/ranking.ts are fitted on top.
+export const PASSAGE_MIX = 0.5;
+// Raw scores do not depend on the two ranking settings, so they are kept for
+// recent queries: the calibrator re-ranks the same questions many times.
+const rawCache = new Map<string, Map<string, number>>();
+function rawScores(q: Map<string, number>): Map<string, number> {
+  const key = [...q].map(([t, w]) => `${t}:${w}`).join(' ');
+  let hit = rawCache.get(key);
+  if (!hit) {
+    hit = new Map(docs.map((d) => [d.url, rawScore(d, q)]));
+    if (rawCache.size >= 2000) rawCache.clear();
+    rawCache.set(key, hit);
+  }
+  return hit;
+}
+function rawScore(d: IndexedDoc, q: Map<string, number>): number {
+  if (d.col !== corpusCollection) return bm25(d, q);
+  const best = bestPassage(d.url, q)?.score ?? 0;
+  return (1 - PASSAGE_MIX) * bm25(d, q) + PASSAGE_MIX * best;
+}
+
 export function searchResearch({ query, scope = 'all', limit = 5 }: SearchOptions): SearchResult[] {
   const q = new Map<string, number>();
   for (const t of tokens(query)) q.set(t, (q.get(t) ?? 0) + 1);
   if (!q.size) return [];
   const qts = queryTerms(query);
   for (const qt of qts) for (const alt of qt.alternatives) if (!q.has(alt)) q.set(alt, 0.6);
+  const raw = rawScores(q);
   return docs
     .filter((d) => scope === 'all' || scopeOf(d) === scope)
-    .map((d) => ({ d, score: bm25(d, q) * d.weight * (1 + HEADLINE_BOOST * headlineFraction(d.url, qts)) }))
+    .map((d) => ({ d, score: (raw.get(d.url) ?? 0) * d.weight * (1 + HEADLINE_BOOST * headlineFraction(d.url, qts)) }))
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score || a.d.url.localeCompare(b.d.url))
     .slice(0, Math.max(1, Math.min(10, limit)))
     .map(({ d, score }) => {
       const paper = paperByUrl.get(d.url);
       const tech = paper ? undefined : technicalByUrl.get(d.url);
+      // The section (or authored question) that best answers: the best passage
+      // other than the page's headline.
+      const best = tech ? topPassages(d.url, q, 3).find((x) => x.passage.anchor)?.passage : undefined;
       return {
         title: d.title,
         url: d.url,
@@ -286,6 +379,7 @@ export function searchResearch({ query, scope = 'all', limit = 5 }: SearchOption
         slug: paper?.slug ?? tech?.slug ?? null,
         answer: d.blurb,
         score: Math.round(score * 100) / 100,
+        ...(best?.anchor ? { section: { heading: best.heading, url: best.anchor } } : {}),
       };
     });
 }
@@ -313,12 +407,21 @@ export function matchDetail(query: string, url: string): MatchDetail {
   const d = docs.find((x) => x.url === url);
   if (!qts.length || !d) return { coverage: 0, headlineCoverage: 0, matchedTerms: [], missingTerms: qts.map((q) => q.term) };
   const head = headTerms.get(url) ?? new Set<string>();
+  // For a library page, a word counts as matched only if the page's best
+  // passage for the question carries it, or the page's own name does.
+  let present: Set<string> = d.terms;
+  if (d.col === corpusCollection) {
+    const q = new Map<string, number>();
+    for (const qt of qts) { q.set(qt.term, 1); for (const a of qt.alternatives) if (!q.has(a)) q.set(a, 0.6); }
+    const top = topPassages(url, q, PASSAGE_SPAN);
+    present = new Set([...top.flatMap((x) => [...x.passage.terms]), ...(aboutTerms.get(url) ?? [])]);
+  }
   let total = 0, hit = 0, headHit = 0;
   const matchedTerms: string[] = [], missingTerms: string[] = [];
   for (const q of qts) {
     const idf = d.col === siteCollection ? q.idf : idfIn(d.col, q.term);
     total += idf;
-    if (d.terms.has(q.term) || q.alternatives.some((a) => d.terms.has(a))) { hit += idf; matchedTerms.push(q.term); } else missingTerms.push(q.term);
+    if (present.has(q.term) || q.alternatives.some((a) => present.has(a))) { hit += idf; matchedTerms.push(q.term); } else missingTerms.push(q.term);
     if (head.has(q.term) || q.alternatives.some((a) => head.has(a))) headHit += idf;
   }
   const r2 = (x: number) => (total ? Math.round((x / total) * 100) / 100 : 0);
@@ -464,7 +567,7 @@ export function renderSearchResults(results: SearchResult[], query: string, stre
   const head = strength === 'weak'
     ? `Nothing in the Moyne Ross corpus strongly matches "${query}". The closest material, as background only:`
     : `Moyne Ross material on "${query}":`;
-  return [head, ...results.map((r, i) => `${i + 1}. ${r.title}${r.id ? ` (${r.id})` : ''} · ${r.kind}\n${r.answer}\n${r.url}`)].join('\n\n');
+  return [head, ...results.map((r, i) => `${i + 1}. ${r.title}${r.id ? ` (${r.id})` : ''} · ${r.kind}\n${r.answer}\n${r.url}${r.section ? `\nClosest section: ${r.section.heading} ${r.section.url}` : ''}`)].join('\n\n');
 }
 
 export function renderPaper(p: PaperRecord, format: 'summary' | 'full'): string {

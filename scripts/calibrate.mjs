@@ -38,7 +38,7 @@ function score(weight, boost) {
 }
 
 const weights = [];
-for (let w = 0.5; w <= 1.4001; w += 0.025) weights.push(Math.round(w * 1000) / 1000);
+for (let w = 0.3; w <= 1.2001; w += 0.025) weights.push(Math.round(w * 1000) / 1000);
 const boosts = [];
 for (let b = 0; b <= 1.2001; b += 0.1) boosts.push(Math.round(b * 100) / 100);
 

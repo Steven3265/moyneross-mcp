@@ -119,6 +119,12 @@ export async function buildSnapshot() {
     canonicalUrl: t.canonicalUrl,
     resourceUri: `moyneross://technical/${t.slug}`,
     layout: t.layout || 'eleven',
+    // How people name the element, the page's search title and its authored
+    // questions (each answered on the page, to the section): retrieval reads
+    // them, so a question asked in the reader's own words finds the page.
+    searchTitle: t.searchTitle || '',
+    alsoKnownAs: t.alsoKnownAs || [],
+    questions: (t.questions || []).map((x) => ({ question: x.question, answer: x.answer || '', url: x.url || t.canonicalUrl })),
     sections: (t.sections || []).map((x) => ({ id: x.id, heading: x.heading, url: `${t.canonicalUrl}#${x.id}`, markdown: x.markdown, ...(x.anchors?.length ? { anchors: x.anchors } : {}) })),
   }));
   const fw = tech.framework || {};

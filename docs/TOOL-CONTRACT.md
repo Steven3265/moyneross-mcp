@@ -4,7 +4,7 @@
 
 | Tool | Input | Returns | `/mcp` | `/mcp/openai`, ChatGPT |
 |---|---|---|---|---|
-| `search_research` | `query` (2–500), `scope` (`all`, `research`, `technical`, `methodology`, `sample`), `limit` (1–10), `response_format` (`concise`, `detailed`) | `results`, `matchStrength`, `match` (coverage, headlineCoverage, matchedTerms, missingTerms), `suggestedQueries`, `boundary`, `corpusVersion` | ✓ | ✓ |
+| `search_research` | `query` (2–500), `scope` (`all`, `research`, `technical`, `methodology`, `sample`), `limit` (1–10), `response_format` (`concise`, `detailed`) | `results` (a library result adds `section`: the section that best answers, with its anchored URL), `matchStrength`, `match` (coverage, headlineCoverage, matchedTerms, missingTerms), `suggestedQueries`, `boundary`, `corpusVersion` | ✓ | ✓ |
 | `list_papers` | `part` (I–VII), `limit` (1–25, default 15), `cursor` | A page of papers: number, title, part, question, short answer, dates, URL; `total`, `nextCursor` | ✓ | ✓ |
 | `get_paper` | `paper`, `format` (`summary` default, `full`), `section` | The paper (summary, or with full text), the section if asked, a citation | ✓ | ✓ |
 | `explain_method` | `method`, `format` (`summary` default, `full`), `section` | The method page: definition and sections, one section, or all | ✓ | ✓ |

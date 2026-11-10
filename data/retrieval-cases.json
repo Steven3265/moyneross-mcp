@@ -11,7 +11,8 @@
       "rule": "count",
       "within": 3,
       "minHit": 23,
-      "minStrong": 22
+      "minStrong": 21,
+      "note": "at least 23 in the top three and 21 strong. \"chiller and BMS end of life in a 90s office\" is judged weak: the BMS page answers half of it and no one page carries both."
     },
     "element": {
       "rule": "count",
@@ -38,19 +39,21 @@
     },
     "outside": {
       "rule": "ratchet",
-      "maxStrong": 15,
+      "maxStrong": 12,
       "target": 0,
       "note": "off-topic questions that share the corpus's words; may never get worse; target zero"
     },
     "target": {
-      "rule": "report",
+      "rule": "count",
       "within": 3,
-      "note": "the right page exists and a different one wins today; promoted to a gated category once fixed"
+      "minHit": 7,
+      "note": "questions where the right page exists and another used to win: fire doors, switchboards, concrete cancer, tin roofs, asbestos registers, rusting render, obsolete lifts, painted sprinkler heads. 2 of 8 before passage scoring; a floor that may only rise."
     },
     "faq": {
-      "rule": "report",
+      "rule": "count",
       "within": 3,
-      "note": "one authored FAQ per library page; should find its own page"
+      "minHit": 101,
+      "note": "one authored FAQ per library page should find its own page in the top three; 98 of 103 before passage scoring."
     }
   },
   "cases": [

@@ -171,6 +171,19 @@ test('the website ranking is untouched: a paper, method or sample scores the sam
   }
 });
 
+test('a library result names the section that answers, and the page\'s own names and questions find it', () => {
+  // "tin roof" is one of the names people use for roof coverings (alsoKnownAs).
+  const tin = searchResearch({ query: 'tin roof leaking', scope: 'technical', limit: 3 });
+  assert.equal(tin[0].url, 'https://moyneross.com/technical/roof-coverings');
+  assert.match(tin[0].section?.url ?? '', /^https:\/\/moyneross\.com\/technical\/roof-coverings#[a-z0-9-]+$/);
+  // An authored question finds its own page, and its section.
+  const faq = technicalPages.find((p) => p.slug === 'roof-coverings')?.questions?.[0];
+  assert.ok(faq, 'roof coverings carries authored questions');
+  assert.equal(searchResearch({ query: faq.question, limit: 1 })[0].url, 'https://moyneross.com/technical/roof-coverings');
+  // Papers carry no section field: they are ranked exactly as the website ranks them.
+  assert.equal(searchResearch({ query: 'deferred maintenance', limit: 1 })[0].section, undefined);
+});
+
 test('a leaking tap at home is a Technical Library question', () => {
   // Off-topic until 1.1.0; the library now covers wet areas and water supply.
   assert.equal(searchResearch({ query: 'how to fix a leaking tap at home' })[0].kind, TECHNICAL_KIND);

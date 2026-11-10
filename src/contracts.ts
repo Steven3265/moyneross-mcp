@@ -95,6 +95,8 @@ const paperListingSchema = z.object({ id: z.string(), slug: z.string(), title: z
 const searchResultSchema = z.object({
   title: z.string(), url: z.string(), kind: z.string(), id: z.string().nullable(), slug: z.string().nullable(), answer: z.string(), score: z.number(),
   citation: citationSchema.optional(), part: partSchema.optional(), datePublished: z.string().optional(), dateModified: z.string().optional(),
+  // For a Technical Library page: the section (or authored question) that best answers the query, with its anchored URL.
+  section: z.object({ heading: z.string(), url: z.string() }).optional(),
 });
 
 export const searchResearchOutputSchema = z.object({
