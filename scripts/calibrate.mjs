@@ -29,6 +29,30 @@ const SETS = {
   elementsScoped: { set: load('benchmark-technical.json'), scope: 'technical', top: 26, strong: 25 },
 };
 
+// The test suites also pin a few rankings: specific questions whose answer,
+// or whose position, they assert outright. The calibrator must honour them
+// too, or it can choose a setting the benchmarks accept and the tests reject,
+// and the refresh fails after calibrating. Keep this list in step with those
+// assertions (scripts/test-protocol.mjs, scripts/test-http.mjs).
+const DILAPS = ['https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases', 'https://moyneross.com/insights/same-thing-different-name'];
+const PINNED = [
+  { query: 'should we refurbish or redevelop an ageing 1970s office', within: 1, expected: ['https://moyneross.com/insights/the-1970s-office'], strong: true },
+  { query: 'deferred maintenance', within: 1, expected: ['https://moyneross.com/insights/deferred-maintenance-is-debt'], strong: true },
+  { query: 'who is on the hook for dilaps when the tenant leaves', within: 2, expected: DILAPS },
+  { query: 'who is on the hook for dilaps when the tenant leaves', scope: 'research', within: 1, expected: [DILAPS[0]] },
+  { query: 'horizontal cracks in a brick cavity wall', scope: 'technical', within: 1, expected: ['https://moyneross.com/technical/masonry-brickwork'] },
+  { query: 'how much is a house in sydney', strong: false },
+];
+
+function pinnedMiss() {
+  for (const p of PINNED) {
+    const found = core.searchResearch({ query: p.query, limit: 5, ...(p.scope ? { scope: p.scope } : {}) });
+    if (p.expected && !found.slice(0, p.within).some((r) => p.expected.includes(r.url))) return p.query;
+    if (p.strong !== undefined && (core.matchStrength(p.query, found) === 'strong') !== p.strong) return p.query;
+  }
+  return undefined;
+}
+
 function measure({ set, scope }) {
   let top = 0, strong = 0;
   for (const q of set) {
@@ -52,6 +76,8 @@ function score(weight, boost) {
     margin += (got.top - spec.top) + (got.strong - spec.strong);
     total += got.top;
   }
+  const miss = pinnedMiss();
+  if (miss) return { ok: false, name: 'pinned', got: { top: 0, strong: 0 }, spec: { query: miss } };
   return { ok: true, margin, total };
 }
 
@@ -67,7 +93,7 @@ for (const b of boosts) for (const w of weights) {
 }
 
 if (!passing.length) {
-  console.error('calibrate: no setting clears every benchmark bar.\n');
+  console.error('calibrate: no setting clears every benchmark bar and pinned ranking.\n');
   for (const b of boosts) {
     const row = weights.filter((_, i) => i % 4 === 0).map((w) => {
       const r = score(w, b);
