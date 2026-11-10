@@ -69,6 +69,10 @@
     {
       "source": "/v1/technical",
       "destination": "/api/v1/technical"
+    },
+    {
+      "source": "/.well-known/ai-catalog.json",
+      "destination": "/api/ai-catalog"
     }
   ],
   "redirects": [

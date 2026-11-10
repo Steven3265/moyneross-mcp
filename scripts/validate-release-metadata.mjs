@@ -65,5 +65,26 @@ const mcpj = json('mcp.json');
 if (Object.keys(mcpj).sort().join() !== '$schema,mcpServers' || mcpj.mcpServers?.moyneross?.type !== 'streamable-http') errors.push('mcp.json must hold only $schema and mcpServers, with a streamable-http server');
 if (!read('CHANGELOG.md').includes(`## ${version}`)) errors.push(`CHANGELOG.md has no entry for ${version}`);
 
+// The official conformance suite runs pinned, and excludes exactly the
+// reviewed checks below and nothing else. A misspelt, silently added or stale
+// baseline entry fails here rather than quietly widening what goes untested.
+const conformance = read('.github/workflows/conformance.yml');
+for (const [label, pattern] of [
+  ['pinned to the reviewed runner commit', /ref: c321dd32035556e6769d3724a8ee97d87c3faaac/],
+  ['the active suite', /--suite active/],
+  ['protocol 2026-07-28', /--spec-version 2026-07-28/],
+  ['the committed baseline', /--expected-failures conformance\/expected-failures\.yml/],
+]) if (!pattern.test(conformance)) errors.push(`conformance workflow must run ${label}`);
+if (/npx\s+(--yes|-y)\b/.test(conformance)) errors.push('conformance workflow must not fetch an executable through npx at run time');
+const REVIEWED_EXCLUSIONS = [
+  'tools-call-with-progress', 'tools-call-simple-text', 'tools-call-mixed-content', 'tools-call-image', 'tools-call-error',
+  'tools-call-embedded-resource', 'tools-call-audio', 'resources-read-text', 'resources-read-binary', 'resources-templates-read',
+  'prompts-get-simple', 'prompts-get-with-args', 'prompts-get-embedded-resource', 'prompts-get-with-image', 'completion-complete',
+].map((x) => `${x}:${x}`);
+const baselined = [...read('conformance/expected-failures.yml').matchAll(/^\s*-\s*([a-z0-9-]+:[a-z0-9-]+)\s*$/gm)].map((m) => m[1]);
+const extra = baselined.filter((x) => !REVIEWED_EXCLUSIONS.includes(x));
+const missing = REVIEWED_EXCLUSIONS.filter((x) => !baselined.includes(x));
+if (extra.length || missing.length) errors.push(`conformance baseline differs from the ${REVIEWED_EXCLUSIONS.length} reviewed exclusions (unexpected: ${extra.join(', ') || 'none'}; missing: ${missing.join(', ') || 'none'})`);
+
 if (errors.length) { console.error(`Release metadata is inconsistent (${errors.length}):\n- ${errors.join('\n- ')}`); process.exit(1); }
 console.log(`Release metadata consistent: ${server.name} ${version}.`);

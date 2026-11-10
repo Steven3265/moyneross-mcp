@@ -361,7 +361,15 @@ async function main() {
   const sev = out(await call('t7', 'get_technical_page', { page: 'masonry-brickwork', section: 'severity' }));
   assert.equal(sev.section.url, 'https://moyneross.com/technical/masonry-brickwork#severity');
   assert.equal(sev.citation.url, 'https://moyneross.com/technical/masonry-brickwork#severity');
-  assert.ok(out(await call('t8', 'get_technical_page', { page: 'roof-coverings', format: 'full' })).page.contentMarkdown.length > 5000);
+  const full1 = out(await call('t8', 'get_technical_page', { page: 'roof-coverings', format: 'full' }));
+  assert.ok(full1.page.contentMarkdown.length > 5000);
+  // A long page in full comes a part at a time; the cursor walks it to the end.
+  if (full1.part?.nextCursor) {
+    const full2 = out(await call('t8b', 'get_technical_page', { page: 'roof-coverings', format: 'full', cursor: full1.part.nextCursor }));
+    assert.equal(full2.part.part, 2);
+    assert.ok(!full2.page.contentMarkdown.includes(full1.page.contentMarkdown.slice(0, 200)), 'parts do not overlap');
+  }
+  assert.ok((await call('t8c', 'get_technical_page', { page: 'roof-coverings', format: 'full', cursor: 'nonsense' })).payload.result.isError, 'an unknown cursor is an error');
   const tMiss = await call('t9', 'get_technical_page', { page: 'lift' });
   assert.ok(tMiss.payload.result?.isError && /Closest:/.test(tMiss.payload.result.content[0].text), 'an ambiguous page offers candidates');
   const tCite = out(await call('t10', 'cite_paper', { paper: 'roof-coverings', style: 'bibtex', section: 'diagnosis' }));

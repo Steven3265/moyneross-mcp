@@ -39,15 +39,15 @@
     },
     "outside": {
       "rule": "ratchet",
-      "maxStrong": 12,
+      "maxStrong": 6,
       "target": 0,
-      "note": "off-topic questions that share the corpus's words; may never get worse; target zero"
+      "note": "off-topic questions that share the corpus's words; may never get worse; target zero. The six still judged strong all land on library pages, which are judged on their own passages and exempt from the domain-evidence check."
     },
     "target": {
       "rule": "count",
       "within": 3,
-      "minHit": 7,
-      "note": "questions where the right page exists and another used to win: fire doors, switchboards, concrete cancer, tin roofs, asbestos registers, rusting render, obsolete lifts, painted sprinkler heads. 2 of 8 before passage scoring; a floor that may only rise."
+      "minHit": 9,
+      "note": "questions where the right page exists and another used to win (fire doors, switchboards, concrete cancer, tin roofs, asbestos registers, rusting render, obsolete lifts, painted sprinkler heads, basement water, reading a capital register, balcony concrete). A floor that may only rise."
     },
     "faq": {
       "rule": "count",
@@ -1318,6 +1318,232 @@
       "query": "sprinkler heads painted over",
       "expected": [
         "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "outside:how-to-build-a-gaming-pc-on-a-budget",
+      "category": "outside",
+      "query": "how to build a gaming pc on a budget"
+    },
+    {
+      "id": "outside:office-politics-with-a-difficult-boss",
+      "category": "outside",
+      "query": "office politics with a difficult boss"
+    },
+    {
+      "id": "outside:register-for-a-marathon-in-melbourne",
+      "category": "outside",
+      "query": "register for a marathon in melbourne"
+    },
+    {
+      "id": "outside:capital-punishment-debate-arguments",
+      "category": "outside",
+      "query": "capital punishment debate arguments"
+    },
+    {
+      "id": "outside:the-core-curriculum-at-harvard",
+      "category": "outside",
+      "query": "the core curriculum at harvard"
+    },
+    {
+      "id": "outside:how-to-service-a-lawnmower-engine",
+      "category": "outside",
+      "query": "how to service a lawnmower engine"
+    },
+    {
+      "id": "outside:lease-agreement-for-a-horse",
+      "category": "outside",
+      "query": "lease agreement for a horse"
+    },
+    {
+      "id": "outside:frame-rate-drops-in-video-games",
+      "category": "outside",
+      "query": "frame rate drops in video games"
+    },
+    {
+      "id": "outside:how-to-lift-a-heavy-box-without-back-pain",
+      "category": "outside",
+      "query": "how to lift a heavy box without back pain"
+    },
+    {
+      "id": "outside:best-index-funds-for-beginners-in-australia",
+      "category": "outside",
+      "query": "best index funds for beginners in australia"
+    },
+    {
+      "id": "outside:roof-rack-for-a-hatchback-car",
+      "category": "outside",
+      "query": "roof rack for a hatchback car"
+    },
+    {
+      "id": "outside:foundation-year-at-university",
+      "category": "outside",
+      "query": "foundation year at university"
+    },
+    {
+      "id": "outside:structure-of-a-dna-molecule",
+      "category": "outside",
+      "query": "structure of a dna molecule"
+    },
+    {
+      "id": "outside:insulation-of-electrical-wires-in-a-toaster",
+      "category": "outside",
+      "query": "insulation of electrical wires in a toaster"
+    },
+    {
+      "id": "outside:heat-rash-treatment-for-babies",
+      "category": "outside",
+      "query": "heat rash treatment for babies"
+    },
+    {
+      "id": "outside:fire-safety-tips-for-camping",
+      "category": "outside",
+      "query": "fire safety tips for camping"
+    },
+    {
+      "id": "outside:energy-levels-low-in-the-afternoon",
+      "category": "outside",
+      "query": "energy levels low in the afternoon"
+    },
+    {
+      "id": "outside:deferred-payment-plan-for-a-phone",
+      "category": "outside",
+      "query": "deferred payment plan for a phone"
+    },
+    {
+      "id": "outside:debt-collectors-calling-my-mobile",
+      "category": "outside",
+      "query": "debt collectors calling my mobile"
+    },
+    {
+      "id": "outside:timing-of-a-wedding-speech",
+      "category": "outside",
+      "query": "timing of a wedding speech"
+    },
+    {
+      "id": "outside:condition-of-the-economy-in-2026",
+      "category": "outside",
+      "query": "condition of the economy in 2026"
+    },
+    {
+      "id": "outside:asset-protection-trust-for-doctors",
+      "category": "outside",
+      "query": "asset protection trust for doctors"
+    },
+    {
+      "id": "outside:portfolio-website-for-a-photographer",
+      "category": "outside",
+      "query": "portfolio website for a photographer"
+    },
+    {
+      "id": "outside:replacement-passport-application",
+      "category": "outside",
+      "query": "replacement passport application"
+    },
+    {
+      "id": "outside:water-damage-on-my-phone-screen",
+      "category": "outside",
+      "query": "water damage on my phone screen"
+    },
+    {
+      "id": "outside:how-to-paint-a-bedroom-wall-white",
+      "category": "outside",
+      "query": "how to paint a bedroom wall white"
+    },
+    {
+      "id": "outside:garden-pest-control-for-aphids",
+      "category": "outside",
+      "query": "garden pest control for aphids"
+    },
+    {
+      "id": "outside:how-to-clean-a-kitchen-oven",
+      "category": "outside",
+      "query": "how to clean a kitchen oven"
+    },
+    {
+      "id": "outside:pool-chlorine-levels-for-a-backyard-pool",
+      "category": "outside",
+      "query": "pool chlorine levels for a backyard pool"
+    },
+    {
+      "id": "outside:how-to-change-a-light-bulb-in-a-ceiling-fan",
+      "category": "outside",
+      "query": "how to change a light bulb in a ceiling fan"
+    },
+    {
+      "id": "outside:retail-therapy-and-mental-health",
+      "category": "outside",
+      "query": "retail therapy and mental health"
+    },
+    {
+      "id": "outside:glass-of-wine-with-dinner-health-effects",
+      "category": "outside",
+      "query": "glass of wine with dinner health effects"
+    },
+    {
+      "id": "outside:tenant-farmer-history-in-ireland",
+      "category": "outside",
+      "query": "tenant farmer history in ireland"
+    },
+    {
+      "id": "outside:make-good-use-of-your-weekend",
+      "category": "outside",
+      "query": "make good use of your weekend"
+    },
+    {
+      "id": "outside:due-diligence-for-buying-a-small-business",
+      "category": "outside",
+      "query": "due diligence for buying a small business"
+    },
+    {
+      "id": "outside:strategy-board-games-for-adults",
+      "category": "outside",
+      "query": "strategy board games for adults"
+    },
+    {
+      "id": "outside:the-plan-for-the-school-holidays",
+      "category": "outside",
+      "query": "the plan for the school holidays"
+    },
+    {
+      "id": "outside:lifecycle-of-a-star",
+      "category": "outside",
+      "query": "lifecycle of a star"
+    },
+    {
+      "id": "outside:security-guard-training-course",
+      "category": "outside",
+      "query": "security guard training course"
+    },
+    {
+      "id": "outside:carbon-dating-of-fossils",
+      "category": "outside",
+      "query": "carbon dating of fossils"
+    },
+    {
+      "id": "target:how-serious-is-water-coming-through-a-basement-wall",
+      "category": "target",
+      "query": "how serious is water coming through a basement wall",
+      "expected": [
+        "https://moyneross.com/technical/basement-cellars-and-retaining-walls"
+      ]
+    },
+    {
+      "id": "target:how-do-you-read-a-capital-register",
+      "category": "target",
+      "query": "how do you read a capital register",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/a-register-read-end-to-end"
+      ]
+    },
+    {
+      "id": "target:what-are-the-signs-of-concrete-cancer-in-a-balcony",
+      "category": "target",
+      "query": "what are the signs of concrete cancer in a balcony",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades",
+        "https://moyneross.com/technical/structural-frame"
       ]
     },
     {

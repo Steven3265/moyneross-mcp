@@ -22,6 +22,8 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
     discovery: {
       llms: 'https://moyneross.com/llms.txt',
       ard: 'https://moyneross.com/.well-known/ard.json',
+      aiCatalog: 'https://mcp.moyneross.com/.well-known/ai-catalog.json',
+      llmsHere: 'https://mcp.moyneross.com/llms.txt',
       aiDocumentation: 'https://moyneross.com/assistants',
       repository: 'https://github.com/Steven3265/moyneross-mcp',
     },

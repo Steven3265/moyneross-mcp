@@ -1,2 +1,14 @@
+# mcp.moyneross.com serves machines: the MCP endpoint, a read-only REST API
+# and discovery documents. The pages to read, cite and index are on
+# https://moyneross.com, which every answer links to. Crawlers may fetch the
+# discovery documents here, but not the protocol endpoints or the API.
 User-agent: *
-Allow: /
+Allow: /mcp/server-card
+Allow: /.well-known/
+Allow: /openapi.json
+Allow: /server-card.json
+Allow: /llms.txt
+Allow: /skills/
+Disallow: /mcp
+Disallow: /v1/
+Disallow: /api/

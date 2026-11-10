@@ -46,6 +46,7 @@ import {
   technicalFrameworkSections,
   technicalListing,
   technicalMarkdown,
+  technicalMarkdownPart,
   technicalPages,
   technicalSection,
   technicalSectionName,
@@ -114,7 +115,7 @@ export function createMcpServer(): McpServer {
         'Read matchStrength: strong means the top result carries the question\'s distinctive words; weak means the results are background only, and you should say so. Read the answer before relying on any result.',
         'The research is general. A Capital Strategy is desk-based and reviewed by Moyne Ross before release; it is not an inspection, a valuation or a guarantee of cost.',
         ...(handOverEnabled() ? ['If the person asks how to engage Moyne Ross, or to request a Capital Strategy for a building, working_with_moyne_ross and start_strategy_link cover that; use only details the person has given.'] : []),
-        'For a house or apartment, Homechecker (homechecker.com.au) is the residential product. This server cannot assess a building, order anything, access client data or modify any system.',
+        'It covers commercial and multi-unit property, not individual homes. This server cannot assess a building, order anything, access client data or modify any system.',
       ].join(' '),
     },
   );
@@ -220,7 +221,7 @@ export function createMcpServer(): McpServer {
     return result({ count: list.length, total: all.length, nextCursor: pg.nextCursor, corpusVersion, sections: technicalFrameworkSections, severityScale: severityScale(), pages: list }, text);
   });
 
-  server.registerTool('get_technical_page', { ...tool('get_technical_page', true), inputSchema: C.get_technical_page.inputSchema, outputSchema: C.get_technical_page.outputSchema }, async ({ page: ref, format, section }) => {
+  server.registerTool('get_technical_page', { ...tool('get_technical_page', true), inputSchema: C.get_technical_page.inputSchema, outputSchema: C.get_technical_page.outputSchema }, async ({ page: ref, format, section, cursor }) => {
     const found = getTechnicalPage(ref);
     logUse('get_technical_page', { format, section: Boolean(section), found: Boolean(found), slug: found?.slug });
     if (!found) {
@@ -231,11 +232,13 @@ export function createMcpServer(): McpServer {
     if (section && !sec) return errorResult(`"${found.title}" has no section matching "${section}". Its sections are: ${found.sections.map((x) => `${x.heading} (${x.id})`).join('; ')}.`);
     const citation = technicalCitationFor(found, section);
     const summary = technicalSummary(found);
-    const payload = format === 'full' ? { ...summary, contentMarkdown: technicalMarkdown(found) } : summary;
+    const part = format === 'full' && !sec ? technicalMarkdownPart(found, cursor) : undefined;
+    if (format === 'full' && !sec && !part) return errorResult(`"${cursor}" is not a cursor for "${found.title}". Call with format full and no cursor for the first part; each part gives the next cursor.`);
+    const payload = part ? { ...summary, contentMarkdown: part.markdown } : summary;
     const text = sec
       ? `# ${found.title}: ${sec.heading}\nTechnical Library · ${sec.url}\n\n${sec.markdown}\n\nLimitations: ${found.limitations}\n\nCite: ${citation.text}`
-      : `${renderTechnicalPage(found, format)}\n\nCite: ${citation.text}`;
-    return result({ page: payload, section: sec ? { id: sec.id, heading: sec.heading, url: sec.url, text: sec.markdown } : null, citation }, text, [technicalLink(found)]);
+      : `${renderTechnicalPage(found, format, part)}\n\nCite: ${citation.text}`;
+    return result({ page: payload, section: sec ? { id: sec.id, heading: sec.heading, url: sec.url, text: sec.markdown } : null, citation, ...(part ? { part: { part: part.part, parts: part.parts, firstSection: part.firstSection, nextCursor: part.nextCursor } } : {}) }, text, [technicalLink(found)]);
   });
 
   if (enabled.has('working_with_moyne_ross')) {
@@ -300,7 +303,7 @@ export function createMcpServer(): McpServer {
       element: completable(z.string().min(1).max(200).describe('The element or space: slug or name, e.g. masonry-brickwork or roof coverings.'), (value) => technicalChoices(value)),
       observation: z.string().max(400).optional().describe('What has been seen, if anything, e.g. horizontal cracks at regular courses.'),
     }),
-  }, async ({ element, observation }) => userMessage(`From the Moyne Ross Technical Library, explain ${element}${observation ? ` in light of this observation: ${observation}` : ''}. Retrieve the page with get_technical_page, then its sections diagnosis, severity and remedies (section argument) as needed. Say what the observation most likely points to and what would tell the causes apart, how the library grades it (safety, failure, condition, lifecycle, deadline, check or nil), what investigation it warrants and what the remedies involve. Cite each point to the section URL, carry the page's limitations through, and say plainly that this is general guidance, not an assessment of a particular building.`));
+  }, async ({ element, observation }) => userMessage(`From the Moyne Ross Technical Library, explain ${element}${observation ? ` in light of this observation: ${observation}` : ''}. Retrieve the page with get_technical_page; its summary lists the sections. Read those you need with the section argument: notice (what you'll notice), the topic sections on how it fails, misreads (what is commonly mistaken), severity (how serious) and remedies. Say what the observation most likely points to and what would tell the causes apart, how the library grades it (safety, failure, condition, lifecycle, deadline, check or nil), what investigation it warrants and what the remedies involve. Cite each point to the section URL, carry the page's limitations through, and say plainly that this is general guidance, not an assessment of a particular building.`));
 
   // ─── Resources ────────────────────────────────────────────────────────
   server.registerResource('moyneross-catalogue', 'moyneross://catalogue', {

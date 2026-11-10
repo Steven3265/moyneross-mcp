@@ -1,5 +1,5 @@
-# Moyne Ross intentionally exposes a narrow read-only surface: seven tools and
-# corpus resources. The official conformance server runner also exercises its
+# Moyne Ross intentionally exposes a narrow read-only surface: ten tools, four
+# prompts and corpus resources. The official conformance server runner also exercises its
 # own reference fixture names/content and capabilities this server does not
 # advertise (prompts and completion).
 #
@@ -29,7 +29,7 @@ server:
   - resources-read-binary:resources-read-binary
   - resources-templates-read:resources-templates-read
 
-  # Moyne Ross offers three prompts and completion (prompt arguments and the
+  # Moyne Ross offers four prompts and completion (prompt arguments and the
   # paper template). prompts-list runs live against them and passes. The
   # runner's prompts/get and completion checks request its own fixture prompts
   # by name (test_simple_prompt and so on), so only those fixture checks are

@@ -12,6 +12,7 @@ import methodHandler from '../dist/api/v1/method.js';
 import sampleHandler from '../dist/api/v1/sample.js';
 import engageHandler from '../dist/api/v1/engage.js';
 import technicalHandler from '../dist/api/v1/technical.js';
+import aiCatalogHandler from '../dist/api/ai-catalog.js';
 import { TOOL_CONTRACTS } from '../dist/src/contracts.js';
 import { clientLabel } from '../dist/src/client-label.js';
 import { SERVER_VERSION } from '../dist/src/identity.js';
@@ -136,6 +137,41 @@ try {
   assert.match(health.contentHash, /^[0-9a-f]{64}$/);
   assert.equal(json(call(indexHandler, request('GET', '/'))).endpoints.mcp, '/mcp');
 
+  // Every REST answer matches its MCP tool's output schema, which is what the
+  // OpenAPI publishes for it.
+  for (const [handler, url, tool, ref] of [
+    [searchHandler, '/v1/search?query=deferred%20maintenance', 'search_research', 'SearchResults'],
+    [searchHandler, '/v1/search?query=tin%20roof%20leaking&scope=technical&response_format=detailed', 'search_research', 'SearchResults'],
+    [papersHandler, '/v1/papers', 'list_papers', 'PaperList'],
+    [paperHandler, '/v1/paper?paper=after-rent&format=full', 'get_paper', 'Paper'],
+    [methodHandler, '/v1/method?method=mr-index', 'explain_method', 'Method'],
+    [sampleHandler, '/v1/sample?part=register&section=roofs', 'get_sample_strategy', 'SampleStrategy'],
+    [citeHandler, '/v1/cite?paper=roof-coverings&style=ris', 'cite_paper', 'Citation'],
+    [technicalHandler, '/v1/technical', 'list_technical_pages', 'TechnicalLibraryList'],
+    [technicalHandler, '/v1/technical?page=roof-coverings&format=full', 'get_technical_page', 'TechnicalLibraryPage'],
+    [engageHandler, '/v1/engage', 'working_with_moyne_ross', 'Engagement'],
+  ]) {
+    const parsed = TOOL_CONTRACTS[tool].outputSchema.safeParse(json(call(handler, request('GET', url))));
+    assert.ok(parsed.success, `${url} does not match the ${tool} output schema: ${JSON.stringify(parsed.error?.issues?.slice(0, 2))}`);
+    assert.equal(openapi.components.schemas[ref]?.type, 'object', `OpenAPI has no ${ref} schema`);
+  }
+  assert.ok(JSON.stringify(openapi.paths).includes('#/components/schemas/TechnicalLibraryPage'), 'OpenAPI responses reference their schemas');
+
+  // A long library page in full comes a part at a time over REST too.
+  const fullPart = json(call(technicalHandler, request('GET', '/v1/technical?page=roof-coverings&format=full')));
+  if (fullPart.part?.nextCursor) assert.equal(json(call(technicalHandler, request('GET', `/v1/technical?page=roof-coverings&format=full&cursor=${fullPart.part.nextCursor}`))).part.part, 2);
+  assert.equal(call(technicalHandler, request('GET', '/v1/technical?page=roof-coverings&format=full&cursor=nonsense')).statusCode, 400);
+
+  // The AI Catalog: its own media type, and entries that point at the server card and skills.
+  const catRes = call(aiCatalogHandler, request('GET', '/.well-known/ai-catalog.json'));
+  assert.match(String(catRes.headers.get('content-type')), /application\/ai-catalog\+json/);
+  const cat = json(catRes);
+  assert.equal(cat.entries.find((e) => e.type === 'application/mcp-server-card+json')?.url, 'https://mcp.moyneross.com/mcp/server-card');
+  assert.ok(cat.entries.every((e) => /^urn:air:moyneross\.com:/.test(e.identifier) && e.url.startsWith('https://mcp.moyneross.com/')));
+  assert.equal(call(aiCatalogHandler, request('GET', '/.well-known/ai-catalog.json', { 'if-none-match': catRes.headers.get('etag') })).statusCode, 304);
+  // Browser clients can revalidate discovery documents.
+  assert.match(String(call(mcpServerCardHandler, request('GET', '/mcp/server-card')).headers.get('access-control-expose-headers')), /ETag/);
+
   // Client families for telemetry: coarse labels only.
   assert.equal(clientLabel('Claude-User/1.0'), 'claude');
   assert.equal(clientLabel('openai-mcp/1.0 (ChatGPT)'), 'chatgpt');
@@ -145,4 +181,4 @@ try {
   console.error = quiet;
 }
 console.log('PASS  http: REST search (concise, detailed, scoped), papers (paged), paper (summary, section, full), Technical Library (list, page, section, full), method, citations, sample and engagement, with validation and clean canonical links');
-console.log('PASS  http: OpenAPI, server card, service metadata and health agree with the contracts and identity');
+console.log('PASS  http: OpenAPI (response schemas from the tool contracts, every REST answer checked against them), AI Catalog, server card, service metadata and health agree with the contracts and identity');

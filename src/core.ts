@@ -435,7 +435,46 @@ export function coverage(query: string, url: string): number {
 export function matchStrength(query: string, results: SearchResult[]): MatchStrength {
   const top = results[0];
   if (!top) return 'none';
-  return top.score >= STRONG_MIN_SCORE && coverage(query, top.url) >= STRONG_MIN_COVERAGE ? 'strong' : 'weak';
+  const m = matchDetail(query, top.url);
+  if (top.score < STRONG_MIN_SCORE || m.coverage < STRONG_MIN_COVERAGE) return 'weak';
+  // A paper or website page is judged on its whole text, where ordinary words
+  // turn up in every sense: "deferred tax liability accounting" finds the
+  // deferred-maintenance paper. So it is strong only if the question is about
+  // buildings or property capital at all (domainEvidence), or names what the
+  // paper is about (its title and question). A library page is already judged
+  // on its own passages, so it is exempt.
+  if (top.kind === TECHNICAL_KIND) return 'strong';
+  return domainEvidence(query) >= 1 || m.headlineCoverage >= STRONG_HEADLINE_COVERAGE ? 'strong' : 'weak';
+}
+
+// ─── Domain evidence ─────────────────────────────────────────────────────
+//
+// How clearly a question is about buildings or property capital, from its
+// own words. A phrase such as "capital register", "MR Index" or "make good",
+// or one unambiguous word (building, tenant, capex, chiller, spalling, and
+// every element and alias the Technical Library names), is enough. Words
+// with everyday senses (lift, lease, frame, core, capital, register, index,
+// kitchen, energy) count for 0.4 each, so a question needs three of them, or
+// one of them with a clear word, to count. Tested on off-topic and on-topic
+// questions the rule was not tuned on: see docs/BENCHMARK.md.
+export const STRONG_HEADLINE_COVERAGE = 0.7;
+const termSet = (text: string) => new Set(tokens(text));
+const GENERIC_TERMS = termSet(`200 action act area areas back base box boxes call cause check clean cold common control cover cross cycle data down effect end entry equipment file fill final finish fit fitting fixed flat flow free fund golden good grade green guide hammer head heads high holes hot impact key land lead less level light lines load locks log loop loose low main make matrix mobile network non off out outs outside panel path performance phase phon play plug point post power pre ready record re reverse safe safety screen self shell shut signs site smart soft solid special spray stack standard static step sub switch system test time transfer travel trip unit units universal up value warm work works zone code book delivery rate rated bays bear bank trend type types table tabl matt mov removal management survey clock spac`);
+const AMBIGUOUS_TERMS = termSet(`lift lifts car cars gym gyms frame fram structure structur structural service servic capital register core foundation insulation heat pump pumps kitchen room rooms dock docks glass fire fires energy solar replacement carpet barbecue tree trees garden pool pools tenni sauna playground restaurant hotel house home guest office retail shop shops shopp food wine aquarium laboratori medical classroom clinical nurse bike sink toilet shower bathroom laundri dishwasher cooktop paint plaster lighting water gas oil cable cabl security wall walls door doors window floor floors ceiling ceil roof stair tank pipe pipes metal wood stone steel concrete timber brick tile tiles glaz coating coat seal seals lease leases asset assets portfolio condition cost costs rent plan plans strategy index reserve debt deferr timing tim obsolete obsolescence name drain drainage chain rope cradle cage cages bin bins theatre hall allowance budget forecast`);
+const CLEAR_TERMS = termSet(`building buildings property properties tenant tenants tenancy landlord landlords leasehold freehold dilapidations dilaps makegood capex opex maintenance refurbishment refurbish redevelop redevelopment lifecycle strata condo hoa valuation valuer defect defects warehouse industrial commercial facade cladding chiller switchboard sprinkler mees epc nabers ll97 bps decarbonisation emissions carbon proptech fitout outgoings nla gla occupier occupiers owner owners contingency tdd vdd`);
+const DOMAIN_PHRASES = [/\bmr ?index\b/i, /\bmr ?[1-5]\b/i, /\bcapital (register|strategy|strategies|plan|planning|expenditure|works)\b/i, /\bmoyne ross\b/i, /\bcapital made physical\b/i, /\bmake[- ]good\b/i, /\bnet zero\b/i, /\btechnical due diligence\b/i, /\bsinking fund\b/i, /\breserve stud/i, /\bowners corporation\b/i, /\benergy (rating|performance|efficiency)\b/i, /\bbuilding (code|condition|services)\b/i, /\bcost basis\b/i];
+const DOMAIN_TERMS = new Set<string>(CLEAR_TERMS);
+for (const p of technicalPages) for (const t of tokens([p.title, p.frameworkElement, ...(p.alsoKnownAs ?? [])].join(' '))) if (!GENERIC_TERMS.has(t)) DOMAIN_TERMS.add(t);
+for (const t of AMBIGUOUS_TERMS) DOMAIN_TERMS.delete(t);
+
+export function domainEvidence(query: string): number {
+  if (DOMAIN_PHRASES.some((r) => r.test(query))) return 1;
+  let e = 0;
+  for (const t of new Set(tokens(query))) {
+    if (DOMAIN_TERMS.has(t)) e += 1;
+    else if (AMBIGUOUS_TERMS.has(t)) e += 0.4;
+  }
+  return Math.round(e * 10) / 10;
 }
 
 // ─── Papers ──────────────────────────────────────────────────────────────
@@ -774,12 +813,43 @@ export function technicalMarkdown(p: TechnicalPage): string {
   return p.sections.map((x) => `## ${x.heading}\n\n${x.markdown}`).join('\n\n');
 }
 
+// The full text of a long page, a part at a time: whole sections, up to about
+// FULL_PAGE_BUDGET characters, so no answer approaches a client's limit
+// (Gemini CLI truncates at 40,000) however much a page is enriched. cursor is
+// the id of the section to start from; nextCursor is null on the last part.
+export const FULL_PAGE_BUDGET = 24_000;
+export type TechnicalPart = { markdown: string; firstSection: string; nextCursor: string | null; part: number; parts: number };
+function technicalParts(p: TechnicalPage): TechnicalPage['sections'][] {
+  const parts: TechnicalPage['sections'][] = [];
+  let cur: TechnicalPage['sections'] = [], size = 0;
+  for (const x of p.sections) {
+    const len = x.heading.length + x.markdown.length + 8;
+    if (cur.length && size + len > FULL_PAGE_BUDGET) { parts.push(cur); cur = []; size = 0; }
+    cur.push(x); size += len;
+  }
+  if (cur.length) parts.push(cur);
+  return parts;
+}
+export function technicalMarkdownPart(p: TechnicalPage, cursor?: string): TechnicalPart | undefined {
+  const parts = technicalParts(p);
+  const i = cursor ? parts.findIndex((secs) => secs[0]?.id === cursor) : 0;
+  const secs = parts[i];
+  if (i < 0 || !secs) return undefined;
+  return {
+    markdown: secs.map((x) => `## ${x.heading}\n\n${x.markdown}`).join('\n\n'),
+    firstSection: secs[0]?.id ?? '',
+    nextCursor: parts[i + 1]?.[0]?.id ?? null,
+    part: i + 1,
+    parts: parts.length,
+  };
+}
+
 const USE_CLASS_LABELS: Record<string, string> = {
   all: 'all building classes', 'residential-single': 'houses', 'residential-multi': 'apartments and multi-residential', commercial: 'offices and retail',
   industrial: 'industrial and logistics', institutional: 'healthcare, education and assembly',
 };
 
-export function renderTechnicalPage(p: TechnicalPage, format: 'summary' | 'full'): string {
+export function renderTechnicalPage(p: TechnicalPage, format: 'summary' | 'full', part?: TechnicalPart): string {
   const applies = p.useClasses.map((c) => USE_CLASS_LABELS[c] ?? c).join(', ');
   const head = `# ${p.title}\nTechnical Library · ${p.section} · ${p.subsection} · ${p.pageType === 'space' ? 'functional space' : 'building element'} · updated ${p.updatedAt ?? p.publishedAt}\n${p.canonicalUrl}`;
   const qa = `Question: ${p.question}\n\nAnswer: ${p.answer}`;
@@ -791,6 +861,10 @@ export function renderTechnicalPage(p: TechnicalPage, format: 'summary' | 'full'
   if (format === 'summary') {
     const secs = `Sections (request one with section, or format full): ${p.sections.map((x) => `${x.heading} [${x.id}]`).join('; ')}.`;
     return [head, qa, scope, links, secs, limits].filter(Boolean).join('\n\n');
+  }
+  if (part && part.parts > 1) {
+    const more = part.nextCursor ? `Part ${part.part} of ${part.parts}. The page continues: call again with format full and cursor "${part.nextCursor}".` : `Part ${part.part} of ${part.parts}, the last.`;
+    return [head, part.part === 1 ? qa : '', part.part === 1 ? scope : '', part.part === 1 ? links : '', part.markdown, more, limits].filter(Boolean).join('\n\n');
   }
   return [head, qa, scope, links, technicalMarkdown(p), limits].filter(Boolean).join('\n\n');
 }

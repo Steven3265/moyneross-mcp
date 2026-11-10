@@ -25,7 +25,7 @@ Public, read-only, and separate from every client system. The server bundles a s
 | `explain_method` | The Capital Register or the MR Index: the definition and sections by default, `section` or `format: full` for more. |
 | `get_sample_strategy` | A real Capital Strategy with identifying details changed: the summary, or the register as an overview by section or one section's lines with their cost basis. |
 | `list_technical_pages` | The Technical Library in framework order (Substructure to Environmental), a page at a time, by section or page type, with the severity scale every page grades findings on. |
-| `get_technical_page` | One library page by slug, element name or URL. A summary by default (question, answer, where it applies, limitations, sources, anchored sections); `section` for one section (`severity`, `diagnosis`, `remedies`…); `format: full` for the whole page. Always with a citation. |
+| `get_technical_page` | One library page by slug, element name or URL. A summary by default (question, answer, where it applies, limitations, sources, anchored sections); `section` for one section (`notice`, `severity`, `remedies`, `misreads` and the page's own topic sections); `format: full` for the whole page, a part at a time on a long page. Always with a citation. |
 | `cite_paper` | An exact citation, to a paper or library page or one section, in BibTeX, RIS, CSL-JSON, APA or Harvard, generated rather than retyped by the model. |
 | `working_with_moyne_ross` | How engagements work and the published terms. Not offered on `/mcp/openai` or to ChatGPT. |
 | `start_strategy_link` | For a person who asks to request a Capital Strategy for one building: the request form link with the details they gave. Nothing is sent. Not offered on `/mcp/openai` or to ChatGPT. |
@@ -38,12 +38,13 @@ Default answers stay under 20,000 characters (GitHub Copilot keeps them inline),
 
 ### Citations that survive
 
-The papers have 400 anchored sections between them and the library 1,133, matching the anchors on moyneross.com, so a claim can be cited to the exact section. Citations carry the corpus version (for example `2026-11-08.70433cca`: date and content fingerprint), so the cited text can always be identified.
+The papers have 400 anchored sections between them and the library 1,491, matching the anchors on moyneross.com, so a claim can be cited to the exact section. Citations carry the corpus version (for example `2026-11-08.70433cca`: date and content fingerprint), so the cited text can always be identified.
 
 ## Other interfaces
 
 - **REST:** `GET /v1/search`, `/v1/papers`, `/v1/paper`, `/v1/technical`, `/v1/method`, `/v1/sample`, `/v1/cite`, `/v1/engage` ([OpenAPI 3.1](https://mcp.moyneross.com/openapi.json)). Answers carry the clean canonical URL to cite and a separate attributed `referralUrl`.
-- **Server card:** `/mcp/server-card` · **Service metadata:** `/server-card.json` · **Health and content fingerprint:** `/health`
+- **Discovery:** server card at `/mcp/server-card` · AI Catalog at `/.well-known/ai-catalog.json` (`application/ai-catalog+json`) · `/llms.txt` · service metadata at `/server-card.json` · health and content fingerprint at `/health`. OpenAPI responses carry the same schemas as the MCP tools' outputs, and every REST answer is tested against them.
+- **Distribution:** every channel and where it stands in [distribution/README.md](distribution/README.md), with submission packs for the Claude directory and the OpenAI app directory.
 - **Packaging:** Claude plugin (`.claude-plugin/`, `.mcp.json`), GitHub Copilot (`.github/plugin/`), agent-plugins (`plugin.json`, `mcp.json`), Gemini (`gemini-extension.json`), the OpenAI submission package (`distribution/openai/`) and the GitHub Agent Finder pack (`distribution/github-agentfinder/`).
 - **Skills:** `skills/commercial-capital-research` and `skills/capital-strategy-handover`, also served at `https://mcp.moyneross.com/skills/{name}/SKILL.md` (`npm run sync:skills` keeps the copies identical).
 - **Docs:** [tool contract](docs/TOOL-CONTRACT.md) · [protocol support](docs/PROTOCOL-SUPPORT.md) · [security](docs/SECURITY.md) · [benchmark](docs/BENCHMARK.md) · [architecture](docs/ARCHITECTURE.md) · [deployment](docs/DEPLOYMENT.md) · [content terms](data/TERMS.md) · security contact at `/.well-known/security.txt`

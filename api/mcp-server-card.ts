@@ -32,6 +32,7 @@ function card() {
         openapi: 'https://mcp.moyneross.com/openapi.json',
         llms: 'https://moyneross.com/llms.txt',
         ard: 'https://moyneross.com/.well-known/ard.json',
+        aiCatalog: 'https://mcp.moyneross.com/.well-known/ai-catalog.json',
       },
     },
   };
@@ -45,9 +46,9 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
   res.setHeader('ETag', ETAG);
   if (req.headers['if-none-match'] === ETAG) {
     res.statusCode = 304;
-    res.setHeader('Cache-Control', 'public, max-age=300, s-maxage=3600');
+    res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600');
     res.end();
     return;
   }
-  sendJson(res, 200, BODY, 'public, max-age=300, s-maxage=3600', 'application/mcp-server-card+json; charset=utf-8');
+  sendJson(res, 200, BODY, 'public, max-age=3600, s-maxage=3600', 'application/mcp-server-card+json; charset=utf-8');
 }

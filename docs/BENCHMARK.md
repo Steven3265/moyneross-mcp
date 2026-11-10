@@ -19,9 +19,9 @@ Because there is one evaluation, the calibrator can no longer pick a setting tha
 | `pinned`: rankings the protocol and HTTP tests assert outright | 5 | every case, at its stated position | 5 met |
 | `weak`: property questions the corpus does not answer | 10 | every one returns background and is never strong | 0 strong |
 | `empty`: words absent from the corpus | 4 | every one returns nothing | met |
-| `outside`: off-topic questions that share the corpus's words (capital, register, index, lift, lease, frame, core, service, foundation, insulation) | 82 | **ratchet**: at most 12 strong, target 0 | 12 strong |
-| `target`: the right page exists and a different one used to win | 8 | at least 7 in the top three (a floor that may only rise) | 7 found |
-| `faq`: one authored FAQ per library page, as moyneross.com publishes it | 103 | at least 101 in the top three | 103 found, 95 first |
+| `outside`: off-topic questions that share the corpus's words (capital, register, index, lift, lease, frame, core, service, foundation, insulation) | 122 | **ratchet**: at most 6 strong, target 0 | 6 strong |
+| `target`: the right page exists and a different one used to win | 11 | at least 9 in the top three (a floor that may only rise) | 9 found |
+| `faq`: one authored FAQ per library page, as moyneross.com publishes it | 103 | at least 101 in the top three | 103 found, 95 first, 101 strong |
 
 Rules: **every** means each case meets its own expectation; **count** means a minimum number found and strong; **ratchet** means a maximum that may be lowered as the ranking improves and never raised; **report** means measured and printed but never failing a run. A case can set its own `within` (how far down it may sit) and `strong`.
 
@@ -46,10 +46,23 @@ A library page is long and covers many things, so most ordinary words occur on i
 
 The one loss: "chiller and BMS end of life in a 90s office" is now judged weak. The BMS page answers half of it and no one page carries both, which is the honest reading; the `shorthand` gate moved from 22 to 21 strong accordingly.
 
+## Domain evidence (1.1.0)
+
+Papers and website pages are judged on their whole text, where ordinary words turn up in every sense: "deferred tax liability accounting" found the deferred-maintenance paper and was judged strong. A paper or website page is now strong only if the question is about buildings or property capital at all, or names what the paper is about (at least 70% of the question's weight in its title and question).
+
+`domainEvidence` in `src/core.ts` reads the question's own words. A phrase such as *capital register*, *MR Index*, *make good* or *technical due diligence*, or one clear word, is enough: *building*, *tenant*, *capex*, *chiller*, *spalling*, and every element name and alias the Technical Library publishes (so it grows with the library). Words with everyday senses (*lift*, *lease*, *frame*, *core*, *capital*, *register*, *index*, *kitchen*, *energy*) count for 0.4 each. Library pages are exempt, because their strength is already judged on their own passages.
+
+It was checked on 40 off-topic and 25 on-topic questions written after the rule and not used to tune it: off-topic strongs fell from 5 to 3, and none of the 25 on-topic questions lost its strength. Those 40 off-topic questions then joined the `outside` category, and the three on-topic questions the ranking got wrong joined `target`.
+
+| | Before | After |
+|---|---|---|
+| Off-topic questions judged strong | 12 of 82 | 4 of 82 (6 of 122 with the new questions) |
+| Website, shorthand, element, pinned, FAQ strength | | unchanged |
+
 ## Where the gaps are
 
-- **Off-topic questions on the papers.** Seven of the twelve off-topic strongs land on papers or website pages ("deferred tax liability accounting" on the deferred-maintenance paper, "how to frame a picture" on the home page). Papers are judged on the whole paper; the next step is a domain-evidence check of the kind Homechecker uses, so that a question with no building or capital meaning cannot be judged strong however its words fall.
-- **"switchboard thermal imaging"** still finds insulation and solar PV ahead of the switchboard pages.
+- **Six off-topic questions still judged strong**, all on library pages: "lease a new phone plan" on the lifts page (lift phones), "how to clean a kitchen oven" on the kitchen page, "timing belt replacement on a car" on air-handling units. Library pages are exempt from the domain check; a passage-level version of it is the next refinement.
+- **"how do you read a capital register"** finds the hazardous-materials page (asbestos register) ahead of the Capital Register method, and **"switchboard thermal imaging"** finds insulation and solar PV ahead of the switchboard pages.
 
 ## Method
 

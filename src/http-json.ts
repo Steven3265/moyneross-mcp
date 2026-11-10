@@ -12,7 +12,9 @@ export function publicJsonHeaders(res: ServerResponse, cacheControl = 'public, m
   res.setHeader('Content-Type', contentType);
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, X-MoyneRoss-Source');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, If-None-Match, X-MoyneRoss-Source');
+  // Browser clients can read the ETag and revalidate (server card, OpenAPI).
+  res.setHeader('Access-Control-Expose-Headers', 'ETag');
   // Cache successful CORS preflights so browser-agent calls do not pay an
   // OPTIONS round-trip on every invocation. Browsers may apply a lower cap.
   res.setHeader('Access-Control-Max-Age', '86400');

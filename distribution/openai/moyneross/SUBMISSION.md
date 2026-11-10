@@ -8,16 +8,16 @@ Use OpenAI's plugin submission portal and create a **With MCP** plugin. Submit t
 
 **Name:** Moyne Ross
 **Short:** What buildings reveal about capital.
-**Long:** Research on commercial property and capital from Moyne Ross: search and cite the Capital Made Physical papers, understand the Capital Register and the MR Index, and see what a ten-year Capital Strategy contains. General research only; it does not assess a particular building.
+**Long:** Research on commercial property and capital from Moyne Ross: search and cite the Capital Made Physical papers and the Technical Library (one page for each building element and functional space: how it fails, what you will notice, how serious a finding is, what fixes it), understand the Capital Register and the MR Index, and see what a ten-year Capital Strategy contains. General research only; it does not assess a particular building.
 
 ## Policy and review answers
 
 - **Commerce:** The app does not sell, promote or link to any purchase. It returns published research and links only to free public pages on moyneross.com.
 - **Authentication:** None. The server is public and read-only.
-- **Tools:** Six read-only tools, each with `readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true` and `openWorldHint: false` set explicitly (the corpus is a bounded, published catalogue).
+- **Tools:** Eight read-only tools, each with `readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true` and `openWorldHint: false` set explicitly (the corpus is a bounded, published catalogue).
 - **Response minimisation:** answers carry no session, trace or request identifiers and no timestamps beyond the papers' own publication dates; the corpus version identifies the cited text.
 - **Data:** No personal data is collected or stored. See https://moyneross.com/privacy#connector.
-- **Corpus:** 49 papers, the two methodology references and one sample Capital Strategy.
+- **Corpus:** 49 papers, 103 Technical Library pages, the two methodology references and one sample Capital Strategy. Library pages carry the shape of a cost, never a price.
 - **Supporting evidence:** The same server is published in the official MCP Registry (`io.github.Steven3265/moyneross`).
 
 ## Before submitting
@@ -33,6 +33,8 @@ Use OpenAI's plugin submission portal and create a **With MCP** plugin. Submit t
 3. "What is the MR Index and how are its bands read?"
 4. "Show me what a capital strategy for a warehouse looks like."
 5. "Who pays for make good at the end of a commercial lease?"
+6. "Why is a metal roof dripping on cold mornings when it hasn't rained?" (Technical Library, cited to the section)
+7. "How serious is corroding reinforcement in a car park slab?"
 
 ## Negative / boundary cases
 

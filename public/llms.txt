@@ -1,0 +1,18 @@
+# Moyne Ross MCP
+
+> The machine interfaces to Moyne Ross research on commercial property and capital: the Capital Made Physical papers, the Technical Library (one page for each building element and functional space a Capital Strategy assesses), the Capital Register and MR Index methodology, and a sample Capital Strategy. Public, read-only, no authentication. Cite the canonical moyneross.com URL each answer gives.
+
+- [MCP endpoint](https://mcp.moyneross.com/mcp): Streamable HTTP, protocol 2026-07-28 with 2025-era compatibility. For the OpenAI app directory: https://mcp.moyneross.com/mcp/openai
+- [MCP server card](https://mcp.moyneross.com/mcp/server-card): identity and connection details
+- [AI catalog](https://mcp.moyneross.com/.well-known/ai-catalog.json): the server card and the two agent skills
+- [OpenAPI 3.1](https://mcp.moyneross.com/openapi.json): the read-only REST API at https://mcp.moyneross.com/v1/
+- [Skill: commercial capital research](https://mcp.moyneross.com/skills/commercial-capital-research/SKILL.md)
+- [Skill: Capital Strategy hand-over](https://mcp.moyneross.com/skills/capital-strategy-handover/SKILL.md)
+- [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.Steven3265/moyneross): io.github.Steven3265/moyneross
+- [Source](https://github.com/Steven3265/moyneross-mcp)
+
+## The content itself
+
+- [moyneross.com/llms.txt](https://moyneross.com/llms.txt): the practice and the papers
+- [moyneross.com/technical/llms.txt](https://moyneross.com/technical/llms.txt): the Technical Library
+- [For assistants](https://moyneross.com/assistants): how to connect and what the connector can and cannot do

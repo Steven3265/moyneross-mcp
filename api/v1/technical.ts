@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import {
   corpusVersion, getTechnicalPage, listTechnicalPages, page, severityScale, technicalCandidates, technicalCitationFor, technicalFrameworkSections,
-  technicalListing, technicalMarkdown, technicalSection, technicalSectionName, technicalSummary,
+  technicalListing, technicalMarkdownPart, technicalSection, technicalSectionName, technicalSummary,
 } from '../../src/core.js';
 import { PAGE_TYPES } from '../../src/contracts.js';
 import { addReferralUrls, enumParam, intParam, logApi, optionalParam, referralSource, requestUrl, requireGet, sendJson } from '../../src/http-json.js';
@@ -23,8 +23,12 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
     const sec = sectionRef ? technicalSection(found, sectionRef) : undefined;
     if (sectionRef && !sec) return sendJson(res, 404, { error: `No section matches "${sectionRef}".`, sections: found.sections.map((x) => x.id) }, 'no-store');
     const summary = technicalSummary(found);
-    const body = format === 'full' ? { ...summary, contentMarkdown: technicalMarkdown(found) } : summary;
-    return sendJson(res, 200, addReferralUrls({ page: body, section: sec ? { id: sec.id, heading: sec.heading, url: sec.url, text: sec.markdown } : null, citation: technicalCitationFor(found, sectionRef) }, referralSource(req)), 'no-store');
+    // A long page in full comes a part at a time, as over MCP; cursor continues it.
+    const partCursor = optionalParam(url, 'cursor');
+    const part = format === 'full' && !sec ? technicalMarkdownPart(found, partCursor) : undefined;
+    if (format === 'full' && !sec && !part) return sendJson(res, 400, { error: 'cursor must be the nextCursor value from the previous part of this page' }, 'no-store');
+    const body = part ? { ...summary, contentMarkdown: part.markdown } : summary;
+    return sendJson(res, 200, addReferralUrls({ page: body, section: sec ? { id: sec.id, heading: sec.heading, url: sec.url, text: sec.markdown } : null, citation: technicalCitationFor(found, sectionRef), ...(part ? { part: { part: part.part, parts: part.parts, firstSection: part.firstSection, nextCursor: part.nextCursor } } : {}) }, referralSource(req)), 'no-store');
   }
   const sectionName = optionalParam(url, 'section');
   if (sectionName && !technicalSectionName(sectionName)) return sendJson(res, 400, { error: `section must name a framework section: ${technicalFrameworkSections.join('; ')}` }, 'no-store');

@@ -6,6 +6,7 @@ import {
   paperSection, papers, paperSummary, queryTerms, renderPaper, sample, searchResearch, snapshot, startStrategyLink, suggestedQueries,
   tokens, STRONG_MIN_COVERAGE, TECHNICAL_KIND, formatTechnicalCitation, getTechnicalPage, listTechnicalPages, renderTechnicalPage,
   severityScale, technicalCandidates, technicalCitationFor, technicalLibrary, technicalMarkdown, technicalPages, technicalSection, technicalSectionName, technicalSummary,
+  technicalMarkdownPart, FULL_PAGE_BUDGET, domainEvidence,
 } from '../.core-dist/src/core.js';
 import * as core from '../.core-dist/src/core.js';
 import { evaluate, report } from '../scripts/retrieval-gate.mjs';
@@ -182,6 +183,28 @@ test('a library result names the section that answers, and the page\'s own names
   assert.equal(searchResearch({ query: faq.question, limit: 1 })[0].url, 'https://moyneross.com/technical/roof-coverings');
   // Papers carry no section field: they are ranked exactly as the website ranks them.
   assert.equal(searchResearch({ query: 'deferred maintenance', limit: 1 })[0].section, undefined);
+});
+
+test('a long library page in full comes in parts that cover every section once, each within the budget', () => {
+  for (const p of technicalPages) {
+    const seen = [];
+    let part = technicalMarkdownPart(p), n = 0;
+    while (part) {
+      n++;
+      assert.ok(part.markdown.length <= FULL_PAGE_BUDGET + 2000 || part.markdown.split('\n## ').length === 1, `${p.slug} part ${n}: ${part.markdown.length}`);
+      seen.push(...[...part.markdown.matchAll(/^## (.+)$/gm)].map((m) => m[1]));
+      part = part.nextCursor ? technicalMarkdownPart(p, part.nextCursor) : undefined;
+    }
+    assert.deepEqual(seen, p.sections.map((x) => x.heading), `${p.slug}: every section once, in order`);
+  }
+  assert.equal(technicalMarkdownPart(technicalPages[0], 'no-such-section'), undefined);
+});
+
+test('domain evidence: building and capital questions carry it, everyday senses of the same words do not', () => {
+  for (const q of ['what does the MR Index measure', 'when should a building owner replace an ageing chiller', 'who pays for make good at lease end', 'spalling concrete on a car park deck']) assert.ok(domainEvidence(q) >= 1, q);
+  for (const q of ['lease a new phone plan', 'how to frame a picture', 'best low cost index fund', 'deferred tax liability accounting']) assert.ok(domainEvidence(q) < 1, q);
+  // A paper reached on everyday words is not judged strong.
+  assert.notEqual(matchStrength('deferred tax liability accounting', searchResearch({ query: 'deferred tax liability accounting' })), 'strong');
 });
 
 test('a leaking tap at home is a Technical Library question', () => {
