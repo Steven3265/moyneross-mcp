@@ -592,6 +592,9 @@ export function page<T>(items: T[], limit: number, cursor?: string): { items: T[
 // General technical guidance: how an element is built, fails and is judged,
 // never evidence about a particular building and never a price.
 
+// The earlier eleven fixed sections. Pages move from these to the topic
+// layout, whose sections each page lists for itself; every earlier address
+// still resolves (technicalSection below).
 export const TECHNICAL_SECTION_IDS = ['what-it-is', 'service-life', 'mechanisms', 'signs', 'diagnosis', 'severity', 'investigation', 'remedies', 'cost-shape', 'jurisdiction-notes', 'what-to-ask-for'] as const;
 export const technicalLibrary = snapshot.technical;
 export const technicalFrameworkSections: string[] = snapshot.technical?.framework.sections ?? [];
@@ -653,10 +656,14 @@ export function technicalSummary(p: TechnicalPage) {
   return { ...rest, sections: sections.map(({ markdown: _m, ...x }) => x) };
 }
 
+// A section by its id or heading, or by an address inside it: on a page on the
+// topic layout, #diagnosis lives inside Common misreads and #remedies is a
+// section of its own, so an earlier citation still reaches the right part.
 export function technicalSection(p: TechnicalPage, ref?: string) {
-  const want = fold(ref ?? '');
+  const want = fold(String(ref ?? '').replace(/^.*#/, ''));
   if (!want) return undefined;
   return p.sections.find((x) => fold(x.id) === want || fold(x.heading) === want)
+    ?? p.sections.find((x) => (x.anchors ?? []).some((a) => fold(a) === want))
     ?? p.sections.find((x) => fold(x.heading).includes(want) || fold(x.id).includes(want));
 }
 

@@ -354,7 +354,8 @@ async function main() {
   assert.ok(badSection.payload.result?.isError);
   const tp = await call('t6', 'get_technical_page', { page: 'Masonry/Brickwork' });
   assert.equal(out(tp).page.slug, 'masonry-brickwork');
-  assert.equal(out(tp).page.sections.length, 11);
+  // Eleven sections on the earlier layout, the seven fixed and the page's own on the topic layout.
+  assert.ok(out(tp).page.sections.length >= 7);
   assert.equal(out(tp).page.contentMarkdown, undefined, 'a summary carries no full text');
   assert.ok(tp.payload.result.content.some((c) => c.type === 'resource_link' && c.uri === 'moyneross://technical/masonry-brickwork'));
   const sev = out(await call('t7', 'get_technical_page', { page: 'masonry-brickwork', section: 'severity' }));
@@ -365,7 +366,10 @@ async function main() {
   assert.ok(tMiss.payload.result?.isError && /Closest:/.test(tMiss.payload.result.content[0].text), 'an ambiguous page offers candidates');
   const tCite = out(await call('t10', 'cite_paper', { paper: 'roof-coverings', style: 'bibtex', section: 'diagnosis' }));
   assert.match(tCite.formatted, /Moyne Ross Technical Library/);
-  assert.equal(tCite.citation.url, 'https://moyneross.com/technical/roof-coverings#diagnosis');
+  // An earlier address cites the section that now holds it, on either layout.
+  const held = out(await call('t10b', 'get_technical_page', { page: 'roof-coverings', section: 'diagnosis' }));
+  assert.equal(tCite.citation.url, held.section.url);
+  assert.match(tCite.citation.url, /^https:\/\/moyneross\.com\/technical\/roof-coverings#[a-z0-9-]+$/);
   const tSearch = out(await call('t11', 'search_research', { query: 'horizontal cracks in a brick cavity wall', scope: 'technical', response_format: 'detailed' }));
   assert.equal(tSearch.results[0].url, 'https://moyneross.com/technical/masonry-brickwork');
   assert.equal(tSearch.results[0].citation.publication, 'Moyne Ross Technical Library');

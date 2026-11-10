@@ -31,7 +31,9 @@ export type SearchDoc = { url: string; id: string; title: string; kind: string; 
 
 // A Technical Library page: one element or functional space of the Moyne Ross
 // Building Check Framework. Section ids are the anchors on moyneross.com.
-export type TechnicalSection = { id: string; heading: string; url: string; markdown: string };
+// anchors: the other addresses inside a section (its headings, table rows,
+// and earlier addresses kept alive, such as #diagnosis on a converted page).
+export type TechnicalSection = { id: string; heading: string; url: string; markdown: string; anchors?: string[] };
 export type TechnicalSource = { title: string; publisher: string; url: string };
 export type TechnicalPage = {
   slug: string;
@@ -59,13 +61,19 @@ export type TechnicalPage = {
   sources: TechnicalSource[];
   canonicalUrl: string;
   resourceUri: string;
+  // "topic": the topic layout; "eleven": the earlier eleven fixed sections.
+  layout?: string;
   sections: TechnicalSection[];
 };
 export type SeveritySituation = { id: string; timingBasis: string | null; meaning: string };
 export type TechnicalLibrary = {
   name: string;
   url: string;
-  framework: { name: string; sections: string[]; pageTypes: Record<string, string>; severityScale: { note?: string; situations?: SeveritySituation[] } };
+  framework: {
+    name: string; sections: string[]; pageTypes: Record<string, string>; severityScale: { note?: string; situations?: SeveritySituation[] };
+    // The sections every topic-layout page has, as moyneross.com publishes them.
+    topicLayout?: { fixed: { id: string; heading: string; place?: string; headingStartsWith?: boolean }[] };
+  };
   pages: TechnicalPage[];
 };
 

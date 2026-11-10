@@ -111,7 +111,9 @@ try {
   assert.equal(call(technicalHandler, request('GET', '/v1/technical?page=roof-coverings&format=pdf')).statusCode, 400);
   assert.equal(call(technicalHandler, request('POST', '/v1/technical')).statusCode, 405);
   const tc = json(call(citeHandler, request('GET', '/v1/cite?paper=roof-coverings&style=harvard&section=diagnosis')));
-  assert.match(tc.formatted, /Moyne Ross Technical Library\. Available at: https:\/\/moyneross\.com\/technical\/roof-coverings#diagnosis/);
+  // An earlier address cites the section that now holds it, on either layout.
+  const held = json(call(technicalHandler, request('GET', '/v1/technical?page=roof-coverings&section=diagnosis')));
+  assert.ok(tc.formatted.includes(`Moyne Ross Technical Library. Available at: ${held.section.url}`));
   body = json(call(searchHandler, request('GET', '/v1/search?query=concrete%20spalling%20in%20a%20car%20park&scope=technical&response_format=detailed')));
   assert.ok(body.results.every((r) => r.kind === 'Technical Library' && r.citation.publication === 'Moyne Ross Technical Library'));
 

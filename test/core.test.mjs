@@ -5,7 +5,7 @@ import {
   citationFor, corpusVersion, coverage, formatCitation, getMethod, getPaper, listPapers, matchDetail, matchStrength, methodView, page,
   paperSection, papers, paperSummary, queryTerms, renderPaper, sample, searchResearch, snapshot, startStrategyLink, suggestedQueries,
   tokens, STRONG_MIN_COVERAGE, TECHNICAL_KIND, formatTechnicalCitation, getTechnicalPage, listTechnicalPages, renderTechnicalPage,
-  severityScale, technicalCandidates, technicalCitationFor, technicalMarkdown, technicalPages, technicalSection, technicalSectionName, technicalSummary,
+  severityScale, technicalCandidates, technicalCitationFor, technicalLibrary, technicalMarkdown, technicalPages, technicalSection, technicalSectionName, technicalSummary,
 } from '../.core-dist/src/core.js';
 
 const bench = JSON.parse(readFileSync(new URL('../data/benchmark.json', import.meta.url), 'utf8'));
@@ -228,27 +228,45 @@ test('the library lists in framework order and filters by section and page type'
   assert.deepEqual(listTechnicalPages({ section: 'no such section' }), []);
 });
 
+// These hold on either layout, so converting a page to the topic layout needs
+// no change here.
 test('a library page: summary without text, sections by id or heading, full text, severity scale', () => {
   const p = getTechnicalPage('masonry-brickwork');
   const sum = technicalSummary(p);
-  assert.ok(sum.sections.every((x) => !('markdown' in x)) && sum.sections.length === 11);
+  assert.ok(sum.sections.every((x) => !('markdown' in x)));
+  if (p.layout === 'topic') {
+    const fixed = technicalLibrary.framework.topicLayout.fixed.map((f) => f.id);
+    assert.ok(fixed.every((id) => p.sections.some((x) => x.id === id)));
+  } else assert.equal(sum.sections.length, 11);
   assert.equal(technicalSection(p, 'severity')?.url, 'https://moyneross.com/technical/masonry-brickwork#severity');
   assert.equal(technicalSection(p, 'How serious it is')?.id, 'severity');
   assert.equal(technicalSection(p, 'no such section'), undefined);
-  assert.ok(technicalMarkdown(p).startsWith('## What it is and how it is built'));
+  assert.ok(technicalMarkdown(p).startsWith(`## ${p.sections[0].heading}`));
   assert.ok(renderTechnicalPage(p, 'summary').includes(p.canonicalUrl) && renderTechnicalPage(p, 'summary').includes('Limitations:'));
   assert.deepEqual(severityScale().situations.map((x) => x.id), ['safety', 'failure', 'condition', 'lifecycle', 'deadline', 'check', 'nil']);
 });
 
 test('library citations are exact in every style, to the page or a section', () => {
   const p = getTechnicalPage('roof-coverings');
+  const sec = technicalSection(p, 'diagnosis');
+  assert.ok(sec, 'an earlier address still resolves');
   const c = technicalCitationFor(p, 'diagnosis');
-  assert.equal(c.url, 'https://moyneross.com/technical/roof-coverings#diagnosis');
+  assert.equal(c.url, sec.url);
+  assert.ok(c.url.startsWith('https://moyneross.com/technical/roof-coverings#'));
   assert.equal(c.publication, 'Moyne Ross Technical Library');
   assert.equal(c.corpusVersion, corpusVersion);
   for (const style of ['bibtex', 'ris', 'csl-json', 'apa', 'harvard']) {
     const f = formatTechnicalCitation(p, style, 'diagnosis');
-    assert.ok(f.includes('roof-coverings#diagnosis') && f.includes('Technical Library') && !f.includes('Capital Made Physical'), style);
+    assert.ok(f.includes(sec.url.replace('https://moyneross.com/technical/', '')) && f.includes('Technical Library') && !f.includes('Capital Made Physical'), style);
   }
   assert.ok(formatCitation(papers[0], 'harvard').includes('Capital Made Physical'));
+});
+
+test('on a topic-layout page, every address inside a section resolves to that section', () => {
+  const topic = technicalPages.filter((p) => p.layout === 'topic');
+  for (const p of topic) {
+    for (const x of p.sections) for (const a of x.anchors ?? []) assert.equal(technicalSection(p, a)?.id, x.id, `${p.slug}#${a}`);
+    assert.equal(technicalSection(p, `${p.canonicalUrl}#severity`)?.id, 'severity');
+  }
+  if (topic.length) assert.ok(technicalLibrary.framework.topicLayout.fixed.length >= 5);
 });

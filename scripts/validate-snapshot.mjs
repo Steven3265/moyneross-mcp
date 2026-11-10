@@ -47,9 +47,14 @@ for (const p of snap.papers) if (!docUrls.has(p.canonicalUrl)) errors.push(`${p.
 for (const u of ['https://moyneross.com/methodology/mr-index', 'https://moyneross.com/methodology/capital-register', 'https://moyneross.com/samples/capital-strategy']) if (!docUrls.has(u)) errors.push(`Search index is missing ${u}`);
 for (const d of snap.search.docs) if (!d.url.startsWith('https://moyneross.com/') || !d.title || !d.text) errors.push(`Bad search document ${d.url}`);
 
-// The Technical Library: one page per framework element or space, eleven fixed
-// sections each, anchored by section id, and never a price.
+// The Technical Library: one page per framework element or space, anchored by
+// section id, and never a price. A page is on one of two layouts: the earlier
+// eleven fixed sections, or the topic layout, whose fixed sections are read
+// from the website's own export (framework.topicLayout) rather than listed
+// here, so converting more pages, or rewording a heading, needs no change to
+// this check. Sections are matched by id, never by heading.
 const TECH_SECTIONS = 'what-it-is,service-life,mechanisms,signs,diagnosis,severity,investigation,remedies,cost-shape,jurisdiction-notes,what-to-ask-for';
+const ANCHOR = /^[a-z0-9-]+$/;
 // A price is a currency amount; "priced per square metre" describes cost shape and is fine.
 const MONEY = /(?:A\$|US\$|£|\$|€)\s?\d|\b\d[\d,.]*\s?(?:dollars|pounds|AUD|GBP|USD|EUR)\b/i;
 const tech = snap.technical;
@@ -72,7 +77,23 @@ else {
     for (const f of ['question', 'answer', 'limitations']) if (!t[f] || String(t[f]).length < 20) errors.push(`${t.slug}: ${f} missing or too short`);
     if (t.answer.length >= 600) errors.push(`${t.slug}: answer is ${t.answer.length} characters; the library keeps it under 600`);
     if (!DATE.test(t.publishedAt ?? '')) errors.push(`${t.slug}: publishedAt is not a date`);
-    if ((t.sections ?? []).map((x) => x.id).join() !== TECH_SECTIONS) errors.push(`${t.slug}: sections are not the eleven fixed sections`);
+    const ids = (t.sections ?? []).map((x) => x.id);
+    if (t.layout === 'topic') {
+      const fixed = tech.framework?.topicLayout?.fixed ?? [];
+      if (!fixed.length) errors.push(`${t.slug}: on the topic layout, but the export carries no topicLayout`);
+      if (new Set(ids).size !== ids.length) errors.push(`${t.slug}: two sections share an id`);
+      for (const f of fixed) {
+        if (!ids.includes(f.id)) errors.push(`${t.slug}: missing the fixed section ${f.id}`);
+        if (f.place === 'first' && ids[0] !== f.id) errors.push(`${t.slug}: ${f.id} must be the first section`);
+        if (f.place === 'last' && ids[ids.length - 1] !== f.id) errors.push(`${t.slug}: ${f.id} must be the last section`);
+      }
+      const seen = new Set(ids);
+      for (const x of t.sections ?? []) for (const a of x.anchors ?? []) {
+        if (!ANCHOR.test(a)) errors.push(`${t.slug}: bad anchor ${a} in ${x.id}`);
+        if (seen.has(a)) errors.push(`${t.slug}: the address ${a} is used twice`);
+        seen.add(a);
+      }
+    } else if (ids.join() !== TECH_SECTIONS) errors.push(`${t.slug}: sections are not the eleven fixed sections`);
     for (const x of t.sections ?? []) {
       if (x.url !== `${t.canonicalUrl}#${x.id}`) errors.push(`${t.slug}: bad section URL ${x.url}`);
       if (!x.markdown || x.markdown.length < 100) errors.push(`${t.slug}: section ${x.id} is empty or too short`);

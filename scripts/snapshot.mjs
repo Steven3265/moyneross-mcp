@@ -88,8 +88,10 @@ export async function buildSnapshot() {
 
   const lastmods = [...`${sitemap}${techSitemap}`.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1].trim()).sort();
 
-  // The Technical Library. Section anchors on moyneross.com are the fixed
-  // section ids (#severity, #diagnosis), so a citation reaches the exact part.
+  // The Technical Library. Section anchors on moyneross.com are section ids
+  // (#severity, #misreads), so a citation reaches the exact part. A page on the
+  // topic layout lists the other addresses inside each section, including the
+  // earlier ones it keeps alive (#diagnosis), so those still resolve.
   const technical = (tech.pages || []).map((t) => ({
     slug: t.slug,
     pageType: t.pageType || 'element',
@@ -116,7 +118,8 @@ export async function buildSnapshot() {
     sources: (t.sources || []).map((x) => ({ title: x.title, publisher: x.publisher || '', url: x.url })),
     canonicalUrl: t.canonicalUrl,
     resourceUri: `moyneross://technical/${t.slug}`,
-    sections: (t.sections || []).map((x) => ({ id: x.id, heading: x.heading, url: `${t.canonicalUrl}#${x.id}`, markdown: x.markdown })),
+    layout: t.layout || 'eleven',
+    sections: (t.sections || []).map((x) => ({ id: x.id, heading: x.heading, url: `${t.canonicalUrl}#${x.id}`, markdown: x.markdown, ...(x.anchors?.length ? { anchors: x.anchors } : {}) })),
   }));
   const fw = tech.framework || {};
   const papers = (exp.articles || []).map((a) => ({
@@ -163,7 +166,7 @@ export async function buildSnapshot() {
     technical: {
       name: 'Moyne Ross Technical Library',
       url: `${SITE}/technical`,
-      framework: { name: fw.name || 'Moyne Ross Building Check Framework', sections: fw.sections || [], pageTypes: fw.pageTypes || {}, severityScale: fw.severityScale || {} },
+      framework: { name: fw.name || 'Moyne Ross Building Check Framework', sections: fw.sections || [], pageTypes: fw.pageTypes || {}, severityScale: fw.severityScale || {}, ...(fw.topicLayout ? { topicLayout: fw.topicLayout } : {}) },
       pages: technical,
     },
     // The website's search index as published. The Technical Library pages

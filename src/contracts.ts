@@ -19,7 +19,7 @@ export const RESPONSE_FORMATS = ['concise', 'detailed'] as const;
 
 const paperRef = z.string().min(1).max(200).describe('The paper: its slug (after-rent), CMP number (CMP 024 or 24) or canonical URL.');
 const technicalRef = z.string().min(1).max(200).describe('The Technical Library page: its slug (masonry-brickwork), element name (Roof Coverings) or canonical URL.');
-const technicalSectionRef = z.string().max(120).optional().describe('One section, by id or heading: what-it-is, service-life, mechanisms (how it fails), signs (what to look for), diagnosis (telling causes apart), severity (how serious), investigation, remedies, cost-shape, jurisdiction-notes, what-to-ask-for.');
+const technicalSectionRef = z.string().max(120).optional().describe('One section, by the id or heading the page summary lists, e.g. severity (how serious), service-life, what-to-ask-for, jurisdiction-notes (standards by country). Earlier addresses such as diagnosis or mechanisms still resolve to the section that holds them.');
 const sectionRef = z.string().max(120).optional().describe('A section heading or its anchor, e.g. "a second income line".');
 
 // ─── Inputs ──────────────────────────────────────────────────────────────
