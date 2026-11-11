@@ -40,6 +40,9 @@ import {
   getTechnicalPage,
   listTechnicalPages,
   renderTechnicalPage,
+  renderThresholds,
+  thresholdsFor,
+  isThresholdsRef,
   severityScale,
   technicalCandidates,
   technicalCitationFor,
@@ -227,23 +230,32 @@ export function createMcpServer(): McpServer {
     return result({ count: list.length, total: all.length, nextCursor: pg.nextCursor, corpusVersion, sections: technicalFrameworkSections, severityScale: severityScale(), pages: list }, text);
   });
 
-  server.registerTool('get_technical_page', { ...tool('get_technical_page', true), inputSchema: C.get_technical_page.inputSchema, outputSchema: C.get_technical_page.outputSchema }, async ({ page: ref, format, section, cursor }) => {
+  server.registerTool('get_technical_page', { ...tool('get_technical_page', true), inputSchema: C.get_technical_page.inputSchema, outputSchema: C.get_technical_page.outputSchema }, async ({ page: ref, format, section, cursor, market }) => {
     const found = getTechnicalPage(ref);
-    logUse('get_technical_page', { format, section: Boolean(section), found: Boolean(found), slug: found?.slug });
+    logUse('get_technical_page', { format, section: Boolean(section), found: Boolean(found), slug: found?.slug, market: market ?? null });
     if (!found) {
       const near = technicalCandidates(ref);
       return errorResult(`No Technical Library page matches "${ref}".${near.length ? ` Closest: ${near.map((p) => `${p.title} (${p.slug})`).join('; ')}.` : ''} list_technical_pages lists them all; search_research with scope technical finds one by topic.`);
     }
+    // The thresholds, asked for as a section: one market's, or all markets' labelled.
+    if (section && isThresholdsRef(section) && found.thresholds) {
+      const view = thresholdsFor(found, market);
+      const citation = technicalCitationFor(found);
+      const url = `${found.canonicalUrl}#thresholds`;
+      const body = renderThresholds(found, view);
+      return result({ page: technicalSummary(found, market), section: { id: 'thresholds', heading: 'Thresholds by market', url, text: body }, citation },
+        `# ${found.title}: Thresholds\nTechnical Library · ${url}\n\n${body.replace(/^## [^\n]*\n\n/, '')}\n\nLimitations: ${found.limitations}\n\nCite: ${citation.text}`, [technicalLink(found)]);
+    }
     const sec = section ? technicalSection(found, section) : undefined;
-    if (section && !sec) return errorResult(`"${found.title}" has no section matching "${section}". Its sections are: ${found.sections.map((x) => `${x.heading} (${x.id})`).join('; ')}.`);
+    if (section && !sec) return errorResult(`"${found.title}" has no section matching "${section}". Its sections are: ${found.sections.map((x) => `${x.heading} (${x.id})`).join('; ')}${found.thresholds ? '; Thresholds by market (thresholds)' : ''}.`);
     const citation = technicalCitationFor(found, section);
-    const summary = technicalSummary(found);
+    const summary = technicalSummary(found, market);
     const part = format === 'full' && !sec ? technicalMarkdownPart(found, cursor) : undefined;
     if (format === 'full' && !sec && !part) return errorResult(`"${cursor}" is not a cursor for "${found.title}". Call with format full and no cursor for the first part; each part gives the next cursor.`);
     const payload = part ? { ...summary, contentMarkdown: part.markdown } : summary;
     const text = sec
       ? `# ${found.title}: ${sec.heading}\nTechnical Library · ${sec.url}\n\n${sec.markdown}\n\nLimitations: ${found.limitations}\n\nCite: ${citation.text}`
-      : `${renderTechnicalPage(found, format, part)}\n\nCite: ${citation.text}`;
+      : `${renderTechnicalPage(found, format, part, market)}\n\nCite: ${citation.text}`;
     return result({ page: payload, section: sec ? { id: sec.id, heading: sec.heading, url: sec.url, text: sec.markdown } : null, citation, ...(part ? { part: { part: part.part, parts: part.parts, firstSection: part.firstSection, nextCursor: part.nextCursor } } : {}) }, text, [technicalLink(found)]);
   });
 

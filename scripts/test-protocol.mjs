@@ -358,6 +358,16 @@ async function main() {
   assert.ok(out(tp).page.sections.length >= 7);
   assert.equal(out(tp).page.contentMarkdown, undefined, 'a summary carries no full text');
   assert.ok(tp.payload.result.content.some((c) => c.type === 'resource_link' && c.uri === 'moyneross://technical/masonry-brickwork'));
+  // Thresholds: market AU returns Australian values alone; section thresholds returns them on their own.
+  const tAu = out(await call('t6m', 'get_technical_page', { page: 'internal-stairwells', market: 'AU' }));
+  if (tAu.page.thresholds) {
+    assert.equal(tAu.page.thresholds.market, 'AU');
+    assert.ok(tAu.page.thresholds.values.length > 0 && tAu.page.thresholds.values.every((x) => x.market === 'AU'), 'AU values only');
+    const tSec = out(await call('t6n', 'get_technical_page', { page: 'internal-stairwells', section: 'thresholds', market: 'UK' }));
+    assert.equal(tSec.section.id, 'thresholds');
+    assert.ok(!/Australia/.test(tSec.section.text.replace(/^Rule:.*$/m, '')), 'a UK request shows no Australian heading or value');
+  }
+  assert.ok((await call('t6o', 'get_technical_page', { page: 'internal-stairwells', market: 'NZ' })).payload.result?.isError || (await call('t6p', 'get_technical_page', { page: 'internal-stairwells', market: 'NZ' })).payload.error, 'an unknown market is refused');
   const sev = out(await call('t7', 'get_technical_page', { page: 'masonry-brickwork', section: 'severity' }));
   assert.equal(sev.section.url, 'https://moyneross.com/technical/masonry-brickwork#severity');
   assert.equal(sev.citation.url, 'https://moyneross.com/technical/masonry-brickwork#severity');

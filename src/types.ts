@@ -36,6 +36,14 @@ export type SearchDoc = { url: string; id: string; title: string; kind: string; 
 export type TechnicalSection = { id: string; heading: string; url: string; markdown: string; anchors?: string[] };
 export type TechnicalQuestion = { question: string; answer: string; url: string };
 export type TechnicalSource = { title: string; publisher: string; url: string };
+// A measured value that applies in one market only (moyneross.com keeps every
+// market's numbers out of the text the markets share). Read an asset against
+// its own market's values; another market's value is a comparison at most.
+export type Market = 'AU' | 'UK' | 'US';
+export type TechnicalThreshold = {
+  id: string; market: Market; measure: string; rule: string; clause?: string;
+  basis: 'primary' | 'secondary' | string; appliesTo: string[]; source: TechnicalSource;
+};
 export type TechnicalPage = {
   slug: string;
   pageType: 'element' | 'space' | string;
@@ -70,6 +78,10 @@ export type TechnicalPage = {
   alsoKnownAs?: string[];
   questions?: TechnicalQuestion[];
   sections: TechnicalSection[];
+  // Values by market. Absent on a snapshot taken before moyneross.com
+  // published them; then the page simply carries none.
+  thresholds?: TechnicalThreshold[];
+  marketsWithoutThresholds?: string[];
 };
 export type SeveritySituation = { id: string; timingBasis: string | null; meaning: string };
 export type TechnicalLibrary = {
@@ -79,6 +91,8 @@ export type TechnicalLibrary = {
     name: string; sections: string[]; pageTypes: Record<string, string>; severityScale: { note?: string; situations?: SeveritySituation[] };
     // The sections every topic-layout page has, as moyneross.com publishes them.
     topicLayout?: { fixed: { id: string; heading: string; place?: string; headingStartsWith?: boolean }[] };
+    // How thresholds may be used, as moyneross.com publishes it.
+    thresholdPolicy?: { markets: Record<string, string>; rule: string };
   };
   pages: TechnicalPage[];
 };

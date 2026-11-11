@@ -126,6 +126,14 @@ export async function buildSnapshot() {
     alsoKnownAs: t.alsoKnownAs || [],
     questions: (t.questions || []).map((x) => ({ question: x.question, answer: x.answer || '', url: x.url || t.canonicalUrl })),
     sections: (t.sections || []).map((x) => ({ id: x.id, heading: x.heading, url: `${t.canonicalUrl}#${x.id}`, markdown: x.markdown, ...(x.anchors?.length ? { anchors: x.anchors } : {}) })),
+    // Values by market: each applies only in its own market. The shared
+    // sections above carry no market's numbers.
+    thresholds: (t.thresholds || []).map((x) => ({
+      id: x.id, market: x.market, measure: x.measure, rule: x.rule, ...(x.clause ? { clause: x.clause } : {}),
+      basis: x.basis || 'primary', appliesTo: x.appliesTo || [],
+      source: { title: x.sourceRef?.title || '', publisher: x.sourceRef?.publisher || '', url: x.sourceRef?.url || '' },
+    })),
+    marketsWithoutThresholds: t.marketsWithoutThresholds || [],
   }));
   const fw = tech.framework || {};
   const papers = (exp.articles || []).map((a) => ({
@@ -172,7 +180,7 @@ export async function buildSnapshot() {
     technical: {
       name: 'Moyne Ross Technical Library',
       url: `${SITE}/technical`,
-      framework: { name: fw.name || 'Moyne Ross Building Check Framework', sections: fw.sections || [], pageTypes: fw.pageTypes || {}, severityScale: fw.severityScale || {}, ...(fw.topicLayout ? { topicLayout: fw.topicLayout } : {}) },
+      framework: { name: fw.name || 'Moyne Ross Building Check Framework', sections: fw.sections || [], pageTypes: fw.pageTypes || {}, severityScale: fw.severityScale || {}, ...(fw.topicLayout ? { topicLayout: fw.topicLayout } : {}), ...(fw.thresholdPolicy ? { thresholdPolicy: fw.thresholdPolicy } : {}) },
       pages: technical,
     },
     // The website's search index as published. The Technical Library pages

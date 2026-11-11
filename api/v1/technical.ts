@@ -1,9 +1,10 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import {
   corpusVersion, getTechnicalPage, listTechnicalPages, cursorProblem, page, severityScale, technicalCandidates, technicalCitationFor, technicalFrameworkSections,
-  technicalListing, technicalMarkdownPart, technicalSection, technicalSectionName, technicalSummary,
+  technicalListing, technicalMarkdownPart, technicalSection, technicalSectionName, technicalSummary, thresholdsFor, renderThresholds, isThresholdsRef,
 } from '../../src/core.js';
-import { PAGE_TYPES } from '../../src/contracts.js';
+import { MARKETS, PAGE_TYPES } from '../../src/contracts.js';
+import type { Market } from '../../src/types.js';
 import { addReferralUrls, enumParam, intParam, logApi, optionalParam, referralSource, requestUrl, requireGet, sendJson } from '../../src/http-json.js';
 
 // The Technical Library over REST. With page: one page (summary, a section, or
@@ -17,12 +18,20 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
     const format = enumParam(url, res, 'format', ['summary', 'full'] as const);
     if (format === null) return;
     const sectionRef = optionalParam(url, 'section');
+    // market: AU, UK or US. Thresholds for that market only; without it, all markets grouped.
+    const marketParam = enumParam(url, res, 'market', MARKETS);
+    if (marketParam === null) return;
+    const market = marketParam as Market | undefined;
     const found = getTechnicalPage(ref);
-    logApi('technical', { found: Boolean(found), format: format ?? 'summary', section: Boolean(sectionRef) });
+    logApi('technical', { found: Boolean(found), format: format ?? 'summary', section: Boolean(sectionRef), market: market ?? null });
     if (!found) return sendJson(res, 404, { error: 'No Technical Library page matches that. Use /v1/technical to list them or /v1/search with scope=technical.', closest: technicalCandidates(ref).map((p) => p.slug) }, 'no-store');
+    if (sectionRef && isThresholdsRef(sectionRef) && found.thresholds) {
+      const view = thresholdsFor(found, market);
+      return sendJson(res, 200, addReferralUrls({ page: technicalSummary(found, market), section: { id: 'thresholds', heading: 'Thresholds by market', url: `${found.canonicalUrl}#thresholds`, text: renderThresholds(found, view) }, citation: technicalCitationFor(found) }, referralSource(req)), 'no-store');
+    }
     const sec = sectionRef ? technicalSection(found, sectionRef) : undefined;
     if (sectionRef && !sec) return sendJson(res, 404, { error: `No section matches "${sectionRef}".`, sections: found.sections.map((x) => x.id) }, 'no-store');
-    const summary = technicalSummary(found);
+    const summary = technicalSummary(found, market);
     // A long page in full comes a part at a time, as over MCP; cursor continues it.
     const partCursor = optionalParam(url, 'cursor');
     const part = format === 'full' && !sec ? technicalMarkdownPart(found, partCursor) : undefined;

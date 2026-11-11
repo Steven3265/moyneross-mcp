@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Thresholds by market. The snapshot carries each Technical Library page's measured values, each tagged with the one market it applies in, and the library's rule for using them. `get_technical_page` (and `/v1/technical`) take `market` (`AU`, `UK`, `US`) and return that market's values alone; without it, every market's values come grouped and labelled with the rule first. `section: thresholds` returns the values on their own. The shared sections carry no market's numbers. Validated in the snapshot check and tested in core and protocol tests.
+
 ## 1.1.0
 
 The Moyne Ross Technical Library joins the corpus: one page for each element and functional space of the Building Check Framework (103 pages, 1,133 anchored sections), snapshotted from `moyneross.com/technical/export.json`.

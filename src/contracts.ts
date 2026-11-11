@@ -14,6 +14,7 @@ import { handOverEnabled } from './client-label.js';
 export { CITATION_STYLES, METHOD_IDS, PART_NUMBERS, PROPERTY_TYPES, ROLES, SAMPLE_PARTS, TECHNICAL_SECTION_IDS };
 export type { MatchStrength };
 export const SCOPES = ['all', 'research', 'technical', 'methodology', 'sample'] as const;
+export const MARKETS = ['AU', 'UK', 'US'] as const;
 export const PAGE_TYPES = ['element', 'space'] as const;
 export const RESPONSE_FORMATS = ['concise', 'detailed'] as const;
 
@@ -65,6 +66,7 @@ export const getTechnicalPageInputSchema = z.object({
   format: z.enum(['summary', 'full']).optional().default('summary').describe('summary (default): the question, short answer, where it applies, limitations, sources and the anchored sections. full: adds the complete text, a part at a time on a long page.'),
   section: technicalSectionRef,
   cursor: z.string().max(120).optional().describe('With format full on a long page: the nextCursor from the previous part.'),
+  market: z.enum(MARKETS).optional().describe('The market of the building the answer is for: AU (Australia), UK or US. Returns that market\'s measured thresholds only. Without it, thresholds come grouped by market, each labelled, with the rule for using them: a value applies only in its own market.'),
 });
 export const workingWithInputSchema = z.object({});
 export const startStrategyLinkInputSchema = z.object({
@@ -134,8 +136,15 @@ export const listTechnicalPagesOutputSchema = z.object({
   count: z.number().int().min(0), total: z.number().int(), nextCursor: z.string().nullable(), corpusVersion: z.string(),
   sections: z.array(z.string()), severityScale: severitySchema, pages: z.array(technicalListingSchema),
 });
+const thresholdSchema = z.object({
+  id: z.string(), market: z.enum(MARKETS), measure: z.string(), rule: z.string(), clause: z.string().optional(), basis: z.string(), appliesTo: z.array(z.string()),
+  source: z.object({ title: z.string(), publisher: z.string(), url: z.string() }),
+});
+// Measured values, each for one market. market: the one asked for, or null for
+// all markets grouped; missing: markets the page covers with no value recorded.
+const thresholdViewSchema = z.object({ market: z.enum(MARKETS).nullable(), policy: z.string(), values: z.array(thresholdSchema), missing: z.array(z.enum(MARKETS)) });
 export const getTechnicalPageOutputSchema = z.object({
-  page: technicalSummarySchema.extend({ contentMarkdown: z.string().optional() }),
+  page: technicalSummarySchema.extend({ contentMarkdown: z.string().optional(), thresholds: thresholdViewSchema.optional() }),
   section: z.object({ id: z.string(), heading: z.string(), url: z.string(), text: z.string() }).nullable(),
   citation: citationSchema,
   // With format full: which part of the page this is, and the cursor for the next (null on the last part).
@@ -201,10 +210,10 @@ export const TOOL_CONTRACTS = {
   },
   get_technical_page: {
     title: 'Get a Technical Library page',
-    description: 'Retrieve one Technical Library page by slug, element name or canonical URL: general technical guidance on how a building element or functional space is built, its service life, how it fails, what to look for, how to tell causes apart, how serious a finding is (graded safety, failure, condition, lifecycle, deadline, check or nil), investigation, remedies, the shape of the cost (never a price), standards in Australia, the UK and the US, and what to ask the owner or agent for. By default a summary with every section\'s anchored URL; section returns one section, format full the whole page (a part at a time on a long page, with nextCursor). Always includes a ready citation. It describes how elements behave in general, never the condition of a particular building; carry its limitations through.',
+    description: 'Retrieve one Technical Library page by slug, element name or canonical URL: general technical guidance on how a building element or functional space is built, its service life, how it fails, what to look for, how to tell causes apart, how serious a finding is (graded safety, failure, condition, lifecycle, deadline, check or nil), investigation, remedies, the shape of the cost (never a price), standards in Australia, the UK and the US, measured thresholds by market, and what to ask the owner or agent for. Each threshold applies only in its own market: pass market (AU, UK or US) for the building in question to get that market\'s values alone; section thresholds returns the values on their own. By default a summary with every section\'s anchored URL; section returns one section, format full the whole page (a part at a time on a long page, with nextCursor). Always includes a ready citation. It describes how elements behave in general, never the condition of a particular building; carry its limitations through.',
     inputSchema: getTechnicalPageInputSchema, outputSchema: getTechnicalPageOutputSchema,
     outputFields: ['page', 'section', 'citation'],
-    jsonInputSchema: { type: 'object', properties: { page: TECH_JSON, format: { type: 'string', enum: ['summary', 'full'], default: 'summary' }, section: SECTION_JSON, cursor: { type: 'string', maxLength: 120 } }, required: ['page'], additionalProperties: false },
+    jsonInputSchema: { type: 'object', properties: { page: TECH_JSON, format: { type: 'string', enum: ['summary', 'full'], default: 'summary' }, section: SECTION_JSON, cursor: { type: 'string', maxLength: 120 }, market: { type: 'string', enum: [...MARKETS] } }, required: ['page'], additionalProperties: false },
   },
   working_with_moyne_ross: {
     title: 'How working with Moyne Ross works',

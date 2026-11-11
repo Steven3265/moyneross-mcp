@@ -66,6 +66,23 @@ else {
   if (situations !== 'safety,failure,condition,lifecycle,deadline,check,nil') errors.push(`Unexpected severity scale: ${situations}`);
   if (tech.pages.length < 100) errors.push(`Only ${tech.pages.length} Technical Library pages; expected the full library.`);
   const tslugs = new Set(), elements = new Set();
+  // Thresholds by market: once moyneross.com publishes them, every value names
+  // one market (in the page's jurisdiction) and its source, and the rule for
+  // using them travels with the snapshot.
+  const MARKETS = ['AU', 'UK', 'US'];
+  const withThresholds = tech.pages.filter((t) => Array.isArray(t.thresholds) && t.thresholds.length);
+  if (withThresholds.length && !tech.framework?.thresholdPolicy?.rule) errors.push('Pages carry thresholds but the snapshot has no threshold policy.');
+  for (const t of tech.pages) {
+    for (const x of t.thresholds ?? []) {
+      const where = `${t.slug}: threshold ${x.id}`;
+      if (!MARKETS.includes(x.market)) errors.push(`${where}: market ${x.market} is not AU, UK or US`);
+      else if (!(t.jurisdiction ?? []).includes(x.market)) errors.push(`${where}: market ${x.market} is outside the page's jurisdiction`);
+      if (!String(x.id).startsWith(`${String(x.market).toLowerCase()}-`)) errors.push(`${where}: id does not start with its market`);
+      if (!x.measure || !x.rule) errors.push(`${where}: measure or rule missing`);
+      if (!x.source?.title || !String(x.source?.url ?? '').startsWith('https://')) errors.push(`${where}: source missing or not https`);
+      if (MONEY.test(x.rule)) errors.push(`${where}: a threshold carries a price`);
+    }
+  }
   for (const t of tech.pages) {
     if (tslugs.has(t.slug) || slugs.has(t.slug)) errors.push(`Duplicate slug ${t.slug}`); tslugs.add(t.slug);
     if (elements.has(t.frameworkElement)) errors.push(`Two pages share the element ${t.frameworkElement}`); elements.add(t.frameworkElement);

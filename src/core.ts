@@ -9,7 +9,9 @@ import type {
   SearchDoc,
   SearchResult,
   SearchScope,
+  Market,
   TechnicalPage,
+  TechnicalThreshold,
 } from './types.js';
 
 // The snapshot is read-only, deterministic and local: no network, no model,
@@ -859,11 +861,67 @@ export function technicalListing(p: TechnicalPage) {
   return { slug: p.slug, title: p.title, pageType: p.pageType, section: p.section, subsection: p.subsection, frameworkElement: p.frameworkElement, answer: p.answer, updatedAt: p.updatedAt, canonicalUrl: p.canonicalUrl, resourceUri: p.resourceUri };
 }
 
+// ─── Thresholds by market ────────────────────────────────────────────────
+// moyneross.com keeps every market's measured values out of the text the
+// markets share: each value sits in the page's thresholds, tagged with the one
+// market it applies in. Asked for a market, the connector returns that
+// market's values alone; asked for none, it returns every market's values
+// grouped and labelled, with the rule for using them first. It never picks a
+// market on the caller's behalf, so a missing value stays visible.
+export const MARKETS = ['AU', 'UK', 'US'] as const;
+export const MARKET_NAMES: Record<Market, string> = { AU: 'Australia', UK: 'United Kingdom', US: 'United States' };
+const FALLBACK_POLICY = 'A threshold applies only to assets in its own market. Read an asset against its own market\'s values; cite another market\'s value only as a labelled comparison, never as the requirement. Where the asset\'s market has no value on a page, say so rather than borrow one.';
+export function thresholdPolicy(): string { return snapshot.technical?.framework.thresholdPolicy?.rule || FALLBACK_POLICY; }
+export type ThresholdView = { market: Market | null; policy: string; values: TechnicalThreshold[]; missing: Market[] };
+// undefined when the snapshot predates thresholds, so nothing claims a gap
+// that is only an old snapshot.
+export function thresholdsFor(p: TechnicalPage, market?: Market): ThresholdView | undefined {
+  if (!p.thresholds) return undefined;
+  const all = p.thresholds;
+  const covered = MARKETS.filter((m) => p.jurisdiction.includes(m));
+  const asked: readonly Market[] = market ? [market] : covered;
+  return {
+    market: market ?? null,
+    policy: thresholdPolicy(),
+    values: market ? all.filter((x) => x.market === market) : all,
+    missing: asked.filter((m) => !all.some((x) => x.market === m)),
+  };
+}
+function thresholdLine(x: TechnicalThreshold): string {
+  const where = [x.source.title, x.clause].filter(Boolean).join(', ');
+  return `- ${x.measure}: ${x.rule}. Source: ${where}${x.basis === 'secondary' ? ' (quoted by a secondary source)' : ''}${x.source.url ? ` ${x.source.url}` : ''}`;
+}
+export function renderThresholds(p: TechnicalPage, view: ThresholdView | undefined): string {
+  if (!view) return '';
+  const head = view.market ? `## Thresholds: ${MARKET_NAMES[view.market]}` : '## Thresholds by market';
+  const out = [head, `Rule: ${view.policy}`];
+  const markets: readonly Market[] = view.market ? [view.market] : MARKETS.filter((m) => p.jurisdiction.includes(m));
+  for (const m of markets) {
+    const mine = view.values.filter((x) => x.market === m);
+    if (!view.market) out.push(`### ${MARKET_NAMES[m]}`);
+    out.push(mine.length ? mine.map(thresholdLine).join('\n') : `No ${MARKET_NAMES[m]} value is recorded on this page. Do not apply another market's value as the requirement.`);
+  }
+  return out.join('\n\n');
+}
+export function marketOf(ref?: string): Market | undefined {
+  const r = String(ref ?? '').trim().toUpperCase();
+  if (r === 'AU' || r === 'AUS' || r === 'AUSTRALIA') return 'AU';
+  if (r === 'UK' || r === 'GB' || r === 'GBR' || r === 'UNITED KINGDOM' || r === 'ENGLAND' || r === 'BRITAIN') return 'UK';
+  if (r === 'US' || r === 'USA' || r === 'UNITED STATES') return 'US';
+  return undefined;
+}
+// A request for the thresholds as if they were a section.
+export function isThresholdsRef(ref?: string): boolean {
+  return /^(thresholds?|thresholds-by-market|values)$/.test(fold(String(ref ?? '').replace(/^.*#/, '')).replace(/\s+/g, '-'));
+}
+
 // Everything but the section text: what the page answers, where it applies,
-// its limitations and sources, and an anchored URL for every section.
-export function technicalSummary(p: TechnicalPage) {
-  const { sections, ...rest } = p;
-  return { ...rest, sections: sections.map(({ markdown: _m, ...x }) => x) };
+// its limitations and sources, an anchored URL for every section, and its
+// thresholds: one market's if asked, otherwise every market's, labelled.
+export function technicalSummary(p: TechnicalPage, market?: Market) {
+  const { sections, thresholds: _t, marketsWithoutThresholds: _m, ...rest } = p;
+  const view = thresholdsFor(p, market);
+  return { ...rest, sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
 }
 
 // A section by its id or heading, or by an address inside it: on a page on the
@@ -917,7 +975,7 @@ const USE_CLASS_LABELS: Record<string, string> = {
   industrial: 'industrial and logistics', institutional: 'healthcare, education and assembly',
 };
 
-export function renderTechnicalPage(p: TechnicalPage, format: 'summary' | 'full', part?: TechnicalPart): string {
+export function renderTechnicalPage(p: TechnicalPage, format: 'summary' | 'full', part?: TechnicalPart, market?: Market): string {
   const applies = p.useClasses.map((c) => USE_CLASS_LABELS[c] ?? c).join(', ');
   const head = `# ${p.title}\nTechnical Library · ${p.section} · ${p.subsection} · ${p.pageType === 'space' ? 'functional space' : 'building element'} · updated ${p.updatedAt ?? p.publishedAt}\n${p.canonicalUrl}`;
   const qa = `Question: ${p.question}\n\nAnswer: ${p.answer}`;
@@ -926,15 +984,16 @@ export function renderTechnicalPage(p: TechnicalPage, format: 'summary' | 'full'
     ? `Elements in this space: ${p.spaceElements.join(', ')}.`
     : p.spaces.length ? `Found in these spaces: ${p.spaces.join(', ')}.` : '';
   const limits = p.limitations ? `Limitations: ${p.limitations}` : '';
+  const values = renderThresholds(p, thresholdsFor(p, market));
   if (format === 'summary') {
-    const secs = `Sections (request one with section, or format full): ${p.sections.map((x) => `${x.heading} [${x.id}]`).join('; ')}.`;
-    return [head, qa, scope, links, secs, limits].filter(Boolean).join('\n\n');
+    const secs = `Sections (request one with section, or format full): ${p.sections.map((x) => `${x.heading} [${x.id}]`).join('; ')}${p.thresholds ? '; Thresholds by market [thresholds]' : ''}.`;
+    return [head, qa, scope, links, secs, values, limits].filter(Boolean).join('\n\n');
   }
   if (part && part.parts > 1) {
     const more = part.nextCursor ? `Part ${part.part} of ${part.parts}. The page continues: call again with format full and cursor "${part.nextCursor}".` : `Part ${part.part} of ${part.parts}, the last.`;
-    return [head, part.part === 1 ? qa : '', part.part === 1 ? scope : '', part.part === 1 ? links : '', part.markdown, more, limits].filter(Boolean).join('\n\n');
+    return [head, part.part === 1 ? qa : '', part.part === 1 ? scope : '', part.part === 1 ? links : '', part.part === 1 ? values : '', part.markdown, more, limits].filter(Boolean).join('\n\n');
   }
-  return [head, qa, scope, links, technicalMarkdown(p), limits].filter(Boolean).join('\n\n');
+  return [head, qa, scope, links, values, technicalMarkdown(p), limits].filter(Boolean).join('\n\n');
 }
 
 export function technicalCitationFor(p: TechnicalPage, sectionRef?: string): Citation {

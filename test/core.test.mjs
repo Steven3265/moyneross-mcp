@@ -305,3 +305,30 @@ test('on a topic-layout page, every address inside a section resolves to that se
   }
   if (topic.length) assert.ok(technicalLibrary.framework.topicLayout.fixed.length >= 5);
 });
+
+// Thresholds by market: one market's values when asked, every market's
+// labelled when not, never one market's values presented as another's.
+test('thresholds come by market, with the rule, and never borrow across markets', () => {
+  const withValues = technicalPages.filter((p) => (p.thresholds ?? []).length);
+  if (!withValues.length) return; // a snapshot taken before moyneross.com published thresholds
+  const p = withValues.find((x) => new Set(x.thresholds.map((t) => t.market)).size > 1) ?? withValues[0];
+  const all = technicalSummary(p).thresholds;
+  assert.equal(all.market, null);
+  assert.ok(all.policy.length > 40, 'the rule travels with the values');
+  assert.equal(all.values.length, p.thresholds.length);
+  for (const m of ['AU', 'UK', 'US']) {
+    const one = technicalSummary(p, m).thresholds;
+    assert.equal(one.market, m);
+    assert.ok(one.values.every((t) => t.market === m), `only ${m} values when ${m} is asked for`);
+    const text = renderTechnicalPage(p, 'summary', undefined, m);
+    for (const other of ['AU', 'UK', 'US'].filter((x) => x !== m)) {
+      for (const t of p.thresholds.filter((x) => x.market === other)) assert.ok(!text.includes(t.rule), `${m} text carries no ${other} value`);
+    }
+    if (!one.values.length) assert.deepEqual(one.missing, [m], 'a missing market is named, not filled');
+  }
+  const grouped = renderTechnicalPage(p, 'summary');
+  assert.match(grouped, /## Thresholds by market/);
+  assert.match(grouped, /### Australia/);
+  // The page's shared sections carry no market's measured values.
+  for (const t of p.thresholds) assert.ok(!technicalMarkdown(p).includes(t.rule), `${t.id} stays out of the shared sections`);
+});
