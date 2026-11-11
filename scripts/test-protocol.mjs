@@ -361,6 +361,13 @@ async function main() {
   const sev = out(await call('t7', 'get_technical_page', { page: 'masonry-brickwork', section: 'severity' }));
   assert.equal(sev.section.url, 'https://moyneross.com/technical/masonry-brickwork#severity');
   assert.equal(sev.citation.url, 'https://moyneross.com/technical/masonry-brickwork#severity');
+  // An unknown page or paper resource is "not found" (-32602), not an internal error.
+  for (const uri of ['moyneross://technical/no-such-page', 'moyneross://papers/no-such-paper']) {
+    const miss = await postModern({ id: `rnf-${uri}`, method: 'resources/read', params: { uri }, name: uri });
+    assert.equal(miss.payload.error?.code, -32602, `${uri}: ${JSON.stringify(miss.payload.error)}`);
+  }
+  assert.ok((await call('t8d', 'list_papers', { cursor: '-999' })).payload.result.isError, 'a foreign cursor is refused');
+  assert.ok((await call('t8e', 'get_sample_strategy', { part: 'register', section: 'zzzz' })).payload.result.isError, 'an unknown sample section is an error');
   const full1 = out(await call('t8', 'get_technical_page', { page: 'roof-coverings', format: 'full' }));
   assert.ok(full1.page.contentMarkdown.length > 5000);
   // A long page in full comes a part at a time; the cursor walks it to the end.

@@ -287,15 +287,63 @@ function idfOf(term: string): number {
 export function queryTerms(query: string): QueryTerm[] {
   const seen = new Set<string>();
   const out: QueryTerm[] = [];
-  for (const t of tokens(query)) {
+  for (const t of queryTokens(query)) {
     if (seen.has(t)) continue;
     seen.add(t);
     const raw = String(query).toLowerCase().match(/[a-z0-9]+/g) ?? [];
     const key = raw.find((w) => tokens(w)[0] === t) ?? t;
     const alternatives = SYNONYMS[key] ? tokens(SYNONYMS[key]).filter((x) => x !== t) : [];
+    const fixed = correction(t);
+    if (fixed && !alternatives.includes(fixed)) alternatives.push(fixed);
     out.push({ term: t, alternatives, idf: idfOf(t) });
   }
   return out;
+}
+
+// ─── The question's own words ────────────────────────────────────────────
+//
+// Two things people type that the corpus should not be judged on. First, the
+// conversational wrapper around a question ("Hi, I have a question ... any
+// guidance appreciated, thanks"): those words are in no document, so they
+// weighed most in the match and turned every wrapped question weak. They are
+// dropped from the query only; the tokenizer itself stays the website's.
+// Second, typing slips: a word the corpus does not contain, five letters or
+// longer, that is one slip from a word it does contain is also searched as
+// that word, at
+// the reduced weight shorthand gets, so an exact match still ranks first.
+// Only swapped, dropped or doubled letters inside a word of six or more.
+const FILLER = new Set(tokens('hi hello hey thanks thank cheers please kindly any appreciated appreciate appreciation wondering wonder question questions guidance help helpful anyone know tell explain quick quickly advise basically actually just'));
+export function queryTokens(query: string): string[] {
+  return tokens(query).filter((t) => !FILLER.has(t));
+}
+
+let vocabulary: Set<string> | undefined;
+const corrections = new Map<string, string | undefined>();
+function correction(term: string): string | undefined {
+  if (term.length < 6 || /\d/.test(term)) return undefined;
+  vocabulary ??= new Set([...siteCollection.df.keys(), ...corpusCollection.df.keys(), ...passageCollection.df.keys()]);
+  if (vocabulary.has(term)) return undefined;
+  if (corrections.has(term)) return corrections.get(term);
+  // Only the slips fingers make inside a word: two letters swapped, a letter
+  // dropped or doubled. Not a wrong letter (horse is not house, broker is not
+  // broken) and nothing at either end (gains, negotiate: those are other words
+  // or the tokenizer's stemming, not typing).
+  const letters = 'abcdefghijklmnopqrstuvwxyz';
+  const edits = new Set<string>();
+  for (let i = 1; i < term.length - 1; i++) {
+    edits.add(term.slice(0, i) + term.slice(i + 1));
+    edits.add(term.slice(0, i) + term[i + 1] + term[i] + term.slice(i + 2));
+    for (const c of letters) edits.add(term.slice(0, i) + c + term.slice(i));
+  }
+  let best: string | undefined, bestDf = 0;
+  for (const e of edits) {
+    if (e.length < 4 || !vocabulary.has(e)) continue;
+    const df = (corpusCollection.df.get(e) ?? 0) + (passageCollection.df.get(e) ?? 0);
+    if (df > bestDf || (df === bestDf && best !== undefined && e < best)) { best = e; bestDf = df; }
+  }
+  if (corrections.size > 5000) corrections.clear();
+  corrections.set(term, best);
+  return best;
 }
 
 // ─── What a document is about ────────────────────────────────────────────
@@ -354,7 +402,7 @@ function rawScore(d: IndexedDoc, q: Map<string, number>): number {
 
 export function searchResearch({ query, scope = 'all', limit = 5 }: SearchOptions): SearchResult[] {
   const q = new Map<string, number>();
-  for (const t of tokens(query)) q.set(t, (q.get(t) ?? 0) + 1);
+  for (const t of queryTokens(query)) q.set(t, (q.get(t) ?? 0) + 1);
   if (!q.size) return [];
   const qts = queryTerms(query);
   for (const qt of qts) for (const alt of qt.alternatives) if (!q.has(alt)) q.set(alt, 0.6);
@@ -470,7 +518,8 @@ for (const t of AMBIGUOUS_TERMS) DOMAIN_TERMS.delete(t);
 export function domainEvidence(query: string): number {
   if (DOMAIN_PHRASES.some((r) => r.test(query))) return 1;
   let e = 0;
-  for (const t of new Set(tokens(query))) {
+  for (const raw of new Set(queryTokens(query))) {
+    const t = DOMAIN_TERMS.has(raw) || AMBIGUOUS_TERMS.has(raw) ? raw : (correction(raw) ?? raw);
     if (DOMAIN_TERMS.has(t)) e += 1;
     else if (AMBIGUOUS_TERMS.has(t)) e += 0.4;
   }
@@ -528,8 +577,14 @@ export type SamplePart = (typeof SAMPLE_PARTS)[number];
 // summary (figures, executive summary, key considerations, where the capital
 // sits, how sure) and the register (every line as tables, with how to read
 // it). The register can be narrowed to sections, e.g. "roofs" or "fire".
+// The register's own sections: the ### headings between "The Capital Register"
+// and "How to read this register", not the summary's or the reading notes'.
 export function sampleSections(): string[] {
-  return [...snapshot.sample.text.matchAll(/^### (.+?)(?: · \$[\d,]+)?$/gm)].map((m) => m[1] ?? '').filter(Boolean);
+  const text = snapshot.sample.text;
+  const reg = text.indexOf('\n## The Capital Register');
+  const end = text.indexOf('\n## How to read this register');
+  const body = reg > 0 ? text.slice(reg, end > reg ? end : text.length) : text;
+  return [...body.matchAll(/^### (.+?)(?: · \$[\d,]+)?$/gm)].map((m) => m[1] ?? '').filter(Boolean);
 }
 
 export function sample(part: SamplePart = 'summary', section?: string) {
@@ -560,13 +615,12 @@ export function sample(part: SamplePart = 'summary', section?: string) {
       const regEnd = howTo > reg ? howTo : text.length;
       const blocks = text.slice(reg, regEnd).split(/\n(?=### )/).slice(1);
       const picked = blocks.filter((b) => (b.split('\n')[0] ?? '').toLowerCase().includes(want));
-      body = picked.length
-        ? `## The Capital Register\n\n${picked.map((b) => b.trim()).join('\n\n')}`
-        : `No register section matches "${section}". Sections: ${sampleSections().join(', ')}.`;
+      if (!picked.length) return { title: s.title, url: s.url, interactiveUrl: s.interactiveUrl, part, text: '', unknownSection: `The sample register has no section matching "${section}". Its sections: ${sampleSections().join(', ')}.` };
+      body = `## The Capital Register\n\n${picked.map((b) => b.trim()).join('\n\n')}`;
     }
-    out = `# ${s.title}\n\n${body}`;
+    out = body;
   }
-  return { title: s.title, url: s.url, interactiveUrl: s.interactiveUrl, part, text: out };
+  return { title: s.title, url: s.url, interactiveUrl: s.interactiveUrl, part, text: out.replace(new RegExp(`^# ${s.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*`), '') };
 }
 export function engagement() { return snapshot.engagement; }
 
@@ -587,10 +641,15 @@ export type StartDetails = {
 
 export function startStrategyLink(details: StartDetails, base: string, source: string): string {
   const params: string[] = [];
-  const put = (k: string, v?: string) => { const s = (v ?? '').trim(); if (s) params.push(`${k}=${encodeURIComponent(s.slice(0, 400))}`); };
+  // Control characters (line breaks included) are removed, so nothing typed
+  // can add a line or a header to the form; an email is kept only if it looks
+  // like one address.
+  const clean = (v?: string) => (v ?? '').replace(/[\u0000-\u001f\u007f-\u009f\u2028\u2029]+/g, ' ').replace(/\s+/g, ' ').trim();
+  const put = (k: string, v?: string) => { const s = clean(v); if (s) params.push(`${k}=${encodeURIComponent(s.slice(0, 400))}`); };
   put('building', details.building);
   put('name', details.name);
-  put('email', details.email);
+  const email = clean(details.email);
+  if (/^[^\s@<>()",;:]+@[^\s@<>()",;:]+\.[a-z]{2,}$/i.test(email)) put('email', email);
   put('organisation', details.organisation);
   if (details.role && (ROLES as readonly string[]).includes(details.role)) put('role', details.role);
   if (details.type && (PROPERTY_TYPES as readonly string[]).includes(details.type)) put('type', details.type);
@@ -723,6 +782,15 @@ export function suggestedQueries(results: SearchResult[]): string[] {
 
 // ─── Paging ──────────────────────────────────────────────────────────────
 // Cursors are opaque to clients; here they are a base-36 offset.
+// A cursor is only ever a nextCursor this server gave out: a position inside
+// the list. Anything else is refused rather than quietly read as the start,
+// or as an empty page that looks like the end of the list.
+export function cursorProblem(cursor: string | undefined, total: number): string | undefined {
+  if (cursor === undefined || cursor === '') return undefined;
+  const n = /^[0-9a-z]{1,6}$/.test(cursor) ? parseInt(cursor, 36) : NaN;
+  return Number.isSafeInteger(n) && n > 0 && n < total ? undefined : `"${cursor}" is not a cursor for this list. Leave cursor out for the first page, then pass the nextCursor each page returns.`;
+}
+
 export function page<T>(items: T[], limit: number, cursor?: string): { items: T[]; nextCursor: string | null } {
   const start = cursor ? Math.max(0, parseInt(cursor, 36) || 0) : 0;
   const end = start + limit;

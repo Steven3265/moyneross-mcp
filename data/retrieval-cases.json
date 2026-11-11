@@ -54,6 +54,20 @@
       "within": 3,
       "minHit": 101,
       "note": "one authored FAQ per library page should find its own page in the top three; 98 of 103 before passage scoring."
+    },
+    "typo": {
+      "rule": "count",
+      "within": 3,
+      "minHit": 39,
+      "minStrong": 26,
+      "note": "authored FAQ questions with two letters of one long word swapped, as people type; one slip inside a word is searched as the word it nearly is"
+    },
+    "verbose": {
+      "rule": "count",
+      "within": 3,
+      "minHit": 37,
+      "minStrong": 23,
+      "note": "authored FAQ questions wrapped in conversation (\"Hi, I have a question ... thanks\"); the wrapper is dropped from the query"
     }
   },
   "cases": [
@@ -2366,6 +2380,694 @@
       "id": "faq:why-does-my-flat-roof-keep-leaking-after-repairs",
       "category": "faq",
       "query": "Why does my flat roof keep leaking after repairs?",
+      "expected": [
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ]
+    },
+    {
+      "id": "typo:how-shuold-a-platform-lift-s-reliability-be-judged",
+      "category": "typo",
+      "query": "How shuold a platform lift's reliability be judged?",
+      "expected": [
+        "https://moyneross.com/technical/accessibility-lifts"
+      ]
+    },
+    {
+      "id": "verbose:how-should-a-platform-lift-s-reliability-be-judged",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How should a platform lift's reliability be judged? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/accessibility-lifts"
+      ]
+    },
+    {
+      "id": "typo:could-an-old-shed-cotnain-asbestos",
+      "category": "typo",
+      "query": "Could an old shed cotnain asbestos?",
+      "expected": [
+        "https://moyneross.com/technical/ancillary-structures"
+      ]
+    },
+    {
+      "id": "verbose:could-an-old-shed-contain-asbestos",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Could an old shed contain asbestos? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/ancillary-structures"
+      ]
+    },
+    {
+      "id": "typo:how-often-must-spirnklers-be-tested",
+      "category": "typo",
+      "query": "How often must spirnklers be tested?",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "verbose:how-often-must-sprinklers-be-tested",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How often must sprinklers be tested? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ]
+    },
+    {
+      "id": "typo:does-an-older-bmu-need-a-major-inpsection",
+      "category": "typo",
+      "query": "Does an older BMU need a major inpsection?",
+      "expected": [
+        "https://moyneross.com/technical/building-maintenance-units"
+      ]
+    },
+    {
+      "id": "verbose:does-an-older-bmu-need-a-major-inspection",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Does an older BMU need a major inspection? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/building-maintenance-units"
+      ]
+    },
+    {
+      "id": "typo:can-an-awinng-be-converted-so-it-no-longer-relies-on-rods",
+      "category": "typo",
+      "query": "Can an awinng be converted so it no longer relies on rods?",
+      "expected": [
+        "https://moyneross.com/technical/canopies-and-awnings"
+      ]
+    },
+    {
+      "id": "verbose:can-an-awning-be-converted-so-it-no-longer-relies-on-rods",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Can an awning be converted so it no longer relies on rods? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/canopies-and-awnings"
+      ]
+    },
+    {
+      "id": "typo:why-is-my-chminey-stack-leaning",
+      "category": "typo",
+      "query": "Why is my chminey stack leaning?",
+      "expected": [
+        "https://moyneross.com/technical/chimney-stacks-and-flues"
+      ]
+    },
+    {
+      "id": "verbose:why-is-my-chimney-stack-leaning",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why is my chimney stack leaning? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/chimney-stacks-and-flues"
+      ]
+    },
+    {
+      "id": "typo:how-often-shuold-kitchen-exhaust-ducts-be-cleaned",
+      "category": "typo",
+      "query": "How often shuold kitchen exhaust ducts be cleaned?",
+      "expected": [
+        "https://moyneross.com/technical/commercial-kitchens"
+      ]
+    },
+    {
+      "id": "verbose:how-often-should-kitchen-exhaust-ducts-be-cleaned",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How often should kitchen exhaust ducts be cleaned? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/commercial-kitchens"
+      ]
+    },
+    {
+      "id": "typo:how-long-does-corridor-carpet-last",
+      "category": "typo",
+      "query": "How long does corridor carpet last?",
+      "expected": [
+        "https://moyneross.com/technical/common-circulation-areas"
+      ]
+    },
+    {
+      "id": "verbose:how-long-does-corridor-carpet-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long does corridor carpet last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/common-circulation-areas"
+      ]
+    },
+    {
+      "id": "typo:what-trgigers-an-access-upgrade",
+      "category": "typo",
+      "query": "What trgigers an access upgrade?",
+      "expected": [
+        "https://moyneross.com/technical/disabled-access"
+      ]
+    },
+    {
+      "id": "verbose:what-triggers-an-access-upgrade",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. What triggers an access upgrade? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/disabled-access"
+      ]
+    },
+    {
+      "id": "typo:is-an-unetsted-fire-damper-a-problem",
+      "category": "typo",
+      "query": "Is an unetsted fire damper a problem?",
+      "expected": [
+        "https://moyneross.com/technical/ductwork-and-air-distribution"
+      ]
+    },
+    {
+      "id": "verbose:is-an-untested-fire-damper-a-problem",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Is an untested fire damper a problem? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/ductwork-and-air-distribution"
+      ]
+    },
+    {
+      "id": "typo:how-long-does-fire-stpoping-last",
+      "category": "typo",
+      "query": "How long does fire stpoping last?",
+      "expected": [
+        "https://moyneross.com/technical/electrical-and-communications-risers"
+      ]
+    },
+    {
+      "id": "verbose:how-long-does-fire-stopping-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long does fire stopping last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/electrical-and-communications-risers"
+      ]
+    },
+    {
+      "id": "typo:why-are-our-enregy-savings-fading",
+      "category": "typo",
+      "query": "Why are our enregy savings fading?",
+      "expected": [
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ]
+    },
+    {
+      "id": "verbose:why-are-our-energy-savings-fading",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why are our energy savings fading? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ]
+    },
+    {
+      "id": "typo:can-i-paint-over-rust-stians-on-concrete",
+      "category": "typo",
+      "query": "Can I paint over rust stians on concrete?",
+      "expected": [
+        "https://moyneross.com/technical/external-coating-systems"
+      ]
+    },
+    {
+      "id": "verbose:can-i-paint-over-rust-stains-on-concrete",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Can I paint over rust stains on concrete? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/external-coating-systems"
+      ]
+    },
+    {
+      "id": "verbose:if-the-fire-pump-runs-every-week-does-it-work",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. If the fire pump runs every week, does it work? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/fire-pumping-systems"
+      ]
+    },
+    {
+      "id": "typo:why-are-the-floor-tiles-litfing-in-a-ridge",
+      "category": "typo",
+      "query": "Why are the floor tiles litfing in a ridge?",
+      "expected": [
+        "https://moyneross.com/technical/flooring"
+      ]
+    },
+    {
+      "id": "verbose:why-are-the-floor-tiles-lifting-in-a-ridge",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why are the floor tiles lifting in a ridge? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/flooring"
+      ]
+    },
+    {
+      "id": "typo:how-long-does-gas-piepwork-last",
+      "category": "typo",
+      "query": "How long does gas piepwork last?",
+      "expected": [
+        "https://moyneross.com/technical/gas-services"
+      ]
+    },
+    {
+      "id": "verbose:how-long-does-gas-pipework-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long does gas pipework last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/gas-services"
+      ]
+    },
+    {
+      "id": "typo:why-are-stnadby-cooling-tower-cells-a-risk",
+      "category": "typo",
+      "query": "Why are stnadby cooling tower cells a risk?",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ]
+    },
+    {
+      "id": "verbose:why-are-standby-cooling-tower-cells-a-risk",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why are standby cooling tower cells a risk? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ]
+    },
+    {
+      "id": "typo:does-an-exetnsion-need-more-hydrants",
+      "category": "typo",
+      "query": "Does an exetnsion need more hydrants?",
+      "expected": [
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ]
+    },
+    {
+      "id": "verbose:does-an-extension-need-more-hydrants",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Does an extension need more hydrants? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ]
+    },
+    {
+      "id": "typo:can-an-exit-door-be-lokced",
+      "category": "typo",
+      "query": "Can an exit door be lokced?",
+      "expected": [
+        "https://moyneross.com/technical/internal-doors-and-hardware"
+      ]
+    },
+    {
+      "id": "verbose:can-an-exit-door-be-locked",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Can an exit door be locked? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/internal-doors-and-hardware"
+      ]
+    },
+    {
+      "id": "typo:are-celiing-cracks-serious",
+      "category": "typo",
+      "query": "Are celiing cracks serious?",
+      "expected": [
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes"
+      ]
+    },
+    {
+      "id": "verbose:are-ceiling-cracks-serious",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Are ceiling cracks serious? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes"
+      ]
+    },
+    {
+      "id": "typo:how-long-does-poidum-planter-waterproofing-last",
+      "category": "typo",
+      "query": "How long does poidum planter waterproofing last?",
+      "expected": [
+        "https://moyneross.com/technical/landscaping-and-irrigation"
+      ]
+    },
+    {
+      "id": "verbose:how-long-does-podium-planter-waterproofing-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long does podium planter waterproofing last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/landscaping-and-irrigation"
+      ]
+    },
+    {
+      "id": "typo:shuold-we-retrofit-led-tubes-or-replace-the-fittings",
+      "category": "typo",
+      "query": "Shuold we retrofit LED tubes or replace the fittings?",
+      "expected": [
+        "https://moyneross.com/technical/lighting"
+      ]
+    },
+    {
+      "id": "verbose:should-we-retrofit-led-tubes-or-replace-the-fittings",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Should we retrofit LED tubes or replace the fittings? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/lighting"
+      ]
+    },
+    {
+      "id": "typo:shuold-old-brickwork-be-repaired-with-cement",
+      "category": "typo",
+      "query": "Shuold old brickwork be repaired with cement?",
+      "expected": [
+        "https://moyneross.com/technical/load-bearing-masonry"
+      ]
+    },
+    {
+      "id": "verbose:should-old-brickwork-be-repaired-with-cement",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Should old brickwork be repaired with cement? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/load-bearing-masonry"
+      ]
+    },
+    {
+      "id": "typo:is-it-worth-reapiring-an-old-split-system",
+      "category": "typo",
+      "query": "Is it worth reapiring an old split system?",
+      "expected": [
+        "https://moyneross.com/technical/localised-hvac"
+      ]
+    },
+    {
+      "id": "verbose:is-it-worth-repairing-an-old-split-system",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Is it worth repairing an old split system? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/localised-hvac"
+      ]
+    },
+    {
+      "id": "typo:must-seucrity-turnstiles-release-in-a-fire",
+      "category": "typo",
+      "query": "Must seucrity turnstiles release in a fire?",
+      "expected": [
+        "https://moyneross.com/technical/main-entrance-and-reception-areas"
+      ]
+    },
+    {
+      "id": "verbose:must-security-turnstiles-release-in-a-fire",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Must security turnstiles release in a fire? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/main-entrance-and-reception-areas"
+      ]
+    },
+    {
+      "id": "verbose:how-long-do-wall-ties-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long do wall ties last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork"
+      ]
+    },
+    {
+      "id": "typo:why-does-our-lift-keep-braeking-down-at-the-doors",
+      "category": "typo",
+      "query": "Why does our lift keep braeking down at the doors?",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ]
+    },
+    {
+      "id": "verbose:why-does-our-lift-keep-breaking-down-at-the-doors",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why does our lift keep breaking down at the doors? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ]
+    },
+    {
+      "id": "typo:how-long-does-an-ashpalt-car-park-last",
+      "category": "typo",
+      "query": "How long does an ashpalt car park last?",
+      "expected": [
+        "https://moyneross.com/technical/pavements-and-hardstand"
+      ]
+    },
+    {
+      "id": "verbose:how-long-does-an-asphalt-car-park-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long does an asphalt car park last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/pavements-and-hardstand"
+      ]
+    },
+    {
+      "id": "typo:does-it-matter-which-extinguisher-is-where",
+      "category": "typo",
+      "query": "Does it matter which extinguisher is where?",
+      "expected": [
+        "https://moyneross.com/technical/portable-fire-equipment"
+      ]
+    },
+    {
+      "id": "verbose:does-it-matter-which-extinguisher-is-where",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Does it matter which extinguisher is where? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/portable-fire-equipment"
+      ]
+    },
+    {
+      "id": "typo:are-raerly-used-showers-a-health-risk",
+      "category": "typo",
+      "query": "Are raerly used showers a health risk?",
+      "expected": [
+        "https://moyneross.com/technical/public-amenities"
+      ]
+    },
+    {
+      "id": "verbose:are-rarely-used-showers-a-health-risk",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Are rarely used showers a health risk? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/public-amenities"
+      ]
+    },
+    {
+      "id": "typo:how-long-do-gutters-last",
+      "category": "typo",
+      "query": "How long do gutters last?",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ]
+    },
+    {
+      "id": "verbose:how-long-do-gutters-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long do gutters last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ]
+    },
+    {
+      "id": "typo:who-fixes-fire-seapration-after-a-tenant-leaves",
+      "category": "typo",
+      "query": "Who fixes fire seapration after a tenant leaves?",
+      "expected": [
+        "https://moyneross.com/technical/retail-tenancies"
+      ]
+    },
+    {
+      "id": "verbose:who-fixes-fire-separation-after-a-tenant-leaves",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Who fixes fire separation after a tenant leaves? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/retail-tenancies"
+      ]
+    },
+    {
+      "id": "typo:can-a-roof-be-reapired-instead-of-replaced",
+      "category": "typo",
+      "query": "Can a roof be reapired instead of replaced?",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ]
+    },
+    {
+      "id": "verbose:can-a-roof-be-repaired-instead-of-replaced",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Can a roof be repaired instead of replaced? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ]
+    },
+    {
+      "id": "typo:why-does-the-same-drain-keep-blcoking",
+      "category": "typo",
+      "query": "Why does the same drain keep blcoking?",
+      "expected": [
+        "https://moyneross.com/technical/sanitary-and-drainage-systems"
+      ]
+    },
+    {
+      "id": "verbose:why-does-the-same-drain-keep-blocking",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why does the same drain keep blocking? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/sanitary-and-drainage-systems"
+      ]
+    },
+    {
+      "id": "typo:why-are-pests-getting-into-tenancies-near-the-service-corrid",
+      "category": "typo",
+      "query": "Why are pests getting into tenancies near the service corridor?",
+      "expected": [
+        "https://moyneross.com/technical/service-corridors"
+      ]
+    },
+    {
+      "id": "verbose:why-are-pests-getting-into-tenancies-near-the-service-corrid",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why are pests getting into tenancies near the service corridor? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/service-corridors"
+      ]
+    },
+    {
+      "id": "typo:how-long-do-inudstrial-floor-joints-last",
+      "category": "typo",
+      "query": "How long do inudstrial floor joints last?",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground"
+      ]
+    },
+    {
+      "id": "verbose:how-long-do-industrial-floor-joints-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long do industrial floor joints last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground"
+      ]
+    },
+    {
+      "id": "typo:why-does-the-saefty-shower-run-brown",
+      "category": "typo",
+      "query": "Why does the saefty shower run brown?",
+      "expected": [
+        "https://moyneross.com/technical/specialised-occupancy-areas"
+      ]
+    },
+    {
+      "id": "verbose:why-does-the-safety-shower-run-brown",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why does the safety shower run brown? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/specialised-occupancy-areas"
+      ]
+    },
+    {
+      "id": "typo:can-reyccled-water-pipes-connect-to-taps",
+      "category": "typo",
+      "query": "Can reyccled water pipes connect to taps?",
+      "expected": [
+        "https://moyneross.com/technical/specialist-hydraulics"
+      ]
+    },
+    {
+      "id": "verbose:can-recycled-water-pipes-connect-to-taps",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Can recycled water pipes connect to taps? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/specialist-hydraulics"
+      ]
+    },
+    {
+      "id": "typo:why-does-the-site-flood-only-in-big-stroms",
+      "category": "typo",
+      "query": "Why does the site flood only in big stroms?",
+      "expected": [
+        "https://moyneross.com/technical/stormwater-drainage"
+      ]
+    },
+    {
+      "id": "verbose:why-does-the-site-flood-only-in-big-storms",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why does the site flood only in big storms? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/stormwater-drainage"
+      ]
+    },
+    {
+      "id": "typo:why-isn-t-a-patch-reapir-enough-in-a-car-park",
+      "category": "typo",
+      "query": "Why isn't a patch reapir enough in a car park?",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame"
+      ]
+    },
+    {
+      "id": "verbose:why-isn-t-a-patch-repair-enough-in-a-car-park",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why isn't a patch repair enough in a car park? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame"
+      ]
+    },
+    {
+      "id": "typo:how-long-do-sub-meetrs-last",
+      "category": "typo",
+      "query": "How long do sub-meetrs last?",
+      "expected": [
+        "https://moyneross.com/technical/sub-metering"
+      ]
+    },
+    {
+      "id": "verbose:how-long-do-sub-meters-last",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. How long do sub-meters last? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/sub-metering"
+      ]
+    },
+    {
+      "id": "typo:why-is-the-floor-sagging-under-our-storage",
+      "category": "typo",
+      "query": "Why is the floor sagging under our storage?",
+      "expected": [
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures"
+      ]
+    },
+    {
+      "id": "verbose:why-is-the-floor-sagging-under-our-storage",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why is the floor sagging under our storage? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures"
+      ]
+    },
+    {
+      "id": "typo:can-i-put-a-spa-or-heavy-plnaters-on-my-balcony",
+      "category": "typo",
+      "query": "Can I put a spa or heavy plnaters on my balcony?",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ]
+    },
+    {
+      "id": "verbose:can-i-put-a-spa-or-heavy-planters-on-my-balcony",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Can I put a spa or heavy planters on my balcony? Any guidance appreciated, thanks.",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ]
+    },
+    {
+      "id": "typo:why-does-my-flat-roof-keep-lekaing-after-repairs",
+      "category": "typo",
+      "query": "Why does my flat roof keep lekaing after repairs?",
+      "expected": [
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ]
+    },
+    {
+      "id": "verbose:why-does-my-flat-roof-keep-leaking-after-repairs",
+      "category": "verbose",
+      "query": "Hi, I manage a mid-sized commercial building and I have a question. Why does my flat roof keep leaking after repairs? Any guidance appreciated, thanks.",
       "expected": [
         "https://moyneross.com/technical/waterproofing-membranes"
       ]

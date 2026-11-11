@@ -20,4 +20,6 @@ One server, one corpus, several ways in. Each channel below points at the same e
 
 - Serve `/.well-known/ai-catalog.json` (and `ard.json`) as `application/ai-catalog+json`; it is `application/json` today.
 - Set `reviewedAt` on Technical Library pages in `technical/export.json`; every page has `reviewDue` but none has `reviewedAt`.
+- Fix one dead source on the Fencing, Gates & Signage page: HSE's powered gates page (`https://www.hse.gov.uk/work-equipment-machinery/powered-gates.htm`) returns 404. The other cited sources that refused the checker (OSHA, ICC, ASHRAE, Safe Work Australia and others) block automated requests but open in a browser.
+- `https://moyneross.com/samples/strategy`, the interactive sample the connector links to, redirects to a portal share link. Share links expire after 90 days by default, so renew it or make it permanent, or the link in every sample answer will break.
 - Optionally publish a markdown alternate of each library page (`/technical/<slug>.md`, linked with `rel="alternate" type="text/markdown"`), for crawlers that prefer it over HTML.

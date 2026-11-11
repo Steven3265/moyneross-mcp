@@ -6,7 +6,7 @@ import {
   paperSection, papers, paperSummary, queryTerms, renderPaper, sample, searchResearch, snapshot, startStrategyLink, suggestedQueries,
   tokens, STRONG_MIN_COVERAGE, TECHNICAL_KIND, formatTechnicalCitation, getTechnicalPage, listTechnicalPages, renderTechnicalPage,
   severityScale, technicalCandidates, technicalCitationFor, technicalLibrary, technicalMarkdown, technicalPages, technicalSection, technicalSectionName, technicalSummary,
-  technicalMarkdownPart, FULL_PAGE_BUDGET, domainEvidence,
+  technicalMarkdownPart, FULL_PAGE_BUDGET, domainEvidence, cursorProblem, sampleSections, queryTokens,
 } from '../.core-dist/src/core.js';
 import * as core from '../.core-dist/src/core.js';
 import { evaluate, report } from '../scripts/retrieval-gate.mjs';
@@ -205,6 +205,35 @@ test('domain evidence: building and capital questions carry it, everyday senses 
   for (const q of ['lease a new phone plan', 'how to frame a picture', 'best low cost index fund', 'deferred tax liability accounting']) assert.ok(domainEvidence(q) < 1, q);
   // A paper reached on everyday words is not judged strong.
   assert.notEqual(matchStrength('deferred tax liability accounting', searchResearch({ query: 'deferred tax liability accounting' })), 'strong');
+});
+
+test('robustness: a list cursor is only ever one this server gave out', () => {
+  for (const bad of ['-999', '0', 'zz', '1.5', 'NaN', '2x', "1' OR '1'='1", '99999999']) assert.ok(cursorProblem(bad, 49), bad);
+  assert.equal(cursorProblem('f', 49), undefined);
+  assert.equal(cursorProblem(undefined, 49), undefined);
+});
+
+test('robustness: an unknown sample register section is reported, and only register sections are offered', () => {
+  const miss = sample('register', 'zzzz');
+  assert.match(miss.unknownSection ?? '', /no section matching/);
+  assert.ok(!sampleSections().some((x) => /how to read|evidence|confidence|key considerations/i.test(x)));
+  assert.ok(!sample('register', 'roofs').text.startsWith('# Sample Capital Strategy'), 'no repeated title');
+});
+
+test('robustness: the hand-over link carries no control characters and only a plausible email', () => {
+  const link = startStrategyLink({ building: '1 Main St\r\nX-Header: y', email: 'a@b.c\r\nBcc: x@y.z', note: 'one\ntwo\u2028three' }, 'https://moyneross.com/contact', 'test');
+  assert.ok(!/%0D|%0A|%E2%80%A8/i.test(link), link);
+  assert.ok(!link.includes('email='), 'an invalid email is dropped');
+  assert.match(startStrategyLink({ building: '1 Main St', email: 'jo@firm.com.au' }, 'https://moyneross.com/contact', 'test'), /email=jo%40firm\.com\.au/);
+});
+
+test('robustness: conversational wrapping and typing slips do not throw a question off', () => {
+  assert.deepEqual(queryTokens('Hi, thanks, any guidance appreciated: chiller life'), ['chiller', 'life']);
+  const wrapped = 'Hi, I have a question. How long does a chiller last? Any guidance appreciated, thanks.';
+  assert.equal(searchResearch({ query: wrapped, limit: 1 })[0].url, searchResearch({ query: 'How long does a chiller last?', limit: 1 })[0].url);
+  assert.equal(searchResearch({ query: 'how often must spirnklers be tested', scope: 'technical', limit: 1 })[0].url, 'https://moyneross.com/technical/automatic-sprinkler-systems');
+  // Real words the corpus lacks are not "corrected" into ones it has.
+  assert.ok(!queryTerms('lease agreement for a horse').some((t) => t.alternatives.includes('house')));
 });
 
 test('a leaking tap at home is a Technical Library question', () => {

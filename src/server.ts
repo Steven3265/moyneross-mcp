@@ -1,4 +1,4 @@
-import { McpServer, ResourceTemplate, completable } from '@modelcontextprotocol/server';
+import { McpServer, ResourceNotFoundError, ResourceTemplate, completable } from '@modelcontextprotocol/server';
 import * as z from 'zod/v4';
 import {
   SERVER_DESCRIPTION,
@@ -27,6 +27,7 @@ import {
   paperSection,
   paperSummary,
   page,
+  cursorProblem,
   papers,
   renderPaper,
   renderSearchResults,
@@ -152,6 +153,8 @@ export function createMcpServer(): McpServer {
 
   server.registerTool('list_papers', { ...tool('list_papers'), inputSchema: C.list_papers.inputSchema, outputSchema: C.list_papers.outputSchema }, async ({ part, limit, cursor }) => {
     const all = listPapers({ part, limit: 60 });
+    const badCursor = cursorProblem(cursor, all.length);
+    if (badCursor) return errorResult(badCursor);
     const pg = page(all, limit, cursor);
     const list = pg.items.map(paperListing);
     logUse('list_papers', { part, count: list.length });
@@ -188,6 +191,7 @@ export function createMcpServer(): McpServer {
   server.registerTool('get_sample_strategy', { ...tool('get_sample_strategy', true), inputSchema: C.get_sample_strategy.inputSchema, outputSchema: C.get_sample_strategy.outputSchema }, async ({ part, section }) => {
     const s = sample(part, section);
     logUse('get_sample_strategy', { part, section: Boolean(section) });
+    if ('unknownSection' in s && s.unknownSection) return errorResult(s.unknownSection);
     return result({ sample: s }, `# ${s.title}\n${s.url}\n\n${s.text}`, [{ type: 'resource_link', uri: 'moyneross://sample', name: 'sample', title: s.title, mimeType: 'text/markdown' }]);
   });
 
@@ -211,6 +215,8 @@ export function createMcpServer(): McpServer {
     logUse('list_technical_pages', { section: wanted ?? (section ? 'unmatched' : undefined), pageType: page_type });
     if (section && !wanted) return errorResult(`No Technical Library section matches "${section}". Sections: ${technicalFrameworkSections.join('; ')}.`);
     const all = listTechnicalPages({ section, pageType: page_type });
+    const badCursor = cursorProblem(cursor, all.length);
+    if (badCursor) return errorResult(badCursor);
     const pg = page(all, limit, cursor);
     const list = pg.items.map(technicalListing);
     let current = '';
@@ -335,7 +341,7 @@ export function createMcpServer(): McpServer {
   }, async (uri, variables) => {
     const slug = String(Array.isArray(variables.slug) ? variables.slug[0] : variables.slug ?? '');
     const p = papers.find((x) => x.slug === slug);
-    if (!p) throw new Error(`No Capital Made Physical paper has the slug "${slug}".`);
+    if (!p) throw new ResourceNotFoundError(uri.href, `No Capital Made Physical paper has the slug "${slug}".`);
     return { contents: [{ uri: uri.href, mimeType: 'text/markdown', text: `${renderPaper(p, 'full')}\n\nCite: ${citationFor(p).text}` }] };
   });
 
@@ -350,7 +356,7 @@ export function createMcpServer(): McpServer {
   }, async (uri, variables) => {
     const slug = String(Array.isArray(variables.slug) ? variables.slug[0] : variables.slug ?? '');
     const p = technicalPages.find((x) => x.slug === slug);
-    if (!p) throw new Error(`No Technical Library page has the slug "${slug}".`);
+    if (!p) throw new ResourceNotFoundError(uri.href, `No Technical Library page has the slug "${slug}".`);
     return { contents: [{ uri: uri.href, mimeType: 'text/markdown', text: `${renderTechnicalPage(p, 'full')}\n\nCite: ${technicalCitationFor(p).text}` }] };
   });
 

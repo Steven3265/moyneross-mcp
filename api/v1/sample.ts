@@ -9,5 +9,7 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
   const section = optionalParam(requestUrl(req), 'section');
   if (section && section.length > 80) return sendJson(res, 400, { error: 'section must be 80 characters or fewer' }, 'no-store');
   logApi('sample', { part: part ?? 'summary', section: Boolean(section) });
-  sendJson(res, 200, addReferralUrls({ sample: sample((part ?? 'summary') as SamplePart /* validated above */, section) }, referralSource(req)), 'no-store');
+  const s = sample((part ?? 'summary') as SamplePart /* validated above */, section);
+  if ('unknownSection' in s && s.unknownSection) return sendJson(res, 404, { error: s.unknownSection }, 'no-store');
+  sendJson(res, 200, addReferralUrls({ sample: s }, referralSource(req)), 'no-store');
 }

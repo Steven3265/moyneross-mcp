@@ -21,7 +21,9 @@ Because there is one evaluation, the calibrator can no longer pick a setting tha
 | `empty`: words absent from the corpus | 4 | every one returns nothing | met |
 | `outside`: off-topic questions that share the corpus's words (capital, register, index, lift, lease, frame, core, service, foundation, insulation) | 122 | **ratchet**: at most 6 strong, target 0 | 6 strong |
 | `target`: the right page exists and a different one used to win | 11 | at least 9 in the top three (a floor that may only rise) | 9 found |
-| `faq`: one authored FAQ per library page, as moyneross.com publishes it | 103 | at least 101 in the top three | 103 found, 95 first, 101 strong |
+| `faq`: one authored FAQ per library page, as moyneross.com publishes it | 103 | at least 101 in the top three | 103 found, 96 first, 102 strong |
+| `typo`: authored FAQs with two letters of one long word swapped | 42 | at least 39 found, 26 strong | 40 found, 39 first, 29 strong |
+| `verbose`: authored FAQs wrapped in conversation ("Hi, I have a question … thanks") | 44 | at least 37 found, 23 strong | 43 found, 25 first, 25 strong |
 
 Rules: **every** means each case meets its own expectation; **count** means a minimum number found and strong; **ratchet** means a maximum that may be lowered as the ranking improves and never raised; **report** means measured and printed but never failing a run. A case can set its own `within` (how far down it may sit) and `strong`.
 
@@ -58,6 +60,17 @@ It was checked on 40 off-topic and 25 on-topic questions written after the rule 
 |---|---|---|
 | Off-topic questions judged strong | 12 of 82 | 4 of 82 (6 of 122 with the new questions) |
 | Website, shorthand, element, pinned, FAQ strength | | unchanged |
+
+## Robustness (1.1.0)
+
+A live tyre-kicking of the deployed server (about 6,000 requests: hostile and malformed protocol traffic, every paper, page, section, part, citation and resource, perturbed questions, parity and load) found the protocol shell sound and four things worth fixing, all fixed:
+
+- **Conversational wrapping.** "Hi, I manage a building and have a question … any guidance appreciated, thanks" made every wrapped question weak (0 of 174 strong), because the wrapper's words are in no document and weighed most. The wrapper is now dropped from the query (`queryTokens`); the tokenizer itself stays the website's. 97 of 174 wrapped questions are now strong and 165 find their page in the top three (was 145).
+- **Typing slips.** One swapped letter ("spirnklers", "chlilers") cut strength to 47 of 174. A word the corpus lacks, six letters or more, that is one slip inside the word from a word it has (swapped, dropped or doubled letter, not a wrong letter, nothing at the ends) is also searched as that word at reduced weight: 128 strong, 170 in the top three (was 160). Real words are not "corrected": *horse* stays *horse*.
+- **Paging and errors.** A list cursor the server never gave out is refused rather than read as the start or as an empty last page; an unknown page or paper resource is "not found" (-32602), not an internal error; an unknown sample register section is an error listing the register's sections only.
+- **The hand-over link** strips control characters from every field and keeps an email only if it looks like one address.
+
+`npm run live-check` repeats the tyre-kicking against production (or any URL) in about two minutes; it is not part of `npm run check` because it goes over the network.
 
 ## Where the gaps are
 

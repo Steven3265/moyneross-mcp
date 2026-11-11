@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import {
-  corpusVersion, getTechnicalPage, listTechnicalPages, page, severityScale, technicalCandidates, technicalCitationFor, technicalFrameworkSections,
+  corpusVersion, getTechnicalPage, listTechnicalPages, cursorProblem, page, severityScale, technicalCandidates, technicalCitationFor, technicalFrameworkSections,
   technicalListing, technicalMarkdownPart, technicalSection, technicalSectionName, technicalSummary,
 } from '../../src/core.js';
 import { PAGE_TYPES } from '../../src/contracts.js';
@@ -39,6 +39,8 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
   const cursor = optionalParam(url, 'cursor');
   if (cursor && !/^[0-9a-z]{1,20}$/.test(cursor)) return sendJson(res, 400, { error: 'cursor must be the nextCursor value from a previous response' }, 'no-store');
   const all = listTechnicalPages({ section: sectionName, pageType: pageType ?? undefined });
+  const badCursor = cursorProblem(cursor, all.length);
+  if (badCursor) return sendJson(res, 400, { error: badCursor }, 'no-store');
   const pg = page(all, limit, cursor);
   logApi('technical_list', { section: Boolean(sectionName), count: pg.items.length });
   sendJson(res, 200, addReferralUrls({ count: pg.items.length, total: all.length, nextCursor: pg.nextCursor, corpusVersion, sections: technicalFrameworkSections, severityScale: severityScale(), pages: pg.items.map(technicalListing) }, referralSource(req)), 'no-store');

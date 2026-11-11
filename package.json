@@ -24,7 +24,8 @@
     "serve:conformance": "node scripts/serve-conformance.mjs",
     "sync:skills": "node scripts/sync-skills.mjs",
     "test:edge": "node scripts/test-edge.mjs",
-    "calibrate": "tsc -p tsconfig.core.json && node scripts/calibrate.mjs"
+    "calibrate": "tsc -p tsconfig.core.json && node scripts/calibrate.mjs",
+    "live-check": "node scripts/live-check.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.4.0",
