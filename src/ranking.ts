@@ -13,5 +13,5 @@
 // over one that merely mentions it in the body.
 export const RANKING = {
   libraryWeight: 0.575,
-  headlineBoost: 0.5,
+  headlineBoost: 0.6,
 };
