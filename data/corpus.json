@@ -1,7 +1,7 @@
 {
  "schemaVersion": 3,
- "corpusVersion": "2026-11-10.c25d8348",
- "generatedAt": "2026-11-10",
+ "corpusVersion": "2026-11-11.77240839",
+ "generatedAt": "2026-11-11",
  "source": "https://moyneross.com",
  "publication": {
   "name": "Capital Made Physical",
@@ -5007,35 +5007,65 @@
      "passive-fire-protection"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2760,
+    "wordCount": 3025,
     "sources": [
      {
-      "title": "National Construction Code",
+      "title": "NCC 2025 Volume One, Part E1 Fire fighting equipment",
       "publisher": "Australian Building Codes Board",
-      "url": "https://ncc.abcb.gov.au/"
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/e-services-and-equipment/part-e1-fire-fighting-equipment"
      },
      {
-      "title": "Standards catalogue",
+      "title": "NCC 2025 Volume One, Specification 17 Fire sprinkler systems",
+      "publisher": "Australian Building Codes Board",
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/e-services-and-equipment/17-fire-sprinkler-systems"
+     },
+     {
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
       "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
+      "url": "https://store.standards.org.au/product/as-1851-2012"
      },
      {
-      "title": "British Standards",
-      "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
+      "title": "AS 2118.1:2017 Automatic fire sprinkler systems, Part 1: General systems",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-2118-1-2017"
      },
      {
-      "title": "Approved Documents",
+      "title": "Approved Document B: Fire safety, volumes 1 and 2",
       "publisher": "UK Government",
-      "url": "https://www.gov.uk/government/collections/approved-documents"
+      "url": "https://www.gov.uk/government/publications/fire-safety-approved-document-b"
      },
      {
-      "title": "NFPA 25 Inspection, Testing and Maintenance of Water-Based Fire Protection Systems",
+      "title": "BS EN 12845:2015+A2:2026 Fixed firefighting systems: Automatic sprinkler systems, design, installation and maintenance",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/fixed-firefighting-systems-automatic-sprinkler-systems-design-installation-and-maintenance-4"
+     },
+     {
+      "title": "BS 9251:2021 Fire sprinkler systems for domestic and residential occupancies",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/fire-sprinkler-systems-for-domestic-and-residential-occupancies-code-of-practice-1"
+     },
+     {
+      "title": "NFPA 13 Standard for the Installation of Sprinkler Systems",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-13-standard-development/13"
+     },
+     {
+      "title": "NFPA 25 Standard for the Inspection, Testing, and Maintenance of Water-Based Fire Protection Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-25-standard-development/25"
+     },
+     {
+      "title": "29 CFR 1910.159 Automatic sprinkler systems",
+      "publisher": "US Occupational Safety and Health Administration",
+      "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-L/section-1910.159"
+     },
+     {
+      "title": "UFM 3-601-02 Fire protection systems inspection, testing, and maintenance (13 March 2026)",
+      "publisher": "US Department of Defense",
+      "url": "https://www.wbdg.org/FFC/DOD/UFC/ufm_3_601_02_2026.pdf"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/automatic-sprinkler-systems",
@@ -5107,7 +5137,7 @@
       "id": "design",
       "heading": "Changes of hazard, obstruction and coverage",
       "url": "https://moyneross.com/technical/automatic-sprinkler-systems#design",
-      "markdown": "A warehouse designed for low storage of ordinary goods that now holds high-piled plastics, or racking taller than the design height, overwhelms the system: too few heads open, too little water, and the fire outruns it. Retail and industrial tenancies change commodity and layout far more often than sprinkler systems are redesigned.\n\nStorage stacked too close to heads, new ductwork, cable trays, lights and partitions below or beside heads, and ceilings lowered in fit-outs block the spray pattern or create unsprinklered areas. Heads painted, taped, bagged during works or loaded with dust and grease respond late or not at all.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Warehouse storing more, higher or different goods than designed | Hazard change beyond design. Design certificate against current storage. | Check the design certificate against current storage; reduce the storage or redesign the system. |\n| Rooms without heads after fit-out | Coverage gap. Survey against layout. | Add coverage to the standard, and have it certified. |",
+      "markdown": "A warehouse designed for low storage of ordinary goods that now holds high-piled plastics, or racking taller than the design height, overwhelms the system: too few heads open, too little water, and the fire outruns it. Retail and industrial tenancies change commodity and layout far more often than sprinkler systems are redesigned.\n\nStorage stacked too close to heads, new ductwork, cable trays, lights and partitions below or beside heads, and ceilings lowered in fit-outs block the spray pattern or create unsprinklered areas. Heads painted, taped, bagged during works or loaded with dust and grease respond late or not at all.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Warehouse storing more, higher or different goods than designed | Hazard change beyond design. Design certificate against current storage. | Check the design certificate against current storage; reduce the storage or redesign the system. |\n| Rooms without heads after fit-out | Coverage gap. Survey against layout. | Add coverage to the standard, and have it certified. |\n| Storage stacked up close to the heads | Spray pattern blocked from above the goods. Measure from the deflectors to the top of the storage; in the United States the minimum clearance is 457 mm (18 in) (OSHA 1910.159). | Bring the storage down below the clearance line, and mark the line on racking or walls so it stays clear. |",
       "anchors": [
        "hazard-change",
        "mechanisms",
@@ -5118,7 +5148,7 @@
       "id": "impairments",
       "heading": "Impairments and water supply",
       "url": "https://moyneross.com/technical/automatic-sprinkler-systems#impairments",
-      "markdown": "Control valves closed for works and not reopened leave parts of a building unprotected. Supervised valves report closure to the fire panel; unsupervised valves do not.\n\nTown main pressures fall as networks change; tanks lose capacity to sediment and corrosion; pumps deteriorate. A system that met its design at commissioning may not now, and only a flow test shows it.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Flow test below the design point | Water supply decline or obstruction. Flow test against design curve. | Find the obstruction or supply decline; improve the supply with pumps, tanks or a larger connection. |\n| Fire panel shows valve closed | Impairment not cleared. Valve inspection. | Open and supervise the valve now, and manage impairments with permits and fire watches. |",
+      "markdown": "Control valves closed for works and not reopened leave parts of a building unprotected. Supervised valves report closure to the fire panel; unsupervised valves do not.\n\nTown main pressures fall as networks change; tanks lose capacity to sediment and corrosion; pumps deteriorate. A system that met its design at commissioning may not now, and only a flow test shows it.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Flow test below the design point | Water supply decline or obstruction. Flow test against design curve. | Find the obstruction or supply decline; improve the supply with pumps, tanks or a larger connection. |\n| Fire panel shows valve closed | Impairment not cleared. Valve inspection. | Open and supervise the valve now, and manage impairments with permits and fire watches. |\n| Main drain test pressure lower than at the last test | Supply decline, a partly closed valve or an obstruction. A static or residual pressure more than 10 per cent below the previous reading calls for immediate evaluation, and more than 20 per cent is treated as an emergency in US Department of Defense guidance (UFM 3-601-02). | Confirm every control valve is fully open, then trace the supply; flow test the water supply where the fall is confirmed. |",
       "anchors": [
        "water-supply"
       ]
@@ -5127,7 +5157,7 @@
       "id": "pipework",
       "heading": "Corrosion, heads, CPVC and freezing",
       "url": "https://moyneross.com/technical/automatic-sprinkler-systems#pipework",
-      "markdown": "Dry pipe systems corrode where trapped water sits at low points; wet systems suffer MIC, which produces tubercles and pinhole leaks and can block small pipes. Corrosion products can block heads. Leaks in occupied buildings cause damage and lead to systems being shut down.\n\nCertain sprinkler heads have been subject to recalls; corroded heads and those in hot or corrosive areas can fail to open; heads replaced with the wrong temperature rating, response type or coverage break the design.\n\nCPVC sprinkler pipe used in residential and light hazard buildings cracks when exposed to incompatible chemicals, sometimes years after installation.\n\nWet pipes in unheated spaces freeze and burst; dry systems with poor drainage freeze at low points.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Pinhole leaks in wet pipework | Microbiologically influenced corrosion. Pipe section examination; water testing. | Examine a pipe section and test the water; replace affected pipe and treat for MIC. |\n| Leaks at low points of a dry system | Trapped water corrosion. Drain and inspect low points. | Drain the low points, add auxiliary drains, and consider nitrogen inerting. |\n| Cracked CPVC fittings | Chemical incompatibility. Products in contact. | Identify and isolate the incompatible products; replace the cracked sections. |",
+      "markdown": "Dry pipe systems corrode where trapped water sits at low points; wet systems suffer MIC, which produces tubercles and pinhole leaks and can block small pipes. Corrosion products can block heads. Leaks in occupied buildings cause damage and lead to systems being shut down.\n\nCertain sprinkler heads have been subject to recalls; corroded heads and those in hot or corrosive areas can fail to open; heads replaced with the wrong temperature rating, response type or coverage break the design.\n\nCPVC sprinkler pipe used in residential and light hazard buildings cracks when exposed to incompatible chemicals, sometimes years after installation.\n\nWet pipes in unheated spaces freeze and burst; dry systems with poor drainage freeze at low points.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Pinhole leaks in wet pipework | Microbiologically influenced corrosion. Pipe section examination; water testing. | Examine a pipe section and test the water; replace affected pipe and treat for MIC. |\n| Leaks at low points of a dry system | Trapped water corrosion. Drain and inspect low points. | Drain the low points, add auxiliary drains, and consider nitrogen inerting. |\n| Cracked CPVC fittings | Chemical incompatibility. Products in contact. | Identify and isolate the incompatible products; replace the cracked sections. |\n| Heads corroded, painted or loaded with dust or grease | Heads that may respond late or not at all. Head survey; sample heads removed and tested by a laboratory. | Replace affected heads like for like, and sample test heads of the same age and type. |",
       "anchors": [
        "corrosion",
        "cpvc",
@@ -5154,7 +5184,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/automatic-sprinkler-systems#investigation",
-      "markdown": "A fire services engineer leads, with the sprinkler maintenance contractor; for storage buildings, the review is against the storage design standards. The checks below compare the design basis with current use, then test the valves, the water supply and the pipework.\n\n| Check | What it covers |\n| --- | --- |\n| Design review | Design certificate, hazard classification, hydraulic calculations, storage design basis, against the building's current use, layout and storage. |\n| Coverage and obstruction survey | Of all areas, including new rooms, ceilings and storage. |\n| Head survey | Type, temperature, response, condition, recalls, painting and loading; sample removal and laboratory testing at the age the standard sets. |\n| Internal pipe inspection | Flushing, opening at representative points, internal camera inspection, and pipe sampling for MIC where leaks occur. |\n| Water supply flow test | At the design point. |\n| Valve inspection | Control valves open and supervised; alarm and dry pipe valves internally inspected. |\n| Records review | Service history, impairments, leaks. |\n\nThe report should state whether the system matches the current hazard, coverage and obstruction issues, water supply adequacy, internal condition, and works needed."
+      "markdown": "A fire services engineer leads, with the sprinkler maintenance contractor; for storage buildings, the review is against the storage design standards. The checks below compare the design basis with current use, then test the valves, the water supply and the pipework.\n\n| Check | What it covers |\n| --- | --- |\n| Design review | Design certificate, hazard classification, hydraulic calculations, storage design basis, against the building's current use, layout and storage; in Australia sprinklers are required throughout a building if any part has an effective height of more than 25 m (NCC E1D5). |\n| Coverage and obstruction survey | Of all areas, including new rooms, ceilings and storage, with the clearance below heads measured (457 mm minimum in the United States, OSHA 1910.159). |\n| Head survey | Type, temperature, response, condition, recalls, painting and loading; sample removal and laboratory testing at the age the standard sets. |\n| Internal pipe inspection | Flushing, opening at representative points, internal camera inspection, and pipe sampling for MIC where leaks occur. |\n| Water supply flow test | At the design point, with main drain results compared with the last test; a fall of more than 10 per cent needs evaluation (UFM 3-601-02). In the United States a main drain flow test is required annually and the inspector’s test valve opened at least every two years (OSHA 1910.159). |\n| Valve inspection | Control valves open and supervised; alarm and dry pipe valves internally inspected. |\n| Records review | Service history, impairments, leaks. |\n\nThe report should state whether the system matches the current hazard, coverage and obstruction issues, water supply adequacy, internal condition, and works needed."
      },
      {
       "id": "remedies",
@@ -11177,31 +11207,11 @@
      "ductwork-and-air-distribution"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 3017,
+    "wordCount": 3263,
     "sources": [
-     {
-      "title": "National Construction Code",
-      "publisher": "Australian Building Codes Board",
-      "url": "https://ncc.abcb.gov.au/"
-     },
-     {
-      "title": "Standards catalogue",
-      "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
-     },
-     {
-      "title": "British Standards",
-      "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
-     },
-     {
-      "title": "NFPA 72 National Fire Alarm and Signaling Code",
-      "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
-     },
      {
       "title": "Fire safety in the workplace",
       "publisher": "UK Government",
@@ -11211,6 +11221,71 @@
       "title": "Smoke alarm legislation",
       "publisher": "Queensland Fire Department",
       "url": "https://www.fire.qld.gov.au/"
+     },
+     {
+      "title": "NCC 2025 Volume One, Specification 20 Smoke detection and alarm systems",
+      "publisher": "Australian Building Codes Board",
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/e-services-and-equipment/20-smoke-detection-and-alarm-systems"
+     },
+     {
+      "title": "AS 1670.1:2024 Fire detection, warning, control and intercom systems, Part 1: Fire",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1670-1-2024"
+     },
+     {
+      "title": "AS 1670.4:2024 Fire detection, warning, control and intercom systems, Part 4: Emergency warning and intercom systems",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1670-4-2024"
+     },
+     {
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1851-2012"
+     },
+     {
+      "title": "BS 5839-1:2025 Fire detection and fire alarm systems for buildings: Design, installation, commissioning and maintenance of systems in non-domestic premises",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/fire-detection-and-fire-alarm-systems-for-buildings-design-installation-commissioning-and-maintenance-of-systems-in-non-domestic-premises-code-of-practice"
+     },
+     {
+      "title": "BS 5839-6:2019+A1:2020 Fire detection and fire alarm systems for buildings: Domestic premises",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/fire-detection-and-fire-alarm-systems-for-buildings-code-of-practice-for-the-design-installation-commissioning-and-maintenance-of-fire-detection-and-fire-alarm-systems-in-domestic-premises-1"
+     },
+     {
+      "title": "BS 7273-4:2015+A1:2021 Code of practice for the operation of fire protection measures: Actuation of release mechanisms for doors",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/code-of-practice-for-the-operation-of-fire-protection-measures-actuation-of-release-mechanisms-for-doors-1"
+     },
+     {
+      "title": "NFPA 72 National Fire Alarm and Signaling Code",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-72-standard-development/72"
+     },
+     {
+      "title": "NFPA 101 Life Safety Code",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-101-standard-development/101"
+     },
+     {
+      "title": "NFPA 4 Standard for Integrated Fire Protection and Life Safety System Testing",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-4-standard-development/4"
+     },
+     {
+      "title": "Fire safety risk assessment: sleeping accommodation",
+      "publisher": "UK Government",
+      "url": "https://www.gov.uk/government/publications/fire-safety-risk-assessment-sleeping-accommodation"
+     },
+     {
+      "title": "Audibility vs. intelligibility of fire alarm systems (FPE Extra, issue 69)",
+      "publisher": "Society of Fire Protection Engineers",
+      "url": "https://sfpe.connectedcommunity.org/publications/fpemagazine/fpeextra/etarchives3/fpeetissue69"
+     },
+     {
+      "title": "UFM 3-601-02 Fire protection systems inspection, testing, and maintenance (13 March 2026)",
+      "publisher": "US Department of Defense",
+      "url": "https://www.wbdg.org/FFC/DOD/UFC/ufm_3_601_02_2026.pdf"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/fire-detection-and-alarm-systems",
@@ -11282,7 +11357,7 @@
       "id": "panel",
       "heading": "Panels, isolations and coverage",
       "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#panel",
-      "markdown": "A panel keeps passing its routine tests until the day it cannot be repaired, extended or reprogrammed because its maker no longer supports it. That day usually comes with a tenancy change: a fit-out needs new devices and new cause-and-effect programming, and the panel cannot take them. Unsupported panels are therefore end of life whatever their test results.\n\nDetectors are covered and zones isolated during building works and cleaning, then forgotten. A building can run for months with floors effectively unprotected. Addressable panels show isolations; the question is whether anyone reads them.\n\nFit-outs add rooms, partitions, ceilings and voids without adding detectors; concealed spaces above ceilings and below floors are left unprotected where required; detectors end up too close to air supply diffusers, which blow smoke away from them.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Zones isolated for weeks | Isolation after works or nuisance alarms. Event log; works records. | Clear the isolations now, and manage future ones with a permit and a daily check. |\n| New tenancy cannot be connected | Panel unsupported or at capacity. Vendor advice; panel loading. | Confirm vendor support and panel loading; plan replacement with a supported addressable system. |",
+      "markdown": "A panel keeps passing its routine tests until the day it cannot be repaired, extended or reprogrammed because its maker no longer supports it. That day usually comes with a tenancy change: a fit-out needs new devices and new cause-and-effect programming, and the panel cannot take them. Unsupported panels are therefore end of life whatever their test results.\n\nDetectors are covered and zones isolated during building works and cleaning, then forgotten. A building can run for months with floors effectively unprotected. Addressable panels show isolations; the question is whether anyone reads them.\n\nFit-outs add rooms, partitions, ceilings and voids without adding detectors; concealed spaces above ceilings and below floors are left unprotected where required; detectors end up too close to air supply diffusers, which blow smoke away from them.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Zones isolated for weeks | Isolation after works or nuisance alarms. Event log; works records. | Clear the isolations now, and manage future ones with a permit and a daily check. |\n| New tenancy cannot be connected | Panel unsupported or at capacity. Vendor advice; panel loading. | Confirm vendor support and panel loading; plan replacement with a supported addressable system. |\n| Detectors with no sensitivity readings for years | Detectors drifting out of their range. Sensitivity readings from an addressable panel, or tests on site; US Department of Defense guidance tests smoke detector sensitivity every five years (UFM 3-601-02). | Read or test sensitivity, and clean or replace detectors outside their marked range. |",
       "anchors": [
        "coverage",
        "isolations",
@@ -11294,7 +11369,7 @@
       "id": "alarms",
       "heading": "Unwanted alarms and domestic alarms",
       "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#alarms",
-      "markdown": "Contaminated detectors, the wrong detector type for the space (smoke detectors in kitchens and near showers), cooking, steam, dust from works, and insects cause unwanted alarms. Brigades charge for repeated unwanted alarms in many jurisdictions; occupants learn to ignore alarms; and the response to repeated false alarms is often to isolate zones, which leaves areas unprotected.\n\nSmoke alarms in dwellings are removed, painted over, disconnected after nuisance alarms, or simply past their ten-year life; interconnection between alarms fails; tenancies change without checks.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Repeated unwanted alarms from one area | Wrong detector type or contamination. Event log; detector type against the space. | Fit the right detector for the space, clean or replace contaminated detectors, and move detectors away from diffusers. |",
+      "markdown": "Contaminated detectors, the wrong detector type for the space (smoke detectors in kitchens and near showers), cooking, steam, dust from works, and insects cause unwanted alarms. Brigades charge for repeated unwanted alarms in many jurisdictions; occupants learn to ignore alarms; and the response to repeated false alarms is often to isolate zones, which leaves areas unprotected.\n\nSmoke alarms in dwellings are removed, painted over, disconnected after nuisance alarms, or simply past their ten-year life; interconnection between alarms fails; tenancies change without checks.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Repeated unwanted alarms from one area | Wrong detector type or contamination. Event log; detector type against the space. | Fit the right detector for the space, clean or replace contaminated detectors, and move detectors away from diffusers. |\n| Smoke alarms in flats with a date more than ten years old | Alarms past their built-in life. Manufacture or expiry date on the alarm base. | Replace them with interconnected photoelectric alarms, hard-wired or with sealed ten-year batteries. |",
       "anchors": [
        "domestic",
        "false-alarms"
@@ -11304,7 +11379,7 @@
       "id": "interfaces",
       "heading": "Interfaces, warning and signalling",
       "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#interfaces",
-      "markdown": "Over the years the interfaces the panel drives change: air handling units replaced, lifts modernised, access control upgraded, smoke control added. Unless the cause-and-effect matrix and interfaces are updated and tested together, lifts do not home, doors do not release, and smoke control does not start in a real fire.\n\nSounders and speakers that are inaudible in parts of the building, EWIS amplifiers with failed batteries, and messages that are unintelligible in noisy or reverberant spaces leave occupants unwarned.\n\nAlarm signalling equipment that dials out over a copper line stops working when the line is retired; monitoring contracts lapse; dual-path signalling is reduced to one path. The panel alarms locally but nobody is called.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Lifts did not home or doors did not release in a test | Interface or cause-and-effect fault. Interface test; matrix review. | Update the cause-and-effect matrix and run a full integrated test. |\n| Brigade not called in a test | Signalling failure, often a retired line. Monitoring centre test; line type. | Test with the monitoring centre; upgrade to supported, preferably dual-path, signalling. |\n| Alarm inaudible in parts of the building | Insufficient sounders or speakers after fit-outs. Sound level and intelligibility test. | Add sounders or speakers, or a voice system where intelligibility is required. |",
+      "markdown": "Over the years the interfaces the panel drives change: air handling units replaced, lifts modernised, access control upgraded, smoke control added. Unless the cause-and-effect matrix and interfaces are updated and tested together, lifts do not home, doors do not release, and smoke control does not start in a real fire.\n\nSounders and speakers that are inaudible in parts of the building, EWIS amplifiers with failed batteries, and messages that are unintelligible in noisy or reverberant spaces leave occupants unwarned.\n\nAlarm signalling equipment that dials out over a copper line stops working when the line is retired; monitoring contracts lapse; dual-path signalling is reduced to one path. The panel alarms locally but nobody is called.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Lifts did not home or doors did not release in a test | Interface or cause-and-effect fault. Interface test; matrix review. | Update the cause-and-effect matrix and run a full integrated test. |\n| Brigade not called in a test | Signalling failure, often a retired line. Monitoring centre test; line type. | Test with the monitoring centre; upgrade to supported, preferably dual-path, signalling. |\n| Alarm inaudible in parts of the building | Insufficient sounders or speakers after fit-outs. Sound level and intelligibility test: in the United States public mode signals must be at least 15 dB above the average ambient level, and 75 dB(A) at the pillow in sleeping rooms (SFPE); in Britain 75 dB(A) at the bedhead (gov.uk guide). | Add sounders or speakers, or a voice system where intelligibility is required. |\n| Alarm faint inside apartments with the entry door shut | Too little sound reaching the units. In Australian Class 2 and 3 buildings the level need not be measured inside a sole-occupancy unit if 85 dB(A) is reached at its entry door with a smoke alarm system, or 100 dB(A) with a smoke detection system (NCC Specification 20). | Measure at the entry doors, and add sounders in the common areas or inside units where the level falls short. |",
       "anchors": [
        "cause-effect",
        "signalling",
@@ -11330,7 +11405,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#investigation",
-      "markdown": "A fire services engineer or fire safety consultant leads, with the maintenance contractor and, for complex buildings, a fire engineer. The checks below start at the panel and its event log, then walk the building and test the interfaces.\n\n| Check | What it covers |\n| --- | --- |\n| Records review | Service records against the required frequencies, annual statements, event logs, unwanted alarm history, cause-and-effect matrix, fire strategy and any performance solutions. |\n| Panel inspection | Make, model, firmware, vendor support, spare capacity, isolations, faults, battery age and standby test. |\n| Coverage survey | Against the current layout, including ceiling and floor voids where detection is required, detector types against spaces, and call points at exits. |\n| Detector sampling | Sensitivity and contamination readings from the panel for addressable systems; functional tests of a sample. |\n| Occupant warning test | Sound levels and, for voice systems, speech intelligibility in representative spaces. |\n| Signalling test | End to end with the monitoring centre, and identification of the communication path. |\n| Full integrated test | Of the cause-and-effect matrix with every interface operating: air handling, smoke control, lifts, doors, sprinkler and suppression signals. |\n| Domestic alarms | Type, power, interconnection and age in a sample of dwellings, or all where the law requires. |\n\nThe report should state compliance, coverage gaps, unwanted alarm causes, interface results, signalling path, panel support status, and a plan for repair or replacement."
+      "markdown": "A fire services engineer or fire safety consultant leads, with the maintenance contractor and, for complex buildings, a fire engineer. The checks below start at the panel and its event log, then walk the building and test the interfaces.\n\n| Check | What it covers |\n| --- | --- |\n| Records review | Service records against the required frequencies, annual statements, event logs, unwanted alarm history, cause-and-effect matrix, fire strategy and any performance solutions. |\n| Panel inspection | Make, model, firmware, vendor support, spare capacity, isolations, faults, battery age and standby test. |\n| Coverage survey | Against the current layout, including ceiling and floor voids where detection is required, detector types against spaces, and call points at exits. |\n| Detector sampling | Sensitivity and contamination readings from the panel for addressable systems; functional tests of a sample. |\n| Occupant warning test | Sound levels and, for voice systems, speech intelligibility in representative spaces, against the levels each market sets: 85 or 100 dB(A) at Australian unit entry doors (NCC Specification 20), 75 dB(A) at the bedhead in Britain (gov.uk guide), and 15 dB above ambient in the United States (SFPE). |\n| Signalling test | End to end with the monitoring centre, and identification of the communication path. |\n| Full integrated test | Of the cause-and-effect matrix with every interface operating: air handling, smoke control, lifts, doors, sprinkler and suppression signals. |\n| Domestic alarms | Type, power, interconnection and age in a sample of dwellings, or all where the law requires. |\n\nThe report should state compliance, coverage gaps, unwanted alarm causes, interface results, signalling path, panel support status, and a plan for repair or replacement."
      },
      {
       "id": "remedies",
@@ -11413,25 +11488,55 @@
      "main-electrical-supply"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2704,
+    "wordCount": 2909,
     "sources": [
      {
-      "title": "Standards catalogue",
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
       "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
+      "url": "https://store.standards.org.au/product/as-1851-2012"
      },
      {
-      "title": "British Standards",
+      "title": "AS 2941-2013 Fixed fire protection installations: Pumpset systems",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-2941-2013"
+     },
+     {
+      "title": "AS 2419.1:2021 Fire hydrant installations, Part 1: System design, installation and commissioning",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-2419-1-2021"
+     },
+     {
+      "title": "BS EN 12845:2015+A2:2026 Fixed firefighting systems: Automatic sprinkler systems, design, installation and maintenance",
       "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
+      "url": "https://knowledge.bsigroup.com/products/fixed-firefighting-systems-automatic-sprinkler-systems-design-installation-and-maintenance-4"
      },
      {
-      "title": "NFPA 20 Installation of Stationary Pumps for Fire Protection",
+      "title": "BS 9990:2015 Non automatic fire-fighting systems in buildings",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/non-automatic-fire-fighting-systems-in-buildings-code-of-practice"
+     },
+     {
+      "title": "NFPA 20 Standard for the Installation of Stationary Pumps for Fire Protection",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-20-standard-development/20"
+     },
+     {
+      "title": "NFPA 25 Standard for the Inspection, Testing, and Maintenance of Water-Based Fire Protection Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-25-standard-development/25"
+     },
+     {
+      "title": "UFM 3-601-02 Fire protection systems inspection, testing, and maintenance (13 March 2026)",
+      "publisher": "US Department of Defense",
+      "url": "https://www.wbdg.org/FFC/DOD/UFC/ufm_3_601_02_2026.pdf"
+     },
+     {
+      "title": "Position statement summary: FRNSW pump performance for high rise buildings",
+      "publisher": "Fire and Rescue NSW",
+      "url": "https://fire.nsw.gov.au/gallery/files/pdf/bfs/Position%20statement%20summary%20-%20FRNSW%20pump%20performance%20for%20high%20rise%20buildings.pdf"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/fire-pumping-systems",
@@ -11502,7 +11607,7 @@
       "id": "starting",
       "heading": "Starting, power and controllers",
       "url": "https://moyneross.com/technical/fire-pumping-systems#starting",
-      "markdown": "Diesel pumps fail to start for the same reasons as standby generators: flat batteries, failed chargers, fuel problems, failed engine heaters. Electric pumps fail to start when their supply has been isolated, a controller fault is present, or settings have changed. A pump that does not start on a pressure drop leaves the sprinklers and hydrants on town main pressure alone.\n\nElectric fire pumps connected after the main switch, or with non-fire-rated cabling, can lose power when the building is isolated in a fire, or when the cable burns. This is a design defect found in older buildings and after switchboard replacements.\n\nControllers left in manual or off after maintenance, start pressures set wrongly, and pumps set to stop automatically when they should run until manually stopped are common findings after service visits. The controller's status should be supervised by the fire alarm panel.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Diesel slow to start or fails | Batteries, fuel or heater. Battery test; fuel sample. | Test the batteries and sample the fuel; restore batteries, chargers, heater and fuel management. |\n| Pump supply after the main switch | Design defect. Single-line diagram. | Reconnect the supply ahead of the main switch with fire-rated cable. |",
+      "markdown": "Diesel pumps fail to start for the same reasons as standby generators: flat batteries, failed chargers, fuel problems, failed engine heaters. Electric pumps fail to start when their supply has been isolated, a controller fault is present, or settings have changed. A pump that does not start on a pressure drop leaves the sprinklers and hydrants on town main pressure alone.\n\nElectric fire pumps connected after the main switch, or with non-fire-rated cabling, can lose power when the building is isolated in a fire, or when the cable burns. This is a design defect found in older buildings and after switchboard replacements.\n\nControllers left in manual or off after maintenance, start pressures set wrongly, and pumps set to stop automatically when they should run until manually stopped are common findings after service visits. The controller's status should be supervised by the fire alarm panel.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Diesel slow to start or fails | Batteries, fuel or heater. Battery test; fuel sample. | Test the batteries and sample the fuel; restore batteries, chargers, heater and fuel management. |\n| Pump supply after the main switch | Design defect. Single-line diagram. | Reconnect the supply ahead of the main switch with fire-rated cable. |\n| Run log shows short or missed pump runs | Runs too short to prove the pump and its driver. Run log against the required run: US Department of Defense guidance runs electric pumps for 10 minutes and engine-driven pumps for 30 minutes (UFM 3-601-02). | Run each pump for the full period, recording start time, suction and discharge pressures, temperatures and fuel level. |",
       "anchors": [
        "controller",
        "mechanisms",
@@ -11514,7 +11619,7 @@
       "id": "performance",
       "heading": "Performance, supply and relief",
       "url": "https://moyneross.com/technical/fire-pumping-systems#performance",
-      "markdown": "Impellers wear and erode, wear rings open up, and suction strainers block; the pump delivers less flow and pressure than its rating. Only an annual flow test against the pump's rated curve shows the decline. Pumps whose test arrangements were never installed or have become unusable are often never flow tested.\n\nTown main pressures fall as utilities manage networks; break tanks and storage tanks lose capacity to sediment, corrosion and failed inlet valves; suction pipes blocked or undersized cause cavitation. The pump can only boost what reaches it.\n\nPumps running against closed outlets (churn) heat the water in the casing; circulation relief valves and pressure relief valves prevent damage and over-pressure. Stuck or wrongly set relief valves either waste water continuously or let pressures exceed what pipework and fittings are rated for.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Flow test below the rated curve | Impeller wear, blocked strainer, or suction restriction. Suction pressure during test; strainer inspection. | Check suction pressure and the strainer; overhaul the pump, or replace it where performance cannot be restored. |\n| Cavitation noise during tests | Low suction pressure or blocked suction. Suction gauge; tank level. | Check suction pressure and tank level, and clear the suction. |\n| No flow tests on record | No usable test arrangement. Inspection. | Install a flow meter or test header so the pump can be tested. |",
+      "markdown": "Impellers wear and erode, wear rings open up, and suction strainers block; the pump delivers less flow and pressure than its rating. Only an annual flow test against the pump's rated curve shows the decline. Pumps whose test arrangements were never installed or have become unusable are often never flow tested.\n\nTown main pressures fall as utilities manage networks; break tanks and storage tanks lose capacity to sediment, corrosion and failed inlet valves; suction pipes blocked or undersized cause cavitation. The pump can only boost what reaches it.\n\nPumps running against closed outlets (churn) heat the water in the casing; circulation relief valves and pressure relief valves prevent damage and over-pressure. Stuck or wrongly set relief valves either waste water continuously or let pressures exceed what pipework and fittings are rated for.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Flow test below the rated curve | Impeller wear, blocked strainer, or suction restriction. Suction pressure during test; strainer inspection. | Check suction pressure and the strainer; overhaul the pump, or replace it where performance cannot be restored. |\n| Cavitation noise during tests | Low suction pressure or blocked suction. Suction gauge; tank level. | Check suction pressure and tank level, and clear the suction. |\n| No flow tests on record | No usable test arrangement. Inspection. | Install a flow meter or test header so the pump can be tested. |\n| Supply pressure lower than at the last test | Town main or tank supply decline. Flow test results more than 10 per cent below the previous or acceptance readings need immediate evaluation, and more than 20 per cent indicates an emergency (UFM 3-601-02). | Trace the decline with the water authority or by tank inspection, and confirm the pump can still meet the design with the supply it now has. |\n| Boosted hydrant outlets below pressure in a test | Pump or relay pump short of its duty. In New South Wales a boosted hydrant system must give 700 kPa at the most hydraulically disadvantaged outlet in each pressure zone (Fire and Rescue NSW, on AS 2419.1:2021). | Test at the most disadvantaged outlets; overhaul or re-select the pump, or correct the pipework. |",
       "anchors": [
        "relief",
        "supply"
@@ -11548,7 +11653,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/fire-pumping-systems#investigation",
-      "markdown": "A fire services engineer with the pump maintenance contractor. The checks below start in the pump room, then compare the flow test record with the pump curve.\n\n| Check | What it covers |\n| --- | --- |\n| Records review | Weekly run logs, annual flow tests, battery and fuel records, tank inspections. |\n| Inspection | Of pumps, motors, engines, controllers, jockey pump, pipework, valves, tanks and pump room. |\n| Flow test | At churn, rated flow and peak flow, plotted against the manufacturer's curve and the system's design requirement. |\n| Supply check | Town main pressure and flow, tank capacity and condition. |\n| Power supply review | For electric pumps: connection point and cable rating. |\n| Leak investigation | Where the jockey pump cycles frequently. |\n| Controller testing | Automatic start on pressure drop, alarm signals to the fire panel, and phase reversal and power failure alarms on electric controllers. |\n\nThe report should state whether pumps deliver the required performance, the reliability of starting and power, the adequacy of the water supply, and works needed."
+      "markdown": "A fire services engineer with the pump maintenance contractor. The checks below start in the pump room, then compare the flow test record with the pump curve.\n\n| Check | What it covers |\n| --- | --- |\n| Records review | Weekly run logs against the required run times (10 minutes electric, 30 minutes diesel in UFM 3-601-02), annual flow tests, battery and fuel records, tank inspections. |\n| Inspection | Of pumps, motors, engines, controllers, jockey pump, pipework, valves, tanks and pump room. |\n| Flow test | At churn, rated flow and peak flow, plotted against the manufacturer's curve and the system's design requirement. |\n| Supply check | Town main pressure and flow, tank capacity and condition. |\n| Power supply review | For electric pumps: connection point and cable rating. |\n| Leak investigation | Where the jockey pump cycles frequently. |\n| Controller testing | Automatic start on pressure drop, alarm signals to the fire panel, and phase reversal and power failure alarms on electric controllers. |\n\nThe report should state whether pumps deliver the required performance, the reliability of starting and power, the adequacy of the water supply, and works needed."
      },
      {
       "id": "remedies",
@@ -13468,25 +13573,80 @@
      "fire-detection-and-alarm-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2497,
+    "wordCount": 2793,
     "sources": [
      {
-      "title": "Standards catalogue",
+      "title": "NCC 2025 Volume One, Part E1 Fire fighting equipment",
+      "publisher": "Australian Building Codes Board",
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/e-services-and-equipment/part-e1-fire-fighting-equipment"
+     },
+     {
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
       "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
+      "url": "https://store.standards.org.au/product/as-1851-2012"
      },
      {
-      "title": "British Standards",
+      "title": "AS 2419.1:2021 Fire hydrant installations, Part 1: System design, installation and commissioning",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-2419-1-2021"
+     },
+     {
+      "title": "AS 2441-2005 Installation of fire hose reels",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-2441-2005"
+     },
+     {
+      "title": "AS/NZS 2845.1:2022 Water supply: Backflow prevention devices, Part 1: Materials, design and performance requirements",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-nzs-2845-1-2022"
+     },
+     {
+      "title": "Approved Document B: Fire safety, volumes 1 and 2",
+      "publisher": "UK Government",
+      "url": "https://www.gov.uk/government/publications/fire-safety-approved-document-b"
+     },
+     {
+      "title": "Approved Document B, Volume 2: Buildings other than dwellings (2026 online version)",
+      "publisher": "UK Government",
+      "url": "https://assets.publishing.service.gov.uk/media/6aa3bb7492e72b8ac437f145/AD_B2_2026.pdf"
+     },
+     {
+      "title": "BS 9990:2015 Non automatic fire-fighting systems in buildings",
       "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
+      "url": "https://knowledge.bsigroup.com/products/non-automatic-fire-fighting-systems-in-buildings-code-of-practice"
      },
      {
-      "title": "NFPA 14 Installation of Standpipe and Hose Systems",
+      "title": "NFPA 14 Standard for the Installation of Standpipe and Hose Systems",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-14-standard-development/14"
+     },
+     {
+      "title": "NFPA 24 Standard for the Installation of Private Fire Service Mains and Their Appurtenances",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-24-standard-development/24"
+     },
+     {
+      "title": "NFPA 25 Standard for the Inspection, Testing, and Maintenance of Water-Based Fire Protection Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-25-standard-development/25"
+     },
+     {
+      "title": "Position statement summary: FRNSW pump performance for high rise buildings",
+      "publisher": "Fire and Rescue NSW",
+      "url": "https://fire.nsw.gov.au/gallery/files/pdf/bfs/Position%20statement%20summary%20-%20FRNSW%20pump%20performance%20for%20high%20rise%20buildings.pdf"
+     },
+     {
+      "title": "Fire and Rescue NSW fire hydrant testing 2017 (report MHL2534)",
+      "publisher": "Fire and Rescue NSW",
+      "url": "https://www.fire.nsw.gov.au/gallery/files/pdf/bfs/MHL2534_Fire%20And%20Rescue%20Hydrant%20Testing.pdf"
+     },
+     {
+      "title": "UFM 3-601-02 Fire protection systems inspection, testing, and maintenance (13 March 2026)",
+      "publisher": "US Department of Defense",
+      "url": "https://www.wbdg.org/FFC/DOD/UFC/ufm_3_601_02_2026.pdf"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/hydrant-and-hose-reel-systems",
@@ -13558,7 +13718,7 @@
       "id": "access",
       "heading": "Access, boosters and extensions",
       "url": "https://moyneross.com/technical/hydrant-and-hose-reel-systems#access",
-      "markdown": "Hydrants and boosters must be reachable by fire appliances and visible on arrival. Planting, parking bays, bins, fences and construction hoardings block them; signage fades or is removed; booster cabinets are locked with the wrong key.\n\nBuilding extensions, new mezzanines and subdivided tenancies put parts of the building beyond hose reach from existing outlets; the original design no longer covers the building.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Booster hidden from the street | Access obstruction. Site inspection. | Clear and protect the access, with signage and lighting, or relocate the booster. |",
+      "markdown": "Hydrants and boosters must be reachable by fire appliances and visible on arrival. Planting, parking bays, bins, fences and construction hoardings block them; signage fades or is removed; booster cabinets are locked with the wrong key.\n\nBuilding extensions, new mezzanines and subdivided tenancies put parts of the building beyond hose reach from existing outlets; the original design no longer covers the building.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Booster hidden from the street | Access obstruction. Site inspection. | Clear and protect the access, with signage and lighting, or relocate the booster. |\n| Fire main inlet far from where an appliance can park | Access shortfall for the fire service. In England a pumping appliance should be able to reach within 18 m of each dry fire main inlet, with the inlet visible from where it parks (Approved Document B, Volume 2). | Provide hardstanding within reach, or move the inlet. |",
       "anchors": [
        "extensions",
        "mechanisms"
@@ -13568,7 +13728,7 @@
       "id": "performance",
       "heading": "Flow, pressure and pressure-reducing valves",
       "url": "https://moyneross.com/technical/hydrant-and-hose-reel-systems#performance",
-      "markdown": "Hydrant systems must deliver a set flow at a set pressure at the most remote outlets. Falling town main pressures, corroded or partly blocked pipes, failed pumps and closed valves leave outlets short. Only a flow test shows it.\n\nPressure-reducing valves at landing valves or zone boundaries in tall buildings drift, stick or are adjusted wrongly. Outlets then deliver pressure too high for fire-fighters to control a hose safely, or too low to fight a fire. Their settings are only proven by flow testing at each zone.\n\nGalvanised and black steel hydrant mains corrode internally; microbiologically influenced corrosion causes pinhole leaks; corrosion products and debris block valves and reduce flow at remote outlets.\n\nBackflow prevention devices protect drinking water from fire system water; they need annual testing and can restrict flow if poorly selected or failing.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Flow test below requirement at remote outlets | Supply decline, corrosion or closed valves. Pressure readings along the system. | Take pressure readings along the system; clear blockages, open closed valves and replace corroded pipe. |",
+      "markdown": "Hydrant systems must deliver a set flow at a set pressure at the most remote outlets. Falling town main pressures, corroded or partly blocked pipes, failed pumps and closed valves leave outlets short. Only a flow test shows it.\n\nPressure-reducing valves at landing valves or zone boundaries in tall buildings drift, stick or are adjusted wrongly. Outlets then deliver pressure too high for fire-fighters to control a hose safely, or too low to fight a fire. Their settings are only proven by flow testing at each zone.\n\nGalvanised and black steel hydrant mains corrode internally; microbiologically influenced corrosion causes pinhole leaks; corrosion products and debris block valves and reduce flow at remote outlets.\n\nBackflow prevention devices protect drinking water from fire system water; they need annual testing and can restrict flow if poorly selected or failing.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Flow test below requirement at remote outlets | Supply decline, corrosion or closed valves. Pressure readings along the system; when boosted, an Australian system must give 700 kPa at the most disadvantaged outlet (Fire and Rescue NSW, on AS 2419.1:2021). | Take pressure readings along the system; clear blockages, open closed valves and replace corroded pipe. |\n| Street feed hydrant low in the annual test | Town main below requirement. AS 2419.1 sets the unassisted residual pressure at a feed hydrant flowing 10 L/s: 150 kPa in New South Wales and 200 kPa in the other states and territories (Fire and Rescue NSW). | Raise it with the water authority, and add tanks or pumps where the main cannot meet it. |",
       "anchors": [
        "backflow",
        "corrosion",
@@ -13579,7 +13739,7 @@
       "id": "outlets",
       "heading": "Valves, dry risers, hose reels and freezing",
       "url": "https://moyneross.com/technical/hydrant-and-hose-reel-systems#outlets",
-      "markdown": "Wet pipework in unheated car parks, external areas and roof spaces freezes and splits in cold climates; dry systems are used in these locations for that reason.\n\nHydrant and landing valves seize, leak or are vandalised; caps and blank flanges go missing, letting debris in; dry riser inlets are damaged; non-return valves stick.\n\nDry risers leak when charged because joints, valves and drain valves have deteriorated unseen; inlets and landing valves are vandalised; air release valves stick.\n\nHoses crack and leak from UV and age; nozzles go missing; reels jam; isolating valves are closed; reels are obstructed by storage.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Dry riser loses pressure on test | Leaking valves or joints. Pressure test and inspection. | Pressure test and inspect; repair the valves and joints. |\n| Hose reel leaks when pressurised | Aged hose. Inspection. | Replace the hose and service the reel. |",
+      "markdown": "Wet pipework in unheated car parks, external areas and roof spaces freezes and splits in cold climates; dry systems are used in these locations for that reason.\n\nHydrant and landing valves seize, leak or are vandalised; caps and blank flanges go missing, letting debris in; dry riser inlets are damaged; non-return valves stick.\n\nDry risers leak when charged because joints, valves and drain valves have deteriorated unseen; inlets and landing valves are vandalised; air release valves stick.\n\nHoses crack and leak from UV and age; nozzles go missing; reels jam; isolating valves are closed; reels are obstructed by storage.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Dry riser loses pressure on test | Leaking valves or joints. Pressure test and inspection. | Pressure test and inspect; repair the valves and joints. |\n| Hose reel leaks when pressurised | Aged hose. Inspection. | Replace the hose and service the reel. |\n| Hose reels that no longer reach parts of a floor after a fit-out | Coverage lost. Hose lay against the current layout; under the NCC, reels sit within 4 m of an exit, and a hose reel system serves any fire compartment over 500 m² where there are no internal hydrants (NCC Part E1). | Add or move reels to restore coverage. |\n| No standpipe flow test in the last five years | Capacity unproven. US Department of Defense guidance flow tests standpipes every five years for flow and minimum discharge pressure, and hydrostatically tests dry standpipes (UFM 3-601-02). | Flow test at the most remote outlets, and pressure test dry systems. |",
       "anchors": [
        "dry",
        "freezing",
@@ -13591,10 +13751,11 @@
       "id": "severity",
       "heading": "How serious it is",
       "url": "https://moyneross.com/technical/hydrant-and-hose-reel-systems#severity",
-      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Booster or hydrants inaccessible or inoperable; dry riser failing pressure test; flow well below requirement | safety · 4 Essential | Restore now; notify the brigade. |\n| Routine service and flow testing due | deadline · 4 Essential | At the prescribed interval. |\n| Leaks; seized valves; missing caps; aged hoses | condition · 3 Important | Repair in the near term. |\n| Pipework and valves at end of life | lifecycle · 3 Important | Replace. |\n| No flow test on record | check · 3 Important | Flow test. |\n| Normal | nil · 1 Routine | Routine. |",
+      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Booster or hydrants inaccessible or inoperable; dry riser failing pressure test; flow well below requirement | safety · 4 Essential | Restore now; notify the brigade. |\n| Routine service and flow testing due | deadline · 4 Essential | At the prescribed interval. |\n| Leaks; seized valves; missing caps; aged hoses | condition · 3 Important | Repair in the near term. |\n| Pipework and valves at end of life | lifecycle · 3 Important | Replace. |\n| No flow test on record | check · 3 Important | Flow test. |\n| Normal | nil · 1 Routine | Routine. |\n| Main burst or leaking under test; riser or hydrant system out of service | failure · 4 Essential | Repair now; notify the brigade and manage the impairment. |",
       "anchors": [
        "f-booster-or-hydrants-inaccessible-or-inoperable-d",
        "f-leaks-seized-valves-missing-caps-aged-hoses",
+       "f-main-burst-or-leaking-under-test-riser-or-hydran",
        "f-no-flow-test-on-record",
        "f-normal",
        "f-pipework-and-valves-at-end-of-life",
@@ -13605,7 +13766,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/hydrant-and-hose-reel-systems#investigation",
-      "markdown": "A fire services engineer or the hydrant maintenance contractor, coordinated with the brigade where its equipment is used for testing. The checks below start at the street, as a fire-fighter arrives, then test flow and pressure at the remote outlets.\n\n| Check | What it covers |\n| --- | --- |\n| Access and signage inspection | From the brigade's arrival point: booster and hydrant visibility, clear hardstand, signage, lighting, block plan, cabinet keys. |\n| Coverage check | Of every part of the building against hose reach from the outlets, especially after extensions and fit-outs. |\n| Valve inspection and operation | Hydrant valves, landing valves, isolating valves (open and secured), non-return valves, caps and couplings. |\n| Flow and pressure test | At the most hydraulically remote outlets, and at each pressure zone in tall buildings, against the design requirement; pressure-reducing valve settings confirmed under flow. |\n| Dry riser pressure test | And inlet, valve and drain inspection. |\n| Hose reel test | Flow, hose condition, nozzle, reel operation. |\n| Backflow device test | . |\n| Pipework inspection | For corrosion, leaks, supports and frost protection. |\n\nThe report should state whether the system delivers required flow and pressure at every outlet and zone, whether the brigade can find and connect to it, coverage gaps, and failed components."
+      "markdown": "A fire services engineer or the hydrant maintenance contractor, coordinated with the brigade where its equipment is used for testing. The checks below start at the street, as a fire-fighter arrives, then test flow and pressure at the remote outlets.\n\n| Check | What it covers |\n| --- | --- |\n| Access and signage inspection | From the brigade's arrival point: booster and hydrant visibility, clear hardstand, signage, lighting, block plan, cabinet keys. |\n| Coverage check | Of every part of the building against hose reach from the outlets, especially after extensions and fit-outs. |\n| Valve inspection and operation | Hydrant valves, landing valves, isolating valves (open and secured), non-return valves, caps and couplings. |\n| Flow and pressure test | At the most hydraulically remote outlets, and at each pressure zone in tall buildings, against the design requirement; pressure-reducing valve settings confirmed under flow. |\n| Dry riser pressure test | And inlet, valve and drain inspection. |\n| Hose reel test | Flow, hose condition, nozzle, reel operation. |\n| Backflow device test | Of the backflow prevention device on the hydrant supply, to AS/NZS 2845.1 and the water authority’s requirements. |\n| Pipework inspection | For corrosion, leaks, supports and frost protection. |\n\nThe report should state whether the system delivers required flow and pressure at every outlet and zone, whether the brigade can find and connect to it, coverage gaps, and failed components."
      },
      {
       "id": "remedies",
@@ -13638,7 +13799,7 @@
       "id": "jurisdiction-notes",
       "heading": "Standards by country",
       "url": "https://moyneross.com/technical/hydrant-and-hose-reel-systems#jurisdiction-notes",
-      "markdown": "Each market sets standards for hydrants, hose reels and rising mains, and for how often they are inspected and tested. For Australia, the United Kingdom and the United States, the table sets out each.\n\n|  | Australia | United Kingdom | United States |\n| --- | --- | --- | --- |\n| Design | AS 2419.1 governs hydrant installations, AS 2441 hose reels, and AS 2845 backflow prevention. | BS 9990 covers rising mains; Approved Document B sets requirements for fire-fighting access and water. | NFPA 14 governs standpipes, and NFPA 24 private hydrants and mains. |\n| Inspection and testing | AS 1851 sets routine service and flow testing; hydrants and hose reels are essential safety measures with annual certification. | BS 9990 calls for six-monthly inspection and annual pressure testing of dry risers. | NFPA 25 sets inspection and testing, including periodic flow tests and hydrostatic tests of dry standpipes. |\n\nBrigade requirements also apply in all three jurisdictions: couplings, booster locations and block plans must suit the local fire service, which may inspect and comment on hydrant arrangements during approvals and after changes."
+      "markdown": "Each market sets standards for hydrants, hose reels and rising mains, and for how often they are inspected and tested. For Australia, the United Kingdom and the United States, the table sets out each.\n\n|  | Australia | United Kingdom | United States |\n| --- | --- | --- | --- |\n| Design | AS 2419.1 governs hydrant installations, AS 2441 hose reels, and AS/NZS 2845.1 backflow prevention. | BS 9990 covers rising mains; Approved Document B sets requirements for fire-fighting access and water. | NFPA 14 governs standpipes, and NFPA 24 private hydrants and mains. |\n| Inspection and testing | AS 1851 sets routine service and flow testing; hydrants and hose reels are essential safety measures with annual certification. | BS 9990 calls for six-monthly inspection and annual pressure testing of dry risers. | NFPA 25 sets inspection and testing, including periodic flow tests and hydrostatic tests of dry standpipes. |\n\nBrigade requirements also apply in all three jurisdictions: couplings, booster locations and block plans must suit the local fire service, which may inspect and comment on hydrant arrangements during approvals and after changes."
      },
      {
       "id": "worked-example",
@@ -18830,40 +18991,95 @@
      "structural-frame"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2685,
+    "wordCount": 2938,
     "sources": [
-     {
-      "title": "National Construction Code",
-      "publisher": "Australian Building Codes Board",
-      "url": "https://ncc.abcb.gov.au/"
-     },
-     {
-      "title": "Standards catalogue",
-      "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
-     },
-     {
-      "title": "Approved Documents",
-      "publisher": "UK Government",
-      "url": "https://www.gov.uk/government/collections/approved-documents"
-     },
-     {
-      "title": "International Codes",
-      "publisher": "International Code Council",
-      "url": "https://codes.iccsafe.org/"
-     },
      {
       "title": "Fire Safety (England) Regulations 2022",
       "publisher": "UK Government",
       "url": "https://www.legislation.gov.uk/uksi/2022/547/contents"
      },
      {
-      "title": "NFPA 80 Fire Doors and Other Opening Protectives",
+      "title": "NCC 2025 Volume One, Part C4 Protection of openings",
+      "publisher": "Australian Building Codes Board",
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/c-fire-resistance/part-c4-protection-openings"
+     },
+     {
+      "title": "NCC 2025 Volume One, Specification 12 Fire doors, smoke doors, fire windows and shutters",
+      "publisher": "Australian Building Codes Board",
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/c-fire-resistance/12-fire-doors-smoke-doors-fire-windows-and-shutters"
+     },
+     {
+      "title": "AS 1530.4:2014 Methods for fire tests on building materials, components and structures, Part 4: Fire-resistance tests for elements of construction",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1530-4-2014"
+     },
+     {
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1851-2012"
+     },
+     {
+      "title": "AS 1905.1:2015 Components for the protection of openings in fire-resistant walls, Part 1: Fire-resistant doorsets",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1905-1-2015"
+     },
+     {
+      "title": "AS 4072.1-2005 Components for the protection of openings in fire-resistant separating elements, Part 1: Service penetrations and control joints",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-4072-1-2005"
+     },
+     {
+      "title": "AS 4655-2005 Fire safety audits (withdrawn)",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-4655-2005"
+     },
+     {
+      "title": "Approved Document B: Fire safety, volumes 1 and 2",
+      "publisher": "UK Government",
+      "url": "https://www.gov.uk/government/publications/fire-safety-approved-document-b"
+     },
+     {
+      "title": "BS 8214:2016 Timber-based fire door assemblies",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/timber-based-fire-door-assemblies-code-of-practice"
+     },
+     {
+      "title": "2024 International Building Code",
+      "publisher": "International Code Council",
+      "url": "https://codes.iccsafe.org/content/IBC2024P1"
+     },
+     {
+      "title": "ASTM E814-23a Standard Test Method for Fire Tests of Penetration Firestop Systems",
+      "publisher": "ASTM International",
+      "url": "https://store.astm.org/e0814-23a.html"
+     },
+     {
+      "title": "NFPA 80 Standard for Fire Doors and Other Opening Protectives",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-80-standard-development/80"
+     },
+     {
+      "title": "NFPA 105 Standard for Smoke Door Assemblies and Other Opening Protectives",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-105-standard-development/105"
+     },
+     {
+      "title": "Fire Safety (England) Regulations 2022: fire door guidance",
+      "publisher": "UK Government",
+      "url": "https://www.gov.uk/government/publications/fire-safety-england-regulations-2022-fire-door-guidance/fire-safety-england-regulations-2022-fire-door-guidance"
+     },
+     {
+      "title": "Fire door intumescent seal regulations (quoting AS 1905.1 clearances)",
+      "publisher": "LookUpStrata",
+      "url": "https://www.lookupstrata.com.au/q-a/nsw/fire-door-intumescent-seal-regulations"
+     },
+     {
+      "title": "Measuring door gaps around and under fire doors",
+      "publisher": "Firestop Contractors International Association",
+      "url": "https://www.fcia.org/Portals/0/180324%20Measuring%20Door%20Gaps.pdf"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/passive-fire-protection",
@@ -18947,7 +19163,7 @@
       "id": "doors",
       "heading": "Fire doors and glazing",
       "url": "https://moyneross.com/technical/passive-fire-protection#doors",
-      "markdown": "Fire doors fail through use: closers disconnected or broken so doors do not close; doors wedged or propped open; gaps at edges larger than allowed; intumescent and smoke seals painted over, damaged or missing; non-rated hinges, locks and vision panels; doors cut down to clear new floor finishes; and, in apartment buildings, flat entrance doors replaced by residents with non-rated doors. A fire door that does not close fully is not a fire door.\n\nBroken fire-resisting glazing replaced with ordinary glass, or beads and frames replaced with untested parts, loses its fire resistance entirely.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Doors do not close fully | Failed or disconnected closer, binding, obstruction. Door inspection. | Repair or replace the closer, free the binding, and clear the obstruction. |\n| Gaps of several millimetres at door edges | Wear, distortion or poor installation. Gap measurement against the standard. | Adjust or repair the door, or replace it where it cannot meet the standard. |\n| Flat entrance doors of different designs | Resident replacements. Door survey. | Survey them; replace non-compliant doors with certified doorsets. |",
+      "markdown": "Fire doors fail through use: closers disconnected or broken so doors do not close; doors wedged or propped open; gaps at edges larger than allowed; intumescent and smoke seals painted over, damaged or missing; non-rated hinges, locks and vision panels; doors cut down to clear new floor finishes; and, in apartment buildings, flat entrance doors replaced by residents with non-rated doors. A fire door that does not close fully is not a fire door.\n\nBroken fire-resisting glazing replaced with ordinary glass, or beads and frames replaced with untested parts, loses its fire resistance entirely.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Doors do not close fully | Failed or disconnected closer, binding, obstruction. Door inspection. | Repair or replace the closer, free the binding, and clear the obstruction. |\n| Gaps of several millimetres at door edges | Wear, distortion or poor installation. Gap measurement against the door’s evidence: in England no more than 4 mm except at the bottom (gov.uk); in Australia AS 1905.1 sets 3 mm at the top and sides and no more than 10 mm at the bottom (as quoted by LookUpStrata); in the United States NFPA 80 allows about 3 mm (1/8 in) at the head and jambs and 19 mm (3/4 in) at the bottom (FCIA). | Adjust or repair the door, or replace it where it cannot meet the standard. |\n| Flat entrance doors of different designs | Resident replacements. Door survey. | Survey them; replace non-compliant doors with certified doorsets. |\n| Smoke doors with hollow-core or thin leaves | Not a smoke door. Under the NCC a smoke door has solid-core leaves at least 35 mm thick, or leaves able to resist smoke at 200°C for 30 minutes, fitted with smoke seals (NCC Specification 12). | Replace the leaves with compliant ones, and fit smoke seals. |\n| No record of fire door checks in a block of flats | Checks not being carried out. In England, in blocks with a storey over 11 m, communal fire doors are checked at least every 3 months and flat entrance doors at least every 12 months (gov.uk); in the United States fire door assemblies are inspected annually (FCIA, on NFPA 80). | Start a check regime, and record each door’s gaps, closer and seals. |",
       "anchors": [
        "glazing"
       ]
@@ -18966,10 +19182,11 @@
       "id": "severity",
       "heading": "How serious it is",
       "url": "https://moyneross.com/technical/passive-fire-protection#severity",
-      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Stair or escape route doors not closing; breached riser or stair penetrations; fire doors wedged open; flat entrance doors not fire-rated in apartment buildings | safety · 4 Essential | Rectify now; fire watch or interim measures where needed. |\n| Fire door checks and annual certification due | deadline · 4 Essential | At the prescribed interval. |\n| Widespread penetration breaches; walls not to slab; damaged structural protection | condition · 4 Essential | Remediation programme in the near term. |\n| Doors and hardware at end of life | lifecycle · 3 Important | Replace on cycle. |\n| No fire strategy; compartmentation unknown | check · 3 Important | Fire strategy and compartmentation survey. |\n| Minor door adjustments | nil · 1 Routine | Routine maintenance. |",
+      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Stair or escape route doors not closing; breached riser or stair penetrations; fire doors wedged open; flat entrance doors not fire-rated in apartment buildings | safety · 4 Essential | Rectify now; fire watch or interim measures where needed. |\n| Fire door checks and annual certification due | deadline · 4 Essential | At the prescribed interval. |\n| Widespread penetration breaches; walls not to slab; damaged structural protection | condition · 4 Essential | Remediation programme in the near term. |\n| Doors and hardware at end of life | lifecycle · 3 Important | Replace on cycle. |\n| No fire strategy; compartmentation unknown | check · 3 Important | Fire strategy and compartmentation survey. |\n| Minor door adjustments | nil · 1 Routine | Routine maintenance. |\n| Fire-resisting construction or doors damaged by fire, water or impact and no longer intact | failure · 4 Essential | Repair now; interim measures until done. |",
       "anchors": [
        "f-doors-and-hardware-at-end-of-life",
        "f-fire-door-checks-and-annual-certification-due",
+       "f-fire-resisting-construction-or-doors-damaged-by",
        "f-minor-door-adjustments",
        "f-no-fire-strategy-compartmentation-unknown",
        "f-stair-or-escape-route-doors-not-closing-breached",
@@ -18980,7 +19197,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/passive-fire-protection#investigation",
-      "markdown": "A fire engineer or passive fire specialist leads, working from the fire strategy; where there is no strategy, the investigation begins by establishing one. The checks below cover every riser, stair and escape route in full, rather than by sample.\n\n| Check | What it covers |\n| --- | --- |\n| Strategy review | Compartments, fire-resistance levels, escape routes and performance solutions. |\n| Compartmentation survey | Above ceilings, in risers and plant rooms, recording every penetration and its seal, with photographs. |\n| Fire door survey | Of every door on escape routes and compartment lines, including all flat entrance doors in residential buildings: closing, gaps, seals, hardware, glazing, labels. |\n| Structural protection survey | Of exposed and concealed steel. |\n| Product identification | Against tested systems and certification. |\n| Asbestos sampling | Of older protection. |\n| Escape route check | Door closing, glazing and wall integrity on every stair and protected corridor. |\n\nThe report should give a register of defects by location with photographs, prioritised by risk, and the strategy those defects affect."
+      "markdown": "A fire engineer or passive fire specialist leads, working from the fire strategy; where there is no strategy, the investigation begins by establishing one. The checks below cover every riser, stair and escape route in full, rather than by sample.\n\n| Check | What it covers |\n| --- | --- |\n| Strategy review | Compartments, fire-resistance levels, escape routes and performance solutions. |\n| Compartmentation survey | Above ceilings, in risers and plant rooms, recording every penetration and its seal, with photographs. |\n| Fire door survey | Of every door on escape routes and compartment lines, including all flat entrance doors in residential buildings: closing, gaps, seals, hardware, glazing, labels, with gaps measured against the limits each market sets (4 mm in England, gov.uk; 3 mm at the top and sides in Australia, LookUpStrata; about 3 mm in the United States, FCIA). |\n| Structural protection survey | Of exposed and concealed steel. |\n| Product identification | Against tested systems and certification. |\n| Asbestos sampling | Of older protection. |\n| Escape route check | Door closing, glazing and wall integrity on every stair and protected corridor. |\n\nThe report should give a register of defects by location with photographs, prioritised by risk, and the strategy those defects affect."
      },
      {
       "id": "remedies",
@@ -19013,7 +19230,7 @@
       "id": "jurisdiction-notes",
       "heading": "Standards by country",
       "url": "https://moyneross.com/technical/passive-fire-protection#jurisdiction-notes",
-      "markdown": "Each market sets fire-resistance requirements, tests the products that provide them, and requires fire doors to be inspected. For Australia, the United Kingdom and the United States, the table sets out each.\n\n|  | Australia | United Kingdom | United States |\n| --- | --- | --- | --- |\n| Requirements | The National Construction Code sets fire-resistance levels and compartmentation; AS 4655 covers fire safety audits. | Approved Document B sets requirements; the Fire Safety Act 2021 brings flat entrance doors and external walls into the responsible person's duties. | International Building Code Chapter 7 governs fire-resistance-rated construction. |\n| Testing and products | AS 1530.4 sets fire-resistance testing, AS 4072.1 penetration seals and AS 1905.1 fire doors. | BS 8214 covers fire doors. | Firestop systems are tested to ASTM E814 and UL 1479. |\n| Inspection | AS 1851 sets fire door inspection; passive elements are essential safety measures with annual certification. | The Fire Safety (England) Regulations 2022 require quarterly checks of communal fire doors, and annual best-endeavour checks of flat entrance doors, in residential buildings over 11 metres. | NFPA 80 requires annual inspection of fire doors, and NFPA 105 covers smoke doors. |"
+      "markdown": "Each market sets fire-resistance requirements, tests the products that provide them, and requires fire doors to be inspected. For Australia, the United Kingdom and the United States, the table sets out each.\n\n|  | Australia | United Kingdom | United States |\n| --- | --- | --- | --- |\n| Requirements | The National Construction Code sets fire-resistance levels and compartmentation; AS 4655, now withdrawn, covered fire safety audits. | Approved Document B sets requirements; the Fire Safety Act 2021 brings flat entrance doors and external walls into the responsible person's duties. | International Building Code Chapter 7 governs fire-resistance-rated construction. |\n| Testing and products | AS 1530.4 sets fire-resistance testing, AS 4072.1 penetration seals and AS 1905.1 fire doors. | BS 8214 covers fire doors. | Firestop systems are tested to ASTM E814 and UL 1479. |\n| Inspection | AS 1851 sets fire door inspection; passive elements are essential safety measures with annual certification. | The Fire Safety (England) Regulations 2022 require quarterly checks of communal fire doors, and annual best-endeavour checks of flat entrance doors, in residential buildings over 11 metres. | NFPA 80 requires annual inspection of fire doors, and NFPA 105 covers smoke doors. |"
      },
      {
       "id": "worked-example",
@@ -19785,30 +20002,50 @@
      "main-electrical-supply"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2389,
+    "wordCount": 2681,
     "sources": [
      {
-      "title": "National Construction Code",
+      "title": "NCC 2025 Volume One, Part E1 Fire fighting equipment",
       "publisher": "Australian Building Codes Board",
-      "url": "https://ncc.abcb.gov.au/"
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/e-services-and-equipment/part-e1-fire-fighting-equipment"
      },
      {
-      "title": "Standards catalogue",
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
       "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
+      "url": "https://store.standards.org.au/product/as-1851-2012"
      },
      {
-      "title": "British Standards",
+      "title": "AS 2444-2001 Portable fire extinguishers and fire blankets: Selection and location",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-2444-2001"
+     },
+     {
+      "title": "BS 5306-3:2017 Commissioning and maintenance of portable fire extinguishers",
       "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
+      "url": "https://knowledge.bsigroup.com/products/fire-extinguishing-installations-and-equipment-on-premises-commissioning-and-maintenance-of-portable-fire-extinguishers-code-of-practice-1"
      },
      {
-      "title": "NFPA 10 Portable Fire Extinguishers",
+      "title": "BS 5306-8:2023 Selection and positioning of portable fire extinguishers",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/fire-extinguishing-installations-and-equipment-on-premises-selection-and-positioning-of-portable-fire-extinguishers-code-of-practice-1"
+     },
+     {
+      "title": "NFPA 10 Standard for Portable Fire Extinguishers",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-10-standard-development/10"
+     },
+     {
+      "title": "Fire safety risk assessment: offices and shops",
+      "publisher": "UK Government",
+      "url": "https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops"
+     },
+     {
+      "title": "29 CFR 1910.157 Portable fire extinguishers",
+      "publisher": "US Occupational Safety and Health Administration",
+      "url": "https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XVII/part-1910/subpart-L/section-1910.157"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/portable-fire-equipment",
@@ -19880,7 +20117,7 @@
       "id": "units",
       "heading": "Missing, damaged and obstructed units",
       "url": "https://moyneross.com/technical/portable-fire-equipment#units",
-      "markdown": "Extinguishers are moved, stolen, used and not replaced, or slowly lose pressure. Gauges in the red, broken tamper seals and missing units are the commonest findings.\n\nCylinders corrode, hoses crack, pins and seals go missing, and labels fade. Pressure testing at set intervals catches cylinders that are no longer safe.\n\nExtinguishers behind furniture, in cupboards, without signage, or mounted too high are not used in an emergency.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Gauge in the red | Discharged or leaking. Weight or pressure check. | Replace or recharge the unit. |\n| Service tags out of date | Servicing lapsed. Records. | Restore the service contract, covering every unit. |\n| Empty brackets | Missing or used unit. Register. | Replace the missing unit, and update the register. |",
+      "markdown": "Extinguishers are moved, stolen, used and not replaced, or slowly lose pressure. Gauges in the red, broken tamper seals and missing units are the commonest findings.\n\nCylinders corrode, hoses crack, pins and seals go missing, and labels fade. Pressure testing at set intervals catches cylinders that are no longer safe.\n\nExtinguishers behind furniture, in cupboards, without signage, or mounted too high are not used in an emergency.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Gauge in the red | Discharged or leaking. Weight or pressure check. | Replace or recharge the unit. |\n| Service tags out of date | Servicing lapsed. Records. | Restore the service contract, covering every unit. |\n| Empty brackets | Missing or used unit. Register. | Replace the missing unit, and update the register. |\n| Extinguishers on the floor or mounted high | Not readily usable. British guidance puts handles at about 1 m for larger extinguishers and 1.5 m for smaller ones (gov.uk guide). | Mount units on brackets or stands at the right height, beside the exits and hazards they serve. |",
       "anchors": [
        "access",
        "condition",
@@ -19892,7 +20129,7 @@
       "id": "selection",
       "heading": "Wrong types, coverage gaps and PFAS",
       "url": "https://moyneross.com/technical/portable-fire-equipment#selection",
-      "markdown": "Water extinguishers next to switchboards, powder in kitchens without wet chemical, and no blanket at cooking areas leave occupants with equipment that is dangerous or ineffective for the likely fire. Fit-outs that change the use of rooms rarely change the extinguishers.\n\nTravel distances grow when layouts change; new hazards (battery charging, kitchens, workshops) arrive without equipment.\n\nOlder foam extinguishers contain PFAS and are being withdrawn; disposal must follow environmental rules.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Water extinguisher beside a switchboard | Wrong type for the hazard. Hazard review. | Re-select the type to match the hazard. |\n| Kitchen without blanket or wet chemical | Coverage gap. Hazard review. | Add a fire blanket, and a wet chemical extinguisher at commercial cooking. |",
+      "markdown": "Water extinguishers next to switchboards, powder in kitchens without wet chemical, and no blanket at cooking areas leave occupants with equipment that is dangerous or ineffective for the likely fire. Fit-outs that change the use of rooms rarely change the extinguishers.\n\nTravel distances grow when layouts change; new hazards (battery charging, kitchens, workshops) arrive without equipment.\n\nOlder foam extinguishers contain PFAS and are being withdrawn; disposal must follow environmental rules.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Water extinguisher beside a switchboard | Wrong type for the hazard. Hazard review. | Re-select the type to match the hazard. |\n| Kitchen without blanket or wet chemical | Coverage gap. Hazard review. | Add a fire blanket, and a wet chemical extinguisher at commercial cooking. |\n| Extinguishers far apart on a large floor | Travel distance too long. In Britain no one should have to travel more than 30 m to an extinguisher (gov.uk guide); in the United States 22.9 m for Class A and 15.2 m for Class B hazards (OSHA 1910.157); in Australian apartment buildings an ABE extinguisher of at least 2.5 kg within 10 m of each unit’s entry door (NCC Part E1). | Add or move units so every point is within distance. |",
       "anchors": [
        "coverage",
        "pfas",
@@ -19903,14 +20140,15 @@
       "id": "lithium",
       "heading": "Lithium-ion battery hazards",
       "url": "https://moyneross.com/technical/portable-fire-equipment#lithium",
-      "markdown": "E-bikes, scooters, tools and battery storage bring lithium-ion battery fires, which reignite and release toxic gases and are not reliably controlled by ordinary extinguishers. Charging areas in car parks, bike stores and apartments need hazard-specific measures: separation, detection, and guidance on what to do, rather than more extinguishers.\n\nMisuse also matters: extinguishers used as door stops, moved to where staff find them convenient, or partly discharged and replaced on the bracket without being serviced."
+      "markdown": "E-bikes, scooters, tools and battery storage bring lithium-ion battery fires, which reignite and release toxic gases and are not reliably controlled by ordinary extinguishers. Charging areas in car parks, bike stores and apartments need hazard-specific measures: separation, detection, and guidance on what to do, rather than more extinguishers.\n\nMisuse also matters: extinguishers used as door stops, moved to where staff find them convenient, or partly discharged and replaced on the bracket without being serviced.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| E-bikes and scooters charged in corridors, stairs or plant rooms | Battery fire risk on an escape route. Fire risk assessment; where charging actually happens. | Move charging off escape routes, to a separated, supervised area with detection. |\n| Swollen, damaged or hot battery packs | Cell failure that can lead to thermal runaway. Inspection of the pack. | Stop charging it, isolate it away from combustibles, and have it removed safely. |"
      },
      {
       "id": "severity",
       "heading": "How serious it is",
       "url": "https://moyneross.com/technical/portable-fire-equipment#severity",
-      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Wrong type at a high hazard (water at switchboards, none at commercial cooking); discharged units in high-risk areas | safety · 4 Essential | Replace now. |\n| Routine service due | deadline · 4 Essential | Six-monthly in Australia; annually in Britain and the United States, with monthly checks. |\n| Missing, damaged or depressurised units | condition · 3 Important | Replace in the near term. |\n| Units at end of life or failing pressure tests | lifecycle · 2 Planned | Replace on cycle. |\n| No register; placement not reviewed after fit-outs | check · 3 Important | Survey. |\n| Normal | nil · 1 Routine | Routine. |",
+      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Wrong type at a high hazard (water at switchboards, none at commercial cooking); discharged units in high-risk areas | safety · 4 Essential | Replace now. |\n| Routine service due | deadline · 4 Essential | Six-monthly in Australia; annually in Britain and the United States, with monthly checks. |\n| Missing, damaged or depressurised units | condition · 3 Important | Replace in the near term. |\n| Units at end of life or failing pressure tests | lifecycle · 2 Planned | Replace on cycle. |\n| No register; placement not reviewed after fit-outs | check · 3 Important | Survey. |\n| Normal | nil · 1 Routine | Routine. |\n| Extinguisher failed to discharge in use, or cylinder corroded or damaged | failure · 4 Essential | Remove from service and replace now. |",
       "anchors": [
+       "f-extinguisher-failed-to-discharge-in-use-or-cylin",
        "f-missing-damaged-or-depressurised-units",
        "f-no-register-placement-not-reviewed-after-fit-out",
        "f-normal",
@@ -19923,7 +20161,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/portable-fire-equipment#investigation",
-      "markdown": "A fire equipment contractor or fire safety consultant. The checks below cover every location on the register, then compare each type with the hazard nearby.\n\n| Check | What it covers |\n| --- | --- |\n| Location survey | Against requirements and travel distances. |\n| Hazard match | Of each unit to the hazards nearby. |\n| Condition check | Gauge, seals, hose, cylinder, mounting, signage, service tag. |\n| Records review | Service and pressure test dates. |\n| PFAS foam identification | . |\n| Records cross-check | Compare the register with what is on site, unit by unit. |\n| Hazard review | Of new uses since the last survey: kitchens, battery charging, workshops, storage. |\n\nThe report should list each location with its status, missing or wrong units, and the next service and test dates.\n\nWhere lithium-ion charging is present, the survey should also identify charging locations and whether the fire risk assessment or fire strategy addresses them.\n\nSurvey results are best recorded on floor plans so gaps in coverage are visible at a glance."
+      "markdown": "A fire equipment contractor or fire safety consultant. The checks below cover every location on the register, then compare each type with the hazard nearby.\n\n| Check | What it covers |\n| --- | --- |\n| Location survey | Against requirements and travel distances (30 m in Britain, gov.uk; 22.9 m for Class A in the United States, OSHA). |\n| Hazard match | Of each unit to the hazards nearby. |\n| Condition check | Gauge, seals, hose, cylinder, mounting, signage, service tag. |\n| Records review | Service and pressure test dates; in the United States, monthly visual inspection, annual maintenance, and hydrostatic tests every five years for water and carbon dioxide units and every twelve for stored-pressure dry chemical (OSHA 1910.157). |\n| PFAS foam identification | Of foam extinguishers, from labels and product data, so PFAS foam can be replaced. |\n| Records cross-check | Compare the register with what is on site, unit by unit. |\n| Hazard review | Of new uses since the last survey: kitchens, battery charging, workshops, storage. |\n\nThe report should list each location with its status, missing or wrong units, and the next service and test dates.\n\nWhere lithium-ion charging is present, the survey should also identify charging locations and whether the fire risk assessment or fire strategy addresses them.\n\nSurvey results are best recorded on floor plans so gaps in coverage are visible at a glance."
      },
      {
       "id": "remedies",
@@ -23775,35 +24013,75 @@
      "emergency-power"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2540,
+    "wordCount": 2770,
     "sources": [
      {
-      "title": "National Construction Code",
+      "title": "NCC 2025 Volume One, Part E2 Smoke hazard management",
       "publisher": "Australian Building Codes Board",
-      "url": "https://ncc.abcb.gov.au/"
+      "url": "https://ncc.abcb.gov.au/editions/ncc-2025/adopted/volume-one/e-services-and-equipment/part-e2-smoke-hazard-management"
      },
      {
-      "title": "Standards catalogue",
+      "title": "AS 1668.1:2015 The use of ventilation and air conditioning in buildings, Part 1: Fire and smoke control in buildings",
       "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
+      "url": "https://store.standards.org.au/product/as-1668-1-2015"
      },
      {
-      "title": "Approved Documents",
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-1851-2012"
+     },
+     {
+      "title": "Approved Document B: Fire safety, volumes 1 and 2",
       "publisher": "UK Government",
-      "url": "https://www.gov.uk/government/collections/approved-documents"
+      "url": "https://www.gov.uk/government/publications/fire-safety-approved-document-b"
      },
      {
-      "title": "British Standards",
+      "title": "Approved Document B, Volume 1: Dwellings (2026 online version)",
+      "publisher": "UK Government",
+      "url": "https://assets.publishing.service.gov.uk/media/6aa3bb335f6e942efe37f150/AD_B1_2026.pdf"
+     },
+     {
+      "title": "BS 9991:2024 Fire safety in the design, management and use of residential buildings",
       "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
+      "url": "https://knowledge.bsigroup.com/products/fire-safety-in-the-design-management-and-use-of-residential-buildings-code-of-practice-2"
+     },
+     {
+      "title": "BS 9999:2017 Fire safety in the design, management and use of buildings",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/fire-safety-in-the-design-management-and-use-of-buildings-code-of-practice"
+     },
+     {
+      "title": "BS EN 12101-6:2022 Smoke and heat control systems: Pressure differential systems",
+      "publisher": "BSI",
+      "url": "https://knowledge.bsigroup.com/products/smoke-and-heat-control-systems-specification-for-pressure-differential-systems-kits-1"
      },
      {
       "title": "NFPA 92 Standard for Smoke Control Systems",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-92-standard-development/92"
+     },
+     {
+      "title": "NFPA 101 Life Safety Code",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-101-standard-development/101"
+     },
+     {
+      "title": "NFPA 4 Standard for Integrated Fire Protection and Life Safety System Testing",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-4-standard-development/4"
+     },
+     {
+      "title": "UFM 3-601-02 Fire protection systems inspection, testing, and maintenance (13 March 2026)",
+      "publisher": "US Department of Defense",
+      "url": "https://www.wbdg.org/FFC/DOD/UFC/ufm_3_601_02_2026.pdf"
+     },
+     {
+      "title": "Stair pressurisation performance in high-rise buildings (Fire, 2023, 6(4), 132)",
+      "publisher": "MDPI",
+      "url": "https://www.mdpi.com/2571-6255/6/4/132"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/smoke-management-systems",
@@ -23875,7 +24153,7 @@
       "id": "interfaces",
       "heading": "Interfaces and testing",
       "url": "https://moyneross.com/technical/smoke-management-systems#interfaces",
-      "markdown": "Smoke systems start on a signal from the fire detection system. Changes to the fire panel, BMS or AHU controls break interfaces so fans do not start, start in the wrong mode, or AHUs keep supplying air to the fire floor. Fire functions moved onto a building management system that is not designed for fire duty may not work in a fire.\n\nTesting fans and dampers individually does not show the system works. Only an integrated test, with the fire alarm triggering the full sequence and pressures, airflows and door forces measured, does.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| AHUs supply air to the fire floor in a test | Cause-and-effect fault. Integrated test. | Repair the interface, update the cause-and-effect matrix, and retest. |",
+      "markdown": "Smoke systems start on a signal from the fire detection system. Changes to the fire panel, BMS or AHU controls break interfaces so fans do not start, start in the wrong mode, or AHUs keep supplying air to the fire floor. Fire functions moved onto a building management system that is not designed for fire duty may not work in a fire.\n\nTesting fans and dampers individually does not show the system works. Only an integrated test, with the fire alarm triggering the full sequence and pressures, airflows and door forces measured, does.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| AHUs supply air to the fire floor in a test | Cause-and-effect fault. Integrated test. | Repair the interface, update the cause-and-effect matrix, and retest. |\n| No pressure or airflow readings since commissioning | Performance unproven. US Department of Defense guidance operates dedicated smoke control systems semi-annually and others annually, recording airflows and pressure differences for comparison with acceptance results (UFM 3-601-02). | Commission a measured test, and keep the readings for comparison next time. |",
       "anchors": [
        "mechanisms",
        "testing"
@@ -23885,7 +24163,7 @@
       "id": "pressure",
       "heading": "Stair pressure and make-up air",
       "url": "https://moyneross.com/technical/smoke-management-systems#pressure",
-      "markdown": "Pressurised stairs must hold smoke back without making doors too hard to open: Australian, British and US standards cap door opening forces, at about 110, 100 and 133 newtons respectively. New door seals, closers and lobbies raise pressures until doors cannot be opened by occupants; failed relief dampers, missing doors and new openings drop pressures so smoke enters.\n\nExhaust systems need replacement air to move smoke. Make-up air paths blocked by new shopfronts, closed doors or failed inlet vents reduce exhaust to a fraction of design.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Stair doors cannot be opened during a test | Pressure too high (new seals, failed relief). Door opening force measurement. | Measure the opening force; rebalance the pressurisation, and repair or add relief dampers. |\n| Smoke in stairs during a drill | Pressure too low or fans not starting. Pressure measurement; interface test. | Measure the pressure and test the interfaces; rebalance, or repair the fans. |\n| Atrium smoke fills too low in modelling or tests | Make-up air shortfall or enclosure changes. Airflow measurement; layout review. | Measure the airflow; restore or add make-up air paths, and review the layout with a fire engineer. |",
+      "markdown": "Pressurised stairs must hold smoke back without making doors too hard to open: Australian, British and US standards cap door opening forces, at about 110, 100 and 133 newtons respectively. New door seals, closers and lobbies raise pressures until doors cannot be opened by occupants; failed relief dampers, missing doors and new openings drop pressures so smoke enters.\n\nExhaust systems need replacement air to move smoke. Make-up air paths blocked by new shopfronts, closed doors or failed inlet vents reduce exhaust to a fraction of design.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Stair doors cannot be opened during a test | Pressure too high (new seals, failed relief). Door opening force measurement: in Australia AS 1668.1 limits the force at the handle to 110 N and requires air to flow through open stair doors at 1 m/s (Fire journal). | Measure the opening force; rebalance the pressurisation, and repair or add relief dampers. |\n| Smoke in stairs during a drill | Pressure too low or fans not starting. Pressure measurement; interface test. | Measure the pressure and test the interfaces; rebalance, or repair the fans. |\n| Atrium smoke fills too low in modelling or tests | Make-up air shortfall or enclosure changes. Airflow measurement; layout review. | Measure the airflow; restore or add make-up air paths, and review the layout with a fire engineer. |",
       "anchors": [
        "makeup"
       ]
@@ -23894,7 +24172,7 @@
       "id": "equipment",
       "heading": "Equipment and alterations",
       "url": "https://moyneross.com/technical/smoke-management-systems#equipment",
-      "markdown": "Fans, dampers, curtains and vents operated only in tests seize, lose belts, or have motors that fail; smoke dampers corrode; curtains snag on new fittings.\n\nAtria enclosed with new floors, malls subdivided, car parks partitioned for storage, and stair doors held open all change smoke behaviour against the design.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Fans run but dampers stay shut | Seized dampers or actuator failure. Damper inspection. | Replace the seized dampers or actuators, and retest. |",
+      "markdown": "Fans, dampers, curtains and vents operated only in tests seize, lose belts, or have motors that fail; smoke dampers corrode; curtains snag on new fittings.\n\nAtria enclosed with new floors, malls subdivided, car parks partitioned for storage, and stair doors held open all change smoke behaviour against the design.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Fans run but dampers stay shut | Seized dampers or actuator failure. Damper inspection. | Replace the seized dampers or actuators, and retest. |\n| Smoke vent obstructed, or replaced with a smaller unit | Vent area short of the design. In England a corridor or lobby smoke vent on an external wall needs a free area of at least 1.5 m²; a smoke shaft needs a section of at least 1.5 m², with vents of at least 1 m² (Approved Document B, Volume 1). | Measure the free area, and restore it. |\n| New plant or screens close to a smoke shaft head | Discharge compromised. In England the shaft should open at roof level at least 0.5 m above surrounding structures within 2 m, and extend at least 2.5 m above the ceiling of the highest storey served (Approved Document B, Volume 1). | Survey the shaft head against the design, and move or remove obstructions. |",
       "anchors": [
        "alterations"
       ]
@@ -23918,7 +24196,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/smoke-management-systems#investigation",
-      "markdown": "A fire engineer leads, working from the fire engineering report or smoke control design, with a mechanical services engineer and the fire services contractor. Testing is done out of hours, with the fire brigade and monitoring centre notified. The checks below start with the integrated test record, then measure pressures, airflows and door opening forces.\n\n| Check | What it covers |\n| --- | --- |\n| Design review | The smoke control design basis, performance criteria (pressures, airflows, smoke layer heights), cause-and-effect, and any performance solutions that rely on the system. |\n| Change review | Every alteration since design that could change smoke behaviour or air paths, including new doors and seals, enclosed atria, subdivided malls, car park storage, and replaced AHUs or controls. |\n| Equipment inspection | Fans (bearings, belts, motors, temperature rating), smoke dampers and actuators, relief dampers, curtains, vents, fire fan control panel, fire-rated cabling and power supplies. |\n| Integrated test | Initiated from the fire alarm in each smoke zone: confirm the full sequence starts, AHUs switch correctly, dampers move, curtains drop, vents open, and fire-fighters' overrides work. |\n| Measurement | Stair pressure differentials with doors open and closed, door opening forces at every stair door, exhaust and make-up airflows, and car park jet fan coverage. |\n| Secondary power | Confirm the system runs from the emergency supply where required. |\n\nThe report should state whether the system meets its design performance today, list every failed function and measurement, identify changes that have compromised it, and set out rectification or redesign."
+      "markdown": "A fire engineer leads, working from the fire engineering report or smoke control design, with a mechanical services engineer and the fire services contractor. Testing is done out of hours, with the fire brigade and monitoring centre notified. The checks below start with the integrated test record, then measure pressures, airflows and door opening forces.\n\n| Check | What it covers |\n| --- | --- |\n| Design review | The smoke control design basis, performance criteria (pressures, airflows, smoke layer heights), cause-and-effect, and any performance solutions that rely on the system. |\n| Change review | Every alteration since design that could change smoke behaviour or air paths, including new doors and seals, enclosed atria, subdivided malls, car park storage, and replaced AHUs or controls. |\n| Equipment inspection | Fans (bearings, belts, motors, temperature rating), smoke dampers and actuators, relief dampers, curtains, vents, fire fan control panel, fire-rated cabling and power supplies. |\n| Integrated test | Initiated from the fire alarm in each smoke zone: confirm the full sequence starts, AHUs switch correctly, dampers move, curtains drop, vents open, and fire-fighters' overrides work. |\n| Measurement | Stair pressure differentials with doors open and closed, door opening forces at every stair door, exhaust and make-up airflows, and car park jet fan coverage; in Australia door force at the handle no more than 110 N and 1 m/s through open stair doors (Fire journal). |\n| Secondary power | Confirm the system runs from the emergency supply where required. |\n\nThe report should state whether the system meets its design performance today, list every failed function and measurement, identify changes that have compromised it, and set out rectification or redesign."
      },
      {
       "id": "remedies",
@@ -24908,25 +25186,75 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-10",
+    "updatedAt": "2026-11-11",
     "reviewedAt": null,
     "reviewDue": "2027-11-07",
-    "wordCount": 2504,
+    "wordCount": 2748,
     "sources": [
      {
-      "title": "Standards catalogue",
+      "title": "AS 1851-2012 Routine service of fire protection systems and equipment",
       "publisher": "Standards Australia",
-      "url": "https://www.standards.org.au/"
+      "url": "https://store.standards.org.au/product/as-1851-2012"
      },
      {
-      "title": "British Standards",
+      "title": "AS 4214:2018 Gaseous fire-extinguishing systems",
+      "publisher": "Standards Australia",
+      "url": "https://store.standards.org.au/product/as-4214-2018"
+     },
+     {
+      "title": "ISO 14520-1:2023 Gaseous fire-extinguishing systems: Physical properties and system design, Part 1: General requirements",
+      "publisher": "ISO",
+      "url": "https://www.iso.org/standard/79444.html"
+     },
+     {
+      "title": "BS EN 15004-1:2019 Fixed firefighting systems: Gas extinguishing systems, design, installation and maintenance",
       "publisher": "BSI",
-      "url": "https://knowledge.bsigroup.com/"
+      "url": "https://knowledge.bsigroup.com/products/fixed-firefighting-systems-gas-extinguishing-systems-design-installation-and-maintenance"
      },
      {
-      "title": "NFPA 2001 Clean Agent Fire Extinguishing Systems",
+      "title": "NFPA 2001 Standard on Clean Agent Fire Extinguishing Systems",
       "publisher": "National Fire Protection Association",
-      "url": "https://www.nfpa.org/"
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-2001-standard-development/2001"
+     },
+     {
+      "title": "NFPA 11 Standard for Low-, Medium-, and High-Expansion Foam",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-11-standard-development/11"
+     },
+     {
+      "title": "NFPA 12 Standard on Carbon Dioxide Extinguishing Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-12-standard-development/12"
+     },
+     {
+      "title": "NFPA 13 Standard for the Installation of Sprinkler Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-13-standard-development/13"
+     },
+     {
+      "title": "NFPA 17A Standard for Wet Chemical Extinguishing Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-17a-standard-development/17a"
+     },
+     {
+      "title": "NFPA 25 Standard for the Inspection, Testing, and Maintenance of Water-Based Fire Protection Systems",
+      "publisher": "National Fire Protection Association",
+      "url": "https://www.nfpa.org/codes-and-standards/nfpa-25-standard-development/25"
+     },
+     {
+      "title": "UFM 3-601-02 Fire protection systems inspection, testing, and maintenance (13 March 2026)",
+      "publisher": "US Department of Defense",
+      "url": "https://www.wbdg.org/FFC/DOD/UFC/ufm_3_601_02_2026.pdf"
+     },
+     {
+      "title": "Clean agent enclosure design (FPE Extra, issue 74)",
+      "publisher": "Society of Fire Protection Engineers",
+      "url": "https://sfpe.connectedcommunity.org/publications/fpemagazine/fpeextra/etarchives3/fpeetissue74"
+     },
+     {
+      "title": "Leakage rates and hold times for clean agent fire suppression enclosures",
+      "publisher": "National Institute of Standards and Technology",
+      "url": "https://www.nist.gov/system/files/documents/el/fire_research/R0601297.pdf"
      }
     ],
     "canonicalUrl": "https://moyneross.com/technical/specialist-suppression-systems",
@@ -24998,7 +25326,7 @@
       "id": "rooms",
       "heading": "Room integrity and change of use",
       "url": "https://moyneross.com/technical/specialist-suppression-systems#rooms",
-      "markdown": "Gaseous systems are designed to hold an extinguishing concentration for a set time. New cable penetrations, raised floor and ceiling changes, gaps under doors, and new ductwork let the gas leak away, so the fire reignites when the concentration falls. A door fan integrity test shows whether the room still holds.\n\nA room fitted out for one use and later used for another (more equipment, storage, people) can outgrow its design.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Room integrity test fails | Penetrations and gaps added. Door fan test. | Seal every penetration with tested products, fit door seals and closers, and retest. |",
+      "markdown": "Gaseous systems are designed to hold an extinguishing concentration for a set time. New cable penetrations, raised floor and ceiling changes, gaps under doors, and new ductwork let the gas leak away, so the fire reignites when the concentration falls. A door fan integrity test shows whether the room still holds.\n\nA room fitted out for one use and later used for another (more equipment, storage, people) can outgrow its design.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Room integrity test fails | Penetrations and gaps added. Door fan test. | Seal every penetration with tested products, fit door seals and closers, and retest. |\n| Door fan test predicts a short hold time | Room too leaky to hold the agent. Predicted hold time against the design: NFPA 2001 requires 10 minutes, or long enough for trained personnel to respond (SFPE), with the end of the hold commonly taken as 80 per cent of the minimum design concentration (NIST). | Seal the leaks with tested products and retest. |\n| Walls, ceilings or doors damaged after a discharge | Peak pressure beyond what the enclosure can take. A discharge produces a peak of roughly 240 to 1,200 Pa for a fraction of a second, while suspended ceilings take only about 50 Pa (SFPE). | Have pressure relief sized and fitted, and restrain ceiling tiles. |",
       "anchors": [
        "change",
        "integrity",
@@ -25009,7 +25337,7 @@
       "id": "agents",
       "heading": "Agents, regulation and occupant safety",
       "url": "https://moyneross.com/technical/specialist-suppression-systems#agents",
-      "markdown": "Halon production ended in developed countries in 1994; remaining systems must be decommissioned or justified. HFC-227ea is being phased down with other HFCs. A major producer of FK-5-1-12 stopped making PFAS products, changing supply. Older firefighting foams contain PFAS and are being banned or restricted in Australia, Britain, the European Union and many US states, with clean-up obligations.\n\nCarbon dioxide systems kill people who are in the room when they discharge; pre-discharge alarms, time delays, lock-off valves and signage must work. Inert gas systems lower oxygen to levels that are safe only for short exposures at design concentration.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Halon cylinders present | Legacy system. Labels. | Plan decommissioning through approved channels, and replacement with a permitted agent. |\n| Foam concentrate of older type | Likely PFAS-containing foam. Product data; testing. | Test the foam; replace PFAS foam with fluorine-free foam, cleaning the system and disposing of the old concentrate. |",
+      "markdown": "Halon production ended in developed countries in 1994; remaining systems must be decommissioned or justified. HFC-227ea is being phased down with other HFCs. A major producer of FK-5-1-12 stopped making PFAS products, changing supply. Older firefighting foams contain PFAS and are being banned or restricted in Australia, Britain, the European Union and many US states, with clean-up obligations.\n\nCarbon dioxide systems kill people who are in the room when they discharge; pre-discharge alarms, time delays, lock-off valves and signage must work. Inert gas systems lower oxygen to levels that are safe only for short exposures at design concentration.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Halon cylinders present | Legacy system. Labels. | Plan decommissioning through approved channels, and replacement with a permitted agent. |\n| Foam concentrate of older type | Likely PFAS-containing foam. Product data; testing. | Test the foam; replace PFAS foam with fluorine-free foam, cleaning the system and disposing of the old concentrate. |\n| Carbon dioxide cylinders with no recent weight record | Agent quantity unknown. US Department of Defense guidance verifies high-pressure carbon dioxide by weighing every two years, and checks pre-discharge time delays annually (UFM 3-601-02). | Weigh the cylinders and check the time delays; recharge any cylinder found short. |",
       "anchors": [
        "agent",
        "safety"
@@ -25019,7 +25347,7 @@
       "id": "systems",
       "heading": "Detection, pre-action and kitchen systems",
       "url": "https://moyneross.com/technical/specialist-suppression-systems#systems",
-      "markdown": "Systems release only when detection confirms a fire, usually from two detectors. Faulty detectors, disabled panels, and abort or manual release switches left in the wrong position stop discharge or cause accidental discharge.\n\nPre-action pipework that holds water from tests corrodes; supervisory air leaks; valves fail to trip.\n\nNozzles blocked with grease, fusible links not replaced, appliances moved from under nozzles, and gas shutoff interlocks bypassed.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Panel in manual or isolated | Left after works or a false discharge. Panel status. | Return the panel to automatic, and find out why it was left isolated. |",
+      "markdown": "Systems release only when detection confirms a fire, usually from two detectors. Faulty detectors, disabled panels, and abort or manual release switches left in the wrong position stop discharge or cause accidental discharge.\n\nPre-action pipework that holds water from tests corrodes; supervisory air leaks; valves fail to trip.\n\nNozzles blocked with grease, fusible links not replaced, appliances moved from under nozzles, and gas shutoff interlocks bypassed.\n\n| What you see | Likely cause, and what confirms it | Next step |\n| --- | --- | --- |\n| Panel in manual or isolated | Left after works or a false discharge. Panel status. | Return the panel to automatic, and find out why it was left isolated. |\n| Kitchen system label older than six months | Servicing lapsed. US Department of Defense guidance inspects wet chemical systems semi-annually, checking the hazard has not changed and replacing fusible links (UFM 3-601-02). | Restore six-monthly servicing, and check the nozzles against the current appliances. |",
       "anchors": [
        "detection",
        "kitchen",
@@ -25030,11 +25358,12 @@
       "id": "severity",
       "heading": "How serious it is",
       "url": "https://moyneross.com/technical/specialist-suppression-systems#severity",
-      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Carbon dioxide safeguards failed; system isolated in a protected room; kitchen system disabled | safety · 4 Essential | Rectify now. |\n| Room integrity failed | failure · 4 Essential | Seal now. |\n| Halon, HFC or PFAS foam requiring decommissioning or replacement under rules | deadline · 4 Essential | By the regulatory date. |\n| Servicing and integrity testing due | deadline · 4 Essential | At the prescribed interval. |\n| Panel or detection ageing | condition · 3 Important | Repair. |\n| System at end of life | lifecycle · 3 Important | Replace. |\n| Design basis unknown after change of use | check · 3 Important | Review. |",
+      "markdown": "Findings are graded by what they demand: safety (can hurt someone now), failure (failed and damaging the building), condition (distress present and progressing), lifecycle (renewal due on age and exposure), deadline (a regulator or ordinance sets the date), check (investigate before sizing works) and nil (cosmetic or stable).\n\n| Finding | How serious | What it means for timing |\n| --- | --- | --- |\n| Carbon dioxide safeguards failed; system isolated in a protected room; kitchen system disabled | safety · 4 Essential | Rectify now. |\n| Room integrity failed | failure · 4 Essential | Seal now. |\n| Halon, HFC or PFAS foam requiring decommissioning or replacement under rules | deadline · 4 Essential | By the regulatory date. |\n| Servicing and integrity testing due | deadline · 4 Essential | At the prescribed interval. |\n| Panel or detection ageing | condition · 3 Important | Repair. |\n| System at end of life | lifecycle · 3 Important | Replace. |\n| Design basis unknown after change of use | check · 3 Important | Review. |\n| Minor faults found and fixed at service | nil · 1 Routine | Routine maintenance. |",
       "anchors": [
        "f-carbon-dioxide-safeguards-failed-system-isolated",
        "f-design-basis-unknown-after-change-of-use",
        "f-halon-hfc-or-pfas-foam-requiring-decommissioning",
+       "f-minor-faults-found-and-fixed-at-service",
        "f-panel-or-detection-ageing",
        "f-room-integrity-failed",
        "f-servicing-and-integrity-testing-due",
@@ -25045,7 +25374,7 @@
       "id": "investigation",
       "heading": "Investigation before the scope",
       "url": "https://moyneross.com/technical/specialist-suppression-systems#investigation",
-      "markdown": "A fire services engineer leads, with a suppression specialist for the system type and, for kitchens, the hood and suppression contractor. The checks below start with room integrity and the agent, then test detection, controls and safeguards.\n\n| Check | What it covers |\n| --- | --- |\n| Design review | Hazard, agent, design concentration and hold time, room volume, and whether the room's use, contents and occupancy have changed. |\n| Room integrity test | By door fan for gaseous systems, predicting hold time against the design, with leaks located by smoke pencil or thermal imaging. |\n| Cylinder and agent inspection | Weight or pressure against the label, hydrostatic test dates, valves, discharge pipework and nozzles, mounting. |\n| Detection and control test | Detectors, two-stage confirmation logic, pre-discharge alarms, time delays, abort and manual release, lock-off valves, interfaces to air handling shutdown and dampers. |\n| Occupant safety review | For carbon dioxide and inert gas systems: signage, alarms, lock-off procedures, room access controls. |\n| Regulatory review | Of the agent: halon status, HFC phase-down, foam PFAS content and any decommissioning or clean-up obligations. |\n| Pre-action checks | Supervisory air, low-point drains, internal condition, trip test. |\n| Kitchen system inspection | Nozzle positions against current appliances, grease, fusible links, gas and power shutdown interlocks, manual release. |\n\nThe report should state whether the system will suppress a fire in the room as it now is, the safety position, the agent's regulatory status, and works or replacement needed."
+      "markdown": "A fire services engineer leads, with a suppression specialist for the system type and, for kitchens, the hood and suppression contractor. The checks below start with room integrity and the agent, then test detection, controls and safeguards.\n\n| Check | What it covers |\n| --- | --- |\n| Design review | Hazard, agent, design concentration and hold time, room volume, and whether the room's use, contents and occupancy have changed; NFPA 2001 sets a halocarbon discharge of about 10 seconds (NIST), so pipework changes need the design recalculated. |\n| Room integrity test | By door fan for gaseous systems, predicting hold time against the design, with leaks located by smoke pencil or thermal imaging; NFPA 2001 sets 10 minutes unless trained personnel can respond sooner (SFPE). |\n| Cylinder and agent inspection | Weight or pressure against the label, hydrostatic test dates, valves, discharge pipework and nozzles, mounting. |\n| Detection and control test | Detectors, two-stage confirmation logic, pre-discharge alarms, time delays, abort and manual release, lock-off valves, interfaces to air handling shutdown and dampers. |\n| Occupant safety review | For carbon dioxide and inert gas systems: signage, alarms, lock-off procedures, room access controls. |\n| Regulatory review | Of the agent: halon status, HFC phase-down, foam PFAS content and any decommissioning or clean-up obligations. |\n| Pre-action checks | Supervisory air, low-point drains, internal condition, trip test. |\n| Kitchen system inspection | Nozzle positions against current appliances, grease, fusible links, gas and power shutdown interlocks, manual release. |\n\nThe report should state whether the system will suppress a fire in the room as it now is, the safety position, the agent's regulatory status, and works or replacement needed."
      },
      {
       "id": "remedies",
@@ -25084,7 +25413,7 @@
       "id": "worked-example",
       "heading": "Worked example: a server room opened for new cabling",
       "url": "https://moyneross.com/technical/specialist-suppression-systems#worked-example",
-      "markdown": "An illustrative example of the reasoning, not an inspected building. A server room is protected by a clean agent system, with cylinders full and serviced on time. Last year the raised floor and ceiling were opened for new cabling, and the door's seal was lost when the door was replaced during the works. The last room integrity test predates the works.\n\nA gaseous system in a room that no longer holds gas will discharge and fail to put the fire out, however full the cylinders. Room integrity must be retested after any works that penetrate the room. The opened floor and ceiling and the unsealed door make failure likely, and if it fails, the works are the cause rather than ageing seals.\n\nSo the register carries a room integrity test as a check line now, resealing of the floor, ceiling and door with tested products, and a retest with its hold time, with the agent recalculated if the room's volume has changed. If the test fails, the room is a failure line until it is resealed."
+      "markdown": "An illustrative example of the reasoning, not an inspected building. A server room is protected by a clean agent system, with cylinders full and serviced on time. Last year the raised floor and ceiling were opened for new cabling, and the door's seal was lost when the door was replaced during the works. The last room integrity test predates the works.\n\nA gaseous system in a room that no longer holds gas will discharge and fail to put the fire out, however full the cylinders. Any works that penetrate the room call for a new integrity test. The opened floor and ceiling and the unsealed door make failure likely, and if it fails, the works are the cause rather than ageing seals.\n\nSo the register carries a room integrity test as a check line now, resealing of the floor, ceiling and door with tested products, and a retest with its hold time, with the agent recalculated if the room's volume has changed. If the test fails, the room is a failure line until it is resealed."
      }
     ]
    },
