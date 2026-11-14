@@ -45,6 +45,28 @@ const DEFAULT_ALLOWED_ORIGIN_HOSTNAMES = [
   'localhost',
   '127.0.0.1',
   '[::1]',
+  // Public MCP directories run browser-based inspectors and playgrounds that
+  // connect to a listed server from the visitor's own browser. A CORS
+  // preflight from these origins is how a directory establishes that a server
+  // is reachable and enumerable; rejecting it leaves the listing permanently
+  // "not tested", with no try-it path for anyone evaluating the connector.
+  //
+  // Admitting them costs nothing here: this endpoint is public, read-only,
+  // unauthenticated and carries no customer data, so a browser request from
+  // these origins can reach nothing a plain fetch could not already reach.
+  // Host validation above still binds the endpoint to its own hostnames, and
+  // ALLOWED_ORIGINS continues to override this list exactly when set.
+  'glama.ai',
+  'www.glama.ai',
+  'smithery.ai',
+  'www.smithery.ai',
+  'mcp.so',
+  'www.mcp.so',
+  'pulsemcp.com',
+  'www.pulsemcp.com',
+  'modelcontextprotocol.io',
+  'inspector.modelcontextprotocol.io',
+  'registry.modelcontextprotocol.io',
 ];
 const LOCAL_HOSTNAMES = ['localhost', '127.0.0.1', '[::1]', 'test.local'];
 
@@ -225,6 +247,61 @@ function rpcMethods(request: Request): string[] {
   return method ? [method] : [];
 }
 
+// Discovery and handshake methods only. A client that names a protocol
+// revision in MCP-Protocol-Version but sends a body shaped for an earlier one
+// is rejected by the SDK's envelope check, which is correct: the two disagree.
+// For these read-only methods the answer shape is stable across revisions, so
+// the disagreement costs nothing and the request is retried on the legacy
+// stateless path rather than refused. Public directories and index crawlers
+// routinely mis-declare this way, and a refused tools/list is the difference
+// between a listed connector and an unlisted one.
+//
+// tools/call is deliberately absent. There, a client that has misread its own
+// revision may also misread the result, and a research answer about a real
+// building is not worth serving into that uncertainty.
+const LENIENT_METHODS = new Set([
+  'initialize',
+  'server/discover',
+  'tools/list',
+  'resources/list',
+  'resources/templates/list',
+  'prompts/list',
+]);
+
+// True when the SDK refused the request because the named revision and the
+// body's envelope disagree, rather than for any other bad-request reason.
+function isEnvelopeMismatch(payload: unknown): boolean {
+  if (!payload || typeof payload !== 'object') return false;
+  const error = (payload as { error?: unknown }).error;
+  if (!error || typeof error !== 'object') return false;
+
+  const { code, data, message } = error as { code?: unknown; data?: unknown; message?: unknown };
+  if (code !== -32602 && code !== -32020) return false;
+  if (data && typeof data === 'object' && 'envelope' in (data as object)) return true;
+  return typeof message === 'string' && /envelope|headers and body disagree/i.test(message);
+}
+
+// The request's JSON-RPC method names, but only when every message in it is
+// one of the lenient methods. A batch mixing a tool call into a discovery
+// batch is not retried.
+function lenientMethodNames(body: string): string[] | undefined {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return undefined;
+  }
+
+  const messages = Array.isArray(parsed) ? parsed : [parsed];
+  if (messages.length === 0) return undefined;
+
+  const names = messages.map((message) =>
+    message && typeof message === 'object' ? (message as { method?: unknown }).method : undefined,
+  );
+  if (names.some((name) => typeof name !== 'string' || !LENIENT_METHODS.has(name))) return undefined;
+  return names as string[];
+}
+
 function logRequest(methods: string[], client: string, endpoint: string, status: number, durationMs: number): void {
   try {
     console.error(JSON.stringify({ evt: 'mcp_request', methods, client, endpoint, status, durationMs, at: new Date().toISOString() }));
@@ -272,8 +349,43 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
   // hand-over is left out on the OpenAI endpoint and for ChatGPT on /mcp.
   const handOver = endpoint !== 'openai' && client !== 'chatgpt';
 
+  // The body is buffered only when the client names a protocol revision, so
+  // the ordinary request path still hands the original request straight to the
+  // SDK without the handler touching its body.
+  const declaresRevision = Boolean(request.headers.get('MCP-Protocol-Version')?.trim());
+  const bufferedBody = declaresRevision ? await request.text() : undefined;
+  const dispatch = (headers?: Headers): Promise<Response> =>
+    mcpHandler.fetch(
+      bufferedBody === undefined
+        ? request
+        : new Request(request.url, {
+            method: request.method,
+            headers: headers ?? request.headers,
+            body: bufferedBody,
+          }),
+    );
+
   try {
-    const response = withCommonHeaders(await runWithClient(client, () => mcpHandler.fetch(request), handOver), request);
+    let result = await runWithClient(client, () => dispatch(), handOver);
+
+    if (bufferedBody !== undefined && result.status === 400) {
+      const lenient = lenientMethodNames(bufferedBody);
+      if (lenient) {
+        const refusal = await result
+          .clone()
+          .json()
+          .catch(() => undefined);
+        if (isEnvelopeMismatch(refusal)) {
+          // Drop the disputed revision header and let the SDK's stateless
+          // compatibility path serve the discovery call.
+          const legacyHeaders = new Headers(request.headers);
+          legacyHeaders.delete('MCP-Protocol-Version');
+          result = await runWithClient(client, () => dispatch(legacyHeaders), handOver);
+        }
+      }
+    }
+
+    const response = withCommonHeaders(result, request);
     logRequest(methods, client, endpoint, response.status, Date.now() - started);
     return response;
   } catch (error) {
