@@ -130,6 +130,22 @@ else {
   }
 }
 
+// The glossary: enough terms to be the published page, every term with all
+// three markets, and every page it points to a page the snapshot holds.
+{
+  const g = snap.glossary;
+  const slugs = new Set((snap.technical?.pages ?? []).map((t) => t.slug));
+  if (!g || !Array.isArray(g.terms) || g.terms.length < 50) errors.push('Glossary is missing or has fewer than 50 terms.');
+  else {
+    if (new Set(g.terms.map((t) => t.id)).size !== g.terms.length) errors.push('Glossary: two terms share an id.');
+    for (const t of g.terms) {
+      for (const f of ['concept', 'au', 'uk', 'us', 'group']) if (!t[f] || String(t[f]).length < 2) errors.push(`glossary ${t.id}: ${f} missing`);
+      if (t.url !== `https://moyneross.com/technical/glossary#${t.id}`) errors.push(`glossary ${t.id}: bad URL ${t.url}`);
+      for (const s of t.pages ?? []) if (!slugs.has(s)) errors.push(`glossary ${t.id}: points to /technical/${s}, which is not in the snapshot`);
+    }
+  }
+}
+
 if (snap.methods.map((m) => m.id).sort().join() !== 'capital-register,mr-index') errors.push('Methods must be the Capital Register and the MR Index.');
 for (const m of snap.methods) if (m.text.length < 2000) errors.push(`${m.id}: method text looks truncated`);
 if (!/\$331,225/.test(snap.sample.text) || !/Cost basis/.test(snap.sample.text)) errors.push('Sample text is missing its figures or register.');

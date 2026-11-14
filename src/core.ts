@@ -2,6 +2,7 @@ import { RANKING } from './ranking.js';
 import snapshotJson from '../data/corpus.json' with { type: 'json' };
 import type {
   CorpusSnapshot,
+  GlossaryTerm,
   MatchStrength,
   MethodRecord,
   PaperRecord,
@@ -1321,4 +1322,109 @@ export function renderCompare(c: ReturnType<typeof compareSections>): string {
   for (const p of c.pages) out.push('', `## ${p.title}${p.heading ? `: ${p.heading}` : ''}`, p.url, '', p.text);
   if (c.unknown.length) out.push('', `Not found: ${c.unknown.join(', ')}.`);
   return out.join('\n');
+}
+
+// ─── Glossary: one thing under three markets' names ──────────────────────
+// The published glossary (moyneross.com/technical/glossary) sets the
+// Australian, British and US names for the same element, lease term, code or
+// report side by side. A term is found by any market's word for it, or by
+// what it is. Matching is by whole words, exact name first: "elevator" is the
+// lift row, not every row that mentions one.
+
+export const glossary = snapshot.glossary ?? { title: 'Glossary', url: 'https://moyneross.com/technical/glossary', updatedAt: null, terms: [] };
+export const GLOSSARY_BOUNDARY = 'Nearest equivalent terms in everyday professional use, not legal definitions. Where the markets use different instruments rather than different words, the note says so; usage also varies by state, nation and region.';
+export const GLOSSARY_LIMIT = 5;
+
+const glossWords = (text: string): string[] => text.toLowerCase().replace(/[’']/g, '').split(/[^a-z0-9]+/).filter(Boolean)
+  .map((w) => (w.length > 4 && w.endsWith('s') && !w.endsWith('ss') ? w.slice(0, -1) : w));
+const GLOSS_STOP = new Set(['a', 'an', 'the', 'of', 'or', 'and', 'in', 'to', 'for', 'is', 'it', 'what', 'do', 'does', 'they', 'you', 'call', 'called', 'term', 'word', 'name', 'mean', 'means', 'equivalent', 'australia', 'australian', 'uk', 'us', 'british', 'britain', 'american', 'america', 'usa']);
+
+// The names one market's cell gives: its alternatives, and any abbreviation
+// in brackets ("Technical due diligence (TDD) report" is also "TDD").
+function glossNames(cell: string): string[][] {
+  const out: string[][] = [];
+  for (const part of cell.split(/[;,]| or /)) {
+    const words = glossWords(part.replace(/\([^)]*\)/g, ' '));
+    if (words.length) out.push(words);
+    for (const m of part.matchAll(/\(([^)]+)\)/g)) { const w = glossWords(m[1]!); if (w.length) out.push(w); }
+  }
+  return out;
+}
+type GlossIndexed = { term: GlossaryTerm; names: Record<Market, string[][]>; words: Record<Market, Set<string>>; concept: Set<string> };
+const glossIndex: GlossIndexed[] = glossary.terms.map((term) => ({
+  term,
+  names: { AU: glossNames(term.au), UK: glossNames(term.uk), US: glossNames(term.us) },
+  words: { AU: new Set(glossWords(term.au)), UK: new Set(glossWords(term.uk)), US: new Set(glossWords(term.us)) },
+  concept: new Set(glossWords(term.concept)),
+}));
+
+function glossScores(q: string[]) {
+  const same = (a: string[]) => a.length === q.length && a.every((w, i) => w === q[i]);
+  return glossIndex.map((g) => {
+    let score = 0;
+    const matchedIn: Market[] = [];
+    for (const m of MARKETS) {
+      let s = 0;
+      if (g.names[m].some(same)) s = 100;
+      else if (q.length && q.every((w) => g.words[m].has(w))) s = 60;
+      if (s) matchedIn.push(m);
+      score = Math.max(score, s);
+    }
+    if (!score && q.length) {
+      const everywhere = new Set([...g.words.AU, ...g.words.UK, ...g.words.US, ...g.concept]);
+      const hit = q.filter((w) => everywhere.has(w)).length;
+      if (hit === q.length) score = 30;
+      else if (q.length > 1 && hit / q.length >= 0.6) score = 10 * (hit / q.length);
+    }
+    return { g, score, matchedIn };
+  }).filter((x) => x.score > 0).sort((a, b) => b.score - a.score || a.g.term.concept.length - b.g.term.concept.length);
+}
+
+export function translateTerm({ term: query, market }: { term: string; market?: Market | undefined }) {
+  // The words as given first ("certificate of occupancy", "Cat A"); if no
+  // entry carries them all, the question's carrier words are set aside
+  // ("what do Americans call a downpipe?") and it is read again.
+  const all = glossWords(query);
+  const kept = all.filter((w) => !GLOSS_STOP.has(w));
+  let scored = glossScores(all);
+  if ((scored[0]?.score ?? 0) < 60 && kept.length && kept.length < all.length) scored = glossScores(kept);
+  // An exact name stands alone with its near neighbours; loose matches do not ride in behind it.
+  const best = scored[0]?.score ?? 0;
+  const kept2 = scored.filter((x) => x.score >= (best >= 60 ? 60 : best >= 30 ? 30 : 0)).slice(0, GLOSSARY_LIMIT);
+  const matches = kept2.map(({ g, matchedIn }) => ({
+    id: g.term.id,
+    group: g.term.group,
+    concept: g.term.concept,
+    terms: { AU: g.term.au, UK: g.term.uk, US: g.term.us },
+    matchedIn,
+    note: g.term.note,
+    url: g.term.url,
+    pages: g.term.pages.map((slug) => getTechnicalPage(slug)).filter((p): p is TechnicalPage => Boolean(p)).map((p) => ({ slug: p.slug, title: p.title, url: p.canonicalUrl })),
+  }));
+  return {
+    term: query,
+    market: market ?? null,
+    match: (best >= 100 ? 'exact' : best >= 30 ? 'close' : best > 0 ? 'loose' : 'none') as 'exact' | 'close' | 'loose' | 'none',
+    count: matches.length,
+    matches,
+    glossaryUrl: glossary.url,
+    boundary: GLOSSARY_BOUNDARY,
+    corpusVersion,
+  };
+}
+
+export function renderTranslation(t: ReturnType<typeof translateTerm>): string {
+  if (!t.count) return `No glossary entry matches "${t.term}". The glossary covers ${glossary.terms.length} terms that differ between Australia, the United Kingdom and the United States: ${glossary.url}\nFor what an element is or how it fails, use search_research.`;
+  const lines = t.matches.map((m) => {
+    const order = t.market ? [t.market, ...MARKETS.filter((x) => x !== t.market)] : [...MARKETS];
+    return [
+      `## ${m.concept}`,
+      ...order.map((mk) => `- ${MARKET_NAMES[mk]}: ${m.terms[mk]}`),
+      ...(m.note ? [`Note: ${m.note}`] : []),
+      ...(m.pages.length ? [`See: ${m.pages.map((p) => `${p.title} (${p.url})`).join('; ')}`] : []),
+      m.url,
+    ].join('\n');
+  });
+  const lead = t.match === 'exact' ? '' : t.match === 'close' ? `No entry is named exactly "${t.term}"; the nearest:\n\n` : `Only loosely related entries match "${t.term}":\n\n`;
+  return `${lead}${lines.join('\n\n')}\n\n${t.boundary}`;
 }

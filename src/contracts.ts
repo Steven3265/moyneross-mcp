@@ -96,6 +96,10 @@ export const compareSectionsInputSchema = z.object({
   section: z.enum(COMPARE_SECTION_IDS).describe('The section to set side by side: service-life, severity, what-to-ask-for, misreads, remedies, cost-shape, investigation, jurisdiction-notes and the rest, or thresholds for the measured values by market.'),
   market: z.enum(MARKETS).optional().describe('With section thresholds: that market\'s values only. Without it, every market\'s values, each labelled.'),
 });
+export const translateTermInputSchema = z.object({
+  term: z.string().trim().min(2).max(120).describe('The term to look up, in any market\'s wording: "elevator", "dilapidations", "sarking", "certificate of occupancy".'),
+  market: z.enum(MARKETS).optional().describe('The market the answer is for: AU, UK or US. Its term is listed first. All three are always returned.'),
+});
 
 // ─── Outputs ─────────────────────────────────────────────────────────────
 
@@ -190,6 +194,16 @@ export const buildingBriefOutputSchema = z.object({
   })),
   boundary: z.string(), corpusVersion: z.string(),
 });
+export const translateTermOutputSchema = z.object({
+  term: z.string(), market: z.enum(MARKETS).nullable(), match: z.enum(['exact', 'close', 'loose', 'none']), count: z.number().int(),
+  matches: z.array(z.object({
+    id: z.string(), group: z.string(), concept: z.string(),
+    terms: z.object({ AU: z.string(), UK: z.string(), US: z.string() }),
+    matchedIn: z.array(z.enum(MARKETS)), note: z.string().nullable(), url: z.string(),
+    pages: z.array(z.object({ slug: z.string(), title: z.string(), url: z.string() })),
+  })),
+  glossaryUrl: z.string(), boundary: z.string(), corpusVersion: z.string(),
+});
 export const compareSectionsOutputSchema = z.object({
   section: z.string(), market: z.enum(MARKETS).nullable(),
   pages: z.array(z.object({ slug: z.string(), title: z.string(), url: z.string(), heading: z.string().nullable(), text: z.string(), truncated: z.boolean() })),
@@ -280,6 +294,13 @@ export const TOOL_CONTRACTS = {
     inputSchema: compareSectionsInputSchema, outputSchema: compareSectionsOutputSchema,
     outputFields: ['section', 'market', 'pages', 'unknown', 'corpusVersion'],
     jsonInputSchema: { type: 'object', properties: { pages: { type: 'array', items: { type: 'string', minLength: 1, maxLength: 200 }, minItems: 2, maxItems: 5 }, section: { type: 'string', enum: [...COMPARE_SECTION_IDS] }, market: { type: 'string', enum: [...MARKETS] } }, required: ['pages', 'section'], additionalProperties: false },
+  },
+  translate_term: {
+    title: 'Translate a building term between markets',
+    description: 'What a building element, lease term, code or report is called in Australia, the United Kingdom and the United States, from the Moyne Ross glossary: lift and elevator, make good and dilapidations, downpipe and downspout, strata and condominium, NCC and IBC. Give the term in any market\'s wording. Returns each matching entry with all three markets\' terms, a note where the markets use different instruments rather than different words, and the Technical Library pages that cover it. match says how close the entry is: exact, close, loose or none. Use it to put a question into the right market\'s words before searching, or to answer "what is X called in Y". These are everyday professional equivalents, not legal definitions.',
+    inputSchema: translateTermInputSchema, outputSchema: translateTermOutputSchema,
+    outputFields: ['term', 'market', 'match', 'count', 'matches', 'glossaryUrl', 'boundary', 'corpusVersion'],
+    jsonInputSchema: { type: 'object', properties: { term: { type: 'string', minLength: 2, maxLength: 120 }, market: { type: 'string', enum: [...MARKETS] } }, required: ['term'], additionalProperties: false },
   },
   working_with_moyne_ross: {
     title: 'How working with Moyne Ross works',

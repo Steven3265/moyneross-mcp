@@ -1,7 +1,7 @@
 {
  "schemaVersion": 3,
- "corpusVersion": "2026-11-11.7ddb429c",
- "generatedAt": "2026-11-11",
+ "corpusVersion": "2026-11-14.f822f607",
+ "generatedAt": "2026-11-14",
  "source": "https://moyneross.com",
  "publication": {
   "name": "Capital Made Physical",
@@ -38110,6 +38110,1432 @@
      }
     ],
     "marketsWithoutThresholds": []
+   }
+  ]
+ },
+ "glossary": {
+  "title": "Building terms in Australia, the United Kingdom and the United States",
+  "url": "https://moyneross.com/technical/glossary",
+  "updatedAt": "2026-11-14",
+  "terms": [
+   {
+    "id": "multi-owner-tenure",
+    "group": "Ownership, leases and reports",
+    "concept": "Ownership of a unit in a multi-owner building",
+    "au": "Strata title, run by an owners corporation or body corporate",
+    "uk": "Leasehold under a freeholder, or commonhold; often run through a residents’ management company",
+    "us": "Condominium, run by a condominium or homeowners’ association",
+    "note": "These are different legal structures, not just different words. Who owns and pays for the structure and the common parts differs in each.",
+    "pages": [
+     "common-internal-areas"
+    ],
+    "url": "https://moyneross.com/technical/glossary#multi-owner-tenure"
+   },
+   {
+    "id": "capital-fund",
+    "group": "Ownership, leases and reports",
+    "concept": "The fund owners pay into for major future works",
+    "au": "Capital works fund, sinking fund or maintenance fund, depending on the state",
+    "uk": "Reserve fund or sinking fund",
+    "us": "Reserve fund, sized by a reserve study",
+    "note": null,
+    "pages": [
+     "common-internal-areas"
+    ],
+    "url": "https://moyneross.com/technical/glossary#capital-fund"
+   },
+   {
+    "id": "make-good",
+    "group": "Ownership, leases and reports",
+    "concept": "Putting premises back at the end of a lease",
+    "au": "Make good",
+    "uk": "Dilapidations; reinstatement",
+    "us": "Restoration or surrender obligations",
+    "note": null,
+    "pages": [
+     "commercial-office-areas",
+     "retail-tenancies"
+    ],
+    "url": "https://moyneross.com/technical/glossary#make-good"
+   },
+   {
+    "id": "technical-due-diligence",
+    "group": "Ownership, leases and reports",
+    "concept": "The technical report commissioned before buying a building",
+    "au": "Technical due diligence (TDD) report",
+    "uk": "Technical due diligence report or building survey",
+    "us": "Property condition assessment (PCA), usually to ASTM E2018",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#technical-due-diligence"
+   },
+   {
+    "id": "base-building",
+    "group": "Ownership, leases and reports",
+    "concept": "What the landlord provides before the tenant fits out",
+    "au": "Base building; cold shell or warm shell",
+    "uk": "Shell and core; Category A (Cat A)",
+    "us": "Core and shell; warm shell or vanilla shell",
+    "note": "The line between landlord’s and tenant’s works is set by the lease, not by the label.",
+    "pages": [
+     "commercial-office-areas",
+     "retail-tenancies"
+    ],
+    "url": "https://moyneross.com/technical/glossary#base-building"
+   },
+   {
+    "id": "fit-out",
+    "group": "Ownership, leases and reports",
+    "concept": "The tenant’s own interior works",
+    "au": "Fit-out",
+    "uk": "Fit-out; Category B (Cat B)",
+    "us": "Tenant improvements (TI); build-out",
+    "note": null,
+    "pages": [
+     "commercial-office-areas",
+     "retail-tenancies"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fit-out"
+   },
+   {
+    "id": "outgoings",
+    "group": "Ownership, leases and reports",
+    "concept": "Building running costs recovered from tenants",
+    "au": "Outgoings",
+    "uk": "Service charge",
+    "us": "Operating expenses; common area maintenance (CAM) charges",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#outgoings"
+   },
+   {
+    "id": "lettable-area",
+    "group": "Ownership, leases and reports",
+    "concept": "The floor area a commercial lease is measured on",
+    "au": "Net lettable area (NLA), to the Property Council method of measurement",
+    "uk": "Net internal area (NIA), to RICS measurement standards",
+    "us": "Rentable area, to BOMA standards",
+    "note": "The three methods treat columns, common areas and wall thickness differently, so areas are not directly comparable.",
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#lettable-area"
+   },
+   {
+    "id": "floor-numbering",
+    "group": "Ownership, leases and reports",
+    "concept": "The storey at street level, and the one above it",
+    "au": "Ground floor, then Level 1 or first floor",
+    "uk": "Ground floor, then first floor",
+    "us": "First floor, then second floor",
+    "note": "A US “third floor” is usually an Australian or British “second floor”.",
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#floor-numbering"
+   },
+   {
+    "id": "building-code",
+    "group": "Codes and compliance",
+    "concept": "The building code",
+    "au": "National Construction Code (NCC), formerly the Building Code of Australia (BCA)",
+    "uk": "Building Regulations and their Approved Documents in England; separate regulations in Scotland, Wales and Northern Ireland",
+    "us": "Model codes (IBC, IFC, NFPA) as adopted and amended by each state and city",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#building-code"
+   },
+   {
+    "id": "building-classification",
+    "group": "Codes and compliance",
+    "concept": "How the code classifies a building by use",
+    "au": "NCC classes, such as Class 2 apartments and Class 5 offices",
+    "uk": "Purpose groups in Approved Document B",
+    "us": "Occupancy groups in the IBC, such as Group B business and Group R residential",
+    "note": "In Britain, “use classes” belong to planning law, not the building regulations.",
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#building-classification"
+   },
+   {
+    "id": "occupancy-approval",
+    "group": "Codes and compliance",
+    "concept": "The sign-off that a building may be occupied",
+    "au": "Occupancy permit or occupation certificate, depending on the state",
+    "uk": "Completion certificate from building control",
+    "us": "Certificate of occupancy",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#occupancy-approval"
+   },
+   {
+    "id": "access-law",
+    "group": "Codes and compliance",
+    "concept": "The law and standards on access for people with disability",
+    "au": "Disability Discrimination Act 1992, the Premises Standards and AS 1428.1",
+    "uk": "Equality Act 2010, Approved Document M and BS 8300",
+    "us": "Americans with Disabilities Act (ADA), the 2010 ADA Standards and ICC A117.1",
+    "note": null,
+    "pages": [
+     "disabled-access"
+    ],
+    "url": "https://moyneross.com/technical/glossary#access-law"
+   },
+   {
+    "id": "energy-rating",
+    "group": "Codes and compliance",
+    "concept": "The energy rating a commercial building is known by",
+    "au": "NABERS Energy rating",
+    "uk": "Energy Performance Certificate (EPC), with minimum standards under MEES",
+    "us": "ENERGY STAR score, with building performance standards in some cities and states",
+    "note": "NABERS and ENERGY STAR rate measured energy use; an EPC rates the building as designed and built.",
+    "pages": [
+     "energy-efficiency-upgrades"
+    ],
+    "url": "https://moyneross.com/technical/glossary#energy-rating"
+   },
+   {
+    "id": "fire-system-servicing",
+    "group": "Codes and compliance",
+    "concept": "The standard that sets routine servicing of fire systems",
+    "au": "AS 1851",
+    "uk": "A British Standard for each system, such as BS 5839-1 for alarms and BS EN 12845 for sprinklers",
+    "us": "NFPA 25 for water-based systems and NFPA 72 for alarms",
+    "note": null,
+    "pages": [
+     "automatic-sprinkler-systems",
+     "fire-detection-and-alarm-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fire-system-servicing"
+   },
+   {
+    "id": "fire-safety-duty",
+    "group": "Codes and compliance",
+    "concept": "The owner’s recurring fire safety obligation",
+    "au": "Essential safety measures reporting or an annual fire safety statement, depending on the state",
+    "uk": "A fire risk assessment, kept under review, under the Fire Safety Order in England and Wales",
+    "us": "Inspection, testing and maintenance records required by the adopted fire code",
+    "note": "These are different instruments. Each market’s is described on the pages for the systems it covers.",
+    "pages": [
+     "passive-fire-protection",
+     "integrated-building-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fire-safety-duty"
+   },
+   {
+    "id": "work-safety-law",
+    "group": "Codes and compliance",
+    "concept": "Workplace health and safety law",
+    "au": "Work health and safety (WHS); occupational health and safety (OHS) in Victoria",
+    "uk": "Health and safety law, including the CDM Regulations for construction work",
+    "us": "OSHA regulations",
+    "note": null,
+    "pages": [
+     "occupational-health-and-safety"
+    ],
+    "url": "https://moyneross.com/technical/glossary#work-safety-law"
+   },
+   {
+    "id": "legionella-control",
+    "group": "Codes and compliance",
+    "concept": "The framework for controlling Legionella in water systems",
+    "au": "AS/NZS 3666 and state risk management requirements",
+    "uk": "Approved Code of Practice L8 and HSG274",
+    "us": "ASHRAE Standard 188 water management program",
+    "note": null,
+    "pages": [
+     "heat-rejection-plant",
+     "hot-and-warm-water-plant"
+    ],
+    "url": "https://moyneross.com/technical/glossary#legionella-control"
+   },
+   {
+    "id": "asbestos-records",
+    "group": "Codes and compliance",
+    "concept": "The record of asbestos in a building",
+    "au": "Asbestos register and management plan",
+    "uk": "Asbestos register and management plan, from a management survey",
+    "us": "Asbestos survey and operations and maintenance (O&M) program",
+    "note": null,
+    "pages": [
+     "hazardous-materials"
+    ],
+    "url": "https://moyneross.com/technical/glossary#asbestos-records"
+   },
+   {
+    "id": "contamination-report",
+    "group": "Codes and compliance",
+    "concept": "The first-stage land contamination report",
+    "au": "Preliminary site investigation (PSI)",
+    "uk": "Phase 1 desk study",
+    "us": "Phase I Environmental Site Assessment, to ASTM E1527",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#contamination-report"
+   },
+   {
+    "id": "wildfire",
+    "group": "Codes and compliance",
+    "concept": "Fire spreading from vegetation, and how the code rates exposure to it",
+    "au": "Bushfire; Bushfire Attack Level (BAL) under AS 3959",
+    "uk": "Wildfire; no rating in the building regulations",
+    "us": "Wildfire; wildland-urban interface (WUI) codes",
+    "note": null,
+    "pages": [
+     "landscaping-and-irrigation"
+    ],
+    "url": "https://moyneross.com/technical/glossary#wildfire"
+   },
+   {
+    "id": "footings",
+    "group": "Structure and ground",
+    "concept": "The part of the structure that bears on the ground",
+    "au": "Footings",
+    "uk": "Foundations",
+    "us": "Footings and foundations",
+    "note": null,
+    "pages": [
+     "foundations"
+    ],
+    "url": "https://moyneross.com/technical/glossary#footings"
+   },
+   {
+    "id": "ground-slab",
+    "group": "Structure and ground",
+    "concept": "A concrete floor cast directly on the ground",
+    "au": "Slab on ground",
+    "uk": "Ground-bearing slab",
+    "us": "Slab-on-grade",
+    "note": null,
+    "pages": [
+     "slab-on-ground"
+    ],
+    "url": "https://moyneross.com/technical/glossary#ground-slab"
+   },
+   {
+    "id": "reactive-soil",
+    "group": "Structure and ground",
+    "concept": "Clay that swells when wet and shrinks when dry",
+    "au": "Reactive clay",
+    "uk": "Shrinkable clay",
+    "us": "Expansive soil",
+    "note": null,
+    "pages": [
+     "foundations"
+    ],
+    "url": "https://moyneross.com/technical/glossary#reactive-soil"
+   },
+   {
+    "id": "sub-floor",
+    "group": "Structure and ground",
+    "concept": "The space under a suspended ground floor",
+    "au": "Sub-floor",
+    "uk": "Sub-floor void",
+    "us": "Crawl space",
+    "note": null,
+    "pages": [
+     "sub-floor-and-crawlspace"
+    ],
+    "url": "https://moyneross.com/technical/glossary#sub-floor"
+   },
+   {
+    "id": "floor-supports",
+    "group": "Structure and ground",
+    "concept": "What holds up a suspended timber ground floor",
+    "au": "Stumps or piers, bearers and joists",
+    "uk": "Sleeper walls, wall plates and joists",
+    "us": "Piers, girders and joists",
+    "note": null,
+    "pages": [
+     "sub-floor-and-crawlspace"
+    ],
+    "url": "https://moyneross.com/technical/glossary#floor-supports"
+   },
+   {
+    "id": "restumping",
+    "group": "Structure and ground",
+    "concept": "Replacing failed supports under a timber floor",
+    "au": "Restumping or reblocking",
+    "uk": "No direct equivalent; timber floors usually rest on masonry sleeper walls",
+    "us": "Pier replacement; house leveling",
+    "note": null,
+    "pages": [
+     "sub-floor-and-crawlspace",
+     "foundations"
+    ],
+    "url": "https://moyneross.com/technical/glossary#restumping"
+   },
+   {
+    "id": "concrete-cancer",
+    "group": "Structure and ground",
+    "concept": "Concrete breaking away as the steel inside it rusts",
+    "au": "Concrete cancer; spalling",
+    "uk": "Spalling; reinforcement corrosion",
+    "us": "Spalling; rebar corrosion; delamination",
+    "note": null,
+    "pages": [
+     "structural-frame"
+    ],
+    "url": "https://moyneross.com/technical/glossary#concrete-cancer"
+   },
+   {
+    "id": "reinforcement",
+    "group": "Structure and ground",
+    "concept": "Steel bars cast into concrete",
+    "au": "Reinforcement; reo",
+    "uk": "Reinforcement; rebar",
+    "us": "Rebar",
+    "note": null,
+    "pages": [
+     "structural-frame"
+    ],
+    "url": "https://moyneross.com/technical/glossary#reinforcement"
+   },
+   {
+    "id": "downpipe",
+    "group": "Roofs and rainwater",
+    "concept": "The pipe that carries roof water down the building",
+    "au": "Downpipe",
+    "uk": "Downpipe; rainwater pipe",
+    "us": "Downspout; leader",
+    "note": null,
+    "pages": [
+     "rainwater-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#downpipe"
+   },
+   {
+    "id": "box-gutter",
+    "group": "Roofs and rainwater",
+    "concept": "A gutter built in behind a parapet or between roofs",
+    "au": "Box gutter",
+    "uk": "Box gutter; parapet gutter",
+    "us": "Built-in gutter; internal gutter",
+    "note": null,
+    "pages": [
+     "rainwater-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#box-gutter"
+   },
+   {
+    "id": "rainhead",
+    "group": "Roofs and rainwater",
+    "concept": "The collector box at the top of a downpipe",
+    "au": "Rainhead",
+    "uk": "Hopper head",
+    "us": "Conductor head; leader head",
+    "note": null,
+    "pages": [
+     "rainwater-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#rainhead"
+   },
+   {
+    "id": "roof-overflow",
+    "group": "Roofs and rainwater",
+    "concept": "An opening through a parapet that lets water off the roof",
+    "au": "Overflow; parapet outlet",
+    "uk": "Overflow; chute outlet",
+    "us": "Scupper",
+    "note": null,
+    "pages": [
+     "rainwater-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#roof-overflow"
+   },
+   {
+    "id": "roof-underlay",
+    "group": "Roofs and rainwater",
+    "concept": "The sheet laid under tiles or metal roofing",
+    "au": "Sarking",
+    "uk": "Roofing underlay",
+    "us": "Underlayment",
+    "note": "In Scotland “sarking” means the timber boards under the slates, not the sheet.",
+    "pages": [
+     "roof-coverings",
+     "insulation"
+    ],
+    "url": "https://moyneross.com/technical/glossary#roof-underlay"
+   },
+   {
+    "id": "flat-roof",
+    "group": "Roofs and rainwater",
+    "concept": "A near-flat roof and its waterproofing",
+    "au": "Flat roof; membrane roof",
+    "uk": "Flat roof; felt, asphalt or single-ply covering",
+    "us": "Low-slope roof; built-up, modified bitumen or single-ply roofing",
+    "note": null,
+    "pages": [
+     "waterproofing-membranes"
+    ],
+    "url": "https://moyneross.com/technical/glossary#flat-roof"
+   },
+   {
+    "id": "metal-roofing",
+    "group": "Roofs and rainwater",
+    "concept": "Profiled steel roofing",
+    "au": "Metal roof sheeting; corrugated iron",
+    "uk": "Profiled metal sheeting",
+    "us": "Metal roofing; corrugated or standing seam panels",
+    "note": null,
+    "pages": [
+     "roof-coverings"
+    ],
+    "url": "https://moyneross.com/technical/glossary#metal-roofing"
+   },
+   {
+    "id": "skylight",
+    "group": "Roofs and rainwater",
+    "concept": "Glazing set into a roof",
+    "au": "Skylight",
+    "uk": "Rooflight",
+    "us": "Skylight",
+    "note": null,
+    "pages": [
+     "skylights-dormers-and-glazed-atria"
+    ],
+    "url": "https://moyneross.com/technical/glossary#skylight"
+   },
+   {
+    "id": "roof-space",
+    "group": "Roofs and rainwater",
+    "concept": "The space between the ceiling and a pitched roof",
+    "au": "Roof space",
+    "uk": "Loft; roof void",
+    "us": "Attic",
+    "note": null,
+    "pages": [
+     "roof-structure",
+     "maintenance-access-areas"
+    ],
+    "url": "https://moyneross.com/technical/glossary#roof-space"
+   },
+   {
+    "id": "coping",
+    "group": "Roofs and rainwater",
+    "concept": "The weathering cap on top of a parapet wall",
+    "au": "Capping; coping",
+    "uk": "Coping",
+    "us": "Coping; parapet cap",
+    "note": null,
+    "pages": [
+     "plant-screens-and-parapets"
+    ],
+    "url": "https://moyneross.com/technical/glossary#coping"
+   },
+   {
+    "id": "roof-lifeline",
+    "group": "Roofs and rainwater",
+    "concept": "A fixed cable roof workers clip on to",
+    "au": "Static line",
+    "uk": "Horizontal lifeline, often called a mansafe system",
+    "us": "Horizontal lifeline",
+    "note": null,
+    "pages": [
+     "roof-safety-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#roof-lifeline"
+   },
+   {
+    "id": "brick-veneer",
+    "group": "Walls, façades and openings",
+    "concept": "A single skin of brick outside a timber or steel frame",
+    "au": "Brick veneer",
+    "uk": "Brick-clad timber frame",
+    "us": "Brick veneer",
+    "note": null,
+    "pages": [
+     "masonry-brickwork"
+    ],
+    "url": "https://moyneross.com/technical/glossary#brick-veneer"
+   },
+   {
+    "id": "cavity-wall",
+    "group": "Walls, façades and openings",
+    "concept": "Two skins of masonry with a gap between",
+    "au": "Cavity brick; double brick",
+    "uk": "Cavity wall, with an inner and outer leaf",
+    "us": "Cavity wall, with an inner and outer wythe",
+    "note": null,
+    "pages": [
+     "masonry-brickwork",
+     "load-bearing-masonry"
+    ],
+    "url": "https://moyneross.com/technical/glossary#cavity-wall"
+   },
+   {
+    "id": "render",
+    "group": "Walls, façades and openings",
+    "concept": "A cement or lime coat applied to an outside wall",
+    "au": "Render",
+    "uk": "Render; roughcast or harling in Scotland",
+    "us": "Stucco",
+    "note": null,
+    "pages": [
+     "external-coating-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#render"
+   },
+   {
+    "id": "eifs",
+    "group": "Walls, façades and openings",
+    "concept": "Insulation board fixed to a wall and finished with thin render",
+    "au": "EIFS; rendered polystyrene cladding",
+    "uk": "External wall insulation (EWI); insulated render",
+    "us": "EIFS; synthetic stucco",
+    "note": null,
+    "pages": [
+     "cladding-and-wall-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#eifs"
+   },
+   {
+    "id": "acp",
+    "group": "Walls, façades and openings",
+    "concept": "Thin metal-faced sandwich panels used as cladding",
+    "au": "Aluminium composite panel (ACP)",
+    "uk": "Aluminium composite material (ACM)",
+    "us": "Metal composite material (MCM); ACM",
+    "note": null,
+    "pages": [
+     "cladding-and-wall-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#acp"
+   },
+   {
+    "id": "weatherboards",
+    "group": "Walls, façades and openings",
+    "concept": "Overlapping boards on an outside wall",
+    "au": "Weatherboards",
+    "uk": "Weatherboarding; timber cladding",
+    "us": "Siding; clapboard",
+    "note": null,
+    "pages": [
+     "cladding-and-wall-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#weatherboards"
+   },
+   {
+    "id": "asbestos-cement",
+    "group": "Walls, façades and openings",
+    "concept": "Older cement sheet that contains asbestos",
+    "au": "Asbestos cement sheet; fibro",
+    "uk": "Asbestos cement",
+    "us": "Asbestos cement; transite",
+    "note": null,
+    "pages": [
+     "hazardous-materials"
+    ],
+    "url": "https://moyneross.com/technical/glossary#asbestos-cement"
+   },
+   {
+    "id": "toughened-glass",
+    "group": "Walls, façades and openings",
+    "concept": "Heat-treated safety glass that breaks into small pieces",
+    "au": "Toughened glass",
+    "uk": "Toughened glass",
+    "us": "Tempered glass",
+    "note": null,
+    "pages": [
+     "glazing-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#toughened-glass"
+   },
+   {
+    "id": "igu",
+    "group": "Walls, façades and openings",
+    "concept": "A sealed double-glazed pane",
+    "au": "Insulating glass unit (IGU); double-glazed unit",
+    "uk": "Double-glazed unit; sealed unit",
+    "us": "Insulating glass unit (IGU)",
+    "note": null,
+    "pages": [
+     "glazing-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#igu"
+   },
+   {
+    "id": "sealant",
+    "group": "Walls, façades and openings",
+    "concept": "Flexible filler in a joint",
+    "au": "Sealant; caulking",
+    "uk": "Sealant; mastic",
+    "us": "Caulk; sealant",
+    "note": null,
+    "pages": [
+     "sealants-and-joints"
+    ],
+    "url": "https://moyneross.com/technical/glossary#sealant"
+   },
+   {
+    "id": "balustrade",
+    "group": "Walls, façades and openings",
+    "concept": "The barrier at the edge of a balcony, stair or drop",
+    "au": "Balustrade",
+    "uk": "Balustrade; guarding",
+    "us": "Guard; guardrail",
+    "note": "In US codes the “handrail” is the rail you hold and the “guard” is the barrier; they are separate requirements.",
+    "pages": [
+     "verandahs-balconies-and-balustrades"
+    ],
+    "url": "https://moyneross.com/technical/glossary#balustrade"
+   },
+   {
+    "id": "awning",
+    "group": "Walls, façades and openings",
+    "concept": "A roof projecting over the public path outside a shop",
+    "au": "Awning over the footpath",
+    "uk": "Canopy over the pavement",
+    "us": "Canopy or marquee over the sidewalk",
+    "note": null,
+    "pages": [
+     "canopies-and-awnings"
+    ],
+    "url": "https://moyneross.com/technical/glossary#awning"
+   },
+   {
+    "id": "facade-access",
+    "group": "Walls, façades and openings",
+    "concept": "Permanent roof-mounted equipment for reaching the façade",
+    "au": "Building maintenance unit (BMU)",
+    "uk": "Building maintenance unit (BMU); cradle",
+    "us": "Building maintenance unit (BMU); powered platform",
+    "note": null,
+    "pages": [
+     "building-maintenance-units"
+    ],
+    "url": "https://moyneross.com/technical/glossary#facade-access"
+   },
+   {
+    "id": "inter-tenancy-wall",
+    "group": "Walls, façades and openings",
+    "concept": "The wall between two tenancies",
+    "au": "Inter-tenancy wall",
+    "uk": "Demising wall; party wall where it divides ownerships",
+    "us": "Demising wall",
+    "note": null,
+    "pages": [
+     "partitioning-systems",
+     "retail-tenancies"
+    ],
+    "url": "https://moyneross.com/technical/glossary#inter-tenancy-wall"
+   },
+   {
+    "id": "plasterboard",
+    "group": "Interiors and external works",
+    "concept": "Paper-faced gypsum wall and ceiling lining",
+    "au": "Plasterboard",
+    "uk": "Plasterboard",
+    "us": "Drywall; gypsum board",
+    "note": null,
+    "pages": [
+     "internal-wall-and-ceiling-finishes",
+     "partitioning-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#plasterboard"
+   },
+   {
+    "id": "suspended-ceiling",
+    "group": "Interiors and external works",
+    "concept": "A tile ceiling hung on a grid below the slab",
+    "au": "Suspended ceiling",
+    "uk": "Suspended ceiling",
+    "us": "Drop ceiling; acoustical ceiling tile (ACT)",
+    "note": null,
+    "pages": [
+     "internal-wall-and-ceiling-finishes"
+    ],
+    "url": "https://moyneross.com/technical/glossary#suspended-ceiling"
+   },
+   {
+    "id": "toilets",
+    "group": "Interiors and external works",
+    "concept": "Shared toilets in a commercial building",
+    "au": "Amenities; toilets",
+    "uk": "Toilets; WCs",
+    "us": "Restrooms",
+    "note": null,
+    "pages": [
+     "public-amenities"
+    ],
+    "url": "https://moyneross.com/technical/glossary#toilets"
+   },
+   {
+    "id": "end-of-trip",
+    "group": "Interiors and external works",
+    "concept": "Bike parking, showers and lockers for commuters",
+    "au": "End-of-trip facilities",
+    "uk": "Cycle storage and showers",
+    "us": "Bike room and showers",
+    "note": null,
+    "pages": [
+     "public-amenities"
+    ],
+    "url": "https://moyneross.com/technical/glossary#end-of-trip"
+   },
+   {
+    "id": "mobile-shelving",
+    "group": "Interiors and external works",
+    "concept": "Shelving that slides on rails to close the aisles",
+    "au": "Compactus",
+    "uk": "Mobile shelving; roller racking",
+    "us": "High-density mobile shelving",
+    "note": "Loaded bays are heavy enough that the floor’s capacity needs checking.",
+    "pages": [
+     "storage-and-archive-areas"
+    ],
+    "url": "https://moyneross.com/technical/glossary#mobile-shelving"
+   },
+   {
+    "id": "cooktop",
+    "group": "Interiors and external works",
+    "concept": "The cooking surface and the extract above it",
+    "au": "Cooktop and rangehood",
+    "uk": "Hob and cooker hood",
+    "us": "Cooktop or range, and range hood",
+    "note": null,
+    "pages": [
+     "kitchen"
+    ],
+    "url": "https://moyneross.com/technical/glossary#cooktop"
+   },
+   {
+    "id": "benchtop",
+    "group": "Interiors and external works",
+    "concept": "The kitchen work surface",
+    "au": "Benchtop",
+    "uk": "Worktop",
+    "us": "Countertop",
+    "note": null,
+    "pages": [
+     "kitchen"
+    ],
+    "url": "https://moyneross.com/technical/glossary#benchtop"
+   },
+   {
+    "id": "footpath",
+    "group": "Interiors and external works",
+    "concept": "The paved public path beside a road",
+    "au": "Footpath",
+    "uk": "Pavement; footway",
+    "us": "Sidewalk",
+    "note": "In the US “pavement” means the road or car park surface itself.",
+    "pages": [
+     "pavements-and-hardstand"
+    ],
+    "url": "https://moyneross.com/technical/glossary#footpath"
+   },
+   {
+    "id": "asphalt",
+    "group": "Interiors and external works",
+    "concept": "Bitumen-bound surfacing for roads and car parks",
+    "au": "Asphalt; bitumen",
+    "uk": "Asphalt; tarmac",
+    "us": "Asphalt; blacktop",
+    "note": null,
+    "pages": [
+     "pavements-and-hardstand"
+    ],
+    "url": "https://moyneross.com/technical/glossary#asphalt"
+   },
+   {
+    "id": "car-park",
+    "group": "Interiors and external works",
+    "concept": "Where cars are parked",
+    "au": "Car park",
+    "uk": "Car park; multi-storey car park",
+    "us": "Parking lot; parking garage or parking structure",
+    "note": null,
+    "pages": [
+     "pavements-and-hardstand",
+     "structural-frame"
+    ],
+    "url": "https://moyneross.com/technical/glossary#car-park"
+   },
+   {
+    "id": "services-discipline",
+    "group": "Heating, cooling and ventilation",
+    "concept": "The engineering services of a building, as a group",
+    "au": "Building services: mechanical, electrical, hydraulic and fire",
+    "uk": "M&E; building services",
+    "us": "MEP: mechanical, electrical and plumbing",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#services-discipline"
+   },
+   {
+    "id": "bms",
+    "group": "Heating, cooling and ventilation",
+    "concept": "The system that monitors and controls plant",
+    "au": "Building management system (BMS); BMCS",
+    "uk": "Building management system (BMS)",
+    "us": "Building automation system (BAS)",
+    "note": null,
+    "pages": [
+     "building-management-and-control-system"
+    ],
+    "url": "https://moyneross.com/technical/glossary#bms"
+   },
+   {
+    "id": "split-system",
+    "group": "Heating, cooling and ventilation",
+    "concept": "A small air conditioner with separate indoor and outdoor units",
+    "au": "Split system; reverse-cycle where it also heats",
+    "uk": "Split system",
+    "us": "Mini-split; ductless split",
+    "note": null,
+    "pages": [
+     "localised-hvac"
+    ],
+    "url": "https://moyneross.com/technical/glossary#split-system"
+   },
+   {
+    "id": "packaged-unit",
+    "group": "Heating, cooling and ventilation",
+    "concept": "A self-contained air conditioner on the roof serving ducts below",
+    "au": "Packaged unit; rooftop package",
+    "uk": "Packaged rooftop unit",
+    "us": "Rooftop unit (RTU)",
+    "note": null,
+    "pages": [
+     "localised-hvac",
+     "air-handling-units"
+    ],
+    "url": "https://moyneross.com/technical/glossary#packaged-unit"
+   },
+   {
+    "id": "water-heater",
+    "group": "Heating, cooling and ventilation",
+    "concept": "Plant that makes domestic hot water",
+    "au": "Hot water unit; hot water system",
+    "uk": "Water heater; calorifier; cylinder",
+    "us": "Water heater",
+    "note": null,
+    "pages": [
+     "hot-and-warm-water-plant"
+    ],
+    "url": "https://moyneross.com/technical/glossary#water-heater"
+   },
+   {
+    "id": "heat-recovery-ventilation",
+    "group": "Heating, cooling and ventilation",
+    "concept": "Ventilation that recovers heat from the exhaust air",
+    "au": "Heat recovery ventilation (HRV); energy recovery ventilation (ERV)",
+    "uk": "Mechanical ventilation with heat recovery (MVHR)",
+    "us": "Heat recovery ventilator (HRV); energy recovery ventilator (ERV)",
+    "note": null,
+    "pages": [
+     "ventilation-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#heat-recovery-ventilation"
+   },
+   {
+    "id": "fume-cupboard",
+    "group": "Heating, cooling and ventilation",
+    "concept": "A ventilated enclosure for laboratory work",
+    "au": "Fume cupboard",
+    "uk": "Fume cupboard",
+    "us": "Fume hood",
+    "note": null,
+    "pages": [
+     "specialised-occupancy-areas",
+     "ventilation-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fume-cupboard"
+   },
+   {
+    "id": "kitchen-exhaust",
+    "group": "Heating, cooling and ventilation",
+    "concept": "The hood and duct that remove cooking fumes and grease",
+    "au": "Kitchen exhaust hood and duct",
+    "uk": "Kitchen extract canopy and ductwork",
+    "us": "Kitchen exhaust hood (Type I) and grease duct",
+    "note": null,
+    "pages": [
+     "commercial-kitchens",
+     "ventilation-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#kitchen-exhaust"
+   },
+   {
+    "id": "main-switchboard",
+    "group": "Electrical",
+    "concept": "The board where the supply enters and is divided",
+    "au": "Main switchboard (MSB)",
+    "uk": "Main LV switchboard; main intake",
+    "us": "Main switchboard or switchgear; service entrance",
+    "note": null,
+    "pages": [
+     "main-electrical-supply"
+    ],
+    "url": "https://moyneross.com/technical/glossary#main-switchboard"
+   },
+   {
+    "id": "distribution-board",
+    "group": "Electrical",
+    "concept": "A local board feeding final circuits",
+    "au": "Distribution board (DB)",
+    "uk": "Distribution board; consumer unit in a dwelling",
+    "us": "Panelboard; panel; load center in a dwelling",
+    "note": null,
+    "pages": [
+     "power-distribution"
+    ],
+    "url": "https://moyneross.com/technical/glossary#distribution-board"
+   },
+   {
+    "id": "rcd",
+    "group": "Electrical",
+    "concept": "The device that cuts power on leakage to earth, to protect people",
+    "au": "RCD; safety switch",
+    "uk": "RCD",
+    "us": "GFCI",
+    "note": "A US GFCI trips at a lower leakage current than the 30 mA RCD usual in Australia and Britain.",
+    "pages": [
+     "power-distribution"
+    ],
+    "url": "https://moyneross.com/technical/glossary#rcd"
+   },
+   {
+    "id": "earthing",
+    "group": "Electrical",
+    "concept": "Connecting an installation to the ground",
+    "au": "Earthing",
+    "uk": "Earthing",
+    "us": "Grounding",
+    "note": null,
+    "pages": [
+     "power-distribution",
+     "lightning-protection"
+    ],
+    "url": "https://moyneross.com/technical/glossary#earthing"
+   },
+   {
+    "id": "socket",
+    "group": "Electrical",
+    "concept": "Where an appliance plugs in",
+    "au": "Power point; socket outlet; GPO",
+    "uk": "Socket; socket-outlet",
+    "us": "Receptacle; outlet",
+    "note": null,
+    "pages": [
+     "power-distribution"
+    ],
+    "url": "https://moyneross.com/technical/glossary#socket"
+   },
+   {
+    "id": "light-fitting",
+    "group": "Electrical",
+    "concept": "A complete light unit",
+    "au": "Light fitting; luminaire",
+    "uk": "Luminaire; light fitting",
+    "us": "Light fixture",
+    "note": null,
+    "pages": [
+     "lighting"
+    ],
+    "url": "https://moyneross.com/technical/glossary#light-fitting"
+   },
+   {
+    "id": "network-operator",
+    "group": "Electrical",
+    "concept": "The company that owns the local electricity network",
+    "au": "Distributor; network service provider",
+    "uk": "Distribution network operator (DNO)",
+    "us": "Utility",
+    "note": null,
+    "pages": [
+     "main-electrical-supply"
+    ],
+    "url": "https://moyneross.com/technical/glossary#network-operator"
+   },
+   {
+    "id": "periodic-electrical-inspection",
+    "group": "Electrical",
+    "concept": "Routine inspection and test of an existing installation",
+    "au": "Periodic verification or assessment, to AS/NZS 3019 where it is called for",
+    "uk": "Electrical Installation Condition Report (EICR), to BS 7671",
+    "us": "No general equivalent; maintenance to NFPA 70B",
+    "note": null,
+    "pages": [
+     "power-distribution"
+    ],
+    "url": "https://moyneross.com/technical/glossary#periodic-electrical-inspection"
+   },
+   {
+    "id": "embedded-network",
+    "group": "Electrical",
+    "concept": "A landlord-owned network that resells power to occupiers",
+    "au": "Embedded network",
+    "uk": "Landlord’s supply with sub-meters",
+    "us": "Master-metered building with submeters",
+    "note": null,
+    "pages": [
+     "sub-metering"
+    ],
+    "url": "https://moyneross.com/technical/glossary#embedded-network"
+   },
+   {
+    "id": "exit-sign",
+    "group": "Electrical",
+    "concept": "The sign that marks the way out",
+    "au": "Exit sign, with a green running-man pictogram",
+    "uk": "Fire exit sign, with a green running-man pictogram",
+    "us": "Exit sign, usually the word EXIT in red or green",
+    "note": null,
+    "pages": [
+     "emergency-lighting"
+    ],
+    "url": "https://moyneross.com/technical/glossary#exit-sign"
+   },
+   {
+    "id": "fire-brigade",
+    "group": "Fire",
+    "concept": "The public fire service",
+    "au": "Fire brigade; fire and rescue service",
+    "uk": "Fire and rescue service",
+    "us": "Fire department",
+    "note": null,
+    "pages": [],
+    "url": "https://moyneross.com/technical/glossary#fire-brigade"
+   },
+   {
+    "id": "fire-panel",
+    "group": "Fire",
+    "concept": "The panel that shows and controls the fire alarm system",
+    "au": "Fire indicator panel (FIP)",
+    "uk": "Fire alarm control panel",
+    "us": "Fire alarm control panel (FACP)",
+    "note": null,
+    "pages": [
+     "fire-detection-and-alarm-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fire-panel"
+   },
+   {
+    "id": "voice-alarm",
+    "group": "Fire",
+    "concept": "The system that sounds tones and spoken messages to evacuate",
+    "au": "Emergency warning and intercommunication system (EWIS)",
+    "uk": "Voice alarm (VA) system",
+    "us": "Emergency voice/alarm communication system (EVACS)",
+    "note": null,
+    "pages": [
+     "fire-detection-and-alarm-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#voice-alarm"
+   },
+   {
+    "id": "hydrant-main",
+    "group": "Fire",
+    "concept": "The fixed pipe with outlets on each floor for firefighters’ hoses",
+    "au": "Fire hydrant system",
+    "uk": "Dry or wet rising main, with landing valves",
+    "us": "Standpipe system, with hose valves",
+    "note": null,
+    "pages": [
+     "hydrant-and-hose-reel-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#hydrant-main"
+   },
+   {
+    "id": "brigade-connection",
+    "group": "Fire",
+    "concept": "Where the fire service pumps water into the building’s system",
+    "au": "Booster assembly",
+    "uk": "Dry riser inlet; breeching inlet",
+    "us": "Fire department connection (FDC)",
+    "note": null,
+    "pages": [
+     "hydrant-and-hose-reel-systems",
+     "fire-pumping-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#brigade-connection"
+   },
+   {
+    "id": "sprinkler-standard",
+    "group": "Fire",
+    "concept": "The sprinkler design standard",
+    "au": "AS 2118",
+    "uk": "BS EN 12845",
+    "us": "NFPA 13",
+    "note": null,
+    "pages": [
+     "automatic-sprinkler-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#sprinkler-standard"
+   },
+   {
+    "id": "fire-rating",
+    "group": "Fire",
+    "concept": "How fire resistance is written",
+    "au": "Fire-resistance level (FRL), such as 90/90/90",
+    "uk": "Fire resistance in minutes, such as REI 90",
+    "us": "Hourly rating, such as 1½-hour",
+    "note": null,
+    "pages": [
+     "passive-fire-protection"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fire-rating"
+   },
+   {
+    "id": "fire-door-rating",
+    "group": "Fire",
+    "concept": "How a fire door’s rating is written",
+    "au": "FRL, such as -/60/30",
+    "uk": "FD30 or FD60, with an S suffix for smoke seals",
+    "us": "Minutes or hours, such as 20-minute or 90-minute",
+    "note": null,
+    "pages": [
+     "passive-fire-protection",
+     "internal-doors-and-hardware"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fire-door-rating"
+   },
+   {
+    "id": "compartment-wall",
+    "group": "Fire",
+    "concept": "A wall built to stop fire spreading through the building",
+    "au": "Fire wall; fire-rated wall",
+    "uk": "Compartment wall",
+    "us": "Fire wall; fire barrier",
+    "note": null,
+    "pages": [
+     "passive-fire-protection"
+    ],
+    "url": "https://moyneross.com/technical/glossary#compartment-wall"
+   },
+   {
+    "id": "fire-stopping",
+    "group": "Fire",
+    "concept": "Sealing gaps and service holes in fire-rated walls and floors",
+    "au": "Fire stopping; penetration sealing",
+    "uk": "Fire stopping",
+    "us": "Firestopping",
+    "note": null,
+    "pages": [
+     "passive-fire-protection"
+    ],
+    "url": "https://moyneross.com/technical/glossary#fire-stopping"
+   },
+   {
+    "id": "escape-stair",
+    "group": "Fire",
+    "concept": "A stair enclosed in fire-rated construction for escape",
+    "au": "Fire-isolated stair",
+    "uk": "Protected stair",
+    "us": "Interior exit stairway; exit stair enclosure",
+    "note": null,
+    "pages": [
+     "internal-stairwells"
+    ],
+    "url": "https://moyneross.com/technical/glossary#escape-stair"
+   },
+   {
+    "id": "means-of-escape",
+    "group": "Fire",
+    "concept": "The route out of a building in a fire",
+    "au": "Exits and paths of travel to them",
+    "uk": "Means of escape",
+    "us": "Means of egress",
+    "note": null,
+    "pages": [
+     "internal-stairwells",
+     "common-circulation-areas"
+    ],
+    "url": "https://moyneross.com/technical/glossary#means-of-escape"
+   },
+   {
+    "id": "smoke-vent",
+    "group": "Fire",
+    "concept": "An opening that releases smoke automatically",
+    "au": "Smoke and heat vent",
+    "uk": "Automatic opening vent (AOV)",
+    "us": "Smoke and heat vent",
+    "note": null,
+    "pages": [
+     "smoke-management-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#smoke-vent"
+   },
+   {
+    "id": "stair-pressurisation",
+    "group": "Fire",
+    "concept": "Fans that keep smoke out of escape stairs",
+    "au": "Stair pressurisation",
+    "uk": "Pressure differential system; stair pressurisation",
+    "us": "Stair pressurization",
+    "note": null,
+    "pages": [
+     "smoke-management-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#stair-pressurisation"
+   },
+   {
+    "id": "hydraulics-discipline",
+    "group": "Water and drainage",
+    "concept": "The water, drainage and gas services, as a discipline",
+    "au": "Hydraulic services",
+    "uk": "Public health engineering; plumbing and drainage",
+    "us": "Plumbing",
+    "note": "Outside Australia “hydraulic” usually means oil-powered machinery, such as a hydraulic lift.",
+    "pages": [
+     "water-supply",
+     "sanitary-and-drainage-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#hydraulics-discipline"
+   },
+   {
+    "id": "sewer",
+    "group": "Water and drainage",
+    "concept": "Drainage that carries waste from toilets, basins and sinks",
+    "au": "Sewer; sanitary drainage",
+    "uk": "Foul drainage",
+    "us": "Sanitary sewer; sanitary drainage",
+    "note": null,
+    "pages": [
+     "sanitary-and-drainage-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#sewer"
+   },
+   {
+    "id": "stormwater",
+    "group": "Water and drainage",
+    "concept": "Drainage that carries rain off the site",
+    "au": "Stormwater drainage",
+    "uk": "Surface water drainage",
+    "us": "Storm drainage; storm sewer",
+    "note": null,
+    "pages": [
+     "stormwater-drainage"
+    ],
+    "url": "https://moyneross.com/technical/glossary#stormwater"
+   },
+   {
+    "id": "detention",
+    "group": "Water and drainage",
+    "concept": "Holding rain on site and releasing it slowly",
+    "au": "On-site detention (OSD)",
+    "uk": "Attenuation, as part of sustainable drainage (SuDS)",
+    "us": "Stormwater detention",
+    "note": null,
+    "pages": [
+     "stormwater-drainage"
+    ],
+    "url": "https://moyneross.com/technical/glossary#detention"
+   },
+   {
+    "id": "grease-trap",
+    "group": "Water and drainage",
+    "concept": "The tank that catches kitchen grease before the sewer",
+    "au": "Grease arrestor; grease trap",
+    "uk": "Grease trap; grease separator",
+    "us": "Grease interceptor; grease trap",
+    "note": null,
+    "pages": [
+     "trade-waste-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#grease-trap"
+   },
+   {
+    "id": "trade-waste",
+    "group": "Water and drainage",
+    "concept": "Non-domestic liquid waste discharged to the sewer under a permit",
+    "au": "Trade waste",
+    "uk": "Trade effluent",
+    "us": "Commercial or industrial wastewater, under a pretreatment or FOG program",
+    "note": null,
+    "pages": [
+     "trade-waste-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#trade-waste"
+   },
+   {
+    "id": "cleanout",
+    "group": "Water and drainage",
+    "concept": "A capped opening for clearing a drain",
+    "au": "Inspection opening (IO)",
+    "uk": "Rodding eye; access point",
+    "us": "Cleanout",
+    "note": null,
+    "pages": [
+     "sanitary-and-drainage-systems"
+    ],
+    "url": "https://moyneross.com/technical/glossary#cleanout"
+   },
+   {
+    "id": "tap",
+    "group": "Water and drainage",
+    "concept": "The outlet valve at a basin or sink",
+    "au": "Tap",
+    "uk": "Tap",
+    "us": "Faucet",
+    "note": null,
+    "pages": [
+     "water-supply"
+    ],
+    "url": "https://moyneross.com/technical/glossary#tap"
+   },
+   {
+    "id": "lift",
+    "group": "Lifts and escalators",
+    "concept": "The car that carries people between floors",
+    "au": "Lift",
+    "uk": "Lift",
+    "us": "Elevator",
+    "note": null,
+    "pages": [
+     "passenger-and-goods-lifts",
+     "lift-cars-and-machine-rooms"
+    ],
+    "url": "https://moyneross.com/technical/glossary#lift"
+   },
+   {
+    "id": "goods-lift",
+    "group": "Lifts and escalators",
+    "concept": "A lift built to carry goods",
+    "au": "Goods lift",
+    "uk": "Goods lift",
+    "us": "Freight elevator",
+    "note": null,
+    "pages": [
+     "passenger-and-goods-lifts"
+    ],
+    "url": "https://moyneross.com/technical/glossary#goods-lift"
+   },
+   {
+    "id": "lift-standard",
+    "group": "Lifts and escalators",
+    "concept": "The lift safety standard",
+    "au": "AS 1735 series",
+    "uk": "BS EN 81 series, with thorough examination under LOLER",
+    "us": "ASME A17.1",
+    "note": null,
+    "pages": [
+     "passenger-and-goods-lifts"
+    ],
+    "url": "https://moyneross.com/technical/glossary#lift-standard"
+   },
+   {
+    "id": "platform-lift",
+    "group": "Lifts and escalators",
+    "concept": "A short-rise lift for wheelchair users",
+    "au": "Low-rise platform lift",
+    "uk": "Lifting platform; platform lift",
+    "us": "Platform lift; wheelchair lift",
+    "note": null,
+    "pages": [
+     "accessibility-lifts"
+    ],
+    "url": "https://moyneross.com/technical/glossary#platform-lift"
+   },
+   {
+    "id": "moving-walk",
+    "group": "Lifts and escalators",
+    "concept": "A flat or gently sloping moving belt for people",
+    "au": "Moving walk; travelator",
+    "uk": "Moving walk; travelator",
+    "us": "Moving walk; moving walkway",
+    "note": null,
+    "pages": [
+     "escalators-and-moving-walks"
+    ],
+    "url": "https://moyneross.com/technical/glossary#moving-walk"
    }
   ]
  },

@@ -13,6 +13,7 @@
 //   /technical/export.json       the Technical Library: one page per element and
 //                                functional space of the Building Check
 //                                Framework, built by scripts/build_technical.py
+//   /technical/glossary.json   the three-market glossary
 //   /sitemap.xml, /technical/sitemap.xml   last-changed dates (the snapshot's date)
 //
 // Deterministic: the snapshot's date comes from the content (the latest
@@ -74,7 +75,7 @@ function section(text, start, end) {
 }
 
 export async function buildSnapshot() {
-  const [exp, index, llms, sitemap, register, mrIndex, sample, tech, techSitemap] = await Promise.all([
+  const [exp, index, llms, sitemap, register, mrIndex, sample, tech, techSitemap, gloss] = await Promise.all([
     get('/insights/export.json', 'json'),
     get('/insights/search-index.json', 'json'),
     get('/llms.txt'),
@@ -84,6 +85,7 @@ export async function buildSnapshot() {
     get('/samples/capital-strategy'),
     get('/technical/export.json', 'json'),
     get('/technical/sitemap.xml'),
+    get('/technical/glossary.json', 'json'),
   ]);
 
   const lastmods = [...`${sitemap}${techSitemap}`.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1].trim()).sort();
@@ -165,7 +167,7 @@ export async function buildSnapshot() {
   })).sort((x, y) => x.id.localeCompare(y.id, 'en', { numeric: true }));
 
   const generatedAt = lastmods[lastmods.length - 1] || null;
-  const fingerprint = createHash('sha256').update(JSON.stringify({ exp: exp.articles, index: index.docs, llms, register, mrIndex, sample, tech: tech.pages, fw })).digest('hex').slice(0, 8);
+  const fingerprint = createHash('sha256').update(JSON.stringify({ exp: exp.articles, index: index.docs, llms, register, mrIndex, sample, tech: tech.pages, fw, gloss: gloss.groups })).digest('hex').slice(0, 8);
 
   return {
     schemaVersion: 3,
@@ -186,6 +188,16 @@ export async function buildSnapshot() {
       url: `${SITE}/technical`,
       framework: { name: fw.name || 'Moyne Ross Building Check Framework', sections: fw.sections || [], pageTypes: fw.pageTypes || {}, severityScale: fw.severityScale || {}, ...(fw.topicLayout ? { topicLayout: fw.topicLayout } : {}), ...(fw.thresholdPolicy ? { thresholdPolicy: fw.thresholdPolicy } : {}) },
       pages: technical,
+    },
+    // The glossary: one record per term, flat, with the group it sits under.
+    glossary: {
+      title: gloss.title,
+      url: `${SITE}/technical/glossary`,
+      updatedAt: gloss.updatedAt || null,
+      terms: gloss.groups.flatMap((g) => g.terms.map((t) => ({
+        id: t.id, group: g.heading, concept: t.concept, au: t.au, uk: t.uk, us: t.us,
+        note: t.note || null, pages: t.pages || [], url: `${SITE}/technical/glossary#${t.id}`,
+      }))),
     },
     // The website's search index as published. The Technical Library pages
     // join it at load time (src/core.ts), weighted as the benchmark weights a

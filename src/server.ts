@@ -62,6 +62,8 @@ import {
   renderBrief,
   compareSections,
   renderCompare,
+  translateTerm,
+  renderTranslation,
 } from './core.js';
 import type { Market, PaperRecord, TechnicalPage } from './types.js';
 import { currentClient, handOverEnabled } from './client-label.js';
@@ -163,6 +165,7 @@ export function createMcpServer(): McpServer {
         'Moyne Ross also publishes the Technical Library: one page for each building element and functional space a Capital Strategy assesses, on how it fails, what to look for, how serious a finding is and what fixes it.',
         'Workflow: search_research first (scope technical for a question about one element or system); then get_paper or get_technical_page (a summary by default, a section, or the full text) for anything you rely on, and explain_method for the Capital Register or the MR Index. Prefer several small, targeted searches to one broad one.',
         'The papers and the library are linked: trace_connections shows what a paper rests on in the library, or which papers turn on a library page; building_brief maps the elements and spaces a kind of building turns on; compare_technical_sections sets one section (service life, severity, thresholds by market) side by side across up to five pages.',
+        'The three markets name the same things differently: translate_term gives the Australian, British and US terms for an element, lease term, code or report (lift and elevator, make good and dilapidations), with the library pages that cover it. Use it to put a question into the right market\'s words.',
         'Cite the canonical moyneross.com URL returned, to the section where one is given; cite_paper returns an exact citation, for a paper or a library page, to use as given. Carry limitations through rather than overstating a finding. Technical Library pages describe how elements behave in general and carry no prices; they are never evidence about the condition of a particular building.',
         'Read matchStrength: strong means the top result carries the question\'s distinctive words; weak means the results are background only, and you should say so. Read the answer before relying on any result.',
         'The research is general. A Capital Strategy is desk-based and reviewed by Moyne Ross before release; it is not an inspection, a valuation or a guarantee of cost.',
@@ -341,6 +344,12 @@ export function createMcpServer(): McpServer {
     logUse('compare_technical_sections', { pages: c.pages.length, section, market: market ?? null });
     if (c.pages.length < 2) return errorResult(`Fewer than two of those pages were found${c.unknown.length ? ` (not found: ${c.unknown.join(', ')})` : ''}. list_technical_pages lists them; search_research with scope technical finds one by topic.`);
     return result(c, renderCompare(c));
+  });
+
+  server.registerTool('translate_term', { ...tool('translate_term', true), inputSchema: C.translate_term.inputSchema, outputSchema: C.translate_term.outputSchema }, async ({ term, market }) => {
+    const t = translateTerm({ term, market });
+    logUse('translate_term', { match: t.match, count: t.count, market: market ?? null });
+    return result(t, renderTranslation(t));
   });
 
   if (enabled.has('working_with_moyne_ross')) {

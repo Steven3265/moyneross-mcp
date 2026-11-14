@@ -15,6 +15,7 @@ import technicalHandler from '../dist/api/v1/technical.js';
 import connectionsHandler from '../dist/api/v1/connections.js';
 import briefHandler from '../dist/api/v1/brief.js';
 import compareHandler from '../dist/api/v1/compare.js';
+import glossaryHandler from '../dist/api/v1/glossary.js';
 import aiCatalogHandler from '../dist/api/ai-catalog.js';
 import { TOOL_CONTRACTS } from '../dist/src/contracts.js';
 import { clientLabel } from '../dist/src/client-label.js';
@@ -125,7 +126,7 @@ try {
   const openapi = json(call(openapiHandler, request('GET', '/openapi.json')));
   assert.equal(openapi.openapi, '3.1.0');
   assert.equal(openapi.info.version, SERVER_VERSION);
-  assert.deepEqual(Object.keys(openapi.paths).sort(), ['/v1/brief', '/v1/cite', '/v1/compare', '/v1/connections', '/v1/engage', '/v1/method', '/v1/paper', '/v1/papers', '/v1/sample', '/v1/search', '/v1/technical']);
+  assert.deepEqual(Object.keys(openapi.paths).sort(), ['/v1/brief', '/v1/cite', '/v1/compare', '/v1/connections', '/v1/engage', '/v1/glossary', '/v1/method', '/v1/paper', '/v1/papers', '/v1/sample', '/v1/search', '/v1/technical']);
   const card = json(call(mcpServerCardHandler, request('GET', '/mcp/server-card')));
   assert.equal(card.name, 'io.github.Steven3265/moyneross');
   assert.equal(card.remotes[0].url, 'https://mcp.moyneross.com/mcp');
@@ -158,6 +159,8 @@ try {
     [briefHandler, '/v1/brief?use_class=industrial&spaces=loading-docks,plant-rooms&market=AU&response_format=detailed', 'building_brief', 'BuildingBrief'],
     [compareHandler, '/v1/compare?pages=roof-coverings,central-cooling-plant&section=thresholds&market=UK', 'compare_technical_sections', 'SectionComparison'],
     [compareHandler, '/v1/compare?pages=roof-coverings&pages=lighting&section=service-life', 'compare_technical_sections', 'SectionComparison'],
+    [glossaryHandler, '/v1/glossary?term=elevator', 'translate_term', 'TermTranslation'],
+    [glossaryHandler, '/v1/glossary?term=make%20good&market=UK', 'translate_term', 'TermTranslation'],
   ]) {
     const parsed = TOOL_CONTRACTS[tool].outputSchema.safeParse(json(call(handler, request('GET', url))));
     assert.ok(parsed.success, `${url} does not match the ${tool} output schema: ${JSON.stringify(parsed.error?.issues?.slice(0, 2))}`);
@@ -168,6 +171,8 @@ try {
   assert.equal(call(briefHandler, request('GET', '/v1/brief')).statusCode, 400, 'brief needs use_class');
   assert.equal(call(briefHandler, request('GET', '/v1/brief?use_class=castle')).statusCode, 400, 'brief rejects an unknown use class');
   assert.equal(call(compareHandler, request('GET', '/v1/compare?pages=roof-coverings&section=service-life')).statusCode, 400, 'compare needs two pages');
+  assert.equal(call(glossaryHandler, request('GET', '/v1/glossary')).statusCode, 400, 'glossary needs a term');
+  assert.equal(call(glossaryHandler, request('GET', '/v1/glossary?term=lift&market=FR')).statusCode, 400, 'glossary takes AU, UK or US');
   assert.equal(call(compareHandler, request('GET', '/v1/compare?pages=a,b,c,d,e,f&section=service-life')).statusCode, 400, 'compare takes at most five');
   assert.equal(call(connectionsHandler, request('GET', '/v1/connections?ref=nothing%20at%20all%20here')).statusCode, 404, 'unknown ref is 404');
 

@@ -202,7 +202,7 @@ async function main() {
   assert.equal(discover.payload.result.cacheScope, 'public');
   assert.ok(discover.payload.result.ttlMs > 0);
 
-  const ALL_TOOLS = ['building_brief', 'cite_paper', 'compare_technical_sections', 'explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page', 'list_papers', 'list_technical_pages', 'search_research', 'start_strategy_link', 'trace_connections', 'working_with_moyne_ross'];
+  const ALL_TOOLS = ['building_brief', 'cite_paper', 'compare_technical_sections', 'explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page', 'list_papers', 'list_technical_pages', 'search_research', 'start_strategy_link', 'trace_connections', 'translate_term', 'working_with_moyne_ross'];
   const LARGE = ['building_brief', 'compare_technical_sections', 'explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page'];
   const call = (id, name, args, extra = {}) => postModern({ id, method: 'tools/call', name, params: { name, arguments: args }, ...extra });
   const out = (r) => r.payload.result.structuredContent;
@@ -506,6 +506,19 @@ async function main() {
     assert.match(viewRead.text, /2026-01-26/);
     assert.doesNotMatch(viewRead.text, /<script[^>]+src=|<link[^>]+href=|fetch\(|XMLHttpRequest|https?:\/\/(?!moyneross\.com)[a-z]/i, 'the view loads nothing from the network');
     assert.ok((await postModern({ id: 'v3', method: 'resources/read', name: 'ui://moyneross/other.html', params: { uri: 'ui://moyneross/other.html' } })).payload.error, 'unknown view is not found');
+    // The glossary: a term found by any market's word, exact before loose.
+    const lift = out(await call('t1', 'translate_term', { term: 'elevator' }));
+    assert.equal(lift.match, 'exact'); assert.equal(lift.matches[0].id, 'lift'); assert.deepEqual(lift.matches[0].matchedIn, ['US']);
+    assert.match(lift.matches[0].terms.AU, /Lift/); assert.ok(lift.matches[0].pages.some((p) => p.slug === 'passenger-and-goods-lifts'));
+    assert.equal(lift.matches[0].url, 'https://moyneross.com/technical/glossary#lift');
+    const dil = await call('t2', 'translate_term', { term: 'dilapidations', market: 'US' });
+    assert.equal(out(dil).matches[0].id, 'make-good'); assert.equal(out(dil).market, 'US');
+    assert.ok(dil.payload.result.content[0].text.indexOf('United States:') < dil.payload.result.content[0].text.indexOf('Australia:'), 'the asked market is listed first');
+    assert.equal(out(await call('t3', 'translate_term', { term: 'TDD' })).matches[0].id, 'technical-due-diligence', 'an abbreviation in brackets is a name');
+    assert.equal(out(await call('t4', 'translate_term', { term: 'what do Americans call a downpipe?' })).matches[0].id, 'downpipe', 'a question is read for its term');
+    const noTerm = await call('t5', 'translate_term', { term: 'quantum chromodynamics' });
+    assert.equal(out(noTerm).match, 'none'); assert.equal(out(noTerm).count, 0); assert.ok(!noTerm.payload.result.isError);
+
     assert.ok((await call('g10', 'compare_technical_sections', { pages: ['roof-coverings', 'nothing-here'], section: 'severity' })).payload.result.isError, 'fewer than two pages found is an error');
   }
 
@@ -576,16 +589,17 @@ async function main() {
       await ask('n13', 'trace_connections', { ref: 'after-rent' }),
       await ask('n14', 'building_brief', { use_class: 'industrial', market: 'AU' }),
       await ask('n15', 'compare_technical_sections', { pages: ['roof-coverings', 'central-cooling-plant'], section: 'service-life' }),
+      await ask('n16', 'translate_term', { term: 'make good' }),
     ];
     for (const a of answers) {
       assert.doesNotMatch(JSON.stringify(a.payload.result), PROMO, `${surface.label}: a research answer carries promotion`);
       assert.doesNotMatch(a.payload.result.content[0].text, /\n\n\s*$/, `${surface.label}: trailing gap`);
     }
     if (surface.paid) {
-      assert.equal(listed.length, 13, `${surface.label}: all thirteen tools`);
+      assert.equal(listed.length, 14, `${surface.label}: all fourteen tools`);
       assert.match(init.payload.result.instructions, /start_strategy_link/);
     } else {
-      assert.equal(listed.length, 11, `${surface.label}: the eleven research tools`);
+      assert.equal(listed.length, 12, `${surface.label}: the twelve research tools`);
       for (const n of ['start_strategy_link', 'working_with_moyne_ross']) {
         assert.ok(!listed.includes(n), `${surface.label} must not offer ${n}`);
         const blocked = await ask(`b-${n}`, n, n === 'start_strategy_link' ? { building: '1 Poultry, London' } : {});

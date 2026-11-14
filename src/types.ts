@@ -102,6 +102,21 @@ export type TechnicalLibrary = {
   pages: TechnicalPage[];
 };
 
+// The three-market glossary (moyneross.com/technical/glossary): the same
+// element, lease term, code or report under each market's name.
+export type GlossaryTerm = {
+  id: string;
+  group: string;
+  concept: string;
+  au: string;
+  uk: string;
+  us: string;
+  note: string | null;
+  pages: string[];
+  url: string;
+};
+export type Glossary = { title: string; url: string; updatedAt: string | null; terms: GlossaryTerm[] };
+
 export type CorpusSnapshot = {
   schemaVersion: number;
   corpusVersion: string;
@@ -113,6 +128,7 @@ export type CorpusSnapshot = {
   sample: SampleRecord;
   engagement: { url: string; text: string };
   technical: TechnicalLibrary;
+  glossary: Glossary;
   search: { note: string; docs: SearchDoc[] };
 };
 

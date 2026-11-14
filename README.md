@@ -29,6 +29,7 @@ Public, read-only, and separate from every client system. The server bundles a s
 | `trace_connections` | The links between papers and library: from a paper, the library pages it rests on (with the section and why) and the papers on the same ground; from a library page, the papers grounded in it, related pages, and its spaces or elements. Exact links, not a search. |
 | `building_brief` | For a kind of building (`commercial`, `industrial`, `institutional`, `residential-multi`): its spaces and the elements in play, in framework order and a page at a time, each with its service-life link, threshold counts by market and grounding papers. Narrow by `spaces`, `framework_section` or `market`. A map, never an assessment. |
 | `compare_technical_sections` | One section side by side across two to five library pages (`service-life`, `severity`, `what-to-ask-for`, `misreads` and the rest), or `thresholds` by market. |
+| `translate_term` | What a building element, lease term, code or report is called in Australia, the United Kingdom and the United States, from the published glossary (lift and elevator, make good and dilapidations), with the library pages that cover it. |
 | `cite_paper` | An exact citation, to a paper or library page or one section, in BibTeX, RIS, CSL-JSON, APA or Harvard, generated rather than retyped by the model. |
 | `working_with_moyne_ross` | How engagements work and the published terms. Not offered on `/mcp/openai` or to ChatGPT. |
 | `start_strategy_link` | For a person who asks to request a Capital Strategy for one building: the request form link with the details they gave. Nothing is sent. Not offered on `/mcp/openai` or to ChatGPT. |
@@ -49,7 +50,7 @@ The papers have 400 anchored sections between them and the library 1,491, matchi
 
 ## Other interfaces
 
-- **REST:** `GET /v1/search`, `/v1/papers`, `/v1/paper`, `/v1/technical`, `/v1/connections`, `/v1/brief`, `/v1/compare`, `/v1/method`, `/v1/sample`, `/v1/cite`, `/v1/engage` ([OpenAPI 3.1](https://mcp.moyneross.com/openapi.json)). Answers carry the clean canonical URL to cite and a separate attributed `referralUrl`.
+- **REST:** `GET /v1/search`, `/v1/papers`, `/v1/paper`, `/v1/technical`, `/v1/connections`, `/v1/brief`, `/v1/compare`, `/v1/glossary`, `/v1/method`, `/v1/sample`, `/v1/cite`, `/v1/engage` ([OpenAPI 3.1](https://mcp.moyneross.com/openapi.json)). Answers carry the clean canonical URL to cite and a separate attributed `referralUrl`.
 - **Discovery:** server card at `/mcp/server-card` · AI Catalog at `/.well-known/ai-catalog.json` (`application/ai-catalog+json`) · `/llms.txt` · service metadata at `/server-card.json` · health and content fingerprint at `/health`. OpenAPI responses carry the same schemas as the MCP tools' outputs, and every REST answer is tested against them.
 - **Live check:** `npm run live-check` throws malformed and hostile traffic at a running server, fetches every paper, page, section, part, citation and resource, and checks determinism, parity and a burst of load (about 2,500 requests; not part of `npm run check`).
 - **Distribution:** every channel and where it stands in [distribution/README.md](distribution/README.md), with submission packs for the Claude directory and the OpenAI app directory.

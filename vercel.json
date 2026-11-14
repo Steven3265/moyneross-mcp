@@ -79,6 +79,10 @@
       "destination": "/api/v1/compare"
     },
     {
+      "source": "/v1/glossary",
+      "destination": "/api/v1/glossary"
+    },
+    {
       "source": "/v1/technical",
       "destination": "/api/v1/technical"
     },
