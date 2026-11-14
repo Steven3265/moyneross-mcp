@@ -22,8 +22,13 @@ export type PaperRecord = {
   canonicalUrl: string;
   resourceUri: string;
   sections: Section[];
+  // The Technical Library pages the paper reasons from, each with the section
+  // to land on and why: the paper's side of the paper–library graph.
+  technicalPages?: PaperGround[];
   contentMarkdown: string;
 };
+
+export type PaperGround = { slug: string; section: string | null; url: string; why: string };
 
 export type MethodRecord = { id: 'capital-register' | 'mr-index'; title: string; url: string; summary: string; text: string };
 export type SampleRecord = { title: string; url: string; interactiveUrl: string; text: string };

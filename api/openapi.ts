@@ -20,7 +20,7 @@ function open(schema: unknown): unknown {
 }
 const SCHEMA_NAMES: Record<string, ToolName> = {
   SearchResults: 'search_research', PaperList: 'list_papers', Paper: 'get_paper', Method: 'explain_method', SampleStrategy: 'get_sample_strategy',
-  Citation: 'cite_paper', TechnicalLibraryList: 'list_technical_pages', TechnicalLibraryPage: 'get_technical_page', Engagement: 'working_with_moyne_ross',
+  Citation: 'cite_paper', TechnicalLibraryList: 'list_technical_pages', TechnicalLibraryPage: 'get_technical_page', Connections: 'trace_connections', BuildingBrief: 'building_brief', SectionComparison: 'compare_technical_sections', Engagement: 'working_with_moyne_ross',
 };
 const schemas = Object.fromEntries(Object.entries(SCHEMA_NAMES).map(([name, tool]) => [name, open(z.toJSONSchema(TOOL_CONTRACTS[tool].outputSchema, { io: 'output', unrepresentable: 'any' }))]));
 const ref = (name: string) => ({ $ref: `#/components/schemas/${name}` });
@@ -54,6 +54,12 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
       '/v1/sample': { get: { operationId: 'getSampleStrategy', summary: TOOL_CONTRACTS.get_sample_strategy.title, description: TOOL_CONTRACTS.get_sample_strategy.description, parameters: [q('part', p('get_sample_strategy').part as Schema), q('section', p('get_sample_strategy').section as Schema)], responses: ok('The sample Capital Strategy', ref('SampleStrategy')) } },
       '/v1/cite': { get: { operationId: 'citePaper', summary: TOOL_CONTRACTS.cite_paper.title, description: TOOL_CONTRACTS.cite_paper.description,
         parameters: [q('paper', p('cite_paper').paper as Schema, true), q('style', p('cite_paper').style as Schema), q('section', p('cite_paper').section as Schema)], responses: { ...ok('An exact citation', ref('Citation')), 404: { description: 'No paper or section matches' } } } },
+      '/v1/connections': { get: { operationId: 'traceConnections', summary: TOOL_CONTRACTS.trace_connections.title, description: TOOL_CONTRACTS.trace_connections.description,
+        parameters: [q('ref', p('trace_connections').ref as Schema, true)], responses: { ...ok('The connections', ref('Connections')), 404: { description: 'No paper or page matches' } } } },
+      '/v1/brief': { get: { operationId: 'buildingBrief', summary: TOOL_CONTRACTS.building_brief.title, description: TOOL_CONTRACTS.building_brief.description,
+        parameters: [q('use_class', p('building_brief').use_class as Schema, true), { ...q('spaces', p('building_brief').spaces as Schema), style: 'form', explode: false }, q('market', p('building_brief').market as Schema), q('framework_section', p('building_brief').framework_section as Schema), q('limit', p('building_brief').limit as Schema), q('cursor', p('building_brief').cursor as Schema), q('response_format', p('building_brief').response_format as Schema)], responses: ok('The brief', ref('BuildingBrief')) } },
+      '/v1/compare': { get: { operationId: 'compareTechnicalSections', summary: TOOL_CONTRACTS.compare_technical_sections.title, description: TOOL_CONTRACTS.compare_technical_sections.description,
+        parameters: [{ ...q('pages', p('compare_technical_sections').pages as Schema, true), style: 'form', explode: false }, q('section', p('compare_technical_sections').section as Schema, true), q('market', p('compare_technical_sections').market as Schema)], responses: { ...ok('The sections side by side', ref('SectionComparison')), 404: { description: 'Fewer than two pages found' } } } },
       '/v1/technical': { get: { operationId: 'technicalLibrary', summary: `${TOOL_CONTRACTS.list_technical_pages.title}, or ${TOOL_CONTRACTS.get_technical_page.title.toLowerCase()}`,
         description: `Without page: ${TOOL_CONTRACTS.list_technical_pages.description} With page: ${TOOL_CONTRACTS.get_technical_page.description}`,
         parameters: [q('page', p('get_technical_page').page as Schema), q('format', p('get_technical_page').format as Schema), q('section', { type: 'string', maxLength: 120, description: 'With page: one section by id or heading. Without page: one framework section to list.' }),

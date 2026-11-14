@@ -1,5 +1,5 @@
 import * as z from 'zod/v4';
-import { CITATION_STYLES, METHOD_IDS, PART_NUMBERS, PROPERTY_TYPES, ROLES, SAMPLE_PARTS, TECHNICAL_SECTION_IDS } from './core.js';
+import { CITATION_STYLES, COMPARE_SECTION_IDS, METHOD_IDS, PART_NUMBERS, PROPERTY_TYPES, ROLES, SAMPLE_PARTS, TECHNICAL_SECTION_IDS, USE_CLASSES } from './core.js';
 import type { MatchStrength } from './types.js';
 import { handOverEnabled } from './client-label.js';
 
@@ -11,7 +11,7 @@ import { handOverEnabled } from './client-label.js';
 // neutral terms: no tool asks the model to call another tool unprompted, and
 // none promotes a service (Anthropic and OpenAI directory review rules).
 
-export { CITATION_STYLES, METHOD_IDS, PART_NUMBERS, PROPERTY_TYPES, ROLES, SAMPLE_PARTS, TECHNICAL_SECTION_IDS };
+export { CITATION_STYLES, COMPARE_SECTION_IDS, USE_CLASSES, METHOD_IDS, PART_NUMBERS, PROPERTY_TYPES, ROLES, SAMPLE_PARTS, TECHNICAL_SECTION_IDS };
 export type { MatchStrength };
 export const SCOPES = ['all', 'research', 'technical', 'methodology', 'sample'] as const;
 export const MARKETS = ['AU', 'UK', 'US'] as const;
@@ -77,6 +77,24 @@ export const startStrategyLinkInputSchema = z.object({
   role: z.enum(ROLES).optional(),
   type: z.enum(PROPERTY_TYPES).optional().describe('The kind of building.'),
   note: z.string().max(400).optional().describe('Anything the person would like Moyne Ross to know, briefly.'),
+});
+
+export const traceConnectionsInputSchema = z.object({
+  ref: z.string().min(1).max(200).describe('A paper (slug, CMP number or URL) or a Technical Library page (slug, element or space name, or URL).'),
+});
+export const buildingBriefInputSchema = z.object({
+  use_class: z.enum(USE_CLASSES).describe('The kind of building: commercial, industrial, institutional or residential-multi (apartments, strata, mixed-use residential).'),
+  spaces: z.array(z.string().min(1).max(120)).max(8).optional().describe('Only the elements serving these functional spaces, by slug or name, e.g. plant-rooms, loading-docks, bathrooms-and-wet-areas. Leave out for the whole building.'),
+  market: z.enum(MARKETS).optional().describe('AU, UK or US: count that market\'s measured thresholds on each element. Without it, every market is counted.'),
+  framework_section: z.string().max(80).optional().describe('Only elements in one framework section, e.g. Roofs, Mechanical Services, Fire Services. Matches on part of the name.'),
+  limit: z.number().int().min(1).max(50).optional().default(20),
+  cursor: z.string().max(20).optional().describe('nextCursor from a previous call, for the next page of elements.'),
+  response_format: z.enum(RESPONSE_FORMATS).optional().default('concise').describe('concise (default): each element\'s name, links, threshold counts and grounding papers. detailed: adds its short answer.'),
+});
+export const compareSectionsInputSchema = z.object({
+  pages: z.array(z.string().min(1).max(200)).min(2).max(5).describe('Two to five Technical Library pages, by slug, element name or URL.'),
+  section: z.enum(COMPARE_SECTION_IDS).describe('The section to set side by side: service-life, severity, what-to-ask-for, misreads, remedies, cost-shape, investigation, jurisdiction-notes and the rest, or thresholds for the measured values by market.'),
+  market: z.enum(MARKETS).optional().describe('With section thresholds: that market\'s values only. Without it, every market\'s values, each labelled.'),
 });
 
 // ─── Outputs ─────────────────────────────────────────────────────────────
@@ -151,6 +169,33 @@ export const getTechnicalPageOutputSchema = z.object({
   part: z.object({ part: z.number().int(), parts: z.number().int(), firstSection: z.string(), nextCursor: z.string().nullable() }).optional(),
 });
 
+const graphPageSchema = z.object({ slug: z.string(), title: z.string(), pageType: z.string(), section: z.string(), url: z.string() });
+const graphPaperSchema = z.object({ id: z.string(), slug: z.string(), title: z.string(), url: z.string() });
+export const traceConnectionsOutputSchema = z.object({
+  from: z.object({ kind: z.enum(['paper', 'technical']), slug: z.string(), title: z.string(), id: z.string().nullable(), url: z.string() }),
+  restsOn: z.array(z.object({ slug: z.string(), title: z.string(), section: z.string().nullable(), url: z.string(), why: z.string() })),
+  groundedPapers: z.array(graphPaperSchema.extend({ section: z.string().nullable(), why: z.string() })),
+  sharesGroundWith: z.array(graphPaperSchema.extend({ sharedPages: z.array(z.string()) })),
+  related: z.array(graphPageSchema), spaces: z.array(graphPageSchema), elements: z.array(graphPageSchema),
+  corpusVersion: z.string(),
+});
+export const buildingBriefOutputSchema = z.object({
+  useClass: z.enum(USE_CLASSES), market: z.enum(MARKETS).nullable(),
+  spaces: z.array(graphPageSchema), unknownSpaces: z.array(z.string()), frameworkSections: z.array(z.string()),
+  count: z.number().int().min(0), total: z.number().int(), nextCursor: z.string().nullable(),
+  elements: z.array(z.object({
+    slug: z.string(), title: z.string(), section: z.string(), url: z.string(), answer: z.string().optional(),
+    serviceLife: z.string().nullable(),
+    thresholds: z.record(z.string(), z.number().int()), papers: z.array(z.string()),
+  })),
+  boundary: z.string(), corpusVersion: z.string(),
+});
+export const compareSectionsOutputSchema = z.object({
+  section: z.string(), market: z.enum(MARKETS).nullable(),
+  pages: z.array(z.object({ slug: z.string(), title: z.string(), url: z.string(), heading: z.string().nullable(), text: z.string(), truncated: z.boolean() })),
+  unknown: z.array(z.string()), policy: z.string().optional(), corpusVersion: z.string(),
+});
+
 // ─── Contracts ───────────────────────────────────────────────────────────
 
 const str = { type: 'string' } as const;
@@ -214,6 +259,27 @@ export const TOOL_CONTRACTS = {
     inputSchema: getTechnicalPageInputSchema, outputSchema: getTechnicalPageOutputSchema,
     outputFields: ['page', 'section', 'citation'],
     jsonInputSchema: { type: 'object', properties: { page: TECH_JSON, format: { type: 'string', enum: ['summary', 'full'], default: 'summary' }, section: SECTION_JSON, cursor: { type: 'string', maxLength: 120 }, market: { type: 'string', enum: [...MARKETS] } }, required: ['page'], additionalProperties: false },
+  },
+  trace_connections: {
+    title: 'Trace connections in Moyne Ross research',
+    description: 'Follow the links between the Capital Made Physical papers and the Technical Library. From a paper: the library pages it reasons from (each with the section and why), and the other papers that rest on the same ground, most shared first. From a library page: the papers grounded in it and why, its related pages, and the spaces an element serves or the elements a space holds. Exact links, not a search: use it to see what an argument rests on, or everything that turns on one element.',
+    inputSchema: traceConnectionsInputSchema, outputSchema: traceConnectionsOutputSchema,
+    outputFields: ['from', 'restsOn', 'groundedPapers', 'sharesGroundWith', 'related', 'spaces', 'elements', 'corpusVersion'],
+    jsonInputSchema: { type: 'object', properties: { ref: { type: 'string', minLength: 1, maxLength: 200 } }, required: ['ref'], additionalProperties: false },
+  },
+  building_brief: {
+    title: 'Brief a kind of building',
+    description: 'For a kind of building (commercial, industrial, institutional or residential-multi), the Technical Library\'s map of what a capital strategy looks at: its functional spaces, and the building elements in play, a page at a time in framework order, each with a link to its service life (every page also grades findings at #severity), how many measured thresholds each market has on it, and the papers that reason from it. Narrow it to the elements serving named spaces (plant rooms, loading docks, wet areas), to one framework section, or count one market\'s thresholds. General: it describes what such a building turns on, never the condition, cost or needs of a particular building.',
+    inputSchema: buildingBriefInputSchema, outputSchema: buildingBriefOutputSchema,
+    outputFields: ['useClass', 'market', 'spaces', 'unknownSpaces', 'frameworkSections', 'count', 'total', 'nextCursor', 'elements', 'boundary', 'corpusVersion'],
+    jsonInputSchema: { type: 'object', properties: { use_class: { type: 'string', enum: [...USE_CLASSES] }, spaces: { type: 'array', items: { type: 'string', minLength: 1, maxLength: 120 }, maxItems: 8 }, market: { type: 'string', enum: [...MARKETS] }, framework_section: { type: 'string', maxLength: 80 }, limit: { type: 'integer', minimum: 1, maximum: 50, default: 20 }, cursor: { type: 'string', maxLength: 20 }, response_format: { type: 'string', enum: [...RESPONSE_FORMATS], default: 'concise' } }, required: ['use_class'], additionalProperties: false },
+  },
+  compare_technical_sections: {
+    title: 'Compare Technical Library sections',
+    description: 'Set one section side by side across two to five Technical Library pages: service life, severity grading, what to ask for, common misreads, remedies, the shape of the cost and more, or thresholds for the measured values by market (one market with market, otherwise every market labelled, with the rule that a value applies only in its own market). Each section comes with its anchored URL; a long section is shortened and marked truncated. General guidance on how elements behave, never evidence about a particular building.',
+    inputSchema: compareSectionsInputSchema, outputSchema: compareSectionsOutputSchema,
+    outputFields: ['section', 'market', 'pages', 'unknown', 'corpusVersion'],
+    jsonInputSchema: { type: 'object', properties: { pages: { type: 'array', items: { type: 'string', minLength: 1, maxLength: 200 }, minItems: 2, maxItems: 5 }, section: { type: 'string', enum: [...COMPARE_SECTION_IDS] }, market: { type: 'string', enum: [...MARKETS] } }, required: ['pages', 'section'], additionalProperties: false },
   },
   working_with_moyne_ross: {
     title: 'How working with Moyne Ross works',

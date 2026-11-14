@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- MCP Apps. The three graph tools carry an interactive view (`ui://moyneross/graph-view.html`, `text/html;profile=mcp-app`, Apps protocol 2026-01-26), and the server declares `io.modelcontextprotocol/ui`. The brief renders by framework section with threshold chips, a filter and paging; the comparison renders sections side by side, tables included; connections can be walked by clicking, with Back. One self-contained page with no network access, themed from the host's variables; the view resource stays out of `resources/list`, and hosts without MCP Apps show the text as before. `building_brief` now returns elements in framework order.
+
+- The paper–library graph. The snapshot now carries each paper's `technicalPages` (the library pages it rests on, with the section and why: 127 links across 39 papers), validated so every link resolves to a page and section. Three tools walk it, on every surface:
+  - `trace_connections`: from a paper, what it rests on and which papers share that ground; from a library page, the papers grounded in it, related pages, and its spaces or elements.
+  - `building_brief`: for a use class, the spaces and the elements in play, paged in framework order, each with its service-life link, threshold counts by market and grounding papers; narrowed by spaces, framework section or market.
+  - `compare_technical_sections`: one section across two to five pages, or thresholds by market.
+  REST: `/v1/connections`, `/v1/brief`, `/v1/compare`, in the OpenAPI from the same contracts. Within the 20k default and 40k text budgets; `building_brief` and `compare_technical_sections` carry the large-result ceiling.
+- Retrieval after the 11 November enrichment. The website no longer puts the "technical ground" panel into paper text (website `build_publication.py`); library pages are judged strong on their own passage only when it carries the whole question (`STRONG_LIBRARY_COVERAGE` 0.95), otherwise they meet the same domain test as papers; "vendor DD" is a domain phrase. Off-topic questions judged strong fell from 6 to 2 and the ratchet is lowered to 2; the shorthand gate is 20 strong, with the one case below it documented. Recalibrated: `libraryWeight` 0.6, `headlineBoost` 0.5.
+
 - Thresholds by market. The snapshot carries each Technical Library page's measured values, each tagged with the one market it applies in, and the library's rule for using them. `get_technical_page` (and `/v1/technical`) take `market` (`AU`, `UK`, `US`) and return that market's values alone; without it, every market's values come grouped and labelled with the rule first. `section: thresholds` returns the values on their own. The shared sections carry no market's numbers. Validated in the snapshot check and tested in core and protocol tests.
 
 ## 1.1.0

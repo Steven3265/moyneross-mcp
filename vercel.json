@@ -67,6 +67,18 @@
       "destination": "/api/v1/cite"
     },
     {
+      "source": "/v1/connections",
+      "destination": "/api/v1/connections"
+    },
+    {
+      "source": "/v1/brief",
+      "destination": "/api/v1/brief"
+    },
+    {
+      "source": "/v1/compare",
+      "destination": "/api/v1/compare"
+    },
+    {
       "source": "/v1/technical",
       "destination": "/api/v1/technical"
     },

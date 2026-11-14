@@ -86,6 +86,12 @@ try {
   await measure('list_technical_pages', 'list_technical_pages', {}, true);
   await measure('list_technical_pages 50', 'list_technical_pages', { limit: 50 }, false);
   await measure('search_research technical detailed x10', 'search_research', { query: 'roof leaks', scope: 'technical', limit: 10, response_format: 'detailed' }, false);
+  // The graph tools: defaults, the widest brief, and the largest comparison.
+  for (const u of ['commercial', 'industrial', 'institutional', 'residential-multi']) await measure(`building_brief ${u}`, 'building_brief', { use_class: u }, true);
+  await measure('building_brief commercial detailed x50', 'building_brief', { use_class: 'commercial', limit: 50, response_format: 'detailed' }, false);
+  await measure('trace_connections (most-grounded page)', 'trace_connections', { ref: 'main-electrical-supply' }, true);
+  await measure('compare_technical_sections 5 x worked-example', 'compare_technical_sections', { pages: ['roof-safety-systems', 'roof-coverings', 'central-cooling-plant', 'passenger-and-goods-lifts', 'structural-frame'], section: 'worked-example' }, true);
+  await measure('compare_technical_sections 5 x thresholds', 'compare_technical_sections', { pages: ['roof-safety-systems', 'roof-coverings', 'central-cooling-plant', 'passenger-and-goods-lifts', 'lighting'], section: 'thresholds' }, true);
   let tSum = { json: 0 }, tFull = { json: 0 }, tSec = { json: 0 };
   for (const p of technicalPages) {
     await measure(`library ${p.slug}`, 'get_technical_page', { page: p.slug }, true); const a = sizes.pop(); if (a.json > tSum.json) tSum = a;

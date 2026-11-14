@@ -202,8 +202,8 @@ async function main() {
   assert.equal(discover.payload.result.cacheScope, 'public');
   assert.ok(discover.payload.result.ttlMs > 0);
 
-  const ALL_TOOLS = ['cite_paper', 'explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page', 'list_papers', 'list_technical_pages', 'search_research', 'start_strategy_link', 'working_with_moyne_ross'];
-  const LARGE = ['explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page'];
+  const ALL_TOOLS = ['building_brief', 'cite_paper', 'compare_technical_sections', 'explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page', 'list_papers', 'list_technical_pages', 'search_research', 'start_strategy_link', 'trace_connections', 'working_with_moyne_ross'];
+  const LARGE = ['building_brief', 'compare_technical_sections', 'explain_method', 'get_paper', 'get_sample_strategy', 'get_technical_page'];
   const call = (id, name, args, extra = {}) => postModern({ id, method: 'tools/call', name, params: { name, arguments: args }, ...extra });
   const out = (r) => r.payload.result.structuredContent;
   const cacheable = (r, label) => {
@@ -245,7 +245,8 @@ async function main() {
   const disc2026 = await postModern({ id: 'disc', method: 'server/discover' });
   cacheable(disc2026, 'server/discover');
   assert.ok(disc2026.payload.result.supportedVersions.includes('2026-07-28'));
-  assert.deepEqual(Object.keys(disc2026.payload.result.capabilities).sort(), ['completions', 'prompts', 'resources', 'tools']);
+  assert.deepEqual(Object.keys(disc2026.payload.result.capabilities).sort(), ['completions', 'extensions', 'prompts', 'resources', 'tools']);
+  assert.deepEqual(disc2026.payload.result.capabilities.extensions, { 'io.modelcontextprotocol/ui': { mimeTypes: ['text/html;profile=mcp-app'] } }, 'MCP Apps extension declared');
   const { default: cardHandler } = await import('../dist/api/mcp-server-card.js');
   const cardRes = { headers: {}, statusCode: 0, body: '', setHeader(k, v) { this.headers[k.toLowerCase()] = v; }, end(b = '') { this.body = b; } };
   cardHandler({ method: 'GET', url: '/mcp/server-card', headers: { host: 'mcp.moyneross.com' } }, cardRes);
@@ -462,6 +463,52 @@ async function main() {
   // prompting to use the request tool. On /mcp/openai and for ChatGPT, the two
   // paid-service tools are absent altogether.
   const PROMO = /\b950\b|start_strategy_link|moyneross\.com\/contact|Start your strategy/;
+  // ── Connections: the paper–library graph, walked exactly ──
+  {
+    const fromPaper = (await call('g1', 'trace_connections', { ref: 'after-rent' })).payload.result;
+    assert.ok(!fromPaper.isError, 'trace from a paper');
+    const sc = fromPaper.structuredContent;
+    assert.equal(sc.from.kind, 'paper');
+    assert.ok(sc.restsOn.some((g) => g.slug === 'solar-photovoltaic-systems' && g.why), 'a paper lists the library pages it rests on, with why');
+    assert.ok(sc.sharesGroundWith.length && sc.sharesGroundWith[0].sharedPages.length >= sc.sharesGroundWith.at(-1).sharedPages.length, 'papers on shared ground, most shared first');
+    const fromPage = (await call('g2', 'trace_connections', { ref: 'Central Cooling Plant' })).payload.result.structuredContent;
+    assert.equal(fromPage.from.kind, 'technical');
+    assert.ok(fromPage.groundedPapers.length && fromPage.groundedPapers.every((p) => p.url.startsWith('https://moyneross.com/insights/')), 'a page lists the papers grounded in it');
+    assert.ok(fromPage.spaces.some((s) => s.slug === 'plant-rooms'), 'an element lists the spaces it serves');
+    const space = (await call('g3', 'trace_connections', { ref: 'bathrooms-and-wet-areas' })).payload.result.structuredContent;
+    assert.ok(space.elements.some((e) => e.slug === 'waterproofing-membranes'), 'a space lists its elements');
+    assert.ok((await call('g4', 'trace_connections', { ref: 'no such thing at all' })).payload.result.isError, 'unknown ref is an error');
+
+    const brief = (await call('g5', 'building_brief', { use_class: 'commercial', market: 'UK' })).payload.result.structuredContent;
+    assert.ok(brief.total > brief.count && brief.nextCursor, 'a brief comes a page at a time');
+    assert.ok(brief.elements.every((e) => Object.keys(e.thresholds).join() === 'UK' && e.serviceLife?.endsWith('#service-life') && !('answer' in e)), 'concise brief: one market counted, service-life link, no answer');
+    assert.match(brief.boundary, /not an assessment/);
+    { const all = (await call('g5b', 'building_brief', { use_class: 'commercial', limit: 50 })).payload.result.structuredContent.elements.map((e) => e.section);
+      assert.equal(all.filter((x, i) => x !== all[i - 1]).length, new Set(all).size, 'brief is in framework order: each section appears once'); }
+    const next = (await call('g6', 'building_brief', { use_class: 'commercial', market: 'UK', cursor: brief.nextCursor })).payload.result.structuredContent;
+    assert.ok(!next.elements.some((e) => brief.elements.some((f) => f.slug === e.slug)), 'the next page does not repeat elements');
+    const docks = (await call('g7', 'building_brief', { use_class: 'industrial', spaces: ['loading-docks'], response_format: 'detailed' })).payload.result.structuredContent;
+    assert.ok(docks.elements.some((e) => e.slug === 'dock-levellers-and-goods-hoists') && docks.elements.every((e) => e.answer), 'spaces narrow the brief; detailed adds answers');
+    assert.ok(docks.total < brief.total, 'a space brief is narrower than the whole building');
+
+    const cmp = (await call('g8', 'compare_technical_sections', { pages: ['roof-coverings', 'central-cooling-plant', 'passenger-and-goods-lifts'], section: 'service-life' })).payload.result.structuredContent;
+    assert.equal(cmp.pages.length, 3);
+    assert.ok(cmp.pages.every((p) => p.url.endsWith('#service-life') && p.text.length > 100), 'each page compared at its anchored section');
+    const thr = (await call('g9', 'compare_technical_sections', { pages: ['central-cooling-plant', 'lighting'], section: 'thresholds', market: 'AU' })).payload.result.structuredContent;
+    assert.ok(thr.policy && thr.pages.every((p) => /Australia/.test(p.text) && !/United Kingdom|United States/.test(p.text)), 'thresholds compared for one market only, with the policy');
+    // MCP Apps: the graph tools point at the view; the view reads, is self-contained and stays out of resources/list.
+    const listedTools = (await postModern({ id: 'v1', method: 'tools/list' })).payload.result.tools;
+    for (const n of ['trace_connections', 'building_brief', 'compare_technical_sections']) assert.equal(listedTools.find((t) => t.name === n)?._meta?.ui?.resourceUri, 'ui://moyneross/graph-view.html', `${n} carries the view`);
+    assert.ok(!listedTools.find((t) => t.name === 'search_research')?._meta?.ui, 'other tools carry no view');
+    const viewRead = (await postModern({ id: 'v2', method: 'resources/read', name: 'ui://moyneross/graph-view.html', params: { uri: 'ui://moyneross/graph-view.html' } })).payload.result.contents[0];
+    assert.equal(viewRead.mimeType, 'text/html;profile=mcp-app');
+    assert.match(viewRead.text, /ui\/initialize/);
+    assert.match(viewRead.text, /2026-01-26/);
+    assert.doesNotMatch(viewRead.text, /<script[^>]+src=|<link[^>]+href=|fetch\(|XMLHttpRequest|https?:\/\/(?!moyneross\.com)[a-z]/i, 'the view loads nothing from the network');
+    assert.ok((await postModern({ id: 'v3', method: 'resources/read', name: 'ui://moyneross/other.html', params: { uri: 'ui://moyneross/other.html' } })).payload.error, 'unknown view is not found');
+    assert.ok((await call('g10', 'compare_technical_sections', { pages: ['roof-coverings', 'nothing-here'], section: 'severity' })).payload.result.isError, 'fewer than two pages found is an error');
+  }
+
   const surfaces = [
     { label: 'standard', paid: true, options: {} },
     { label: 'openai endpoint', paid: false, options: { endpoint: 'openai' } },
@@ -485,16 +532,19 @@ async function main() {
       await ask('n10', 'list_technical_pages', {}),
       await ask('n11', 'get_technical_page', { page: 'roof-coverings', format: 'full' }),
       await ask('n12', 'search_research', { query: 'concrete spalling in a car park', scope: 'technical' }),
+      await ask('n13', 'trace_connections', { ref: 'after-rent' }),
+      await ask('n14', 'building_brief', { use_class: 'industrial', market: 'AU' }),
+      await ask('n15', 'compare_technical_sections', { pages: ['roof-coverings', 'central-cooling-plant'], section: 'service-life' }),
     ];
     for (const a of answers) {
       assert.doesNotMatch(JSON.stringify(a.payload.result), PROMO, `${surface.label}: a research answer carries promotion`);
       assert.doesNotMatch(a.payload.result.content[0].text, /\n\n\s*$/, `${surface.label}: trailing gap`);
     }
     if (surface.paid) {
-      assert.equal(listed.length, 10, `${surface.label}: all ten tools`);
+      assert.equal(listed.length, 13, `${surface.label}: all thirteen tools`);
       assert.match(init.payload.result.instructions, /start_strategy_link/);
     } else {
-      assert.equal(listed.length, 8, `${surface.label}: the eight research tools`);
+      assert.equal(listed.length, 11, `${surface.label}: the eleven research tools`);
       for (const n of ['start_strategy_link', 'working_with_moyne_ross']) {
         assert.ok(!listed.includes(n), `${surface.label} must not offer ${n}`);
         const blocked = await ask(`b-${n}`, n, n === 'start_strategy_link' ? { building: '1 Poultry, London' } : {});
@@ -506,9 +556,10 @@ async function main() {
 
   console.log('PASS  protocol: Host/Origin guards, CORS and method controls');
   console.log('PASS  protocol: 2026-07-28 core (cache fields, stable order, result metadata, -32602, routing headers) and 2025-era clients');
-  console.log('PASS  protocol: 10 tools with full annotations, icons and size ceilings, against their shared contracts');
+  console.log(`PASS  protocol: ${ALL_TOOLS.length} tools with full annotations, icons and size ceilings, against their shared contracts`);
   console.log('PASS  protocol: search (concise, detailed, match evidence, shorthand, suggestions), papers (summary, sections, full, paging), citations in 5 styles');
   console.log('PASS  protocol: Technical Library (list, sections, page, section, full, candidates, citation, scoped search), methods, sample, prompts with completion, both templates and 156 resources');
+  console.log('PASS  protocol: connections (paper to library, library to papers, spaces and elements), building brief (paged, one market, spaces, detailed), section comparison (anchored, thresholds by market)');
   console.log('PASS  protocol: neutral research answers on every surface; on /mcp/openai and for ChatGPT, research tools only');
 }
 

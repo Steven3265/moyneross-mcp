@@ -12,6 +12,6 @@
 // headlineBoost rewards a document whose name and question match the query,
 // over one that merely mentions it in the body.
 export const RANKING = {
-  libraryWeight: 0.575,
-  headlineBoost: 0.6,
+  libraryWeight: 0.6,
+  headlineBoost: 0.5,
 };

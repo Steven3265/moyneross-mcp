@@ -163,3 +163,12 @@ export function logApi(route: string, detail: Record<string, unknown>): void {
     // Telemetry must never interfere with a read-only response.
   }
 }
+
+// A list parameter, comma-separated or repeated (?pages=a,b or ?pages=a&pages=b).
+// Returns the values, or an error message.
+export function listParam(url: URL, name: string, max: number, maxLength: number): string[] | string {
+  const values = url.searchParams.getAll(name).flatMap((v) => v.split(',')).map((v) => v.trim()).filter(Boolean);
+  if (values.length > max) return `${name} takes at most ${max} values`;
+  if (values.some((v) => v.length > maxLength)) return `each ${name} value must be at most ${maxLength} characters`;
+  return values;
+}

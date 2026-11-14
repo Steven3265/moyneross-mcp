@@ -40,6 +40,16 @@ for (const p of snap.papers) {
     anchors.add(sec.anchor);
   }
 }
+// The paper–library graph: every page a paper rests on must exist, and every
+// section it lands on must be one of that page's sections.
+{
+  const bySlug = new Map(snap.technical.pages.map((t) => [t.slug, t]));
+  for (const p of snap.papers) for (const g of p.technicalPages ?? []) {
+    const t = bySlug.get(g.slug);
+    if (!t) { errors.push(`${p.slug} rests on missing library page ${g.slug}`); continue; }
+    if (g.section && !t.sections.some((x) => x.id === g.section) && !(g.section === 'thresholds' && t.thresholds?.length)) errors.push(`${p.slug} lands on missing section ${g.slug}#${g.section}`);
+  }
+}
 if (snap.papers.length < 40) errors.push(`Only ${snap.papers.length} papers; expected the full corpus.`);
 
 const docUrls = new Set(snap.search.docs.map((d) => d.url));

@@ -445,6 +445,12 @@ export function searchResearch({ query, scope = 'all', limit = 5 }: SearchOption
 // paper's headline material; see docs/BENCHMARK.md).
 export const STRONG_MIN_SCORE = 3;
 export const STRONG_MIN_COVERAGE = 0.6;
+// What a library page's best passage must carry of the question before the
+// page stands on that passage alone. Set just below 1 so the bar is "the
+// passage carries the question", not a tuned figure: on the benchmarks every
+// library answer clears it at 1.00 and every off-topic coincidence sits at
+// 0.90 or less, so nothing is near the line.
+export const STRONG_LIBRARY_COVERAGE = 0.95;
 
 export type MatchDetail = { coverage: number; headlineCoverage: number; matchedTerms: string[]; missingTerms: string[] };
 
@@ -491,9 +497,18 @@ export function matchStrength(query: string, results: SearchResult[]): MatchStre
   // turn up in every sense: "deferred tax liability accounting" finds the
   // deferred-maintenance paper. So it is strong only if the question is about
   // buildings or property capital at all (domainEvidence), or names what the
-  // paper is about (its title and question). A library page is already judged
-  // on its own passages, so it is exempt.
-  if (top.kind === TECHNICAL_KIND) return 'strong';
+  // paper is about (its title and question).
+  //
+  // A library page is judged on its own passages instead, so a page whose best
+  // passage carries every distinctive word of the question has answered it,
+  // in whatever words the question was asked: "why is my ceiling dripping on
+  // cold mornings" is not weaker evidence than "condensation on soffit", and
+  // the element words people actually use (wall, roof, lift, drain) are the
+  // ones domainEvidence has to discount as everyday. Short of carrying the
+  // whole question, a library page is held to the same test as a paper, which
+  // is what keeps a question whose words merely happen to occur on a page
+  // ("timing belt replacement on a car") from being served as an answer.
+  if (top.kind === TECHNICAL_KIND && m.coverage >= STRONG_LIBRARY_COVERAGE) return 'strong';
   return domainEvidence(query) >= 1 || m.headlineCoverage >= STRONG_HEADLINE_COVERAGE ? 'strong' : 'weak';
 }
 
@@ -512,7 +527,7 @@ const termSet = (text: string) => new Set(tokens(text));
 const GENERIC_TERMS = termSet(`200 action act area areas back base box boxes call cause check clean cold common control cover cross cycle data down effect end entry equipment file fill final finish fit fitting fixed flat flow free fund golden good grade green guide hammer head heads high holes hot impact key land lead less level light lines load locks log loop loose low main make matrix mobile network non off out outs outside panel path performance phase phon play plug point post power pre ready record re reverse safe safety screen self shell shut signs site smart soft solid special spray stack standard static step sub switch system test time transfer travel trip unit units universal up value warm work works zone code book delivery rate rated bays bear bank trend type types table tabl matt mov removal management survey clock spac`);
 const AMBIGUOUS_TERMS = termSet(`lift lifts car cars gym gyms frame fram structure structur structural service servic capital register core foundation insulation heat pump pumps kitchen room rooms dock docks glass fire fires energy solar replacement carpet barbecue tree trees garden pool pools tenni sauna playground restaurant hotel house home guest office retail shop shops shopp food wine aquarium laboratori medical classroom clinical nurse bike sink toilet shower bathroom laundri dishwasher cooktop paint plaster lighting water gas oil cable cabl security wall walls door doors window floor floors ceiling ceil roof stair tank pipe pipes metal wood stone steel concrete timber brick tile tiles glaz coating coat seal seals lease leases asset assets portfolio condition cost costs rent plan plans strategy index reserve debt deferr timing tim obsolete obsolescence name drain drainage chain rope cradle cage cages bin bins theatre hall allowance budget forecast`);
 const CLEAR_TERMS = termSet(`building buildings property properties tenant tenants tenancy landlord landlords leasehold freehold dilapidations dilaps makegood capex opex maintenance refurbishment refurbish redevelop redevelopment lifecycle strata condo hoa valuation valuer defect defects warehouse industrial commercial facade cladding chiller switchboard sprinkler mees epc nabers ll97 bps decarbonisation emissions carbon proptech fitout outgoings nla gla occupier occupiers owner owners contingency tdd vdd`);
-const DOMAIN_PHRASES = [/\bmr ?index\b/i, /\bmr ?[1-5]\b/i, /\bcapital (register|strategy|strategies|plan|planning|expenditure|works)\b/i, /\bmoyne ross\b/i, /\bcapital made physical\b/i, /\bmake[- ]good\b/i, /\bnet zero\b/i, /\btechnical due diligence\b/i, /\bsinking fund\b/i, /\breserve stud/i, /\bowners corporation\b/i, /\benergy (rating|performance|efficiency)\b/i, /\bbuilding (code|condition|services)\b/i, /\bcost basis\b/i];
+const DOMAIN_PHRASES = [/\bmr ?index\b/i, /\bmr ?[1-5]\b/i, /\bcapital (register|strategy|strategies|plan|planning|expenditure|works)\b/i, /\bmoyne ross\b/i, /\bcapital made physical\b/i, /\bmake[- ]good\b/i, /\bnet zero\b/i, /\btechnical due diligence\b/i, /\bvendor (dd|due diligence)\b/i, /\bsinking fund\b/i, /\breserve stud/i, /\bowners corporation\b/i, /\benergy (rating|performance|efficiency)\b/i, /\bbuilding (code|condition|services)\b/i, /\bcost basis\b/i];
 const DOMAIN_TERMS = new Set<string>(CLEAR_TERMS);
 for (const p of technicalPages) for (const t of tokens([p.title, p.frameworkElement, ...(p.alsoKnownAs ?? [])].join(' '))) if (!GENERIC_TERMS.has(t)) DOMAIN_TERMS.add(t);
 for (const t of AMBIGUOUS_TERMS) DOMAIN_TERMS.delete(t);
@@ -1018,4 +1033,169 @@ export function formatTechnicalCitation(p: TechnicalPage, style: CitationStyle, 
 // situations, each read onto a register line's timing basis.
 export function severityScale() {
   return snapshot.technical?.framework.severityScale ?? {};
+}
+
+// ─── Connections: the paper–library graph ───────────────────────────────
+// The papers reason from the Technical Library, and each says which pages it
+// rests on and why (technicalPages). Library pages name the pages related to
+// them, the spaces an element serves and the elements a space holds. These
+// functions walk those links rather than searching text, so they answer
+// "what does this rest on", "what else turns on this element" and "what
+// matters in this kind of building" exactly, with no ranking involved.
+
+export const USE_CLASSES = ['commercial', 'industrial', 'institutional', 'residential-multi'] as const;
+export type UseClass = (typeof USE_CLASSES)[number];
+const LIBRARY_SECTION_IDS = ['notice', 'what-it-is', 'service-life', 'severity', 'investigation', 'remedies', 'cost-shape', 'what-to-ask-for', 'misreads', 'jurisdiction-notes', 'worked-example', 'thresholds'] as const;
+export const COMPARE_SECTION_IDS = LIBRARY_SECTION_IDS;
+const techBySlug = new Map(technicalPages.map((p) => [p.slug, p]));
+const pageRef = (p: TechnicalPage) => ({ slug: p.slug, title: p.title, pageType: p.pageType, section: p.section, url: p.canonicalUrl });
+const paperRef = (p: PaperRecord) => ({ id: p.id, slug: p.slug, title: p.title, url: p.canonicalUrl });
+// Papers resting on each library page, with the section and the reason.
+const groundedBy = new Map<string, { paper: PaperRecord; section: string | null; url: string; why: string }[]>();
+for (const p of papers) for (const g of p.technicalPages ?? []) {
+  const list = groundedBy.get(g.slug) ?? [];
+  list.push({ paper: p, section: g.section, url: g.url, why: g.why });
+  groundedBy.set(g.slug, list);
+}
+const pagesRef = (slugs: string[]) => slugs.map((s) => techBySlug.get(s)).filter((x): x is TechnicalPage => Boolean(x)).map(pageRef);
+
+export type Connections = ReturnType<typeof traceConnections>;
+// From a paper: the pages it rests on, and the other papers that rest on the
+// same ground (most shared first). From a library page: the papers grounded
+// in it, its related pages, and the spaces it serves or the elements it holds.
+export function traceConnections(ref: string) {
+  const paper = getPaper(ref);
+  const tech = paper ? undefined : getTechnicalPage(ref);
+  if (paper) {
+    const ground = (paper.technicalPages ?? []).map((g) => {
+      const t = techBySlug.get(g.slug);
+      return { slug: g.slug, title: t?.title ?? g.slug, section: g.section, url: g.url, why: g.why };
+    });
+    const mine = new Set(ground.map((g) => g.slug));
+    const shared = papers.filter((p) => p.slug !== paper.slug)
+      .map((p) => ({ p, on: (p.technicalPages ?? []).map((g) => g.slug).filter((s) => mine.has(s)) }))
+      .filter((x) => x.on.length).sort((a, b) => b.on.length - a.on.length || a.p.id.localeCompare(b.p.id, 'en', { numeric: true }))
+      .slice(0, 8).map((x) => ({ ...paperRef(x.p), sharedPages: [...new Set(x.on)] }));
+    return { from: { kind: 'paper' as const, ...paperRef(paper) }, restsOn: ground, groundedPapers: [], sharesGroundWith: shared, related: [], spaces: [], elements: [], corpusVersion };
+  }
+  if (tech) {
+    const grounded = (groundedBy.get(tech.slug) ?? []).map((g) => ({ ...paperRef(g.paper), section: g.section, why: g.why }));
+    // Spaces an element serves, both as the element lists them and as spaces list it.
+    const spaceSlugs = tech.pageType === 'element'
+      ? [...new Set([...tech.spaces, ...technicalPages.filter((s) => s.pageType === 'space' && s.spaceElements.includes(tech.slug)).map((s) => s.slug)])]
+      : tech.subSpaces;
+    const elementSlugs = tech.pageType === 'space' ? tech.spaceElements : [];
+    return { from: { kind: 'technical' as const, slug: tech.slug, title: tech.title, id: null, url: tech.canonicalUrl }, restsOn: [], groundedPapers: grounded, sharesGroundWith: [], related: pagesRef(tech.related), spaces: pagesRef(spaceSlugs), elements: pagesRef(elementSlugs), corpusVersion };
+  }
+  return undefined;
+}
+
+// What a kind of building turns on, from the library: its spaces, and the
+// elements in play (all of them, or those serving the spaces named), each with
+// where its service life is set out, how many measured thresholds the market
+// has on it, and the papers that reason from it. A map to read from, not an
+// assessment: it says what a strategy for such a building looks at, never
+// what any one building needs.
+export function buildingBrief({ useClass, spaces = [], market, frameworkSection }: { useClass: UseClass; spaces?: string[]; market?: Market; frameworkSection?: string }) {
+  const applies = (p: TechnicalPage) => p.useClasses.includes(useClass) || p.useClasses.includes('all');
+  const spacePages = technicalPages.filter((p) => p.pageType === 'space' && applies(p));
+  const named = spaces.map((s) => getTechnicalPage(s)).filter((p): p is TechnicalPage => Boolean(p) && p!.pageType === 'space');
+  const unknownSpaces = spaces.filter((s) => { const p = getTechnicalPage(s); return !p || p.pageType !== 'space'; });
+  const inNamed = new Set(named.flatMap((s) => [...s.spaceElements]));
+  for (const s of named) for (const e of technicalPages) if (e.pageType === 'element' && e.spaces.includes(s.slug)) inNamed.add(e.slug);
+  const want = frameworkSection ? fold(frameworkSection) : '';
+  const elements = technicalPages.filter((p) => p.pageType === 'element' && applies(p)
+    && (!named.length || inNamed.has(p.slug))
+    && (!want || fold(p.section).includes(want)));
+  // Framework order (Substructure to Environmental), as list_technical_pages gives it.
+  const order = new Map(listTechnicalPages({}).map((p, i) => [p.slug, i]));
+  elements.sort((a, b) => (order.get(a.slug) ?? 0) - (order.get(b.slug) ?? 0));
+  const markets = market ? [market] : MARKETS.slice();
+  const rows = elements.map((p) => {
+    const life = p.sections.find((x) => x.id === 'service-life');
+    const counts = Object.fromEntries(markets.map((m) => [m, (p.thresholds ?? []).filter((t) => t.market === m).length]));
+    const grounded = groundedBy.get(p.slug) ?? [];
+    return {
+      slug: p.slug, title: p.title, section: p.section, answer: p.answer, url: p.canonicalUrl,
+      serviceLife: life ? `${p.canonicalUrl}#${life.id}` : null,
+      thresholds: counts,
+      papers: grounded.map((g) => g.paper.slug),
+    };
+  });
+  return {
+    useClass, market: market ?? null,
+    spaces: (named.length ? named : spacePages).map(pageRef),
+    unknownSpaces, frameworkSections: [...new Set(rows.map((r) => r.section))],
+    elements: rows,
+    boundary: 'A map of what a strategy for this kind of building looks at, from the general Technical Library. It is not an assessment: it says nothing about the condition, cost or needs of any particular building.',
+    corpusVersion,
+  };
+}
+
+// One section side by side across several library pages: service lives,
+// severity grading, what to ask for, misreads. Section thresholds compares the
+// measured values, for one market or every market labelled. Each section text
+// is capped so a comparison stays inside every assistant's limits; the URL
+// leads to the whole of it.
+export const COMPARE_TEXT_LIMIT = 3000;
+export function compareSections({ pages: refs, section, market }: { pages: string[]; section: string; market?: Market }) {
+  const found: TechnicalPage[] = [];
+  const unknown: string[] = [];
+  for (const r of refs) { const p = getTechnicalPage(r); if (p && !found.includes(p)) found.push(p); else if (!p) unknown.push(r); }
+  const items = found.map((p) => {
+    if (isThresholdsRef(section)) {
+      const view = thresholdsFor(p, market);
+      return { slug: p.slug, title: p.title, url: `${p.canonicalUrl}#thresholds`, heading: 'Thresholds by market', text: view ? renderThresholds(p, view) : 'No measured thresholds on this page.', truncated: false };
+    }
+    const sec = technicalSection(p, section);
+    if (!sec) return { slug: p.slug, title: p.title, url: p.canonicalUrl, heading: null, text: `No ${section} section on this page.`, truncated: false };
+    const text = sec.markdown.length > COMPARE_TEXT_LIMIT ? `${sec.markdown.slice(0, COMPARE_TEXT_LIMIT).replace(/\s+\S*$/, '')} …` : sec.markdown;
+    return { slug: p.slug, title: p.title, url: sec.url, heading: sec.heading, text, truncated: text !== sec.markdown };
+  });
+  return { section, market: market ?? null, pages: items, unknown, ...(isThresholdsRef(section) ? { policy: thresholdPolicy() } : {}), corpusVersion };
+}
+
+// The brief a page at a time, lean by default, as MCP and REST both serve it.
+export function buildingBriefPage(args: { useClass: UseClass; spaces?: string[]; market?: Market; frameworkSection?: string }, limit: number, cursor: string | undefined, format: 'concise' | 'detailed') {
+  const full = buildingBrief(args);
+  const bad = cursorProblem(cursor, full.elements.length);
+  if (bad) return { error: bad as string } as const;
+  const pg = page(full.elements, limit, cursor);
+  const elements = pg.items.map(({ answer, ...rest }) => (format === 'detailed' ? { ...rest, answer } : rest));
+  const { elements: _all, ...head } = full;
+  return { ...head, count: elements.length, total: full.elements.length, nextCursor: pg.nextCursor, elements };
+}
+
+export function renderConnections(c: NonNullable<Connections>): string {
+  const out = [`# ${c.from.title}`, c.from.url];
+  if (c.restsOn.length) out.push('', '## Rests on (Technical Library)', ...c.restsOn.map((g) => `- ${g.title}${g.section ? ` (${g.section})` : ''}: ${g.why} — ${g.url}`));
+  if (c.sharesGroundWith.length) out.push('', '## Papers on the same ground', ...c.sharesGroundWith.map((p) => `- ${p.id} ${p.title} — shares ${p.sharedPages.join(', ')} — ${p.url}`));
+  if (c.groundedPapers.length) out.push('', '## Papers grounded in this page', ...c.groundedPapers.map((p) => `- ${p.id} ${p.title}: ${p.why} — ${p.url}`));
+  if (c.related.length) out.push('', '## Related pages', ...c.related.map((p) => `- ${p.title} — ${p.url}`));
+  if (c.spaces.length) out.push('', '## Spaces', ...c.spaces.map((p) => `- ${p.title} — ${p.url}`));
+  if (c.elements.length) out.push('', '## Elements in this space', ...c.elements.map((p) => `- ${p.title} — ${p.url}`));
+  if (out.length === 2) out.push('', 'No recorded connections.');
+  return out.join('\n');
+}
+
+export function renderBrief(b: Exclude<ReturnType<typeof buildingBriefPage>, { readonly error: string }>): string {
+  const head = `# Building brief: ${b.useClass}${b.market ? `, ${MARKET_NAMES[b.market]}` : ''}`;
+  const lines = [head, `Elements ${b.count} of ${b.total}${b.nextCursor ? ` (more: cursor ${b.nextCursor})` : ''}. Spaces: ${b.spaces.map((s) => s.title).join(', ') || 'none'}.`];
+  if (b.unknownSpaces.length) lines.push(`Not recognised as spaces: ${b.unknownSpaces.join(', ')}.`);
+  let sec = '';
+  for (const e of b.elements) {
+    if (e.section !== sec) { sec = e.section; lines.push('', `## ${sec}`); }
+    const t = Object.entries(e.thresholds).map(([m, n]) => `${m} ${n}`).join(', ');
+    lines.push(`- ${e.title} — ${e.url}${e.serviceLife ? ` · service life ${e.serviceLife}` : ''} · thresholds ${t}${e.papers.length ? ` · papers: ${e.papers.join(', ')}` : ''}`);
+  }
+  lines.push('', b.boundary);
+  return lines.join('\n');
+}
+
+export function renderCompare(c: ReturnType<typeof compareSections>): string {
+  const out = [`# ${c.section}${c.market ? ` (${MARKET_NAMES[c.market]})` : ''}: side by side`];
+  if (c.policy) out.push('', c.policy);
+  for (const p of c.pages) out.push('', `## ${p.title}${p.heading ? `: ${p.heading}` : ''}`, p.url, '', p.text);
+  if (c.unknown.length) out.push('', `Not found: ${c.unknown.join(', ')}.`);
+  return out.join('\n');
 }

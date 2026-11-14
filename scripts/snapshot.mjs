@@ -157,6 +157,10 @@ export async function buildSnapshot() {
     canonicalUrl: a.canonicalUrl,
     resourceUri: `moyneross://papers/${a.slug}`,
     sections: sectionsOf(a.contentMarkdown, a.canonicalUrl),
+    // The library pages the paper rests on (the website builds these from
+    // insights/articles.json, the same list the papers' own "technical ground"
+    // panels and the library's back-links come from).
+    technicalPages: (a.technicalPages || []).map((g) => ({ slug: g.slug, section: g.section || null, url: g.url, why: g.why || '' })),
     contentMarkdown: a.contentMarkdown,
   })).sort((x, y) => x.id.localeCompare(y.id, 'en', { numeric: true }));
 

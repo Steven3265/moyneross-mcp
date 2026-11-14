@@ -11,6 +11,7 @@ import {
   START_LINK_SOURCE,
 } from './identity.js';
 import { TOOL_CONTRACTS, searchBoundary, toolNamesForRequest } from './contracts.js';
+import { APP_VIEW_HTML, APP_VIEW_MIME, APP_VIEW_URI } from './app-view.js';
 import {
   citationFor,
   corpusVersion,
@@ -55,6 +56,12 @@ import {
   technicalSection,
   technicalSectionName,
   technicalSummary,
+  traceConnections,
+  renderConnections,
+  buildingBriefPage,
+  renderBrief,
+  compareSections,
+  renderCompare,
 } from './core.js';
 import type { PaperRecord, TechnicalPage } from './types.js';
 import { currentClient, handOverEnabled } from './client-label.js';
@@ -103,6 +110,8 @@ export function createMcpServer(): McpServer {
   const server = new McpServer(
     { name: SERVER_NAME, version: SERVER_VERSION, title: SERVER_TITLE, description: SERVER_DESCRIPTION, websiteUrl: SERVER_WEBSITE_URL, icons: SERVER_ICONS },
     {
+      // MCP Apps: the graph tools come with an interactive view (see app-view.ts).
+      capabilities: { extensions: { 'io.modelcontextprotocol/ui': { mimeTypes: [APP_VIEW_MIME] } } },
       cacheHints: {
         'server/discover': PUBLIC_CACHE,
         'tools/list': { ttlMs: 86_400_000, cacheScope: 'public' },
@@ -115,6 +124,7 @@ export function createMcpServer(): McpServer {
         'Moyne Ross publishes research on planning capital for commercial and multi-unit buildings: lifecycle and condition, obsolescence, refurbishment or redevelopment, energy, leases and make good, due diligence, and the Australian, British and US markets.',
         'Moyne Ross also publishes the Technical Library: one page for each building element and functional space a Capital Strategy assesses, on how it fails, what to look for, how serious a finding is and what fixes it.',
         'Workflow: search_research first (scope technical for a question about one element or system); then get_paper or get_technical_page (a summary by default, a section, or the full text) for anything you rely on, and explain_method for the Capital Register or the MR Index. Prefer several small, targeted searches to one broad one.',
+        'The papers and the library are linked: trace_connections shows what a paper rests on in the library, or which papers turn on a library page; building_brief maps the elements and spaces a kind of building turns on; compare_technical_sections sets one section (service life, severity, thresholds by market) side by side across up to five pages.',
         'Cite the canonical moyneross.com URL returned, to the section where one is given; cite_paper returns an exact citation, for a paper or a library page, to use as given. Carry limitations through rather than overstating a finding. Technical Library pages describe how elements behave in general and carry no prices; they are never evidence about the condition of a particular building.',
         'Read matchStrength: strong means the top result carries the question\'s distinctive words; weak means the results are background only, and you should say so. Read the answer before relying on any result.',
         'The research is general. A Capital Strategy is desk-based and reviewed by Moyne Ross before release; it is not an inspection, a valuation or a guarantee of cost.',
@@ -126,6 +136,10 @@ export function createMcpServer(): McpServer {
 
   const enabled = new Set(toolNamesForRequest());
   const C = TOOL_CONTRACTS;
+  // The graph tools carry the interactive view (MCP Apps). A host without MCP
+  // Apps ignores _meta.ui and shows the text; nothing depends on the view.
+  const VIEW_META = { ui: { resourceUri: APP_VIEW_URI } };
+  const withView = <T extends { _meta?: Record<string, unknown> }>(t: T) => ({ ...t, _meta: { ...(t._meta ?? {}), ...VIEW_META } });
   const tool = (name: keyof typeof C, large = false) => ({
     title: C[name].title,
     description: C[name].description,
@@ -259,6 +273,28 @@ export function createMcpServer(): McpServer {
     return result({ page: payload, section: sec ? { id: sec.id, heading: sec.heading, url: sec.url, text: sec.markdown } : null, citation, ...(part ? { part: { part: part.part, parts: part.parts, firstSection: part.firstSection, nextCursor: part.nextCursor } } : {}) }, text, [technicalLink(found)]);
   });
 
+  // ─── Connections: walking the paper–library graph ──────────────────────
+  server.registerTool('trace_connections', { ...withView(tool('trace_connections')), inputSchema: C.trace_connections.inputSchema, outputSchema: C.trace_connections.outputSchema }, async ({ ref }) => {
+    const c = traceConnections(ref);
+    logUse('trace_connections', { found: Boolean(c), kind: c?.from.kind ?? null });
+    if (!c) return errorResult(`No paper or Technical Library page matches "${ref}". search_research finds one by topic; list_papers and list_technical_pages list them.`);
+    return result(c, renderConnections(c));
+  });
+
+  server.registerTool('building_brief', { ...withView(tool('building_brief', true)), inputSchema: C.building_brief.inputSchema, outputSchema: C.building_brief.outputSchema }, async ({ use_class, spaces, market, framework_section, limit, cursor, response_format }) => {
+    const b = buildingBriefPage({ useClass: use_class, spaces, market, frameworkSection: framework_section }, limit, cursor, response_format);
+    logUse('building_brief', { use_class, spaces: spaces?.length ?? 0, market: market ?? null, section: Boolean(framework_section) });
+    if ('error' in b) return errorResult(b.error ?? "Invalid cursor.");
+    return result(b, renderBrief(b));
+  });
+
+  server.registerTool('compare_technical_sections', { ...withView(tool('compare_technical_sections', true)), inputSchema: C.compare_technical_sections.inputSchema, outputSchema: C.compare_technical_sections.outputSchema }, async ({ pages: refs, section, market }) => {
+    const c = compareSections({ pages: refs, section, market });
+    logUse('compare_technical_sections', { pages: c.pages.length, section, market: market ?? null });
+    if (c.pages.length < 2) return errorResult(`Fewer than two of those pages were found${c.unknown.length ? ` (not found: ${c.unknown.join(', ')})` : ''}. list_technical_pages lists them; search_research with scope technical finds one by topic.`);
+    return result(c, renderCompare(c));
+  });
+
   if (enabled.has('working_with_moyne_ross')) {
     server.registerTool('working_with_moyne_ross', { ...tool('working_with_moyne_ross'), inputSchema: C.working_with_moyne_ross.inputSchema, outputSchema: C.working_with_moyne_ross.outputSchema }, async () => {
       const e = engagement();
@@ -324,6 +360,18 @@ export function createMcpServer(): McpServer {
   }, async ({ element, observation }) => userMessage(`From the Moyne Ross Technical Library, explain ${element}${observation ? ` in light of this observation: ${observation}` : ''}. Retrieve the page with get_technical_page; its summary lists the sections. Read those you need with the section argument: notice (what you'll notice), the topic sections on how it fails, misreads (what is commonly mistaken), severity (how serious) and remedies. Say what the observation most likely points to and what would tell the causes apart, how the library grades it (safety, failure, condition, lifecycle, deadline, check or nil), what investigation it warrants and what the remedies involve. Cite each point to the section URL, carry the page's limitations through, and say plainly that this is general guidance, not an assessment of a particular building.`));
 
   // ─── Resources ────────────────────────────────────────────────────────
+  // The view for the graph tools: read by MCP Apps hosts, not listed (the spec
+  // lets a view-only resource stay out of resources/list). No network: the
+  // default restrictive CSP applies.
+  server.registerResource('moyneross-graph-view', new ResourceTemplate('ui://moyneross/{file}', { list: undefined }), {
+    title: 'Moyne Ross graph view',
+    description: 'Interactive view for building_brief, compare_technical_sections and trace_connections.',
+    mimeType: APP_VIEW_MIME,
+  }, async (uri) => {
+    if (uri.href !== APP_VIEW_URI) throw new ResourceNotFoundError(uri.href);
+    return { contents: [{ uri: APP_VIEW_URI, mimeType: APP_VIEW_MIME, text: APP_VIEW_HTML, _meta: { ui: { prefersBorder: true } } }] };
+  });
+
   server.registerResource('moyneross-catalogue', 'moyneross://catalogue', {
     title: 'Moyne Ross public corpus',
     description: 'The Capital Made Physical papers, the Technical Library, the methodology and the sample Capital Strategy, with canonical URLs and the corpus version.',
