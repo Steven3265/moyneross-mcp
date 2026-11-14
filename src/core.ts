@@ -1054,12 +1054,12 @@ export const SUMMARY_ANSWERS = 5;
 export function technicalSummary(p: TechnicalPage, market?: Market) {
   const { sections, thresholds: _t, marketsWithoutThresholds: _m, questions, ...rest } = p;
   const view = thresholdsFor(p, market);
-  // Every authored question is listed with the section that answers it; the
-  // first five carry their short answers. A page can then gain questions in
+  // The first five authored questions carry their short answers; the rest are
+  // listed as moreQuestions, each with the id of the section that answers it. A page can then gain questions in
   // people's own words (they are what search finds it by) without its summary
   // outgrowing the assistants' limits.
-  const listed = questions?.map((q, i) => (i < SUMMARY_ANSWERS ? q : { question: q.question, url: q.url }));
-  return { ...rest, ...(listed ? { questions: listed } : {}), sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
+  const more = (questions ?? []).slice(SUMMARY_ANSWERS).map((q) => `${q.question} (${q.url.replace(/^.*#/, '')})`);
+  return { ...rest, ...(questions ? { questions: questions.slice(0, SUMMARY_ANSWERS) } : {}), ...(more.length ? { moreQuestions: more } : {}), sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
 }
 
 // A section by its id or heading, or by an address inside it: on a page on the

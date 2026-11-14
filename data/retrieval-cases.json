@@ -82,7 +82,17 @@
     "field-c": {
       "rule": "report",
       "within": 3,
-      "note": "50 questions written last and never tuned on: the honest measure. When it was first run: 19 of 50 right and strong at the start, 29 after the lexicon, the both-kinds strength rule and the first added questions; the right page within five results rose from 43 to 46. Add new unseen questions here rather than fixing these one by one."
+      "note": "50 questions written last and never tuned on: the honest measure. When it was first run: 19 of 50 right and strong at the start, 29 after the lexicon, the both-kinds strength rule and the first added questions; the right page within five results rose from 43 to 46. Add new unseen questions here rather than fixing these one by one. With questions on all 103 library pages and the papers' plain-wording terms: 45 of 50 in the top three, 34 right and strong."
+    },
+    "field-d": {
+      "rule": "report",
+      "within": 3,
+      "note": "40 capital, method and plain-speech questions. The papers' plain-wording retrieval terms were written with these in view, so it is not an unseen set: 35 of 40 in the top three before the terms, 40 after."
+    },
+    "field-e": {
+      "rule": "report",
+      "within": 3,
+      "note": "30 capital and method questions in loose everyday wording, written after the papers' plain-wording terms and never tuned on: the honest measure of capital questions. 17 of 30 in the top three before the terms, 18 after; 21 within five. Keyword matching does not bridge wording this loose; this set is the yardstick for any semantic retrieval."
     }
   },
   "cases": [
@@ -5429,6 +5439,712 @@
       "expected": [
         "https://moyneross.com/samples/capital-strategy",
         "https://moyneross.com/insights/what-a-capital-strategy-is"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-d:should-i-buy-an-old-office-building",
+      "category": "field-d",
+      "query": "should I buy an old office building",
+      "expected": [
+        "https://moyneross.com/insights/what-age-conceals",
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/the-1970s-office",
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:how-do-i-budget-for-building-repairs-over-the-next-decade",
+      "category": "field-d",
+      "query": "how do I budget for building repairs over the next decade",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/samples/capital-strategy",
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/a-register-read-end-to-end"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:the-valuation-didn-t-mention-the-roof-needs-replacing",
+      "category": "field-d",
+      "query": "the valuation didn't mention the roof needs replacing",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:we-keep-putting-off-the-big-repairs-does-it-matter",
+      "category": "field-d",
+      "query": "we keep putting off the big repairs, does it matter",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:which-repairs-are-urgent-and-which-can-wait",
+      "category": "field-d",
+      "query": "which repairs are urgent and which can wait",
+      "expected": [
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/methodology/mr-index"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:our-owners-committee-won-t-raise-levies-for-major-works",
+      "category": "field-d",
+      "query": "our owners committee won't raise levies for major works",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:special-assessment-for-condo-repairs",
+      "category": "field-d",
+      "query": "special assessment for condo repairs",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:tenant-is-moving-out-who-pays-to-put-the-space-back",
+      "category": "field-d",
+      "query": "tenant is moving out, who pays to put the space back",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:does-the-landlord-or-the-tenant-replace-the-air-conditioning",
+      "category": "field-d",
+      "query": "does the landlord or the tenant replace the air conditioning",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:is-it-cheaper-to-renovate-or-rebuild",
+      "category": "field-d",
+      "query": "is it cheaper to renovate or rebuild",
+      "expected": [
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit",
+        "https://moyneross.com/insights/most-of-the-buildings-of-2050-already-exist"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:turning-empty-offices-into-flats",
+      "category": "field-d",
+      "query": "turning empty offices into flats",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:will-my-building-be-unlettable-because-of-its-energy-rating",
+      "category": "field-d",
+      "query": "will my building be unlettable because of its energy rating",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule",
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/the-markets-right-to-know"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:carbon-penalties-for-big-buildings-in-new-york",
+      "category": "field-d",
+      "query": "carbon penalties for big buildings in New York",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:what-does-a-buyer-s-surveyor-look-for",
+      "category": "field-d",
+      "query": "what does a buyer's surveyor look for",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:how-sure-can-you-be-about-costs-without-inspecting",
+      "category": "field-d",
+      "query": "how sure can you be about costs without inspecting",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/documented-observed-inferred",
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:managing-capex-across-many-buildings",
+      "category": "field-d",
+      "query": "managing capex across many buildings",
+      "expected": [
+        "https://moyneross.com/insights/physical-assets-under-management",
+        "https://moyneross.com/insights/a-building-is-forty-decisions"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:does-owning-for-longer-change-how-you-maintain-a-building",
+      "category": "field-d",
+      "query": "does owning for longer change how you maintain a building",
+      "expected": [
+        "https://moyneross.com/insights/patient-capital-and-the-long-building"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:is-property-still-a-good-hedge-against-inflation",
+      "category": "field-d",
+      "query": "is property still a good hedge against inflation",
+      "expected": [
+        "https://moyneross.com/insights/the-building-that-has-to-earn-its-hedge"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:how-did-low-interest-rates-affect-building-upkeep",
+      "category": "field-d",
+      "query": "how did low interest rates affect building upkeep",
+      "expected": [
+        "https://moyneross.com/insights/forty-years-of-cheap-money"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:warehouse-power-supply-for-electric-trucks",
+      "category": "field-d",
+      "query": "warehouse power supply for electric trucks",
+      "expected": [
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station",
+        "https://moyneross.com/insights/energy-becomes-a-building-function",
+        "https://moyneross.com/technical/electric-vehicle-charging"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:old-church-or-listed-building-running-costs",
+      "category": "field-d",
+      "query": "old church or listed building running costs",
+      "expected": [
+        "https://moyneross.com/insights/the-economics-of-heritage"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:storm-and-bushfire-risk-to-commercial-property",
+      "category": "field-d",
+      "query": "storm and bushfire risk to commercial property",
+      "expected": [
+        "https://moyneross.com/insights/climate-as-physical-risk"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:what-happens-to-shopping-centres-as-retail-changes",
+      "category": "field-d",
+      "query": "what happens to shopping centres as retail changes",
+      "expected": [
+        "https://moyneross.com/insights/retail-as-service-infrastructure"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:will-ai-mean-we-need-less-office-space",
+      "category": "field-d",
+      "query": "will AI mean we need less office space",
+      "expected": [
+        "https://moyneross.com/insights/the-10-office",
+        "https://moyneross.com/insights/what-ai-takes-out-of-the-building"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-d:how-do-you-score-a-building-s-condition",
+      "category": "field-d",
+      "query": "how do you score a building's condition",
+      "expected": [
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/methodology/mr-index"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-d:what-is-in-the-ten-year-plan-you-produce",
+      "category": "field-d",
+      "query": "what is in the ten year plan you produce",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/samples/capital-strategy",
+        "https://moyneross.com/methodology/capital-register"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-d:keeping-the-plan-current-after-works-are-done",
+      "category": "field-d",
+      "query": "keeping the plan current after works are done",
+      "expected": [
+        "https://moyneross.com/insights/the-living-record"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-d:what-do-the-confidence-levels-on-each-line-mean",
+      "category": "field-d",
+      "query": "what do the confidence levels on each line mean",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/documented-observed-inferred",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/a-register-read-end-to-end"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-d:the-air-con-is-dripping-on-my-desk",
+      "category": "field-d",
+      "query": "the air con is dripping on my desk",
+      "expected": [
+        "https://moyneross.com/technical/terminal-units",
+        "https://moyneross.com/technical/air-handling-units",
+        "https://moyneross.com/technical/localised-hvac"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:funny-smell-from-the-taps",
+      "category": "field-d",
+      "query": "funny smell from the taps",
+      "expected": [
+        "https://moyneross.com/technical/water-supply",
+        "https://moyneross.com/technical/hot-and-warm-water-plant"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-lights-keep-flickering",
+      "category": "field-d",
+      "query": "the lights keep flickering",
+      "expected": [
+        "https://moyneross.com/technical/lighting",
+        "https://moyneross.com/technical/power-distribution"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:there-s-a-bulge-in-the-outside-wall",
+      "category": "field-d",
+      "query": "there's a bulge in the outside wall",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/load-bearing-masonry",
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/technical/external-coating-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-garage-door-won-t-open",
+      "category": "field-d",
+      "query": "the garage door won't open",
+      "expected": [
+        "https://moyneross.com/technical/loading-docks-and-goods-handling",
+        "https://moyneross.com/technical/fencing-gates-and-signage"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-heating-is-on-but-the-radiators-are-cold",
+      "category": "field-d",
+      "query": "the heating is on but the radiators are cold",
+      "expected": [
+        "https://moyneross.com/technical/central-heating-plant"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-intercom-doesn-t-work",
+      "category": "field-d",
+      "query": "the intercom doesn't work",
+      "expected": [
+        "https://moyneross.com/technical/common-internal-areas",
+        "https://moyneross.com/technical/communications-security-and-specialist-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-fire-alarm-panel-is-beeping-with-a-fault",
+      "category": "field-d",
+      "query": "the fire alarm panel is beeping with a fault",
+      "expected": [
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:puddles-on-the-flat-roof",
+      "category": "field-d",
+      "query": "puddles on the flat roof",
+      "expected": [
+        "https://moyneross.com/technical/waterproofing-membranes",
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/rainwater-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-stairs-feel-unsafe",
+      "category": "field-d",
+      "query": "the stairs feel unsafe",
+      "expected": [
+        "https://moyneross.com/technical/internal-stairwells",
+        "https://moyneross.com/technical/occupational-health-and-safety"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:the-escalator-keeps-stopping",
+      "category": "field-d",
+      "query": "the escalator keeps stopping",
+      "expected": [
+        "https://moyneross.com/technical/escalators-and-moving-walks"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-d:there-are-termites-under-the-floor",
+      "category": "field-d",
+      "query": "there are termites under the floor",
+      "expected": [
+        "https://moyneross.com/technical/sub-floor-and-crawlspace"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-e:we-re-thinking-of-selling-in-two-years-what-should-we-fix-be",
+      "category": "field-e",
+      "query": "we're thinking of selling in two years, what should we fix beforehand",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/bringing-the-owners-intentions-to-bear",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:the-surveyor-s-report-is-two-years-old-can-we-still-use-it",
+      "category": "field-e",
+      "query": "the surveyor's report is two years old, can we still use it",
+      "expected": [
+        "https://moyneross.com/insights/the-register-not-the-report",
+        "https://moyneross.com/insights/the-living-record"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:bank-wants-to-know-future-capital-costs-for-a-loan",
+      "category": "field-e",
+      "query": "bank wants to know future capital costs for a loan",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/samples/capital-strategy"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:our-building-is-forty-years-old-what-should-we-expect",
+      "category": "field-e",
+      "query": "our building is forty years old, what should we expect",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/what-age-conceals",
+        "https://moyneross.com/insights/a-building-is-forty-decisions",
+        "https://moyneross.com/insights/the-1970s-office"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:strata-levies-went-up-because-of-a-big-repair-bill",
+      "category": "field-e",
+      "query": "strata levies went up because of a big repair bill",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:landlord-says-the-tenant-has-to-pay-for-the-new-roof",
+      "category": "field-e",
+      "query": "landlord says the tenant has to pay for the new roof",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:end-of-lease-reinstatement-costs",
+      "category": "field-e",
+      "query": "end of lease reinstatement costs",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:rents-are-rising-but-so-are-our-maintenance-bills",
+      "category": "field-e",
+      "query": "rents are rising but so are our maintenance bills",
+      "expected": [
+        "https://moyneross.com/insights/the-building-that-has-to-earn-its-hedge"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:empty-department-store-what-can-it-become",
+      "category": "field-e",
+      "query": "empty department store what can it become",
+      "expected": [
+        "https://moyneross.com/insights/retail-as-service-infrastructure",
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:warehouse-with-a-big-roof-is-solar-worth-it",
+      "category": "field-e",
+      "query": "warehouse with a big roof, is solar worth it",
+      "expected": [
+        "https://moyneross.com/insights/the-roof-nobody-designed-for-solar",
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station",
+        "https://moyneross.com/insights/after-rent",
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:office-building-with-a-poor-energy-certificate",
+      "category": "field-e",
+      "query": "office building with a poor energy certificate",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule",
+        "https://moyneross.com/insights/the-markets-right-to-know",
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:utility-can-t-give-us-more-electricity",
+      "category": "field-e",
+      "query": "utility can't give us more electricity",
+      "expected": [
+        "https://moyneross.com/insights/energy-becomes-a-building-function",
+        "https://moyneross.com/technical/main-electrical-supply"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:building-is-fine-but-nobody-wants-to-rent-it",
+      "category": "field-e",
+      "query": "building is fine but nobody wants to rent it",
+      "expected": [
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/technical/commercial-office-areas",
+        "https://moyneross.com/insights/the-10-office"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:how-much-to-allow-for-surprises-when-buying",
+      "category": "field-e",
+      "query": "how much to allow for surprises when buying",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:can-you-assess-a-building-from-your-desk",
+      "category": "field-e",
+      "query": "can you assess a building from your desk",
+      "expected": [
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you",
+        "https://moyneross.com/insights/documented-observed-inferred"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:we-own-twenty-buildings-where-is-the-biggest-risk",
+      "category": "field-e",
+      "query": "we own twenty buildings, where is the biggest risk",
+      "expected": [
+        "https://moyneross.com/insights/physical-assets-under-management"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:cost-of-doing-nothing-to-the-building",
+      "category": "field-e",
+      "query": "cost of doing nothing to the building",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:pension-fund-holding-a-building-for-thirty-years",
+      "category": "field-e",
+      "query": "pension fund holding a building for thirty years",
+      "expected": [
+        "https://moyneross.com/insights/patient-capital-and-the-long-building"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:heritage-overlay-limits-what-we-can-change",
+      "category": "field-e",
+      "query": "heritage overlay limits what we can change",
+      "expected": [
+        "https://moyneross.com/insights/the-economics-of-heritage"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:sea-level-rise-and-our-coastal-warehouse",
+      "category": "field-e",
+      "query": "sea level rise and our coastal warehouse",
+      "expected": [
+        "https://moyneross.com/insights/climate-as-physical-risk"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:factory-needs-heavier-floors-and-more-power",
+      "category": "field-e",
+      "query": "factory needs heavier floors and more power",
+      "expected": [
+        "https://moyneross.com/insights/industrial-policy-comes-home",
+        "https://moyneross.com/insights/the-building-as-host-to-machines",
+        "https://moyneross.com/technical/slab-on-ground"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:demolish-and-start-again-or-refurbish",
+      "category": "field-e",
+      "query": "demolish and start again or refurbish",
+      "expected": [
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit",
+        "https://moyneross.com/insights/most-of-the-buildings-of-2050-already-exist"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:what-s-the-difference-between-a-uk-and-a-us-building-inspect",
+      "category": "field-e",
+      "query": "what's the difference between a UK and a US building inspection report",
+      "expected": [
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:city-is-fining-buildings-for-emissions",
+      "category": "field-e",
+      "query": "city is fining buildings for emissions",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:everything-in-the-building-seems-to-need-replacing-at-once",
+      "category": "field-e",
+      "query": "everything in the building seems to need replacing at once",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/a-building-is-forty-decisions",
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-e:how-is-the-building-graded-from-one-to-five",
+      "category": "field-e",
+      "query": "how is the building graded from one to five",
+      "expected": [
+        "https://moyneross.com/methodology/mr-index",
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-e:can-i-see-what-the-finished-document-looks-like",
+      "category": "field-e",
+      "query": "can I see what the finished document looks like",
+      "expected": [
+        "https://moyneross.com/samples/capital-strategy",
+        "https://moyneross.com/insights/what-a-capital-strategy-is"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-e:what-is-the-basis-of-each-cost-figure",
+      "category": "field-e",
+      "query": "what is the basis of each cost figure",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/a-register-read-end-to-end"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-e:do-you-visit-the-building",
+      "category": "field-e",
+      "query": "do you visit the building",
+      "expected": [
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you",
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/documented-observed-inferred",
+        "https://moyneross.com/insights/hearing-the-building-as-it-is"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-e:how-often-should-the-plan-be-reviewed",
+      "category": "field-e",
+      "query": "how often should the plan be reviewed",
+      "expected": [
+        "https://moyneross.com/insights/the-living-record",
+        "https://moyneross.com/insights/physical-assets-under-management"
       ],
       "kind": "method"
     }

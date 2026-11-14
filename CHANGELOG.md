@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Corpus findability (website content, measured here). The Technical Library gains 428 authored questions in owners' and occupants' words across all 103 pages, each written from a row of the page's own what-you-see tables; the papers gain 211 plain-wording retrieval terms; four paper-to-library links land on the section their reason names. Two more field sets are reported: `field-d` (40) and `field-e` (30, never tuned on). On `field-e`, loose everyday capital questions, 18 of 30 are in the top three and 21 within five: the limit of keyword matching, and the yardstick for semantic retrieval. Page summaries carry the first five questions with answers and list the rest as `moreQuestions`.
+
 - Questions in the asker's own words. Measured on 240 new questions written in practitioners' and owners' language across the three markets (`field-a`, `field-b`, `field-c` in `data/retrieval-cases.json`, reported on every run, never gating). On the 50 never tuned on, right-and-strong rose from 19 to 29 and the right page first from 25 to 30; on the 70 weighted to American and British wording, from 33 to 48 and 37 to 50. The right page is within the default five results for 92 to 95 per cent of all three sets. Query-side only, so the papers still rank as the website ranks them:
   - American and British words and spellings reach the pages written in the corpus's own (elevator, mold, aluminum, drywall, parking garage, consumer unit, modernization), with institutional shorthand (PCA, NNN, FRI, RUL, FCI, PPM, AFSS, ESM, EWS1) and occupants' words (stuffy, musty, rusting, tripping).
   - Multi-word shorthand (`PHRASES`): remaining useful life, triple net, body corporate, dry riser, cap rate, grease trap and others.
