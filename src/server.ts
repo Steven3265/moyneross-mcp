@@ -1,4 +1,4 @@
-import { McpServer, ResourceNotFoundError, ResourceTemplate, completable } from '@modelcontextprotocol/server';
+import { McpServer, ResourceNotFoundError, ResourceTemplate, acceptedContent, completable, inputRequired, inputResponse } from '@modelcontextprotocol/server';
 import * as z from 'zod/v4';
 import {
   SERVER_DESCRIPTION,
@@ -63,7 +63,7 @@ import {
   compareSections,
   renderCompare,
 } from './core.js';
-import type { PaperRecord, TechnicalPage } from './types.js';
+import type { Market, PaperRecord, TechnicalPage } from './types.js';
 import { currentClient, handOverEnabled } from './client-label.js';
 
 const readOnlyAnnotations = { readOnlyHint: true, destructiveHint: false, idempotentHint: true, openWorldHint: false };
@@ -104,6 +104,44 @@ function logUse(tool: string, detail: Record<string, unknown>): void {
   } catch {
     // Never let telemetry interfere with serving the request.
   }
+}
+
+// ─── Asking which market (multi-round-trip input, 2026-07-28) ───────────
+// Measured thresholds apply only in their own market. When thresholds are what
+// was asked for and no market was given, a client that can show a form is
+// asked which market the building is in; the call is then retried with the
+// answer. A client that cannot ask, or a person who declines, gets every
+// market's values labelled, exactly as before: the question is a convenience,
+// never a gate. No request state is kept: the retry carries the arguments.
+const MARKET_QUESTION = 'market';
+const marketAnswerSchema = z.object({
+  market: z.enum(['AU', 'UK', 'US']).describe('AU (Australia), UK (United Kingdom) or US (United States)'),
+});
+type AskCtx = { mcpReq: { envelope?: Record<string, unknown>; inputResponses?: Record<string, unknown> } };
+function clientCanAsk(ctx: AskCtx): boolean {
+  const caps = ctx.mcpReq.envelope?.['io.modelcontextprotocol/clientCapabilities'] as { elicitation?: { form?: unknown; url?: unknown } } | undefined;
+  const e = caps?.elicitation;
+  // An empty elicitation capability means form mode (the earlier spelling).
+  return Boolean(e) && (e!.form !== undefined || e!.url === undefined);
+}
+// The market to use: the one given, the one answered, or undefined for all
+// markets. 'ask' when the client should be asked first.
+function resolveMarket(given: Market | undefined, ctx: AskCtx): Market | undefined | 'ask' {
+  if (given) return given;
+  const answered = acceptedContent(ctx.mcpReq.inputResponses, MARKET_QUESTION, marketAnswerSchema);
+  if (answered) return answered.market;
+  if (inputResponse(ctx.mcpReq.inputResponses, MARKET_QUESTION).kind !== 'missing') return undefined; // declined, cancelled or invalid: all markets
+  return clientCanAsk(ctx) ? 'ask' : undefined;
+}
+function askMarket(what: string) {
+  return inputRequired({
+    inputRequests: {
+      [MARKET_QUESTION]: inputRequired.elicit({
+        message: `Which market is the building in? Measured thresholds for ${what} apply only in their own market. Close this to see every market's values, labelled.`,
+        requestedSchema: marketAnswerSchema,
+      }),
+    },
+  });
 }
 
 export function createMcpServer(): McpServer {
@@ -244,7 +282,8 @@ export function createMcpServer(): McpServer {
     return result({ count: list.length, total: all.length, nextCursor: pg.nextCursor, corpusVersion, sections: technicalFrameworkSections, severityScale: severityScale(), pages: list }, text);
   });
 
-  server.registerTool('get_technical_page', { ...tool('get_technical_page', true), inputSchema: C.get_technical_page.inputSchema, outputSchema: C.get_technical_page.outputSchema }, async ({ page: ref, format, section, cursor, market }) => {
+  server.registerTool('get_technical_page', { ...tool('get_technical_page', true), inputSchema: C.get_technical_page.inputSchema, outputSchema: C.get_technical_page.outputSchema }, async ({ page: ref, format, section, cursor, market: givenMarket }, ctx) => {
+    let market = givenMarket;
     const found = getTechnicalPage(ref);
     logUse('get_technical_page', { format, section: Boolean(section), found: Boolean(found), slug: found?.slug, market: market ?? null });
     if (!found) {
@@ -253,6 +292,9 @@ export function createMcpServer(): McpServer {
     }
     // The thresholds, asked for as a section: one market's, or all markets' labelled.
     if (section && isThresholdsRef(section) && found.thresholds) {
+      const chosen = resolveMarket(givenMarket, ctx as unknown as AskCtx);
+      if (chosen === 'ask') return askMarket(found.title);
+      market = chosen;
       const view = thresholdsFor(found, market);
       const citation = technicalCitationFor(found);
       const url = `${found.canonicalUrl}#thresholds`;
@@ -288,7 +330,13 @@ export function createMcpServer(): McpServer {
     return result(b, renderBrief(b));
   });
 
-  server.registerTool('compare_technical_sections', { ...withView(tool('compare_technical_sections', true)), inputSchema: C.compare_technical_sections.inputSchema, outputSchema: C.compare_technical_sections.outputSchema }, async ({ pages: refs, section, market }) => {
+  server.registerTool('compare_technical_sections', { ...withView(tool('compare_technical_sections', true)), inputSchema: C.compare_technical_sections.inputSchema, outputSchema: C.compare_technical_sections.outputSchema }, async ({ pages: refs, section, market: givenMarket }, ctx) => {
+    let market = givenMarket;
+    if (section === 'thresholds') {
+      const chosen = resolveMarket(givenMarket, ctx as unknown as AskCtx);
+      if (chosen === 'ask') return askMarket(`these ${refs.length} elements`);
+      market = chosen;
+    }
     const c = compareSections({ pages: refs, section, market });
     logUse('compare_technical_sections', { pages: c.pages.length, section, market: market ?? null });
     if (c.pages.length < 2) return errorResult(`Fewer than two of those pages were found${c.unknown.length ? ` (not found: ${c.unknown.join(', ')})` : ''}. list_technical_pages lists them; search_research with scope technical finds one by topic.`);

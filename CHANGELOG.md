@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Asking which market. When measured thresholds are asked for without a market (`get_technical_page` with `section: thresholds`, `compare_technical_sections` with `thresholds`) and the client declares form elicitation, the server returns `input_required` with one question, which market the building is in (AU, UK or US), and the retried call answers for that market. A client that cannot ask, a declined or invalid answer, or a market already given: every market's values, labelled, as before. Nothing else asks; no request state is kept.
+
 - MCP Apps. The three graph tools carry an interactive view (`ui://moyneross/graph-view.html`, `text/html;profile=mcp-app`, Apps protocol 2026-01-26), and the server declares `io.modelcontextprotocol/ui`. The brief renders by framework section with threshold chips, a filter and paging; the comparison renders sections side by side, tables included; connections can be walked by clicking, with Back. One self-contained page with no network access, themed from the host's variables; the view resource stays out of `resources/list`, and hosts without MCP Apps show the text as before. `building_brief` now returns elements in framework order.
 
 - The paper–library graph. The snapshot now carries each paper's `technicalPages` (the library pages it rests on, with the section and why: 127 links across 39 papers), validated so every link resolves to a page and section. Three tools walk it, on every surface:

@@ -509,6 +509,47 @@ async function main() {
     assert.ok((await call('g10', 'compare_technical_sections', { pages: ['roof-coverings', 'nothing-here'], section: 'severity' })).payload.result.isError, 'fewer than two pages found is an error');
   }
 
+  // ── Asking which market (multi-round-trip input) ──
+  {
+    const askCall = async (id, name, args, { caps = {}, inputResponses } = {}) => {
+      const headers = new Headers({ Accept: 'application/json, text/event-stream', 'Content-Type': 'application/json', 'MCP-Protocol-Version': MODERN_VERSION, 'Mcp-Method': 'tools/call', 'Mcp-Name': name, Host: 'test.local' });
+      const meta = { ...modernMeta(), 'io.modelcontextprotocol/clientCapabilities': caps };
+      const body = { jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args, ...(inputResponses ? { inputResponses } : {}), _meta: meta } };
+      const response = await handleMcpRequest(new Request(ENDPOINT, { method: 'POST', headers, body: JSON.stringify(body) }), { endpoint: 'standard' });
+      return (await parseJsonRpc(response)).result;
+    };
+    const FORM = { elicitation: { form: {} } };
+    const thr = { page: 'central-cooling-plant', section: 'thresholds' };
+    // A client that can ask is asked, with a form offering the three markets.
+    const asked = await askCall('m1', 'get_technical_page', thr, { caps: FORM });
+    assert.equal(asked.resultType, 'input_required', 'thresholds without a market: asked');
+    const q = asked.inputRequests?.market;
+    assert.equal(q?.method, 'elicitation/create');
+    assert.deepEqual(q.params.requestedSchema.properties.market.enum, ['AU', 'UK', 'US']);
+    assert.match(q.params.message, /Central Cooling Plant/);
+    // The retry with an answer gets that market alone.
+    const answered = await askCall('m2', 'get_technical_page', thr, { caps: FORM, inputResponses: { market: { action: 'accept', content: { market: 'AU' } } } });
+    assert.equal(answered.structuredContent.page.thresholds.market, 'AU', 'answered: one market');
+    assert.ok(answered.structuredContent.page.thresholds.values.every((v) => v.market === 'AU'));
+    // Declined: every market, labelled, never an error.
+    const declined = await askCall('m3', 'get_technical_page', thr, { caps: FORM, inputResponses: { market: { action: 'decline' } } });
+    assert.ok(!declined.isError && declined.structuredContent.page.thresholds.market === null, 'declined: all markets');
+    // An answer outside the three markets is not trusted: all markets.
+    const bogus = await askCall('m4', 'get_technical_page', thr, { caps: FORM, inputResponses: { market: { action: 'accept', content: { market: 'FR' } } } });
+    assert.equal(bogus.structuredContent.page.thresholds.market, null, 'invalid answer: all markets');
+    // A client that cannot ask, a market already given, or another section: no question.
+    assert.equal((await askCall('m5', 'get_technical_page', thr)).structuredContent.page.thresholds.market, null, 'no form capability: no question');
+    assert.notEqual((await askCall('m6', 'get_technical_page', { ...thr, market: 'UK' }, { caps: FORM })).resultType, 'input_required', 'market given: no question');
+    assert.notEqual((await askCall('m7', 'get_technical_page', { page: 'central-cooling-plant', section: 'severity' }, { caps: FORM })).resultType, 'input_required', 'not thresholds: no question');
+    assert.notEqual((await askCall('m8', 'building_brief', { use_class: 'commercial' }, { caps: FORM })).resultType, 'input_required', 'the brief never asks');
+    // The comparison asks the same way.
+    const cmpArgs = { pages: ['central-cooling-plant', 'lighting'], section: 'thresholds' };
+    assert.equal((await askCall('m9', 'compare_technical_sections', cmpArgs, { caps: FORM })).resultType, 'input_required', 'compare thresholds: asked');
+    const cmpUK = await askCall('m10', 'compare_technical_sections', cmpArgs, { caps: FORM, inputResponses: { market: { action: 'accept', content: { market: 'UK' } } } });
+    assert.equal(cmpUK.structuredContent.market, 'UK', 'compare answered: one market');
+    assert.notEqual((await askCall('m11', 'compare_technical_sections', { ...cmpArgs, section: 'service-life' }, { caps: FORM })).resultType, 'input_required', 'compare other sections: no question');
+  }
+
   const surfaces = [
     { label: 'standard', paid: true, options: {} },
     { label: 'openai endpoint', paid: false, options: { endpoint: 'openai' } },
@@ -560,6 +601,7 @@ async function main() {
   console.log('PASS  protocol: search (concise, detailed, match evidence, shorthand, suggestions), papers (summary, sections, full, paging), citations in 5 styles');
   console.log('PASS  protocol: Technical Library (list, sections, page, section, full, candidates, citation, scoped search), methods, sample, prompts with completion, both templates and 156 resources');
   console.log('PASS  protocol: connections (paper to library, library to papers, spaces and elements), building brief (paged, one market, spaces, detailed), section comparison (anchored, thresholds by market)');
+  console.log('PASS  protocol: asks which market for thresholds when the client can (answered, declined, invalid, not asked when it cannot)');
   console.log('PASS  protocol: neutral research answers on every surface; on /mcp/openai and for ChatGPT, research tools only');
 }
 
