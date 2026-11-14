@@ -68,6 +68,21 @@
       "minHit": 37,
       "minStrong": 23,
       "note": "authored FAQ questions wrapped in conversation (\"Hi, I have a question ... thanks\"); the wrapper is dropped from the query"
+    },
+    "field-a": {
+      "rule": "report",
+      "within": 3,
+      "note": "120 questions in practitioners' and owners' own words, written after the fact and not tuned on at first; used to build the lexicon, so no longer unseen."
+    },
+    "field-b": {
+      "rule": "report",
+      "within": 3,
+      "note": "70 questions weighted to American and British wording and plain speech; inspected once to find the remaining patterns."
+    },
+    "field-c": {
+      "rule": "report",
+      "within": 3,
+      "note": "50 questions written last and never tuned on: the honest measure. When it was first run: 19 of 50 right and strong at the start, 29 after the lexicon, the both-kinds strength rule and the first added questions; the right page within five results rose from 43 to 46. Add new unseen questions here rather than fixing these one by one."
     }
   },
   "cases": [
@@ -3071,6 +3086,2351 @@
       "expected": [
         "https://moyneross.com/technical/waterproofing-membranes"
       ]
+    },
+    {
+      "id": "field-a:raac-planks-in-a-1970s-roof",
+      "category": "field-a",
+      "query": "RAAC planks in a 1970s roof",
+      "expected": [
+        "https://moyneross.com/technical/roof-structure",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/insights/the-1970s-office"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:combustible-acp-cladding-remediation",
+      "category": "field-a",
+      "query": "combustible ACP cladding remediation",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:ews1-form-for-a-block-of-flats",
+      "category": "field-a",
+      "query": "EWS1 form for a block of flats",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/technical/passive-fire-protection"
+      ],
+      "kind": "jargon-uk"
+    },
+    {
+      "id": "field-a:legionella-risk-in-cooling-towers",
+      "category": "field-a",
+      "query": "legionella risk in cooling towers",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:r22-phase-out-chiller-replacement",
+      "category": "field-a",
+      "query": "R22 phase out chiller replacement",
+      "expected": [
+        "https://moyneross.com/technical/central-cooling-plant"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:thermographic-survey-of-switchboards",
+      "category": "field-a",
+      "query": "thermographic survey of switchboards",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply",
+        "https://moyneross.com/technical/power-distribution"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:arc-flash-risk-on-old-main-switchboard",
+      "category": "field-a",
+      "query": "arc flash risk on old main switchboard",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply",
+        "https://moyneross.com/technical/power-distribution"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:fire-damper-inspection-and-testing",
+      "category": "field-a",
+      "query": "fire damper inspection and testing",
+      "expected": [
+        "https://moyneross.com/technical/smoke-management-systems",
+        "https://moyneross.com/technical/ductwork-and-air-distribution",
+        "https://moyneross.com/technical/passive-fire-protection"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:annual-fire-safety-statement-defects",
+      "category": "field-a",
+      "query": "annual fire safety statement defects",
+      "expected": [
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems",
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ],
+      "kind": "jargon-au"
+    },
+    {
+      "id": "field-a:essential-safety-measures-maintenance",
+      "category": "field-a",
+      "query": "essential safety measures maintenance",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems",
+        "https://moyneross.com/technical/emergency-lighting"
+      ],
+      "kind": "jargon-au"
+    },
+    {
+      "id": "field-a:concrete-cancer-in-balcony-slabs",
+      "category": "field-a",
+      "query": "concrete cancer in balcony slabs",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/structural-frame"
+      ],
+      "kind": "jargon-au"
+    },
+    {
+      "id": "field-a:carbonation-and-chloride-attack-in-car-park",
+      "category": "field-a",
+      "query": "carbonation and chloride attack in car park",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/basement-cellars-and-retaining-walls"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:rising-damp-in-solid-brick-walls",
+      "category": "field-a",
+      "query": "rising damp in solid brick walls",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/load-bearing-masonry",
+        "https://moyneross.com/technical/sub-floor-and-crawlspace"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:wall-tie-failure-cavity-wall",
+      "category": "field-a",
+      "query": "wall tie failure cavity wall",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/load-bearing-masonry"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:curtain-wall-gasket-failure-and-water-ingress",
+      "category": "field-a",
+      "query": "curtain wall gasket failure and water ingress",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems",
+        "https://moyneross.com/technical/sealants-and-joints"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:igu-failure-fogged-double-glazing",
+      "category": "field-a",
+      "query": "IGU failure fogged double glazing",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:spontaneous-glass-breakage-nickel-sulphide",
+      "category": "field-a",
+      "query": "spontaneous glass breakage nickel sulphide",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:membrane-roof-ponding-and-blistering",
+      "category": "field-a",
+      "query": "membrane roof ponding and blistering",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:box-gutter-overflow-into-building",
+      "category": "field-a",
+      "query": "box gutter overflow into building",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:anchor-points-and-static-lines-recertification",
+      "category": "field-a",
+      "query": "anchor points and static lines recertification",
+      "expected": [
+        "https://moyneross.com/technical/roof-safety-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:bmu-recertification-major-inspection",
+      "category": "field-a",
+      "query": "BMU recertification major inspection",
+      "expected": [
+        "https://moyneross.com/technical/building-maintenance-units"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:lift-modernisation-controller-obsolete",
+      "category": "field-a",
+      "query": "lift modernisation controller obsolete",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:escalator-step-chain-replacement",
+      "category": "field-a",
+      "query": "escalator step chain replacement",
+      "expected": [
+        "https://moyneross.com/technical/escalators-and-moving-walks"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:vrf-system-end-of-life",
+      "category": "field-a",
+      "query": "VRF system end of life",
+      "expected": [
+        "https://moyneross.com/technical/localised-hvac"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:fan-coil-unit-refurbishment",
+      "category": "field-a",
+      "query": "fan coil unit refurbishment",
+      "expected": [
+        "https://moyneross.com/technical/terminal-units"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:bms-upgrade-from-legacy-protocol",
+      "category": "field-a",
+      "query": "BMS upgrade from legacy protocol",
+      "expected": [
+        "https://moyneross.com/technical/building-management-and-control-system"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:boiler-replacement-with-heat-pumps",
+      "category": "field-a",
+      "query": "boiler replacement with heat pumps",
+      "expected": [
+        "https://moyneross.com/technical/central-heating-plant",
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:diesel-generator-load-bank-test",
+      "category": "field-a",
+      "query": "diesel generator load bank test",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:ups-battery-replacement-cycle",
+      "category": "field-a",
+      "query": "UPS battery replacement cycle",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:exit-sign-and-emergency-light-testing",
+      "category": "field-a",
+      "query": "exit sign and emergency light testing",
+      "expected": [
+        "https://moyneross.com/technical/emergency-lighting"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:led-retrofit-of-fluorescent-fittings",
+      "category": "field-a",
+      "query": "LED retrofit of fluorescent fittings",
+      "expected": [
+        "https://moyneross.com/technical/lighting",
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:sprinkler-pipe-corrosion-pinhole-leaks",
+      "category": "field-a",
+      "query": "sprinkler pipe corrosion pinhole leaks",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:fire-pump-annual-flow-test-fails",
+      "category": "field-a",
+      "query": "fire pump annual flow test fails",
+      "expected": [
+        "https://moyneross.com/technical/fire-pumping-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:fire-stopping-penetrations-in-risers",
+      "category": "field-a",
+      "query": "fire stopping penetrations in risers",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/electrical-and-communications-risers"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:gas-suppression-room-integrity-test",
+      "category": "field-a",
+      "query": "gas suppression room integrity test",
+      "expected": [
+        "https://moyneross.com/technical/specialist-suppression-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:thermostatic-mixing-valve-servicing",
+      "category": "field-a",
+      "query": "thermostatic mixing valve servicing",
+      "expected": [
+        "https://moyneross.com/technical/hot-and-warm-water-plant"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:grease-trap-capacity-for-a-food-tenant",
+      "category": "field-a",
+      "query": "grease trap capacity for a food tenant",
+      "expected": [
+        "https://moyneross.com/technical/trade-waste-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:backflow-prevention-device-testing",
+      "category": "field-a",
+      "query": "backflow prevention device testing",
+      "expected": [
+        "https://moyneross.com/technical/water-supply"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:galvanised-steel-water-pipes-corroding",
+      "category": "field-a",
+      "query": "galvanised steel water pipes corroding",
+      "expected": [
+        "https://moyneross.com/technical/water-supply"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:cast-iron-sewer-stack-cracking",
+      "category": "field-a",
+      "query": "cast iron sewer stack cracking",
+      "expected": [
+        "https://moyneross.com/technical/sanitary-and-drainage-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:asbestos-register-out-of-date",
+      "category": "field-a",
+      "query": "asbestos register out of date",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:lead-paint-and-pcbs-in-old-building",
+      "category": "field-a",
+      "query": "lead paint and PCBs in old building",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:dda-compliance-upgrade-triggers",
+      "category": "field-a",
+      "query": "DDA compliance upgrade triggers",
+      "expected": [
+        "https://moyneross.com/technical/disabled-access"
+      ],
+      "kind": "jargon-au"
+    },
+    {
+      "id": "field-a:ada-accessibility-barrier-removal",
+      "category": "field-a",
+      "query": "ADA accessibility barrier removal",
+      "expected": [
+        "https://moyneross.com/technical/disabled-access"
+      ],
+      "kind": "jargon-us"
+    },
+    {
+      "id": "field-a:subsidence-cracks-near-trees",
+      "category": "field-a",
+      "query": "subsidence cracks near trees",
+      "expected": [
+        "https://moyneross.com/technical/foundations"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:warehouse-slab-joint-failure-forklifts",
+      "category": "field-a",
+      "query": "warehouse slab joint failure forklifts",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:dock-leveller-hydraulic-failure",
+      "category": "field-a",
+      "query": "dock leveller hydraulic failure",
+      "expected": [
+        "https://moyneross.com/technical/dock-levellers-and-goods-hoists",
+        "https://moyneross.com/technical/loading-docks-and-goods-handling"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:hardstand-rutting-from-heavy-vehicles",
+      "category": "field-a",
+      "query": "hardstand rutting from heavy vehicles",
+      "expected": [
+        "https://moyneross.com/technical/pavements-and-hardstand"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:roof-cannot-take-the-weight-of-solar-panels",
+      "category": "field-a",
+      "query": "roof cannot take the weight of solar panels",
+      "expected": [
+        "https://moyneross.com/technical/roof-structure",
+        "https://moyneross.com/technical/solar-photovoltaic-systems",
+        "https://moyneross.com/insights/the-roof-nobody-designed-for-solar"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:inverter-replacement-on-rooftop-solar",
+      "category": "field-a",
+      "query": "inverter replacement on rooftop solar",
+      "expected": [
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:ev-chargers-and-switchboard-capacity",
+      "category": "field-a",
+      "query": "EV chargers and switchboard capacity",
+      "expected": [
+        "https://moyneross.com/technical/electric-vehicle-charging",
+        "https://moyneross.com/technical/main-electrical-supply"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:embedded-network-metering",
+      "category": "field-a",
+      "query": "embedded network metering",
+      "expected": [
+        "https://moyneross.com/technical/sub-metering"
+      ],
+      "kind": "jargon-au"
+    },
+    {
+      "id": "field-a:water-leaking-through-the-ceiling-of-the-unit-below-a-bathro",
+      "category": "field-a",
+      "query": "water leaking through the ceiling of the unit below a bathroom",
+      "expected": [
+        "https://moyneross.com/technical/bathrooms-and-wet-areas",
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:my-office-is-always-too-hot-in-the-afternoon",
+      "category": "field-a",
+      "query": "my office is always too hot in the afternoon",
+      "expected": [
+        "https://moyneross.com/technical/terminal-units",
+        "https://moyneross.com/technical/air-handling-units",
+        "https://moyneross.com/technical/commercial-office-areas",
+        "https://moyneross.com/technical/central-cooling-plant"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:lifts-keep-breaking-down",
+      "category": "field-a",
+      "query": "lifts keep breaking down",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:cracks-in-the-brickwork-above-windows",
+      "category": "field-a",
+      "query": "cracks in the brickwork above windows",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:rust-stains-coming-through-concrete",
+      "category": "field-a",
+      "query": "rust stains coming through concrete",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:windows-leak-when-it-rains-hard",
+      "category": "field-a",
+      "query": "windows leak when it rains hard",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems",
+        "https://moyneross.com/technical/sealants-and-joints"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:the-roof-leaks-every-winter",
+      "category": "field-a",
+      "query": "the roof leaks every winter",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/rainwater-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:paint-peeling-on-the-outside-walls",
+      "category": "field-a",
+      "query": "paint peeling on the outside walls",
+      "expected": [
+        "https://moyneross.com/technical/external-coating-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:balcony-railing-feels-loose",
+      "category": "field-a",
+      "query": "balcony railing feels loose",
+      "expected": [
+        "https://moyneross.com/technical/verandahs-balconies-and-balustrades"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:car-park-floods-in-heavy-rain",
+      "category": "field-a",
+      "query": "car park floods in heavy rain",
+      "expected": [
+        "https://moyneross.com/technical/stormwater-drainage",
+        "https://moyneross.com/technical/basement-cellars-and-retaining-walls",
+        "https://moyneross.com/technical/pumping-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:hot-water-runs-out-in-the-morning",
+      "category": "field-a",
+      "query": "hot water runs out in the morning",
+      "expected": [
+        "https://moyneross.com/technical/hot-and-warm-water-plant"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:low-water-pressure-on-upper-floors",
+      "category": "field-a",
+      "query": "low water pressure on upper floors",
+      "expected": [
+        "https://moyneross.com/technical/water-supply",
+        "https://moyneross.com/technical/pumping-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:fire-alarm-keeps-going-off-for-no-reason",
+      "category": "field-a",
+      "query": "fire alarm keeps going off for no reason",
+      "expected": [
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:power-keeps-tripping",
+      "category": "field-a",
+      "query": "power keeps tripping",
+      "expected": [
+        "https://moyneross.com/technical/power-distribution",
+        "https://moyneross.com/technical/main-electrical-supply"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:musty-smell-and-mould-in-apartments",
+      "category": "field-a",
+      "query": "musty smell and mould in apartments",
+      "expected": [
+        "https://moyneross.com/technical/ventilation-systems",
+        "https://moyneross.com/technical/insulation",
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:tiles-lifting-in-the-lobby",
+      "category": "field-a",
+      "query": "tiles lifting in the lobby",
+      "expected": [
+        "https://moyneross.com/technical/flooring",
+        "https://moyneross.com/technical/lobbies-and-atria"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-a:how-long-does-a-flat-roof-last",
+      "category": "field-a",
+      "query": "how long does a flat roof last",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:life-expectancy-of-a-chiller",
+      "category": "field-a",
+      "query": "life expectancy of a chiller",
+      "expected": [
+        "https://moyneross.com/technical/central-cooling-plant"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:how-often-do-lifts-need-replacing",
+      "category": "field-a",
+      "query": "how often do lifts need replacing",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:when-should-a-switchboard-be-replaced",
+      "category": "field-a",
+      "query": "when should a switchboard be replaced",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply",
+        "https://moyneross.com/technical/power-distribution"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:how-long-do-sealants-last-on-a-facade",
+      "category": "field-a",
+      "query": "how long do sealants last on a facade",
+      "expected": [
+        "https://moyneross.com/technical/sealants-and-joints"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:lifespan-of-carpet-in-an-office",
+      "category": "field-a",
+      "query": "lifespan of carpet in an office",
+      "expected": [
+        "https://moyneross.com/technical/flooring",
+        "https://moyneross.com/technical/commercial-office-areas"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:cooling-tower-replacement-age",
+      "category": "field-a",
+      "query": "cooling tower replacement age",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ],
+      "kind": "life"
+    },
+    {
+      "id": "field-a:minimum-energy-rating-to-let-a-commercial-building-in-englan",
+      "category": "field-a",
+      "query": "minimum energy rating to let a commercial building in England",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule"
+      ],
+      "kind": "reg-uk"
+    },
+    {
+      "id": "field-a:mees-epc-b-by-2030",
+      "category": "field-a",
+      "query": "MEES EPC B by 2030",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule",
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ],
+      "kind": "reg-uk"
+    },
+    {
+      "id": "field-a:local-law-97-fines-for-an-office-building",
+      "category": "field-a",
+      "query": "Local Law 97 fines for an office building",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ],
+      "kind": "reg-us"
+    },
+    {
+      "id": "field-a:building-performance-standards-penalties",
+      "category": "field-a",
+      "query": "building performance standards penalties",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ],
+      "kind": "reg-us"
+    },
+    {
+      "id": "field-a:reserve-study-for-a-condo-association",
+      "category": "field-a",
+      "query": "reserve study for a condo association",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study",
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "reg-us"
+    },
+    {
+      "id": "field-a:nabers-rating-and-commercial-building-disclosure",
+      "category": "field-a",
+      "query": "NABERS rating and commercial building disclosure",
+      "expected": [
+        "https://moyneross.com/insights/australia-supply-constraint-and-the-staircase-code",
+        "https://moyneross.com/insights/the-markets-right-to-know",
+        "https://moyneross.com/technical/energy-efficiency-upgrades"
+      ],
+      "kind": "reg-au"
+    },
+    {
+      "id": "field-a:section-j-upgrade-triggered-by-refurbishment",
+      "category": "field-a",
+      "query": "Section J upgrade triggered by refurbishment",
+      "expected": [
+        "https://moyneross.com/insights/australia-supply-constraint-and-the-staircase-code",
+        "https://moyneross.com/technical/energy-efficiency-upgrades",
+        "https://moyneross.com/technical/insulation"
+      ],
+      "kind": "reg-au"
+    },
+    {
+      "id": "field-a:strata-sinking-fund-forecast-is-too-low",
+      "category": "field-a",
+      "query": "strata sinking fund forecast is too low",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "reg-au"
+    },
+    {
+      "id": "field-a:capital-works-fund-ten-year-plan",
+      "category": "field-a",
+      "query": "capital works fund ten year plan",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "reg-au"
+    },
+    {
+      "id": "field-a:building-safety-act-higher-risk-buildings",
+      "category": "field-a",
+      "query": "Building Safety Act higher risk buildings",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule"
+      ],
+      "kind": "reg-uk"
+    },
+    {
+      "id": "field-a:property-condition-assessment-astm-e2018",
+      "category": "field-a",
+      "query": "property condition assessment ASTM E2018",
+      "expected": [
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "kind": "reg-us"
+    },
+    {
+      "id": "field-a:schedule-of-dilapidations-at-lease-end",
+      "category": "field-a",
+      "query": "schedule of dilapidations at lease end",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "reg-uk"
+    },
+    {
+      "id": "field-a:triple-net-lease-who-replaces-the-roof",
+      "category": "field-a",
+      "query": "triple net lease who replaces the roof",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "reg-us"
+    },
+    {
+      "id": "field-a:make-good-obligations-for-an-office-tenant",
+      "category": "field-a",
+      "query": "make good obligations for an office tenant",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "reg-au"
+    },
+    {
+      "id": "field-a:difference-between-tdd-and-a-building-survey",
+      "category": "field-a",
+      "query": "difference between TDD and a building survey",
+      "expected": [
+        "https://moyneross.com/insights/same-thing-different-name",
+        "https://moyneross.com/insights/due-diligence-across-three-markets"
+      ],
+      "kind": "reg"
+    },
+    {
+      "id": "field-a:should-we-refurbish-or-knock-down-and-rebuild",
+      "category": "field-a",
+      "query": "should we refurbish or knock down and rebuild",
+      "expected": [
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit",
+        "https://moyneross.com/insights/most-of-the-buildings-of-2050-already-exist",
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:converting-an-office-to-apartments",
+      "category": "field-a",
+      "query": "converting an office to apartments",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:stranded-asset-risk-for-older-offices",
+      "category": "field-a",
+      "query": "stranded asset risk for older offices",
+      "expected": [
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/the-10-office",
+        "https://moyneross.com/insights/the-1970s-office"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:why-do-cap-rates-ignore-building-condition",
+      "category": "field-a",
+      "query": "why do cap rates ignore building condition",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:capex-backlog-as-a-liability",
+      "category": "field-a",
+      "query": "capex backlog as a liability",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:how-much-contingency-for-unknown-defects",
+      "category": "field-a",
+      "query": "how much contingency for unknown defects",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:vendor-due-diligence-what-buyers-look-for",
+      "category": "field-a",
+      "query": "vendor due diligence what buyers look for",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:heritage-listed-building-cost-of-ownership",
+      "category": "field-a",
+      "query": "heritage listed building cost of ownership",
+      "expected": [
+        "https://moyneross.com/insights/the-economics-of-heritage"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:flood-and-heat-risk-to-a-property-portfolio",
+      "category": "field-a",
+      "query": "flood and heat risk to a property portfolio",
+      "expected": [
+        "https://moyneross.com/insights/climate-as-physical-risk"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:data-centre-conversion-power-and-cooling",
+      "category": "field-a",
+      "query": "data centre conversion power and cooling",
+      "expected": [
+        "https://moyneross.com/insights/the-building-as-host-to-machines"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:warehouse-rooftop-solar-and-battery-income",
+      "category": "field-a",
+      "query": "warehouse rooftop solar and battery income",
+      "expected": [
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station",
+        "https://moyneross.com/insights/after-rent"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:electrification-of-a-gas-heated-building",
+      "category": "field-a",
+      "query": "electrification of a gas heated building",
+      "expected": [
+        "https://moyneross.com/insights/energy-becomes-a-building-function",
+        "https://moyneross.com/technical/central-heating-plant",
+        "https://moyneross.com/technical/gas-services"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:why-owners-corporations-put-off-repairs",
+      "category": "field-a",
+      "query": "why owners corporations put off repairs",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:ten-year-capex-plan-for-a-shopping-centre",
+      "category": "field-a",
+      "query": "ten year capex plan for a shopping centre",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/retail-as-service-infrastructure"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:what-is-the-mr-index",
+      "category": "field-a",
+      "query": "what is the MR Index",
+      "expected": [
+        "https://moyneross.com/methodology/mr-index"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-a:how-is-the-capital-register-costed",
+      "category": "field-a",
+      "query": "how is the capital register costed",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-a:what-does-a-capital-strategy-include",
+      "category": "field-a",
+      "query": "what does a capital strategy include",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/samples/capital-strategy"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-a:how-confident-are-the-cost-estimates",
+      "category": "field-a",
+      "query": "how confident are the cost estimates",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/documented-observed-inferred"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-a:difference-between-observed-and-inferred-condition",
+      "category": "field-a",
+      "query": "difference between observed and inferred condition",
+      "expected": [
+        "https://moyneross.com/insights/documented-observed-inferred"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-a:how-does-ai-fit-into-the-assessment",
+      "category": "field-a",
+      "query": "how does AI fit into the assessment",
+      "expected": [
+        "https://moyneross.com/ai",
+        "https://moyneross.com/insights/its-not-about-owning-data",
+        "https://moyneross.com/insights/what-ai-takes-out-of-the-building"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-a:building-built-in-the-1980s-what-fails-first",
+      "category": "field-a",
+      "query": "building built in the 1980s what fails first",
+      "expected": [
+        "https://moyneross.com/insights/what-age-conceals",
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/a-building-is-forty-decisions"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:mechanical-services-all-reaching-end-of-life-together",
+      "category": "field-a",
+      "query": "mechanical services all reaching end of life together",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:portfolio-wide-view-of-capital-risk",
+      "category": "field-a",
+      "query": "portfolio wide view of capital risk",
+      "expected": [
+        "https://moyneross.com/insights/physical-assets-under-management"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:holding-period-and-timing-of-major-works",
+      "category": "field-a",
+      "query": "holding period and timing of major works",
+      "expected": [
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/patient-capital-and-the-long-building"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:keeping-building-records-up-to-date-after-works",
+      "category": "field-a",
+      "query": "keeping building records up to date after works",
+      "expected": [
+        "https://moyneross.com/insights/the-living-record"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:what-can-you-tell-about-a-building-from-public-records",
+      "category": "field-a",
+      "query": "what can you tell about a building from public records",
+      "expected": [
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-a:commercial-kitchen-exhaust-hood-cleaning",
+      "category": "field-a",
+      "query": "commercial kitchen exhaust hood cleaning",
+      "expected": [
+        "https://moyneross.com/technical/commercial-kitchens",
+        "https://moyneross.com/technical/ventilation-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:plant-room-access-and-safety",
+      "category": "field-a",
+      "query": "plant room access and safety",
+      "expected": [
+        "https://moyneross.com/technical/plant-rooms",
+        "https://moyneross.com/technical/maintenance-access-areas",
+        "https://moyneross.com/technical/occupational-health-and-safety"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:smoke-exhaust-fans-and-stair-pressurisation",
+      "category": "field-a",
+      "query": "smoke exhaust fans and stair pressurisation",
+      "expected": [
+        "https://moyneross.com/technical/smoke-management-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-a:hydrant-booster-and-ring-main",
+      "category": "field-a",
+      "query": "hydrant booster and ring main",
+      "expected": [
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ],
+      "kind": "jargon"
+    },
+    {
+      "id": "field-b:elevator-modernization-cost-drivers",
+      "category": "field-b",
+      "query": "elevator modernization cost drivers",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:elevators-keep-getting-stuck",
+      "category": "field-b",
+      "query": "elevators keep getting stuck",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:mold-in-apartment-bathrooms",
+      "category": "field-b",
+      "query": "mold in apartment bathrooms",
+      "expected": [
+        "https://moyneross.com/technical/bathrooms-and-wet-areas",
+        "https://moyneross.com/technical/ventilation-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:rooftop-unit-replacement-rtu",
+      "category": "field-b",
+      "query": "rooftop unit replacement RTU",
+      "expected": [
+        "https://moyneross.com/technical/localised-hvac",
+        "https://moyneross.com/technical/air-handling-units"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:parking-garage-concrete-deterioration",
+      "category": "field-b",
+      "query": "parking garage concrete deterioration",
+      "expected": [
+        "https://moyneross.com/technical/structural-frame",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/basement-cellars-and-retaining-walls"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:parking-lot-resurfacing-asphalt",
+      "category": "field-b",
+      "query": "parking lot resurfacing asphalt",
+      "expected": [
+        "https://moyneross.com/technical/pavements-and-hardstand"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:standpipe-and-fire-hose-testing",
+      "category": "field-b",
+      "query": "standpipe and fire hose testing",
+      "expected": [
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:aluminum-curtain-wall-leaks",
+      "category": "field-b",
+      "query": "aluminum curtain wall leaks",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems",
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:stucco-cracking-and-water-intrusion-eifs",
+      "category": "field-b",
+      "query": "stucco cracking and water intrusion EIFS",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/technical/external-coating-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:electrical-panel-replacement-old-breakers",
+      "category": "field-b",
+      "query": "electrical panel replacement old breakers",
+      "expected": [
+        "https://moyneross.com/technical/power-distribution",
+        "https://moyneross.com/technical/main-electrical-supply"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:gfci-protection-missing",
+      "category": "field-b",
+      "query": "GFCI protection missing",
+      "expected": [
+        "https://moyneross.com/technical/power-distribution"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:restroom-renovation-in-an-office-building",
+      "category": "field-b",
+      "query": "restroom renovation in an office building",
+      "expected": [
+        "https://moyneross.com/technical/public-amenities",
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:remaining-useful-life-of-a-roof",
+      "category": "field-b",
+      "query": "remaining useful life of a roof",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:reserve-study-underfunded-hoa",
+      "category": "field-b",
+      "query": "reserve study underfunded HOA",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study",
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:property-condition-report-before-acquisition",
+      "category": "field-b",
+      "query": "property condition report before acquisition",
+      "expected": [
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:nnn-lease-roof-and-structure-responsibility",
+      "category": "field-b",
+      "query": "NNN lease roof and structure responsibility",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:deferred-maintenance-backlog-facility-condition-index",
+      "category": "field-b",
+      "query": "deferred maintenance backlog facility condition index",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:boiler-end-of-life-in-a-multifamily-building",
+      "category": "field-b",
+      "query": "boiler end of life in a multifamily building",
+      "expected": [
+        "https://moyneross.com/technical/central-heating-plant"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:fire-sprinkler-five-year-internal-inspection",
+      "category": "field-b",
+      "query": "fire sprinkler five year internal inspection",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:backup-generator-won-t-start",
+      "category": "field-b",
+      "query": "backup generator won't start",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-b:consumer-unit-and-fixed-wire-testing-eicr",
+      "category": "field-b",
+      "query": "consumer unit and fixed wire testing EICR",
+      "expected": [
+        "https://moyneross.com/technical/power-distribution",
+        "https://moyneross.com/technical/main-electrical-supply"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:flat-roof-felt-failing",
+      "category": "field-b",
+      "query": "flat roof felt failing",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:damp-proof-course-bridged",
+      "category": "field-b",
+      "query": "damp proof course bridged",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/load-bearing-masonry",
+        "https://moyneross.com/technical/sub-floor-and-crawlspace"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:service-charge-dispute-over-major-works",
+      "category": "field-b",
+      "query": "service charge dispute over major works",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/technical/common-internal-areas"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:full-repairing-and-insuring-lease-liabilities",
+      "category": "field-b",
+      "query": "full repairing and insuring lease liabilities",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:epc-rating-too-low-to-let",
+      "category": "field-b",
+      "query": "EPC rating too low to let",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:dry-riser-testing",
+      "category": "field-b",
+      "query": "dry riser testing",
+      "expected": [
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:cladding-remediation-after-grenfell",
+      "category": "field-b",
+      "query": "cladding remediation after Grenfell",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:building-survey-versus-technical-due-diligence",
+      "category": "field-b",
+      "query": "building survey versus technical due diligence",
+      "expected": [
+        "https://moyneross.com/insights/same-thing-different-name",
+        "https://moyneross.com/insights/due-diligence-across-three-markets"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:planned-preventative-maintenance-schedule-ppm",
+      "category": "field-b",
+      "query": "planned preventative maintenance schedule PPM",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/the-living-record",
+        "https://moyneross.com/insights/what-a-capital-strategy-is"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:skirting-and-plasterboard-water-damage",
+      "category": "field-b",
+      "query": "skirting and plasterboard water damage",
+      "expected": [
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:lift-shaft-water-in-the-pit",
+      "category": "field-b",
+      "query": "lift shaft water in the pit",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-b:body-corporate-won-t-fund-repairs",
+      "category": "field-b",
+      "query": "body corporate won't fund repairs",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:owners-corporation-maintenance-plan-victoria",
+      "category": "field-b",
+      "query": "owners corporation maintenance plan Victoria",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/technical/common-internal-areas"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:combustible-cladding-rectification-order",
+      "category": "field-b",
+      "query": "combustible cladding rectification order",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:tilt-up-panel-connections-corroding",
+      "category": "field-b",
+      "query": "tilt up panel connections corroding",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/technical/structural-frame"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:colorbond-roof-rusting-near-the-coast",
+      "category": "field-b",
+      "query": "colorbond roof rusting near the coast",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:switchboard-upgrade-for-solar-and-ev",
+      "category": "field-b",
+      "query": "switchboard upgrade for solar and EV",
+      "expected": [
+        "https://moyneross.com/technical/main-electrical-supply",
+        "https://moyneross.com/technical/electric-vehicle-charging",
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:cooling-tower-registration-and-risk-management-plan",
+      "category": "field-b",
+      "query": "cooling tower registration and risk management plan",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:ncc-2025-changes-for-existing-buildings",
+      "category": "field-b",
+      "query": "NCC 2025 changes for existing buildings",
+      "expected": [
+        "https://moyneross.com/insights/australia-supply-constraint-and-the-staircase-code"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-b:what-happens-when-a-tenant-leaves-a-warehouse",
+      "category": "field-b",
+      "query": "what happens when a tenant leaves a warehouse",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:water-coming-up-through-the-basement-floor",
+      "category": "field-b",
+      "query": "water coming up through the basement floor",
+      "expected": [
+        "https://moyneross.com/technical/basement-cellars-and-retaining-walls",
+        "https://moyneross.com/technical/slab-on-ground"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:the-building-feels-stuffy",
+      "category": "field-b",
+      "query": "the building feels stuffy",
+      "expected": [
+        "https://moyneross.com/technical/ventilation-systems",
+        "https://moyneross.com/technical/air-handling-units"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:doors-won-t-close-properly",
+      "category": "field-b",
+      "query": "doors won't close properly",
+      "expected": [
+        "https://moyneross.com/technical/internal-doors-and-hardware",
+        "https://moyneross.com/technical/foundations"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:flickering-lights-in-the-corridor",
+      "category": "field-b",
+      "query": "flickering lights in the corridor",
+      "expected": [
+        "https://moyneross.com/technical/lighting",
+        "https://moyneross.com/technical/power-distribution",
+        "https://moyneross.com/technical/common-circulation-areas"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:brown-water-from-the-taps",
+      "category": "field-b",
+      "query": "brown water from the taps",
+      "expected": [
+        "https://moyneross.com/technical/water-supply"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:drains-smell-in-the-bathrooms",
+      "category": "field-b",
+      "query": "drains smell in the bathrooms",
+      "expected": [
+        "https://moyneross.com/technical/sanitary-and-drainage-systems",
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:floor-feels-bouncy-upstairs",
+      "category": "field-b",
+      "query": "floor feels bouncy upstairs",
+      "expected": [
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/sub-floor-and-crawlspace"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:gutters-overflowing",
+      "category": "field-b",
+      "query": "gutters overflowing",
+      "expected": [
+        "https://moyneross.com/technical/rainwater-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:condensation-on-the-windows-every-morning",
+      "category": "field-b",
+      "query": "condensation on the windows every morning",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems",
+        "https://moyneross.com/technical/ventilation-systems",
+        "https://moyneross.com/technical/insulation"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:cracks-in-the-car-park-floor",
+      "category": "field-b",
+      "query": "cracks in the car park floor",
+      "expected": [
+        "https://moyneross.com/technical/slab-on-ground",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/pavements-and-hardstand",
+        "https://moyneross.com/technical/structural-frame"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:air-conditioning-is-noisy",
+      "category": "field-b",
+      "query": "air conditioning is noisy",
+      "expected": [
+        "https://moyneross.com/technical/air-handling-units",
+        "https://moyneross.com/technical/localised-hvac",
+        "https://moyneross.com/technical/terminal-units",
+        "https://moyneross.com/technical/ductwork-and-air-distribution"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-b:is-the-building-worth-upgrading-or-should-we-sell",
+      "category": "field-b",
+      "query": "is the building worth upgrading or should we sell",
+      "expected": [
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:what-will-this-building-cost-us-over-ten-years",
+      "category": "field-b",
+      "query": "what will this building cost us over ten years",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/samples/capital-strategy",
+        "https://moyneross.com/insights/reading-a-building-as-capital"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:how-old-buildings-lose-value",
+      "category": "field-b",
+      "query": "how old buildings lose value",
+      "expected": [
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/what-age-conceals"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:can-an-old-office-become-a-hotel-or-housing",
+      "category": "field-b",
+      "query": "can an old office become a hotel or housing",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:buying-a-building-with-unknown-condition",
+      "category": "field-b",
+      "query": "buying a building with unknown condition",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/due-diligence-across-three-markets"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:does-a-cheap-interest-rate-era-change-how-buildings-were-mai",
+      "category": "field-b",
+      "query": "does a cheap interest rate era change how buildings were maintained",
+      "expected": [
+        "https://moyneross.com/insights/forty-years-of-cheap-money"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:shopping-centre-plant-and-services-cost",
+      "category": "field-b",
+      "query": "shopping centre plant and services cost",
+      "expected": [
+        "https://moyneross.com/insights/retail-as-service-infrastructure"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:office-worth-less-than-its-refurbishment",
+      "category": "field-b",
+      "query": "office worth less than its refurbishment",
+      "expected": [
+        "https://moyneross.com/insights/the-10-office"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:battery-storage-on-an-industrial-roof",
+      "category": "field-b",
+      "query": "battery storage on an industrial roof",
+      "expected": [
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station",
+        "https://moyneross.com/technical/solar-photovoltaic-systems"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:grid-connection-limits-on-a-site",
+      "category": "field-b",
+      "query": "grid connection limits on a site",
+      "expected": [
+        "https://moyneross.com/insights/energy-becomes-a-building-function",
+        "https://moyneross.com/technical/main-electrical-supply",
+        "https://moyneross.com/insights/after-rent",
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:manufacturing-reshoring-demand-for-factories",
+      "category": "field-b",
+      "query": "manufacturing reshoring demand for factories",
+      "expected": [
+        "https://moyneross.com/insights/industrial-policy-comes-home"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-b:rating-a-building-by-cost-versus-by-urgency",
+      "category": "field-b",
+      "query": "rating a building by cost versus by urgency",
+      "expected": [
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-b:mr-4-building-what-does-it-mean",
+      "category": "field-b",
+      "query": "MR 4 building what does it mean",
+      "expected": [
+        "https://moyneross.com/methodology/mr-index"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-b:what-is-a-capital-register-line",
+      "category": "field-b",
+      "query": "what is a capital register line",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/the-register-not-the-report",
+        "https://moyneross.com/insights/a-register-read-end-to-end"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-b:report-versus-register-for-a-condition-survey",
+      "category": "field-b",
+      "query": "report versus register for a condition survey",
+      "expected": [
+        "https://moyneross.com/insights/the-register-not-the-report"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-b:sample-strategy-for-a-warehouse",
+      "category": "field-b",
+      "query": "sample strategy for a warehouse",
+      "expected": [
+        "https://moyneross.com/samples/capital-strategy"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-b:how-reliable-is-a-desktop-assessment",
+      "category": "field-b",
+      "query": "how reliable is a desktop assessment",
+      "expected": [
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you",
+        "https://moyneross.com/insights/documented-observed-inferred"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-b:owner-wants-to-sell-in-three-years-how-does-that-change-the-",
+      "category": "field-b",
+      "query": "owner wants to sell in three years how does that change the plan",
+      "expected": [
+        "https://moyneross.com/insights/bringing-the-owners-intentions-to-bear",
+        "https://moyneross.com/insights/timing-is-not-risk"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-c:elevator-pit-flooding",
+      "category": "field-c",
+      "query": "elevator pit flooding",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:moldy-drywall-behind-the-shower",
+      "category": "field-c",
+      "query": "moldy drywall behind the shower",
+      "expected": [
+        "https://moyneross.com/technical/bathrooms-and-wet-areas",
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes",
+        "https://moyneross.com/technical/waterproofing-membranes"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:color-fading-on-painted-exterior",
+      "category": "field-c",
+      "query": "color fading on painted exterior",
+      "expected": [
+        "https://moyneross.com/technical/external-coating-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:fiber-cement-siding-cracks",
+      "category": "field-c",
+      "query": "fiber cement siding cracks",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:parking-structure-expansion-joints-leaking",
+      "category": "field-c",
+      "query": "parking structure expansion joints leaking",
+      "expected": [
+        "https://moyneross.com/technical/sealants-and-joints",
+        "https://moyneross.com/technical/upper-floor-slabs-and-structures",
+        "https://moyneross.com/technical/structural-frame"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:hoa-special-assessment-for-roof-replacement",
+      "category": "field-c",
+      "query": "HOA special assessment for roof replacement",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study",
+        "https://moyneross.com/technical/roof-coverings"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:life-expectancy-of-a-commercial-boiler",
+      "category": "field-c",
+      "query": "life expectancy of a commercial boiler",
+      "expected": [
+        "https://moyneross.com/technical/central-heating-plant"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:pca-immediate-repairs-and-reserves-table",
+      "category": "field-c",
+      "query": "PCA immediate repairs and reserves table",
+      "expected": [
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:capitalization-rate-and-capex",
+      "category": "field-c",
+      "query": "capitalization rate and capex",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:sprinkler-heads-recalled-or-painted-over",
+      "category": "field-c",
+      "query": "sprinkler heads recalled or painted over",
+      "expected": [
+        "https://moyneross.com/technical/automatic-sprinkler-systems"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:restroom-fixtures-and-ada-clearances",
+      "category": "field-c",
+      "query": "restroom fixtures and ADA clearances",
+      "expected": [
+        "https://moyneross.com/technical/public-amenities",
+        "https://moyneross.com/technical/disabled-access"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:modernizing-a-1980s-office-tower",
+      "category": "field-c",
+      "query": "modernizing a 1980s office tower",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/the-1970s-office",
+        "https://moyneross.com/insights/most-of-the-buildings-of-2050-already-exist",
+        "https://moyneross.com/insights/what-age-conceals"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:sidewalk-trip-hazards-liability",
+      "category": "field-c",
+      "query": "sidewalk trip hazards liability",
+      "expected": [
+        "https://moyneross.com/technical/pavements-and-hardstand"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:furnace-and-rooftop-units-at-end-of-life",
+      "category": "field-c",
+      "query": "furnace and rooftop units at end of life",
+      "expected": [
+        "https://moyneross.com/technical/localised-hvac",
+        "https://moyneross.com/technical/central-heating-plant",
+        "https://moyneross.com/technical/air-handling-units"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:genset-fuel-tank-and-transfer-switch",
+      "category": "field-c",
+      "query": "genset fuel tank and transfer switch",
+      "expected": [
+        "https://moyneross.com/technical/emergency-power"
+      ],
+      "kind": "us"
+    },
+    {
+      "id": "field-c:wet-riser-pump-failure",
+      "category": "field-c",
+      "query": "wet riser pump failure",
+      "expected": [
+        "https://moyneross.com/technical/fire-pumping-systems",
+        "https://moyneross.com/technical/hydrant-and-hose-reel-systems"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:lease-end-dilapidations-claim-amount",
+      "category": "field-c",
+      "query": "lease end dilapidations claim amount",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:damp-and-mould-in-a-converted-flat",
+      "category": "field-c",
+      "query": "damp and mould in a converted flat",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question",
+        "https://moyneross.com/technical/ventilation-systems",
+        "https://moyneross.com/technical/residential-units-guest-rooms",
+        "https://moyneross.com/technical/bathrooms-and-wet-areas"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:asbestos-management-survey-versus-refurbishment-survey",
+      "category": "field-c",
+      "query": "asbestos management survey versus refurbishment survey",
+      "expected": [
+        "https://moyneross.com/technical/hazardous-materials"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:programme-of-planned-works-for-a-block",
+      "category": "field-c",
+      "query": "programme of planned works for a block",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/technical/common-internal-areas"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:lift-loler-thorough-examination",
+      "category": "field-c",
+      "query": "lift LOLER thorough examination",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:cavity-barriers-missing-behind-cladding",
+      "category": "field-c",
+      "query": "cavity barriers missing behind cladding",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/technical/passive-fire-protection"
+      ],
+      "kind": "uk"
+    },
+    {
+      "id": "field-c:strata-defects-after-the-warranty-period",
+      "category": "field-c",
+      "query": "strata defects after the warranty period",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/technical/common-internal-areas"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-c:cooling-tower-replacement-before-summer",
+      "category": "field-c",
+      "query": "cooling tower replacement before summer",
+      "expected": [
+        "https://moyneross.com/technical/heat-rejection-plant"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-c:zincalume-roof-sheets-corroding-at-laps",
+      "category": "field-c",
+      "query": "zincalume roof sheets corroding at laps",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-c:annual-essential-safety-measures-report",
+      "category": "field-c",
+      "query": "annual essential safety measures report",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/fire-detection-and-alarm-systems",
+        "https://moyneross.com/technical/emergency-lighting",
+        "https://moyneross.com/technical/common-internal-areas"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-c:bca-upgrade-triggered-by-change-of-use",
+      "category": "field-c",
+      "query": "BCA upgrade triggered by change of use",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question",
+        "https://moyneross.com/insights/australia-supply-constraint-and-the-staircase-code",
+        "https://moyneross.com/technical/disabled-access"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-c:solar-on-a-warehouse-roof-with-asbestos-sheeting",
+      "category": "field-c",
+      "query": "solar on a warehouse roof with asbestos sheeting",
+      "expected": [
+        "https://moyneross.com/insights/the-roof-nobody-designed-for-solar",
+        "https://moyneross.com/technical/solar-photovoltaic-systems",
+        "https://moyneross.com/technical/hazardous-materials",
+        "https://moyneross.com/technical/roof-coverings"
+      ],
+      "kind": "au"
+    },
+    {
+      "id": "field-c:our-lifts-are-slow-and-people-complain",
+      "category": "field-c",
+      "query": "our lifts are slow and people complain",
+      "expected": [
+        "https://moyneross.com/technical/passenger-and-goods-lifts",
+        "https://moyneross.com/technical/lift-cars-and-machine-rooms"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:the-roof-makes-noise-when-it-is-windy",
+      "category": "field-c",
+      "query": "the roof makes noise when it is windy",
+      "expected": [
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/roof-structure"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:water-stains-on-the-ceiling-tiles",
+      "category": "field-c",
+      "query": "water stains on the ceiling tiles",
+      "expected": [
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes",
+        "https://moyneross.com/technical/roof-coverings",
+        "https://moyneross.com/technical/rainwater-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:toilets-keep-blocking",
+      "category": "field-c",
+      "query": "toilets keep blocking",
+      "expected": [
+        "https://moyneross.com/technical/sanitary-and-drainage-systems",
+        "https://moyneross.com/technical/public-amenities"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:the-car-park-lights-don-t-work",
+      "category": "field-c",
+      "query": "the car park lights don't work",
+      "expected": [
+        "https://moyneross.com/technical/lighting",
+        "https://moyneross.com/technical/emergency-lighting"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:we-have-cracks-in-the-walls",
+      "category": "field-c",
+      "query": "we have cracks in the walls",
+      "expected": [
+        "https://moyneross.com/technical/masonry-brickwork",
+        "https://moyneross.com/technical/foundations",
+        "https://moyneross.com/technical/load-bearing-masonry",
+        "https://moyneross.com/technical/internal-wall-and-ceiling-finishes"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:windows-are-hard-to-open",
+      "category": "field-c",
+      "query": "windows are hard to open",
+      "expected": [
+        "https://moyneross.com/technical/glazing-systems"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:it-is-freezing-in-winter-in-the-office",
+      "category": "field-c",
+      "query": "it is freezing in winter in the office",
+      "expected": [
+        "https://moyneross.com/technical/central-heating-plant",
+        "https://moyneross.com/technical/terminal-units",
+        "https://moyneross.com/technical/commercial-office-areas",
+        "https://moyneross.com/technical/insulation"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:the-fire-doors-don-t-close",
+      "category": "field-c",
+      "query": "the fire doors don't close",
+      "expected": [
+        "https://moyneross.com/technical/passive-fire-protection",
+        "https://moyneross.com/technical/internal-doors-and-hardware"
+      ],
+      "kind": "plain"
+    },
+    {
+      "id": "field-c:we-need-to-know-what-to-fix-first",
+      "category": "field-c",
+      "query": "we need to know what to fix first",
+      "expected": [
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/methodology/mr-index",
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/a-building-is-forty-decisions"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:how-much-should-we-set-aside-each-year-for-the-building",
+      "category": "field-c",
+      "query": "how much should we set aside each year for the building",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer",
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/samples/capital-strategy"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:is-an-old-building-a-bad-investment",
+      "category": "field-c",
+      "query": "is an old building a bad investment",
+      "expected": [
+        "https://moyneross.com/insights/what-age-conceals",
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/patient-capital-and-the-long-building"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:what-buyers-discount-when-records-are-missing",
+      "category": "field-c",
+      "query": "what buyers discount when records are missing",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/the-markets-right-to-know"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:energy-costs-and-the-value-of-a-warehouse",
+      "category": "field-c",
+      "query": "energy costs and the value of a warehouse",
+      "expected": [
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station",
+        "https://moyneross.com/insights/after-rent",
+        "https://moyneross.com/insights/energy-becomes-a-building-function"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:shopping-mall-tenants-and-shared-services",
+      "category": "field-c",
+      "query": "shopping mall tenants and shared services",
+      "expected": [
+        "https://moyneross.com/insights/retail-as-service-infrastructure"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:ai-demand-for-power-in-buildings",
+      "category": "field-c",
+      "query": "AI demand for power in buildings",
+      "expected": [
+        "https://moyneross.com/insights/the-building-as-host-to-machines",
+        "https://moyneross.com/insights/what-ai-takes-out-of-the-building"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:extreme-heat-and-flooding-exposure-of-assets",
+      "category": "field-c",
+      "query": "extreme heat and flooding exposure of assets",
+      "expected": [
+        "https://moyneross.com/insights/climate-as-physical-risk"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:listed-building-repairs-cost-more",
+      "category": "field-c",
+      "query": "listed building repairs cost more",
+      "expected": [
+        "https://moyneross.com/insights/the-economics-of-heritage"
+      ],
+      "kind": "capital"
+    },
+    {
+      "id": "field-c:mr-2-versus-mr-5",
+      "category": "field-c",
+      "query": "MR 2 versus MR 5",
+      "expected": [
+        "https://moyneross.com/methodology/mr-index"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-c:cost-basis-on-a-register-line",
+      "category": "field-c",
+      "query": "cost basis on a register line",
+      "expected": [
+        "https://moyneross.com/methodology/capital-register"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-c:what-evidence-was-the-assessment-based-on",
+      "category": "field-c",
+      "query": "what evidence was the assessment based on",
+      "expected": [
+        "https://moyneross.com/insights/documented-observed-inferred",
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you"
+      ],
+      "kind": "method"
+    },
+    {
+      "id": "field-c:show-me-an-example-capital-strategy",
+      "category": "field-c",
+      "query": "show me an example capital strategy",
+      "expected": [
+        "https://moyneross.com/samples/capital-strategy",
+        "https://moyneross.com/insights/what-a-capital-strategy-is"
+      ],
+      "kind": "method"
     }
   ]
 }

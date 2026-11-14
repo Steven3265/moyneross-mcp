@@ -21,7 +21,7 @@ import {
   getPaper,
   listPapers,
   matchDetail,
-  matchStrength,
+  judged,
   methodView,
   paperForUrl,
   paperListing,
@@ -188,7 +188,7 @@ export function createMcpServer(): McpServer {
 
   server.registerTool('search_research', { ...tool('search_research'), inputSchema: C.search_research.inputSchema, outputSchema: C.search_research.outputSchema }, async ({ query, scope, limit, response_format }) => {
     const found = searchResearch({ query, scope, limit });
-    const strength = matchStrength(query, found);
+    const { strength, on: judgedOn } = judged(query, found);
     const detail = response_format === 'detailed';
     const results = found.map((r) => {
       if (!detail) return r;
@@ -198,7 +198,7 @@ export function createMcpServer(): McpServer {
       if (t) return { ...r, citation: technicalCitationFor(t), datePublished: t.publishedAt ?? undefined, dateModified: t.updatedAt ?? undefined };
       return r;
     });
-    const m = found[0] ? matchDetail(query, found[0].url) : { coverage: 0, headlineCoverage: 0, matchedTerms: [], missingTerms: [] };
+    const m = judgedOn ? matchDetail(query, judgedOn.url) : { coverage: 0, headlineCoverage: 0, matchedTerms: [], missingTerms: [] };
     const suggestions = strength === 'strong' ? [] : suggestedQueries(found);
     logUse('search_research', { queryLength: query.length, scope, format: response_format, count: found.length, matchStrength: strength, top: found[0]?.slug ?? found[0]?.kind });
     const links = found.flatMap((r) => { const p = paperForUrl(r.url); if (p) return [paperLink(p)]; const t = technicalForUrl(r.url); return t ? [technicalLink(t)] : []; });

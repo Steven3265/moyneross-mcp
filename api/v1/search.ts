@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { citationFor, corpusVersion, matchDetail, matchStrength, paperForUrl, searchResearch, suggestedQueries, technicalCitationFor, technicalForUrl } from '../../src/core.js';
+import { citationFor, corpusVersion, matchDetail, judged, paperForUrl, searchResearch, suggestedQueries, technicalCitationFor, technicalForUrl } from '../../src/core.js';
 import { RESPONSE_FORMATS, SCOPES, searchBoundary } from '../../src/contracts.js';
 import { addReferralUrls, enumParam, intParam, logApi, optionalParam, referralSource, requestUrl, requireGet, sendJson } from '../../src/http-json.js';
 
@@ -17,7 +17,7 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
   if (format === null) return;
   const s = (scope ?? 'all') as (typeof SCOPES)[number];
   const found = searchResearch({ query, scope: s, limit });
-  const strength = matchStrength(query, found);
+  const { strength, on: judgedOn } = judged(query, found);
   const results = format === 'detailed'
     ? found.map((r) => {
       const p = paperForUrl(r.url);
@@ -26,7 +26,7 @@ export default function handler(req: IncomingMessage, res: ServerResponse): void
       return t ? { ...r, citation: technicalCitationFor(t), datePublished: t.publishedAt ?? undefined, dateModified: t.updatedAt ?? undefined } : r;
     })
     : found;
-  const match = found[0] ? matchDetail(query, found[0].url) : { coverage: 0, headlineCoverage: 0, matchedTerms: [], missingTerms: [] };
+  const match = judgedOn ? matchDetail(query, judgedOn.url) : { coverage: 0, headlineCoverage: 0, matchedTerms: [], missingTerms: [] };
   logApi('search', { queryLength: query.length, scope: s, count: found.length, matchStrength: strength });
   sendJson(res, 200, addReferralUrls({ query, scope: s, count: found.length, matchStrength: strength, match, results, suggestedQueries: strength === 'strong' ? [] : suggestedQueries(found), boundary: searchBoundary(strength), corpusVersion }, referralSource(req)), 'no-store');
 }

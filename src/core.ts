@@ -167,6 +167,14 @@ const passagesByUrl = new Map<string, Passage[]>();
   for (const x of all) for (const t of x.terms) passageCollection.df.set(t, (passageCollection.df.get(t) ?? 0) + 1);
 }
 
+// A shorthand's expansion is searched at reduced weight, so the exact wording
+// still ranks first. But where the corpus does not contain the word typed at
+// all (elevator, mold, aluminum), there is no exact wording to protect: the
+// corpus's own word for it is the word, and counts in full.
+function altWeight(qt: QueryTerm): number {
+  vocabulary ??= new Set([...siteCollection.df.keys(), ...corpusCollection.df.keys(), ...passageCollection.df.keys()]);
+  return vocabulary.has(qt.term) ? 0.6 : 1;
+}
 function bm25Passage(x: Passage, q: Map<string, number>): number {
   let s = 0;
   const { AVG } = passageCollection;
@@ -275,7 +283,56 @@ export const SYNONYMS: Record<string, string> = {
   bmu: 'building maintenance unit', dpc: 'damp proof course', ups: 'emergency power', ats: 'transfer switch emergency power',
   rcd: 'residual current device', msb: 'main switchboard', db: 'distribution board', eifs: 'cladding render insulation',
   lintel: 'lintels', brickwork: 'masonry', brick: 'masonry', subsidence: 'foundations movement', spalling: 'concrete reinforcement corrosion',
+  // One building, three vocabularies. The corpus is written in Australian and
+  // British terms; American words reach the same pages.
+  elevator: 'lift lifts', elevators: 'lift lifts', mold: 'mould', moldy: 'mould', mouldy: 'mould', aluminum: 'aluminium', stucco: 'render',
+  drywall: 'plasterboard', sheetrock: 'plasterboard', faucet: 'tap', faucets: 'taps', restroom: 'toilet amenities', restrooms: 'toilets amenities',
+  washroom: 'toilet amenities', sidewalk: 'footpath pavement', asphalt: 'bitumen pavement', blacktop: 'bitumen pavement', furnace: 'boiler heating',
+  multifamily: 'residential apartments', rtu: 'packaged rooftop unit', gfci: 'residual current device rcd', breaker: 'circuit breaker', breakers: 'circuit breakers',
+  panelboard: 'distribution board', standpipe: 'hydrant riser', story: 'storey', stories: 'storeys', fiber: 'fibre', gray: 'grey', color: 'colour',
+  sewer: 'sanitary drainage', garbage: 'waste', trash: 'waste', dumpster: 'waste bin', eicr: 'electrical installation inspection testing',
+  skirting: 'wall finishes', baseboard: 'wall finishes', colorbond: 'coated steel roof sheeting', zincalume: 'coated steel roof sheeting',
+  generator: 'emergency power', genset: 'emergency power generator', aircon: 'air conditioning cooling', ac: 'air conditioning',
+  // How long things last, in the words people use for it.
+  lifespan: 'service life', longevity: 'service life', expectancy: 'service life', rul: 'remaining service life', eul: 'expected service life',
+  // Institutional shorthand.
+  pca: 'property condition assessment technical due diligence', pcr: 'property condition report technical due diligence', nnn: 'triple net lease',
+  fri: 'full repairing insuring lease', fci: 'facility condition index deferred maintenance', backlog: 'deferred maintenance',
+  ppm: 'planned preventive maintenance', afss: 'annual fire safety statement', esm: 'essential safety measures', ews1: 'external wall fire cladding',
+  grenfell: 'combustible cladding', ncc: 'national construction code', bca: 'building code', nabers: 'energy rating', stranded: 'obsolescence',
+  fines: 'penalties', fine: 'penalty', demolish: 'redevelopment', demolition: 'redevelopment', rebuild: 'redevelopment', reshoring: 'manufacturing industrial',
+  // What an occupant says, and what the page calls it.
+  stuffy: 'ventilation fresh air', musty: 'damp mould', bouncy: 'deflection', springy: 'deflection', flickering: 'lighting', noisy: 'noise vibration',
+  rust: 'corrosion', rusting: 'corrosion', rusty: 'corrosion', rusted: 'corrosion', corroding: 'corrosion', backup: 'standby emergency', preventative: 'preventive',
+  tripping: 'trip circuit breaker', leaking: 'leak water ingress', leaks: 'leak water ingress', stuck: 'entrapment breakdown',
 };
+
+// Shorthand that is more than one word. Each word of the phrase also searches
+// the expansion, so the phrase counts as matched where the page uses its own
+// term for the same thing.
+export const PHRASES: [RegExp, string][] = [
+  [/\bparking (garage|structure|deck)s?\b|\bparkade\b/, 'car park'],
+  [/\bparking lots?\b/, 'car park pavement hardstand'],
+  [/\broof ?top units?\b/, 'packaged unit'],
+  [/\bconsumer units?\b/, 'distribution board'],
+  [/\b(remaining |expected )?useful life\b|\blife expectancy\b/, 'service life'],
+  [/\btriple net\b/, 'net lease'],
+  [/\bfull repairing\b/, 'repairing lease'],
+  [/\bbody corporate\b/, 'owners corporation strata'],
+  [/\b(dry|wet) risers?\b/, 'hydrant'],
+  [/\bair[- ]?conditioning\b/, 'cooling'],
+  [/\bsection j\b/, 'energy efficiency'],
+  [/\bproperty condition (report|assessment)s?\b/, 'technical due diligence'],
+  [/\bknock(ed|ing)? (it )?down\b/, 'demolish redevelopment'],
+  [/\bcap(italisation|italization)? rates?\b/, 'cap rate yield'],
+  [/\bcapital works fund\b/, 'sinking fund reserve'],
+  [/\bcurtain wall(ing)?\b/, 'glazing'],
+  [/\bwater (intrusion|penetration)\b/, 'water ingress'],
+  [/\btilt[- ]?up\b/, 'precast panel'],
+  [/\bgrease (trap|interceptor)s?\b/, 'grease arrestor trade waste'],
+  [/\bfire (door|damper)s?\b/, 'passive fire'],
+  [/\bthermal imag(ing|e|es)\b/, 'thermography thermographic'],
+];
 
 export type QueryTerm = { term: string; alternatives: string[]; idf: number };
 
@@ -295,9 +352,17 @@ export function queryTerms(query: string): QueryTerm[] {
     const raw = String(query).toLowerCase().match(/[a-z0-9]+/g) ?? [];
     const key = raw.find((w) => tokens(w)[0] === t) ?? t;
     const alternatives = SYNONYMS[key] ? tokens(SYNONYMS[key]).filter((x) => x !== t) : [];
+    for (const v of spelling(t)) if (!alternatives.includes(v)) alternatives.push(v);
     const fixed = correction(t);
     if (fixed && !alternatives.includes(fixed)) alternatives.push(fixed);
     out.push({ term: t, alternatives, idf: idfOf(t) });
+  }
+  const lower = String(query).toLowerCase();
+  for (const [re, expansion] of PHRASES) {
+    const m = lower.match(re);
+    if (!m) continue;
+    const words = new Set((m[0].match(/[a-z0-9]+/g) ?? []).map((w) => tokens(w)[0]).filter(Boolean));
+    for (const qt of out) if (words.has(qt.term)) for (const x of tokens(expansion)) if (x !== qt.term && !qt.alternatives.includes(x)) qt.alternatives.push(x);
   }
   return out;
 }
@@ -314,12 +379,31 @@ export function queryTerms(query: string): QueryTerm[] {
 // that word, at
 // the reduced weight shorthand gets, so an exact match still ranks first.
 // Only swapped, dropped or doubled letters inside a word of six or more.
-const FILLER = new Set(tokens('hi hello hey thanks thank cheers please kindly any appreciated appreciate appreciation wondering wonder question questions guidance help helpful anyone know tell explain quick quickly advise basically actually just'));
+// Third, the grammar of a spoken question ("my lifts keep breaking down", "we
+// need to know whether ..."): pronouns, auxiliaries and the verbs that carry a
+// sentence rather than its subject. None says what the question is about.
+// Negations stay (hasn't, won't, no, not): "dripping when it hasn't rained"
+// and "dripping with no rain" are different questions with different pages.
+const GRAMMAR = 'my our ours we us me mine im ive weve am was been being have has had having will shall may might must ' +
+  'keep keeps kept keeping need needs needed get gets got getting go goes going come comes coming seem seems want wants ' +
+  'feel feels happen happens';
+const FILLER = new Set(tokens(GRAMMAR + ' hi hello hey thanks thank cheers please kindly any appreciated appreciate appreciation wondering wonder question questions guidance help helpful anyone know tell explain quick quickly advise basically actually just'));
 export function queryTokens(query: string): string[] {
   return tokens(query).filter((t) => !FILLER.has(t));
 }
 
 let vocabulary: Set<string> | undefined;
+// American spellings of a word the corpus spells the British way
+// (modernization, color, center, aluminum, mold): searched as the corpus
+// spells it, where the corpus has that word and not the one typed.
+const SPELLINGS: [RegExp, string][] = [[/iz/g, 'is'], [/yz/g, 'ys'], [/or$/, 'our'], [/or(s|ed|ing)?$/, 'our$1'], [/er$/, 're'], [/ters$/, 'tres'], [/og$/, 'ogue'], [/ense$/, 'ence'], [/l(ed|ing|er)$/, 'll$1'], [/^mold/, 'mould'], [/^aluminum/, 'aluminium'], [/gray/, 'grey'], [/^fiber/, 'fibre'], [/^story$/, 'storey'], [/^stories$/, 'storeys'], [/program$/, 'programme']];
+function spelling(term: string): string[] {
+  vocabulary ??= new Set([...siteCollection.df.keys(), ...corpusCollection.df.keys(), ...passageCollection.df.keys()]);
+  if (term.length < 4 || vocabulary.has(term)) return [];
+  const out = new Set<string>();
+  for (const [re, to] of SPELLINGS) { const v = term.replace(re, to); if (v !== term) for (const t of tokens(v)) if (vocabulary.has(t)) out.add(t); }
+  return [...out];
+}
 const corrections = new Map<string, string | undefined>();
 function correction(term: string): string | undefined {
   if (term.length < 6 || /\d/.test(term)) return undefined;
@@ -402,16 +486,31 @@ function rawScore(d: IndexedDoc, q: Map<string, number>): number {
   return (1 - PASSAGE_MIX) * bm25(d, q) + PASSAGE_MIX * best;
 }
 
+// ─── Questions that name a method ───────────────────────────────────────
+// A question that names a method ("what is a capital register line", "MR 4")
+// is about that method, though the library mentions registers on every page
+// and the words themselves are too common in the corpus to carry it.
+const NAMED: [RegExp, string][] = [
+  [/\bcapital registers?\b|\bregister lines?\b|\bcost basis\b/i, '/methodology/capital-register'],
+  [/\bmr ?index\b|\bmr ?[1-5]\b/i, '/methodology/mr-index'],
+  [/\bsample (capital )?strateg/i, '/samples/capital-strategy'],
+];
+export const NAMED_BOOST = 2.5;
+function named(d: IndexedDoc, query: string): number {
+  for (const [re, path] of NAMED) if (d.url.endsWith(path) && re.test(query)) return NAMED_BOOST;
+  return 1;
+}
+
 export function searchResearch({ query, scope = 'all', limit = 5 }: SearchOptions): SearchResult[] {
   const q = new Map<string, number>();
   for (const t of queryTokens(query)) q.set(t, (q.get(t) ?? 0) + 1);
   if (!q.size) return [];
   const qts = queryTerms(query);
-  for (const qt of qts) for (const alt of qt.alternatives) if (!q.has(alt)) q.set(alt, 0.6);
+  for (const qt of qts) for (const alt of qt.alternatives) if (!q.has(alt)) q.set(alt, altWeight(qt));
   const raw = rawScores(q);
   return docs
     .filter((d) => scope === 'all' || scopeOf(d) === scope)
-    .map((d) => ({ d, score: (raw.get(d.url) ?? 0) * d.weight * (1 + HEADLINE_BOOST * headlineFraction(d.url, qts)) }))
+    .map((d) => ({ d, score: (raw.get(d.url) ?? 0) * d.weight * (1 + HEADLINE_BOOST * headlineFraction(d.url, qts)) * named(d, query) }))
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score || a.d.url.localeCompare(b.d.url))
     .slice(0, Math.max(1, Math.min(10, limit)))
@@ -468,7 +567,7 @@ export function matchDetail(query: string, url: string): MatchDetail {
   let present: Set<string> = d.terms;
   if (d.col === corpusCollection) {
     const q = new Map<string, number>();
-    for (const qt of qts) { q.set(qt.term, 1); for (const a of qt.alternatives) if (!q.has(a)) q.set(a, 0.6); }
+    for (const qt of qts) { q.set(qt.term, 1); for (const a of qt.alternatives) if (!q.has(a)) q.set(a, altWeight(qt)); }
     const top = topPassages(url, q, PASSAGE_SPAN);
     present = new Set([...top.flatMap((x) => [...x.passage.terms]), ...(aboutTerms.get(url) ?? [])]);
   }
@@ -488,9 +587,27 @@ export function coverage(query: string, url: string): number {
   return matchDetail(query, url).coverage;
 }
 
+// The results mix papers and library pages on one list, and which comes first
+// is a matter of two scales being weighed against each other. So the answer is
+// strong if the best result of either kind is: a library page that carries the
+// whole question is an answer even when a paper that merely shares its words
+// has edged ahead of it, and the reverse.
 export function matchStrength(query: string, results: SearchResult[]): MatchStrength {
+  return judged(query, results).strength;
+}
+// The strength, and the result it was judged on (the one whose matched and
+// missing words are reported): the first, unless the best of the other kind
+// is what made the answer strong.
+export function judged(query: string, results: SearchResult[]): { strength: MatchStrength; on: SearchResult | undefined } {
   const top = results[0];
-  if (!top) return 'none';
+  if (!top) return { strength: 'none', on: undefined };
+  const first = strengthOf(query, top);
+  if (first === 'strong') return { strength: first, on: top };
+  const isLibrary = (r: SearchResult) => r.kind === TECHNICAL_KIND;
+  const other = results.slice(1, 5).find((r) => isLibrary(r) !== isLibrary(top));
+  return other && strengthOf(query, other) === 'strong' ? { strength: 'strong', on: other } : { strength: first, on: top };
+}
+function strengthOf(query: string, top: SearchResult): MatchStrength {
   const m = matchDetail(query, top.url);
   if (top.score < STRONG_MIN_SCORE || m.coverage < STRONG_MIN_COVERAGE) return 'weak';
   // A paper or website page is judged on its whole text, where ordinary words
@@ -933,10 +1050,16 @@ export function isThresholdsRef(ref?: string): boolean {
 // Everything but the section text: what the page answers, where it applies,
 // its limitations and sources, an anchored URL for every section, and its
 // thresholds: one market's if asked, otherwise every market's, labelled.
+export const SUMMARY_ANSWERS = 5;
 export function technicalSummary(p: TechnicalPage, market?: Market) {
-  const { sections, thresholds: _t, marketsWithoutThresholds: _m, ...rest } = p;
+  const { sections, thresholds: _t, marketsWithoutThresholds: _m, questions, ...rest } = p;
   const view = thresholdsFor(p, market);
-  return { ...rest, sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
+  // Every authored question is listed with the section that answers it; the
+  // first five carry their short answers. A page can then gain questions in
+  // people's own words (they are what search finds it by) without its summary
+  // outgrowing the assistants' limits.
+  const listed = questions?.map((q, i) => (i < SUMMARY_ANSWERS ? q : { question: q.question, url: q.url }));
+  return { ...rest, ...(listed ? { questions: listed } : {}), sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
 }
 
 // A section by its id or heading, or by an address inside it: on a page on the

@@ -1,6 +1,6 @@
 {
  "schemaVersion": 3,
- "corpusVersion": "2026-11-11.62918512",
+ "corpusVersion": "2026-11-11.edbeb6c8",
  "generatedAt": "2026-11-11",
  "source": "https://moyneross.com",
  "publication": {
@@ -6151,6 +6151,31 @@
       "question": "How often must sprinklers be tested?",
       "answer": "In Australia, AS 1851 sets weekly or monthly checks, annual flow tests and long-interval inspections; in the United Kingdom, weekly tests with periodic inspections; in the United States, NFPA 25 sets weekly to annual checks and five-yearly pipe assessments.",
       "url": "https://moyneross.com/technical/automatic-sprinkler-systems#jurisdiction-notes"
+     },
+     {
+      "question": "We store more goods, and stack them higher, than when the warehouse was built. Are the sprinklers still adequate?",
+      "answer": "Not necessarily: the hazard may have changed beyond the design. Check the design certificate against current storage, and reduce the storage or redesign the system.",
+      "url": "https://moyneross.com/technical/automatic-sprinkler-systems#design"
+     },
+     {
+      "question": "How close to the sprinkler heads can we stack goods?",
+      "answer": "Storage close to the heads blocks the spray pattern. Bring it down below the clearance line, and mark the line on racking or walls so it stays clear.",
+      "url": "https://moyneross.com/technical/automatic-sprinkler-systems#design"
+     },
+     {
+      "question": "A new office fit-out has rooms with no sprinkler heads. Is that a problem?",
+      "answer": "It is a coverage gap. Add coverage to the standard, and have it certified.",
+      "url": "https://moyneross.com/technical/automatic-sprinkler-systems#design"
+     },
+     {
+      "question": "Why is the dry sprinkler system leaking at its low points?",
+      "answer": "Trapped water is corroding the pipe. Drain the low points, add auxiliary drains, and consider nitrogen inerting.",
+      "url": "https://moyneross.com/technical/automatic-sprinkler-systems#pipework"
+     },
+     {
+      "question": "The fire panel shows a sprinkler valve closed. What should happen?",
+      "answer": "An impairment has not been cleared. Open and supervise the valve now, and manage impairments with permits and fire watches.",
+      "url": "https://moyneross.com/technical/automatic-sprinkler-systems#impairments"
      }
     ],
     "sections": [
@@ -6749,6 +6774,36 @@
       "question": "How long does a bathroom last?",
       "answer": "A refurbishment cycle of 15 to 25 years, with silicone renewed every 3 to 10 years and grout every 5 to 15; a well-installed membrane lasts the full cycle.",
       "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#service-life"
+     },
+     {
+      "question": "Why does a stain appear on the ceiling below every time someone showers?",
+      "answer": "The membrane, screen or shower floor is failing. Flood test the floor and spray test the screen separately; strip and re-waterproof if the membrane has failed.",
+      "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#membrane"
+     },
+     {
+      "question": "Why is the ceiling under the bathroom wet all the time?",
+      "answer": "A stain that never dries points to a pressurised pipe or fitting, not the shower. Pressure test, find the leaking pipe or fitting, and repair it.",
+      "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#plumbing"
+     },
+     {
+      "question": "Why is there mold on the bathroom ceiling?",
+      "answer": "The exhaust is inadequate, or the fan is not ducted outside. Fit a ducted fan discharging outside, with a run-on timer or humidity control.",
+      "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#ventilation"
+     },
+     {
+      "question": "Why do the tiles around the shower drain sound hollow?",
+      "answer": "Water is under the tiles from a failed membrane or waste flange. Lift a tile; replace the waste flange and repair the membrane, or strip and re-waterproof.",
+      "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#membrane"
+     },
+     {
+      "question": "The hot water at the basin is scalding. What should be done?",
+      "answer": "It is a scald risk. Fit or repair the tempering or thermostatic mixing valve and retest.",
+      "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#safety"
+     },
+     {
+      "question": "Why is the wall beside the shower tap damp even when nobody uses the shower?",
+      "answer": "A leaking mixer body or connection. Open the wall or tiles, and repair or replace the mixer.",
+      "url": "https://moyneross.com/technical/bathrooms-and-wet-areas#plumbing"
      }
     ],
     "sections": [
@@ -7854,6 +7909,31 @@
       "question": "How long do chillers last?",
       "answer": "Water-cooled centrifugal chillers 20 to 30 years, screw and absorption chillers 20 to 25, and air-cooled chillers 15 to 20.",
       "url": "https://moyneross.com/technical/central-cooling-plant#service-life"
+     },
+     {
+      "question": "Why can't the air conditioning keep up on very hot days?",
+      "answer": "On an air-cooled chiller, usually corroded or fouled condenser coils, or hot air recirculating. Clean or recoat the coils, and clear anything that recirculates hot air.",
+      "url": "https://moyneross.com/technical/central-cooling-plant#machine"
+     },
+     {
+      "question": "Why does the chiller trip out in hot weather?",
+      "answer": "Often the drive or starter overheating or failing. Check the fault log and switchroom temperature; improve cooling to the switchroom and plan drive replacement before parts run out.",
+      "url": "https://moyneross.com/technical/central-cooling-plant#electrical"
+     },
+     {
+      "question": "Why are all the chillers and pumps running when the building isn't busy?",
+      "answer": "Low delta T in the building, so the chillers cannot load. Fix the distribution: failed valves, three-way valves and bypasses, and fouled coils.",
+      "url": "https://moyneross.com/technical/central-cooling-plant#system"
+     },
+     {
+      "question": "Why is the chiller making a surging noise at quiet times?",
+      "answer": "An oversized centrifugal machine surging at low load. Review the load profile; a variable speed drive or a smaller machine suits light loads.",
+      "url": "https://moyneross.com/technical/central-cooling-plant#machine"
+     },
+     {
+      "question": "The chiller works but the manufacturer no longer supports its control panel. What now?",
+      "answer": "Obsolete controls can strand a sound chiller. Get the support position in writing and plan a controls retrofit, keeping the machine if it is otherwise sound.",
+      "url": "https://moyneross.com/technical/central-cooling-plant#electrical"
      }
     ],
     "sections": [
@@ -8808,6 +8888,31 @@
       "question": "How long does cladding last?",
       "answer": "Precast panels the life of the building, stone 50 to 100 years, sandwich panels 25 to 40, EIFS and render on sheet 20 to 30, and face-sealed joint sealant 10 to 20.",
       "url": "https://moyneross.com/technical/cladding-and-wall-systems#service-life"
+     },
+     {
+      "question": "Why is there staining and cracking under the window corners on a rendered wall?",
+      "answer": "Water is getting in at the window perimeter of a face-sealed system. Probe the framing at the sills; reclad with a drained, ventilated system where the frame has decayed.",
+      "url": "https://moyneross.com/technical/cladding-and-wall-systems#water"
+     },
+     {
+      "question": "Why are rust stains running from the joints of the concrete panels?",
+      "answer": "Concealed fixings are corroding. Open up at the fixing positions, and add stainless anchors or replace corroded hangers.",
+      "url": "https://moyneross.com/technical/cladding-and-wall-systems#fixings"
+     },
+     {
+      "question": "The cladding looks perfect. Could it still be a fire risk?",
+      "answer": "Yes. Composite panels on apartment blocks of about 1995 to 2018 can have a combustible core with no visible defect. Identify the product from records, labels or a sample; replace it if combustible, with interim measures meanwhile.",
+      "url": "https://moyneross.com/technical/cladding-and-wall-systems#combustible"
+     },
+     {
+      "question": "Why are the insulated metal wall panels rusting at the edges and bulging?",
+      "answer": "Cut-edge corrosion, with a wet or degraded core. Replace the affected panels, or the system where the core is wet or degraded.",
+      "url": "https://moyneross.com/technical/cladding-and-wall-systems#panels"
+     },
+     {
+      "question": "Why is the paint peeling and timber rotting at the bottom of the weatherboards?",
+      "answer": "End grain and ground-line wetting. Replace the decayed boards, seal the ends, restore ground clearance, and repaint.",
+      "url": "https://moyneross.com/technical/cladding-and-wall-systems#panels"
      }
     ],
     "sections": [
@@ -14068,6 +14173,31 @@
       "question": "How long do smoke detectors last?",
       "answer": "Point smoke and heat detectors 10 to 15 years, domestic smoke alarms 10 years, and standby batteries 3 to 5.",
       "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#service-life"
+     },
+     {
+      "question": "Parts of the fire alarm have been switched off for weeks. Is that acceptable?",
+      "answer": "No. Zones are usually left isolated after works or nuisance alarms. Clear the isolations now, and manage future ones with a permit and a daily check.",
+      "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#panel"
+     },
+     {
+      "question": "Why can't the fire alarm be heard in some parts of the building?",
+      "answer": "There are too few sounders or speakers, often after fit-outs. Add sounders or speakers, or a voice system where intelligibility is required.",
+      "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#interfaces"
+     },
+     {
+      "question": "The smoke alarms in the apartments are more than ten years old. Do they need replacing?",
+      "answer": "Yes. They are past their built-in life. Replace them with interconnected photoelectric alarms, hard-wired or with sealed ten-year batteries.",
+      "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#alarms"
+     },
+     {
+      "question": "Why can't a new tenant be connected to the fire alarm panel?",
+      "answer": "The panel is unsupported or at capacity. Confirm vendor support and panel loading, and plan replacement with a supported addressable system.",
+      "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#panel"
+     },
+     {
+      "question": "The fire brigade was not called when the alarm was tested. Why?",
+      "answer": "A signalling failure, often a retired telephone line. Test with the monitoring centre, and upgrade to supported, preferably dual-path, signalling.",
+      "url": "https://moyneross.com/technical/fire-detection-and-alarm-systems#interfaces"
      }
     ],
     "sections": [
@@ -15256,6 +15386,31 @@
       "question": "How long do house stumps last?",
       "answer": "Timber stumps 30 to 60 years, and concrete stumps 50 years and more.",
       "url": "https://moyneross.com/technical/foundations#service-life"
+     },
+     {
+      "question": "Why do the cracks open in summer and close in winter?",
+      "answer": "Seasonal movement of clay soil. Monitor for twelve months; manage trees and drainage, and repair the cracks once stable.",
+      "url": "https://moyneross.com/technical/foundations#clay"
+     },
+     {
+      "question": "Why is there a crack between the extension and the original building?",
+      "answer": "Different foundations moving differently. Establish both foundation depths and monitor; underpin only if movement continues.",
+      "url": "https://moyneross.com/technical/foundations#settlement"
+     },
+     {
+      "question": "Why has the ground suddenly dropped near a drain?",
+      "answer": "A washout from a leaking drain. Repair the drain, then stabilise the ground, by underpinning or resin injection if needed.",
+      "url": "https://moyneross.com/technical/foundations#settlement"
+     },
+     {
+      "question": "Why are the floors lifting in the middle after a tree was removed?",
+      "answer": "Heave after tree removal or leaks. Survey the levels and stop any leaks, and assess heave before any further tree removal.",
+      "url": "https://moyneross.com/technical/foundations#clay"
+     },
+     {
+      "question": "Why are there cracks at one corner of the building near a large tree?",
+      "answer": "Subsidence from clay shrinkage. Find the cause, usually a tree or a leak; remove it, then monitor before deciding on underpinning.",
+      "url": "https://moyneross.com/technical/foundations#clay"
      }
     ],
     "sections": [
@@ -15877,6 +16032,31 @@
       "question": "How long do window seals last?",
       "answer": "Wet perimeter and cap seals 10 to 20 years, gaskets and insulating glass unit edge seals 20 to 30, and structural silicone 25 years and more.",
       "url": "https://moyneross.com/technical/glazing-systems#service-life"
+     },
+     {
+      "question": "Why do the windows only leak in heavy wind and rain?",
+      "answer": "The drainage is overwhelmed or pressure equalisation has failed, often with blocked weep holes or missing baffles. Clear the weep holes and reinstate the baffles.",
+      "url": "https://moyneross.com/technical/glazing-systems#water"
+     },
+     {
+      "question": "Why did a window crack from the edge with nothing hitting it?",
+      "answer": "Thermal stress, usually where an edge is damaged or partly shaded, or blinds or film sit close to the glass. Replace the pane and check the edges, shading, blinds and film.",
+      "url": "https://moyneross.com/technical/glazing-systems#glass"
+     },
+     {
+      "question": "Why is water coming in at the bottom corners of the windows?",
+      "answer": "Missing or failed end dams and sill flashing. Water test at the sill ends, and reinstate the end dams and sill flashing.",
+      "url": "https://moyneross.com/technical/glazing-systems#water"
+     },
+     {
+      "question": "A glass panel on the facade feels loose. Is that serious?",
+      "answer": "Yes. On a structurally glazed façade it can mean the silicone has lost adhesion. Make the area below safe, then add mechanical retention or reglaze.",
+      "url": "https://moyneross.com/technical/glazing-systems#glass"
+     },
+     {
+      "question": "Why are the old steel windows cracking their glass?",
+      "answer": "Rust at the glazing rebate is jacking the glass. Strip, treat and repaint the frames, and reglaze.",
+      "url": "https://moyneross.com/technical/glazing-systems#frames"
      }
     ],
     "sections": [
@@ -16710,6 +16890,26 @@
       "question": "How long do water heaters last?",
       "answer": "Storage water heaters 8 to 15 years, heat pump and continuous-flow heaters 10 to 15, and calorifiers 20 to 25.",
       "url": "https://moyneross.com/technical/hot-and-warm-water-plant#service-life"
+     },
+     {
+      "question": "Why does it take so long for hot water to arrive at some taps?",
+      "answer": "Dead legs, or the circulating loop not reaching that branch. Remove dead legs, extend the loop, or heat at the point of use.",
+      "url": "https://moyneross.com/technical/hot-and-warm-water-plant#legionella"
+     },
+     {
+      "question": "Why is there water under the hot water tank?",
+      "answer": "The tank has corroded through, or the relief valve is discharging. Replace the tank, or correct the relief valve discharge.",
+      "url": "https://moyneross.com/technical/hot-and-warm-water-plant#heaters"
+     },
+     {
+      "question": "The hot water tested positive for Legionella. What now?",
+      "answer": "It usually follows low storage or loop temperatures and stagnation. Disinfect and retest; restore storage and loop temperatures, and flushing.",
+      "url": "https://moyneross.com/technical/hot-and-warm-water-plant#legionella"
+     },
+     {
+      "question": "The water heater has no relief valve, or it has been plugged. Is that dangerous?",
+      "answer": "Yes. There is no protection against over-pressure or flash steam. Replace the relief valve and drain line, and test it.",
+      "url": "https://moyneross.com/technical/hot-and-warm-water-plant#heaters"
      }
     ],
     "sections": [
@@ -21817,6 +22017,31 @@
       "question": "How long do main switchboards last?",
       "answer": "LV main switchboards 30 to 40 years, though their air and moulded case breakers reach the end of support after 20 to 25.",
       "url": "https://moyneross.com/technical/main-electrical-supply#service-life"
+     },
+     {
+      "question": "The electricity network says we can't add more load. What can we do?",
+      "answer": "The supply capacity has been reached. Apply to the network early for an upgrade, and manage demand meanwhile.",
+      "url": "https://moyneross.com/technical/main-electrical-supply#capacity"
+     },
+     {
+      "question": "Is it a problem that the switch room is used for storage?",
+      "answer": "Yes. There is no safe working space in front of the equipment. Clear the room and mark the working space.",
+      "url": "https://moyneross.com/technical/main-electrical-supply#capacity"
+     },
+     {
+      "question": "A circuit breaker did not trip when it was tested. Is that serious?",
+      "answer": "Yes. A seized mechanism or failed trip unit means the breaker cannot be relied on. Replace or retrofit it.",
+      "url": "https://moyneross.com/technical/main-electrical-supply#protection"
+     },
+     {
+      "question": "Why is the neutral running hot?",
+      "answer": "Harmonics or an unbalanced load. Measure harmonics and balance, then filter or rebalance the load.",
+      "url": "https://moyneross.com/technical/main-electrical-supply#connections"
+     },
+     {
+      "question": "Why is a whole circuit showing hot on the thermal imaging survey?",
+      "answer": "A hot spot across a whole circuit is overload, not a loose connection. Measure the load against the rating; redistribute it, or upgrade the circuit.",
+      "url": "https://moyneross.com/technical/main-electrical-supply#capacity"
      }
     ],
     "sections": [
@@ -22798,6 +23023,31 @@
       "question": "How long do wall ties last?",
       "answer": "Galvanised mild-steel ties from before about 1980 last 30 to 60 years, and as little as 15 to 25 in marine exposure; stainless steel ties last the life of the building.",
       "url": "https://moyneross.com/technical/masonry-brickwork#service-life"
+     },
+     {
+      "question": "Why is there a diagonal crack running through the bricks and down past the damp course?",
+      "answer": "That pattern points to foundation movement, often with sticking doors and sloping floors. Address the cause and monitor; see Foundations.",
+      "url": "https://moyneross.com/technical/masonry-brickwork#cracking"
+     },
+     {
+      "question": "Why is the brick crumbling and salty at the bottom of the wall?",
+      "answer": "Rising damp with salt attack, usually where the damp-proof course is bridged or absent. Remove the bridging, fit a new damp-proof course if the old one has failed, and replaster in a salt-resistant system.",
+      "url": "https://moyneross.com/technical/masonry-brickwork#damp"
+     },
+     {
+      "question": "Why is there a straight vertical crack near the corner of a long brick wall?",
+      "answer": "Clay brick expansion or thermal movement in a long run without movement joints. Saw-cut and seal a movement joint, and tie across where panels have been freed.",
+      "url": "https://moyneross.com/technical/masonry-brickwork#cracking"
+     },
+     {
+      "question": "Why are brick faces flaking off high up on the wall and chimney?",
+      "answer": "Frost damage, or hard cement pointing on soft brick. Repoint in a mortar no stronger than the brick, and replace the spalled bricks.",
+      "url": "https://moyneross.com/technical/masonry-brickwork#damp"
+     },
+     {
+      "question": "Why is the brickwork bulging at each floor level?",
+      "answer": "On a framed building, the frame has shortened and there is no soft joint under the shelf angle. Form a soft joint under each shelf angle, and treat or replace the angles.",
+      "url": "https://moyneross.com/technical/masonry-brickwork#lintels"
      }
     ],
     "sections": [
@@ -23752,6 +24002,36 @@
       "question": "How long do lift parts last?",
       "answer": "Controllers, drives and door equipment 15 to 20 years, suspension ropes 10 to 20, geared machines 25 to 35, gearless machines 30 to 40, and hydraulic cylinders 25 to 30.",
       "url": "https://moyneross.com/technical/passenger-and-goods-lifts#service-life"
+     },
+     {
+      "question": "Why are our lifts so slow at busy times when they rarely break down?",
+      "answer": "That is usually traffic capacity, not condition. Measure waiting times against the people and floors served; group or destination control may be enough before an extra lift.",
+      "url": "https://moyneross.com/technical/passenger-and-goods-lifts#traffic"
+     },
+     {
+      "question": "Why does the elevator stop a little above or below the floor?",
+      "answer": "Usually a drive, brake or valve problem. Measure levelling at each floor and repair the cause; a trip step at a landing is a safety finding.",
+      "url": "https://moyneross.com/technical/passenger-and-goods-lifts#machine"
+     },
+     {
+      "question": "Why does the lift keep faulting when the engineer finds nothing wrong?",
+      "answer": "Often power quality, phase loss or an unstable generator supply rather than a component. Log the supply at the lift and correct the power quality or phase problem.",
+      "url": "https://moyneross.com/technical/passenger-and-goods-lifts#reliability"
+     },
+     {
+      "question": "Why is the lift out of service for weeks waiting for parts?",
+      "answer": "Usually controller obsolescence: the manufacturer no longer supports the controls. Get the parts support position in writing, and plan modernisation of the controls and drive.",
+      "url": "https://moyneross.com/technical/passenger-and-goods-lifts#reliability"
+     },
+     {
+      "question": "Why is our hydraulic lift slower in winter?",
+      "answer": "Hydraulic oil thickens in the cold. Check the oil and its temperature range with the maintenance contractor.",
+      "url": "https://moyneross.com/technical/passenger-and-goods-lifts#hydraulic"
+     },
+     {
+      "question": "Why does the lift fault after heavy rain?",
+      "answer": "Water in the pit is reaching the equipment. Inspect the pit and sump pump; waterproof the pit, and renew the sump and pump.",
+      "url": "https://moyneross.com/technical/passenger-and-goods-lifts#hydraulic"
      }
     ],
     "sections": [
@@ -24162,6 +24442,26 @@
       "question": "How long do fire door seals and closers last?",
       "answer": "Door closers and hardware 10 to 15 years, intumescent seals 10 to 20, and fire doors 20 to 30 years with maintenance.",
       "url": "https://moyneross.com/technical/passive-fire-protection#service-life"
+     },
+     {
+      "question": "The fire doors don't close properly. What needs doing?",
+      "answer": "Usually a failed or disconnected closer, binding or an obstruction. Repair or replace the closer, free the binding, and clear the obstruction.",
+      "url": "https://moyneross.com/technical/passive-fire-protection#doors"
+     },
+     {
+      "question": "Residents have fitted their own front doors to their flats. Is that a fire problem?",
+      "answer": "It can be. Survey the doors, and replace non-compliant ones with certified doorsets.",
+      "url": "https://moyneross.com/technical/passive-fire-protection#doors"
+     },
+     {
+      "question": "The fire protection on the steel beams has been knocked off in places. Does it matter?",
+      "answer": "Yes. It is usually damage by trades. Repair the protection with compatible products, and control trades with permits.",
+      "url": "https://moyneross.com/technical/passive-fire-protection#structure"
+     },
+     {
+      "question": "There are gaps around the edges of the fire doors. Is that a problem?",
+      "answer": "Gaps of several millimetres come from wear, distortion or poor installation. Adjust or repair the door, or replace it where it cannot meet the standard.",
+      "url": "https://moyneross.com/technical/passive-fire-protection#doors"
      }
     ],
     "sections": [
@@ -25773,6 +26073,26 @@
       "question": "How long does wiring last?",
       "answer": "PVC wiring 40 to 60 years and distribution boards 25 to 40; rubber-insulated wiring is past its life wherever it is found.",
       "url": "https://moyneross.com/technical/power-distribution#service-life"
+     },
+     {
+      "question": "Why does the power keep tripping when nothing new is plugged in?",
+      "answer": "An RCD that trips intermittently points to earth leakage from an appliance or damp, or an ageing RCD. Test the circuit and appliances, and find the leakage.",
+      "url": "https://moyneross.com/technical/power-distribution#wiring"
+     },
+     {
+      "question": "Why do the breakers trip under normal use?",
+      "answer": "The circuit has been overloaded by added equipment. Measure the load, then add circuits or redistribute it.",
+      "url": "https://moyneross.com/technical/power-distribution#boards"
+     },
+     {
+      "question": "The insulation on the old wiring is crumbling at the light fittings. Is that a problem?",
+      "answer": "Yes. That is perished rubber-insulated cable. Rewire the affected circuits.",
+      "url": "https://moyneross.com/technical/power-distribution#wiring"
+     },
+     {
+      "question": "None of the breakers in the electrical panel are labelled. Does that matter?",
+      "answer": "It shows undocumented alterations. Trace and label the circuits, and update the drawings.",
+      "url": "https://moyneross.com/technical/power-distribution#boards"
      }
     ],
     "sections": [
@@ -26620,6 +26940,31 @@
       "question": "How long do gutters last?",
       "answer": "Zinc-aluminium coated steel eaves gutters 20 to 30 years, coated steel box gutters 15 to 30, stainless steel box gutters 40 years and more, and lead-lined gutters 50 to 80.",
       "url": "https://moyneross.com/technical/rainwater-systems#service-life"
+     },
+     {
+      "question": "Why is there a dirty streak down the wall under the gutter?",
+      "answer": "The gutter is blocked or corroded and overflowing at that point. Clear the gutter, and repair or replace it where perforated.",
+      "url": "https://moyneross.com/technical/rainwater-systems#blockage"
+     },
+     {
+      "question": "Why is the ground washing away at the bottom of the downpipe?",
+      "answer": "The downpipe is disconnected from the drain, or the drain is blocked. Reconnect the downpipe and clear the drain, directing discharge away from footings.",
+      "url": "https://moyneross.com/technical/rainwater-systems#blockage"
+     },
+     {
+      "question": "Why did the roof start leaking after it was re-roofed or new plant was added?",
+      "answer": "The catchment changed or the outlet level was raised. Recheck the drainage against the changed catchment, and lower or add outlets.",
+      "url": "https://moyneross.com/technical/rainwater-systems#capacity"
+     },
+     {
+      "question": "Why is the gutter pulling away from the building?",
+      "answer": "The weight of debris, snow or ice, or corroded brackets. Clear the gutter, and replace corroded brackets at the right spacing.",
+      "url": "https://moyneross.com/technical/rainwater-systems#blockage"
+     },
+     {
+      "question": "Why is the gutter rusting along the bottom?",
+      "answer": "Water is standing in it from poor fall or blockage. Correct the falls and clear debris; replace the run where the sole is perforated.",
+      "url": "https://moyneross.com/technical/rainwater-systems#materials"
      }
     ],
     "sections": [
@@ -27917,6 +28262,31 @@
       "question": "Can a new roof go over the old one?",
       "answer": "Over-roofing puts a new covering on a support frame over the existing one, where regulation, the structure and the existing material allow. It is common for sound but ageing metal and some asbestos cement roofs, and is limited by building codes on the number of layers.",
       "url": "https://moyneross.com/technical/roof-coverings#remedies"
+     },
+     {
+      "question": "Why is the metal roof rusting along the bottom edge and at the overlaps?",
+      "answer": "That is the normal edge and lap corrosion of coated steel, where water lingers. Treat and coat where the metal is intact, and replace the lower run above the gutter where it is not.",
+      "url": "https://moyneross.com/technical/roof-coverings#metal"
+     },
+     {
+      "question": "Why is there mortar from the roof on the ground and in the gutters?",
+      "answer": "The ridge bedding and pointing has failed, and the cappings are loose. Rebed and repoint the ridges and hips.",
+      "url": "https://moyneross.com/technical/roof-coverings#tiles"
+     },
+     {
+      "question": "Why are tiles cracking near the air conditioning units and solar panels?",
+      "answer": "Foot traffic to plant and solar, or plant sitting directly on the covering. Replace the broken tiles, and put walkways and plant platforms on separate supports.",
+      "url": "https://moyneross.com/technical/roof-coverings#tiles"
+     },
+     {
+      "question": "Why is there a rust streak on the roof below a copper pipe or flue?",
+      "answer": "Run-off from copper or lead attacks coated steel. Isolate the dissimilar metals, route the run-off away, and replace the affected sheets.",
+      "url": "https://moyneross.com/technical/roof-coverings#metal"
+     },
+     {
+      "question": "Is it safe to walk on an old corrugated grey roof?",
+      "answer": "No. Treat it as a fragile asbestos cement roof: no access without staging, covers or guardrails, and manage the asbestos.",
+      "url": "https://moyneross.com/technical/roof-coverings#ac"
      }
     ],
     "sections": [
@@ -28975,6 +29345,26 @@
       "question": "How long do drains last?",
       "answer": "Cast iron 50 to 75 years, clay 50 to 100 if undisturbed, and PVC 50 and more; pitch fibre is past its life wherever found.",
       "url": "https://moyneross.com/technical/sanitary-and-drainage-systems#service-life"
+     },
+     {
+      "question": "Why do the floor drains smell in dry weather?",
+      "answer": "The traps are drying out. Fit trap primers or waterless seals, or add the fixtures to a flushing routine.",
+      "url": "https://moyneross.com/technical/sanitary-and-drainage-systems#stacks"
+     },
+     {
+      "question": "Why is the ground sinking along the line of the drain?",
+      "answer": "A leaking or collapsed drain is undermining the soil. CCTV the drain, repair or replace it, and reinstate the ground.",
+      "url": "https://moyneross.com/technical/sanitary-and-drainage-systems#drains"
+     },
+     {
+      "question": "Why are the old cast iron waste pipes leaking?",
+      "answer": "Internal corrosion along their length. Test the wall thickness, and reline or replace the stack, riser by riser.",
+      "url": "https://moyneross.com/technical/sanitary-and-drainage-systems#stacks"
+     },
+     {
+      "question": "Why does a long drain keep blocking when there are no roots or breaks?",
+      "answer": "The gradient is too shallow for the flow. Relay the run to fall, or add flushing points and access.",
+      "url": "https://moyneross.com/technical/sanitary-and-drainage-systems#drains"
      }
     ],
     "sections": [
@@ -32947,6 +33337,31 @@
       "question": "How long do car park decks last?",
       "answer": "Typically 30 to 60 years before major repair, with protective coatings and membranes renewed every 10 to 20.",
       "url": "https://moyneross.com/technical/structural-frame#service-life"
+     },
+     {
+      "question": "Why is concrete breaking away near the drains in the parking garage?",
+      "answer": "Chloride-induced corrosion of the reinforcement. Repair with cathodic protection, and fix the deck drainage and membranes.",
+      "url": "https://moyneross.com/technical/structural-frame#corrosion"
+     },
+     {
+      "question": "Is a sagging floor with cracked partitions a structural problem?",
+      "answer": "It can be: deflection beyond what the floor was designed for. Survey the deflection, compare it with the design, and have an engineer advise on loads or strengthening.",
+      "url": "https://moyneross.com/technical/structural-frame#capacity"
+     },
+     {
+      "question": "Why is rust coming through the brickwork in lines up the building?",
+      "answer": "Steel encased in the masonry is corroding. Open up, treat and recoat the encased steel, or replace badly corroded members.",
+      "url": "https://moyneross.com/technical/structural-frame#steel"
+     },
+     {
+      "question": "What do diagonal cracks near the ends of a concrete beam mean?",
+      "answer": "Shear distress. Get an engineering assessment; the remedy is strengthening with plates, wraps or added members.",
+      "url": "https://moyneross.com/technical/structural-frame#capacity"
+     },
+     {
+      "question": "Why is the concrete cracking in a map pattern with white deposits?",
+      "answer": "That is the pattern of alkali-silica reaction. Confirm it by petrographic examination of cores; have an engineer assess, and strengthen where needed.",
+      "url": "https://moyneross.com/technical/structural-frame#concretes"
      }
     ],
     "sections": [
@@ -34593,6 +35008,26 @@
       "question": "How long do car park CO sensors last?",
       "answer": "5 to 10 years, with regular calibration.",
       "url": "https://moyneross.com/technical/ventilation-systems#service-life"
+     },
+     {
+      "question": "Why do the car park fans run all the time?",
+      "answer": "The sensors have failed safe, or the controls have been overridden. Replace failed sensors and remove the overrides.",
+      "url": "https://moyneross.com/technical/ventilation-systems#carpark"
+     },
+     {
+      "question": "Why is there a smell of exhaust fumes in the lift lobby of the car park?",
+      "answer": "Carbon monoxide is reaching people. Test the sensors and fan staging, and add extract or separation at occupied points.",
+      "url": "https://moyneross.com/technical/ventilation-systems#carpark"
+     },
+     {
+      "question": "Why can we smell cooking or exhaust inside the building?",
+      "answer": "Exhaust is re-entering, or the building is at negative pressure. Move the discharge away from intakes, or rebalance the make-up air.",
+      "url": "https://moyneross.com/technical/ventilation-systems#general"
+     },
+     {
+      "question": "Why is there mold in the roof space above the bathrooms?",
+      "answer": "The exhaust has failed or is discharging into the void. Reconnect the ducts, replace the fans, and extend the discharges outside.",
+      "url": "https://moyneross.com/technical/ventilation-systems#general"
      }
     ],
     "sections": [
@@ -35450,6 +35885,26 @@
       "question": "How long does water pipework last?",
       "answer": "Copper and PEX 50 years and more; galvanised steel 40 to 60, often less; brass fittings in plastic systems 10 to 30.",
       "url": "https://moyneross.com/technical/water-supply#service-life"
+     },
+     {
+      "question": "Why is the water pressure weak on the upper floors?",
+      "answer": "The pressure is below what the fixtures need. Check valves, filters and boosters, and resize the supply if needed.",
+      "url": "https://moyneross.com/technical/water-supply#quality"
+     },
+     {
+      "question": "Why do the copper pipes keep getting pinhole leaks in the same places?",
+      "answer": "Pitting corrosion from the water chemistry. Test the water chemistry, and replace the affected runs.",
+      "url": "https://moyneross.com/technical/water-supply#pipes"
+     },
+     {
+      "question": "Why is the backflow valve dripping?",
+      "answer": "A device leaking from its relief port has fouled or failed check valves. Service or replace the device, and test it.",
+      "url": "https://moyneross.com/technical/water-supply#backflow"
+     },
+     {
+      "question": "Why are the brass fittings leaking on the plastic pipework?",
+      "answer": "Dezincification of the brass. Replace the fittings with dezincification-resistant brass.",
+      "url": "https://moyneross.com/technical/water-supply#pipes"
      }
     ],
     "sections": [
@@ -35777,6 +36232,31 @@
       "question": "How long does a flat roof membrane last?",
       "answer": "Built-up roofing, TPO and PVC 15 to 25 years, EPDM 20 to 30, protected modified bitumen 20 to 30, and liquid-applied coatings 8 to 20.",
       "url": "https://moyneross.com/technical/waterproofing-membranes#service-life"
+     },
+     {
+      "question": "Why does the flat roof stay wet for days after rain?",
+      "answer": "Ponding from inadequate falls, blocked outlets or a deflected deck. Clear the outlets, survey the levels, and correct the falls or add outlets.",
+      "url": "https://moyneross.com/technical/waterproofing-membranes#loads"
+     },
+     {
+      "question": "Why does the flat roof feel spongy when you walk on it?",
+      "answer": "Wet insulation under the membrane. Core and moisture-survey the roof, and remove the wet insulation before any repair.",
+      "url": "https://moyneross.com/technical/waterproofing-membranes#wet"
+     },
+     {
+      "question": "Why did the roof start leaking after new plant or cables were installed?",
+      "answer": "A later penetration sealed with mastic and no proper flashing. Replace the mastic seal with a proper flashing.",
+      "url": "https://moyneross.com/technical/waterproofing-membranes#details"
+     },
+     {
+      "question": "Why is the roof leaking in a straight line?",
+      "answer": "A seam has failed. Probe every seam on the roof, and reweld or re-tape the open laps.",
+      "url": "https://moyneross.com/technical/waterproofing-membranes#details"
+     },
+     {
+      "question": "Why is the membrane tearing where the roof meets the wall?",
+      "answer": "The membrane has shrunk and pulled tight at the upstands. Renew the upstand details, allowing for the shrinkage.",
+      "url": "https://moyneross.com/technical/waterproofing-membranes#surface"
      }
     ],
     "sections": [
