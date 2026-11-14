@@ -1052,6 +1052,7 @@ export function isThresholdsRef(ref?: string): boolean {
 // its limitations and sources, an anchored URL for every section, and its
 // thresholds: one market's if asked, otherwise every market's, labelled.
 export const SUMMARY_ANSWERS = 5;
+export const SUMMARY_JSON_BUDGET = 12_000;
 export function technicalSummary(p: TechnicalPage, market?: Market) {
   const { sections, thresholds: _t, marketsWithoutThresholds: _m, questions, ...rest } = p;
   const view = thresholdsFor(p, market);
@@ -1060,7 +1061,17 @@ export function technicalSummary(p: TechnicalPage, market?: Market) {
   // people's own words (they are what search finds it by) without its summary
   // outgrowing the assistants' limits.
   const more = (questions ?? []).slice(SUMMARY_ANSWERS).map((q) => `${q.question} (${q.url.replace(/^.*#/, '')})`);
-  return { ...rest, ...(questions ? { questions: questions.slice(0, SUMMARY_ANSWERS) } : {}), ...(more.length ? { moreQuestions: more } : {}), sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
+  const out = { ...rest, ...(questions ? { questions: questions.slice(0, SUMMARY_ANSWERS) } : {}), ...(more.length ? { moreQuestions: more } : {}), sections: sections.map(({ markdown: _x, ...x }) => x), ...(view ? { thresholds: view } : {}) };
+  // On the few longest pages the thresholds name their source by title only.
+  // Nothing is lost: every threshold's source is one of the page's own
+  // sources, listed in the same summary with its publisher and address. It
+  // keeps the whole reply clear of the 20,000-character limit.
+  if (view && JSON.stringify(out).length > SUMMARY_JSON_BUDGET) {
+    const titles = new Set((p.sources ?? []).map((x) => x.title));
+    const values = view.values.map((x) => (titles.has(x.source.title) ? { ...x, source: { title: x.source.title } } : x)) as TechnicalThreshold[];
+    return { ...out, thresholds: { ...view, values } };
+  }
+  return out;
 }
 
 // A section by its id or heading, or by an address inside it: on a page on the

@@ -160,7 +160,9 @@ export const listTechnicalPagesOutputSchema = z.object({
 });
 const thresholdSchema = z.object({
   id: z.string(), market: z.enum(MARKETS), measure: z.string(), rule: z.string(), clause: z.string().optional(), basis: z.string(), appliesTo: z.array(z.string()),
-  source: z.object({ title: z.string(), publisher: z.string(), url: z.string() }),
+  // In the summary of a long page a threshold names its source by title only;
+  // the page's own sources list carries the publisher and address.
+  source: z.object({ title: z.string(), publisher: z.string().optional(), url: z.string().optional() }),
 });
 // Measured values, each for one market. market: the one asked for, or null for
 // all markets grouped; missing: markets the page covers with no value recorded.

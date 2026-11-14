@@ -50,7 +50,7 @@ if (/%0D|%0A/i.test(link) || link.includes('email=')) fail('hand-over', `control
 if ((await tool('search_research', { query: 'x' })).json?.result?.isError !== true) fail('validation', 'a one-character query was accepted');
 const cg = await rpc('tools/list', {}, { headers: { 'User-Agent': 'openai-mcp/1.0 (ChatGPT)' } });
 if (cg.json?.result?.tools?.some((t) => t.name === 'start_strategy_link')) fail('openai', 'hand-over offered to ChatGPT on /mcp');
-if ((await rpc('tools/list', {}, { path: '/mcp/openai' })).json?.result?.tools?.length !== 8) fail('openai', '/mcp/openai does not offer exactly the eight research tools');
+if ((await rpc('tools/list', {}, { path: '/mcp/openai' })).json?.result?.tools?.length !== 12) fail('openai', '/mcp/openai does not offer exactly the twelve research tools');
 
 // 2. Every paper, library page, section, full-page part, citation and resource.
 const papers = [], pages = [];
