@@ -1,6 +1,6 @@
 # Moyne Ross MCP
 
-Moyne Ross research on commercial property and capital, served over the Model Context Protocol. A connected assistant can search and cite **Capital Made Physical** (49 papers on what commercial property is becoming) and the **Technical Library** (103 pages, one for each building element and functional space a Capital Strategy assesses: how it fails, what to look for, how serious a finding is, what fixes it), explain the **Capital Register** and the **MR Index**, read a **sample Capital Strategy**, and, for one actual building, hand the person to the Moyne Ross **Start your strategy** form already filled in.
+Moyne Ross research on commercial property and capital, served over the Model Context Protocol. A connected assistant can search and cite **Capital Made Physical** (49 papers on what commercial property is becoming) and the **Technical Library** (103 pages, one for each building element and functional space a Capital Strategy assesses: how it fails, what to look for, how serious a finding is, what fixes it), follow the links between the two (what a paper rests on in the library, and which papers turn on an element), brief a kind of building element by element, compare service lives, severity or one market's thresholds side by side, explain the **Capital Register** and the **MR Index**, read a **sample Capital Strategy**, and, for one actual building, hand the person to the Moyne Ross **Start your strategy** form already filled in.
 
 Public, read-only, and separate from every client system. The server bundles a snapshot of public files from moyneross.com; it has no route to the Moyne Ross portal, client strategies, payments or any database.
 
@@ -11,7 +11,7 @@ Public, read-only, and separate from every client system. The server bundles a s
 | Client | How |
 |---|---|
 | Claude | Settings → Connectors → Add custom connector → `https://mcp.moyneross.com/mcp` |
-| ChatGPT and the OpenAI directory | `https://mcp.moyneross.com/mcp/openai` (the eight research tools; no hand-over or engagement terms) |
+| ChatGPT and the OpenAI directory | `https://mcp.moyneross.com/mcp/openai` (the eleven research tools; no hand-over or engagement terms) |
 | Claude Code | `claude mcp add --transport http moyneross https://mcp.moyneross.com/mcp`, or install this repository as a plugin |
 | Any MCP client | Streamable HTTP at `https://mcp.moyneross.com/mcp`; no authentication |
 
@@ -35,6 +35,10 @@ Public, read-only, and separate from every client system. The server bundles a s
 
 Every tool is read-only, with all four annotations set explicitly, input and output schemas, and icons. **Prompts:** `answer_from_research`, `compare_papers` (with paper autocompletion), `brief_on_topic` and `read_a_building_element` (with library autocompletion). **Resources:** `moyneross://catalogue`, the templates `moyneross://papers/{slug}` and `moyneross://technical/{slug}` (with autocompletion), `moyneross://methods/{capital-register|mr-index}` and `moyneross://sample`. Results link to them with `resource_link` blocks.
 
+**Interactive views (MCP Apps).** In hosts that support MCP Apps (Claude, ChatGPT, VS Code, Microsoft 365 Copilot and others), `building_brief`, `compare_technical_sections` and `trace_connections` render as a view inside the conversation: the brief by framework section with threshold counts, a filter and paging; sections side by side, tables included; and the connections, walkable by clicking. One self-contained page with no network access, themed by the host; other hosts show the same answer as text.
+
+**Asking which market.** Thresholds apply only in their own market. When they are asked for without a market, a client that can show a form is asked which market the building is in (AU, UK or US); otherwise, or if the person declines, every market's values come back labelled.
+
 ### Built for every assistant's limits
 
 Default answers stay under 20,000 characters (GitHub Copilot keeps them inline), every answer's text under 40,000 (Gemini CLI's truncation point), and the tools that can return a full paper declare `anthropic/maxResultSizeChars` so Claude Code keeps them inline too. Summaries come first; sections, full text and the register's lines are one argument away.
@@ -45,7 +49,7 @@ The papers have 400 anchored sections between them and the library 1,491, matchi
 
 ## Other interfaces
 
-- **REST:** `GET /v1/search`, `/v1/papers`, `/v1/paper`, `/v1/technical`, `/v1/method`, `/v1/sample`, `/v1/cite`, `/v1/engage` ([OpenAPI 3.1](https://mcp.moyneross.com/openapi.json)). Answers carry the clean canonical URL to cite and a separate attributed `referralUrl`.
+- **REST:** `GET /v1/search`, `/v1/papers`, `/v1/paper`, `/v1/technical`, `/v1/connections`, `/v1/brief`, `/v1/compare`, `/v1/method`, `/v1/sample`, `/v1/cite`, `/v1/engage` ([OpenAPI 3.1](https://mcp.moyneross.com/openapi.json)). Answers carry the clean canonical URL to cite and a separate attributed `referralUrl`.
 - **Discovery:** server card at `/mcp/server-card` · AI Catalog at `/.well-known/ai-catalog.json` (`application/ai-catalog+json`) · `/llms.txt` · service metadata at `/server-card.json` · health and content fingerprint at `/health`. OpenAPI responses carry the same schemas as the MCP tools' outputs, and every REST answer is tested against them.
 - **Live check:** `npm run live-check` throws malformed and hostile traffic at a running server, fetches every paper, page, section, part, citation and resource, and checks determinism, parity and a burst of load (about 2,500 requests; not part of `npm run check`).
 - **Distribution:** every channel and where it stands in [distribution/README.md](distribution/README.md), with submission packs for the Claude directory and the OpenAI app directory.
@@ -55,9 +59,9 @@ The papers have 400 anchored sections between them and the library 1,491, matchi
 
 ## How it stays right
 
-- **One corpus, three readers.** The snapshot is built from files the website's own publishing scripts produce (`/insights/export.json`, `/insights/search-index.json`, `/technical/export.json`, `/llms.txt`, the methodology and sample pages). The ranking of the papers, methodology and sample is a faithful port of the website's public retrieval benchmark, on the website's own statistics, so the benchmark, the site search and this server rank them alike; library pages are scored beside them (see [docs/BENCHMARK.md](docs/BENCHMARK.md)).
+- **One corpus, three readers.** The snapshot is built from files the website's own publishing scripts produce (`/insights/export.json` with each paper's links into the library, `/insights/search-index.json`, `/technical/export.json`, `/llms.txt`, the methodology and sample pages). The ranking of the papers, methodology and sample is a faithful port of the website's public retrieval benchmark, on the website's own statistics, so the benchmark, the site search and this server rank them alike; library pages are scored beside them (see [docs/BENCHMARK.md](docs/BENCHMARK.md)).
 - **Deterministic snapshot.** `data/corpus.json` is dated from the content (the latest sitemap date), never the clock. A daily workflow rebuilds it and opens a pull request only when moyneross.com has actually changed.
-- **Checked on every change** (`npm run check`): release metadata (including the Agent Skills and Agent Plugins rules); skill copies; snapshot validation (structure, no secrets, none of the sample's real identifiers); 25 core tests; the retrieval gate (one evaluation of 288 cases in `data/retrieval-cases.json` and the website's 56-question benchmark, also used by the calibrator: website questions, practitioners' shorthand, building elements scoped and unscoped, pinned rankings, weak, empty and 82 off-topic questions, and two reported sets of wrong-page and authored-FAQ questions; see docs/BENCHMARK.md); the protocol suite (2026-07-28 cache fields, ordering, result metadata and error codes; annotations, icons and size ceilings on every tool; prompts and completion; neutral answers on every surface; research only on the OpenAI surface); the REST suite; and per-client answer-size budgets, hostile input and speed. The official MCP conformance suite runs in its own workflow (25 live checks). Each release is a GitHub Release with a CycloneDX SBOM.
+- **Checked on every change** (`npm run check`): release metadata (including the Agent Skills and Agent Plugins rules); skill copies; snapshot validation (structure, no secrets, none of the sample's real identifiers); 33 core tests; the retrieval gate (one evaluation of 417 cases in `data/retrieval-cases.json` and the website's 56-question benchmark, also used by the calibrator: website questions, practitioners' shorthand, building elements scoped and unscoped, pinned rankings, weak, empty and 122 off-topic questions, and two reported sets of wrong-page and authored-FAQ questions; see docs/BENCHMARK.md); the protocol suite (2026-07-28 cache fields, ordering, result metadata and error codes; annotations, icons and size ceilings on every tool; prompts and completion; neutral answers on every surface; research only on the OpenAI surface; the paper–library graph tools; the interactive view; asking which market); the REST suite; and per-client answer-size budgets, hostile input and speed. The official MCP conformance suite runs in its own workflow (25 live checks). Each release is a GitHub Release with a CycloneDX SBOM.
 
 ## Boundaries and privacy
 
