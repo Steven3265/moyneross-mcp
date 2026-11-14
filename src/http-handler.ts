@@ -268,6 +268,15 @@ const LENIENT_METHODS = new Set([
   'prompts/list',
 ]);
 
+// Streamable HTTP requires a client to accept both media types. Simple HTTP
+// clients and index crawlers frequently send neither, or only one.
+const STREAMABLE_HTTP_ACCEPT = 'application/json, text/event-stream';
+
+function acceptsStreamableHttp(request: Request): boolean {
+  const accept = request.headers.get('Accept')?.toLowerCase() ?? '';
+  return accept.includes('application/json') && accept.includes('text/event-stream');
+}
+
 // True when the SDK refused the request because the named revision and the
 // body's envelope disagree, rather than for any other bad-request reason.
 function isEnvelopeMismatch(payload: unknown): boolean {
@@ -349,11 +358,13 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
   // hand-over is left out on the OpenAI endpoint and for ChatGPT on /mcp.
   const handOver = endpoint !== 'openai' && client !== 'chatgpt';
 
-  // The body is buffered only when the client names a protocol revision, so
-  // the ordinary request path still hands the original request straight to the
-  // SDK without the handler touching its body.
+  // The body is buffered only when the request carries something that may need
+  // correcting — a named protocol revision, or an Accept header that does not
+  // meet streamable HTTP. A conformant client's request still goes straight to
+  // the SDK without the handler touching its body.
   const declaresRevision = Boolean(request.headers.get('MCP-Protocol-Version')?.trim());
-  const bufferedBody = declaresRevision ? await request.text() : undefined;
+  const bufferedBody =
+    declaresRevision || !acceptsStreamableHttp(request) ? await request.text() : undefined;
   const dispatch = (headers?: Headers): Promise<Response> =>
     mcpHandler.fetch(
       bufferedBody === undefined
@@ -368,20 +379,34 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
   try {
     let result = await runWithClient(client, () => dispatch(), handOver);
 
-    if (bufferedBody !== undefined && result.status === 400) {
-      const lenient = lenientMethodNames(bufferedBody);
-      if (lenient) {
-        const refusal = await result
-          .clone()
-          .json()
-          .catch(() => undefined);
-        if (isEnvelopeMismatch(refusal)) {
+    // Corrections for read-only discovery calls, applied one at a time and
+    // only after the request has actually been refused, so a client is never
+    // adjusted for a fault it did not have. A request can carry both faults,
+    // and fixing one reveals the other, so this re-reads the outcome after
+    // each correction; two passes covers every combination the SDK raises.
+    if (bufferedBody !== undefined && lenientMethodNames(bufferedBody)) {
+      const corrected = new Headers(request.headers);
+
+      for (let pass = 0; pass < 2; pass += 1) {
+        const accept = corrected.get('Accept')?.toLowerCase() ?? '';
+        const acceptIncomplete =
+          !accept.includes('application/json') || !accept.includes('text/event-stream');
+
+        if (result.status === 406 && acceptIncomplete) {
+          corrected.set('Accept', STREAMABLE_HTTP_ACCEPT);
+        } else if (
+          result.status === 400 &&
+          corrected.has('MCP-Protocol-Version') &&
+          isEnvelopeMismatch(await result.clone().json().catch(() => undefined))
+        ) {
           // Drop the disputed revision header and let the SDK's stateless
           // compatibility path serve the discovery call.
-          const legacyHeaders = new Headers(request.headers);
-          legacyHeaders.delete('MCP-Protocol-Version');
-          result = await runWithClient(client, () => dispatch(legacyHeaders), handOver);
+          corrected.delete('MCP-Protocol-Version');
+        } else {
+          break;
         }
+
+        result = await runWithClient(client, () => dispatch(corrected), handOver);
       }
     }
 
