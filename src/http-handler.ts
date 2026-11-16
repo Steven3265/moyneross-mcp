@@ -322,6 +322,42 @@ function isUnsupportedRevision(payload: unknown): boolean {
   return typeof message === 'string' && /unsupported protocol version/i.test(message);
 }
 
+// The 2026-07-28 revision carries its protocol details in the body, under
+// `params._meta` keys prefixed `io.modelcontextprotocol/`. A client that sends
+// that envelope while naming an earlier revision in it is refused by the SDK:
+// any body carrying the envelope must name 2026-07-28. Removing a version
+// header cannot help such a client, because the disputed revision is in the
+// body. This returns the body with the envelope keys removed, so the request
+// can be served on the stateless compatibility path, or undefined when the
+// body carries no envelope to remove.
+const REVISION_ENVELOPE_PREFIX = 'io.modelcontextprotocol/';
+
+function withoutRevisionEnvelope(body: string): string | undefined {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(body);
+  } catch {
+    return undefined;
+  }
+
+  let removed = false;
+  for (const message of Array.isArray(parsed) ? parsed : [parsed]) {
+    if (!message || typeof message !== 'object') continue;
+    const params = (message as { params?: unknown }).params;
+    if (!params || typeof params !== 'object') continue;
+    const meta = (params as { _meta?: unknown })._meta;
+    if (!meta || typeof meta !== 'object') continue;
+
+    for (const key of Object.keys(meta)) {
+      if (!key.startsWith(REVISION_ENVELOPE_PREFIX)) continue;
+      delete (meta as Record<string, unknown>)[key];
+      removed = true;
+    }
+    if (Object.keys(meta).length === 0) delete (params as { _meta?: unknown })._meta;
+  }
+  return removed ? JSON.stringify(parsed) : undefined;
+}
+
 // The request's JSON-RPC method names, but only when every message in it is
 // one of the lenient methods. A batch mixing a tool call into a discovery
 // batch is not retried.
@@ -427,14 +463,14 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
   const declaresRevision = Boolean(request.headers.get('MCP-Protocol-Version')?.trim());
   const bufferedBody =
     declaresRevision || !acceptsStreamableHttp(request) ? await request.text() : undefined;
-  const dispatch = (headers?: Headers): Promise<Response> =>
+  const dispatch = (headers?: Headers, body?: string): Promise<Response> =>
     mcpHandler.fetch(
       bufferedBody === undefined
         ? request
         : new Request(request.url, {
             method: request.method,
             headers: headers ?? request.headers,
-            body: bufferedBody,
+            body: body ?? bufferedBody,
           }),
     );
 
@@ -443,34 +479,46 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
 
     // Corrections for read-only discovery calls, applied one at a time and
     // only after the request has actually been refused, so a client is never
-    // adjusted for a fault it did not have. A request can carry both faults,
-    // and fixing one reveals the other, so this re-reads the outcome after
-    // each correction; two passes covers every combination the SDK raises.
+    // adjusted for a fault it did not have. A request can carry more than one
+    // fault, and fixing one reveals the next, so this re-reads the outcome
+    // after each correction; three passes covers an incomplete Accept, a
+    // disputed revision header and a disputed revision envelope together.
     if (bufferedBody !== undefined && lenientMethodNames(bufferedBody)) {
       const corrected = new Headers(request.headers);
+      let correctedBody = bufferedBody;
 
-      for (let pass = 0; pass < 2; pass += 1) {
+      for (let pass = 0; pass < 3; pass += 1) {
         const accept = corrected.get('Accept')?.toLowerCase() ?? '';
         const acceptIncomplete =
           !accept.includes('application/json') || !accept.includes('text/event-stream');
 
         if (result.status === 406 && acceptIncomplete) {
           corrected.set('Accept', STREAMABLE_HTTP_ACCEPT);
-        } else if (result.status === 400 && corrected.has('MCP-Protocol-Version')) {
-          // Drop a revision header that is disputed (it disagrees with the
-          // body) or unknown (a draft or future revision this server has never
-          // heard of) and let the SDK's stateless compatibility path serve the
-          // discovery call. A monitor that declares a revision newer than this
-          // server knows was otherwise refused on every check, then served
-          // when it retried without the header.
+        } else if (result.status === 400) {
+          // The client named a revision that is disputed (header and body
+          // disagree) or that this server will not serve the request under (an
+          // unknown revision, or an earlier revision named in a 2026-07-28
+          // body envelope). The answer to a discovery call is the same either
+          // way, so serve it on the SDK's stateless compatibility path: first
+          // without the revision header, then, if the body still names the
+          // revision, without the body envelope. A monitor that declared
+          // 2025-06-18 inside the envelope was refused on every check and
+          // served only when it retried without it.
           const payload = await result.clone().json().catch(() => undefined);
           if (!isEnvelopeMismatch(payload) && !isUnsupportedRevision(payload)) break;
-          corrected.delete('MCP-Protocol-Version');
+
+          if (corrected.has('MCP-Protocol-Version')) {
+            corrected.delete('MCP-Protocol-Version');
+          } else {
+            const stripped = withoutRevisionEnvelope(correctedBody);
+            if (stripped === undefined) break;
+            correctedBody = stripped;
+          }
         } else {
           break;
         }
 
-        result = await runWithClient(client, () => dispatch(corrected), handOver);
+        result = await runWithClient(client, () => dispatch(corrected, correctedBody), handOver);
       }
     }
 

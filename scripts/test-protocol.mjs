@@ -236,6 +236,31 @@ async function main() {
   }
   assert.equal((await legacyPost('2025-12-01', strictToolCall, 'tools/call')).status, 400, 'tools/call must stay refused for an unknown revision');
 
+  // A client may also name the revision inside the 2026-07-28 body envelope.
+  // An earlier revision named there (seen from a monitor declaring 2025-06-18)
+  // must not stop discovery, with or without a matching header, and a header
+  // that disagrees with a 2026-07-28 envelope must not stop it either. A tool
+  // call in the same shape stays refused.
+  const envelope = (version) => ({
+    'io.modelcontextprotocol/protocolVersion': version,
+    'io.modelcontextprotocol/clientInfo': { name: 'monitor', version: '1' },
+    'io.modelcontextprotocol/clientCapabilities': {},
+  });
+  for (const [headerVersion, bodyVersion] of [['2025-06-18', '2025-06-18'], ['2025-11-25', '2025-06-18'], ['2025-11-25', MODERN_VERSION]]) {
+    const label = `header ${headerVersion}, envelope ${bodyVersion}`;
+    const notified = await legacyPost(headerVersion, { jsonrpc: '2.0', method: 'notifications/initialized', params: { _meta: envelope(bodyVersion) } }, 'notifications/initialized');
+    assert.equal(notified.status, 202, `notifications/initialized must be served (${label})`);
+    const listedTools = await legacyPost(headerVersion, { jsonrpc: '2.0', id: 1, method: 'tools/list', params: { _meta: envelope(bodyVersion) } }, 'tools/list');
+    assert.equal(listedTools.status, 200, `tools/list must be served (${label})`);
+    assert.equal((await parseJsonRpc(listedTools)).result.tools.length, 14);
+  }
+  const envelopedCall = await legacyPost(
+    '2025-06-18',
+    { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'list_papers', arguments: {}, _meta: envelope('2025-06-18') } },
+    'tools/call',
+  );
+  assert.equal(envelopedCall.status, 400, 'tools/call must stay refused for an earlier revision named in the envelope');
+
   // The lists come from a bundled snapshot and cannot change within a
   // deployment, so list-change notifications are not advertised, and a client
   // that opens subscriptions/listen anyway is acknowledged and released at
