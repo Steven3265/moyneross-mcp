@@ -1,6 +1,6 @@
 {
  "schemaVersion": 3,
- "corpusVersion": "2026-11-14.f822f607",
+ "corpusVersion": "2026-11-14.10f6044f",
  "generatedAt": "2026-11-14",
  "source": "https://moyneross.com",
  "publication": {
@@ -16323,7 +16323,9 @@
      "emergency shut-off",
      "LPG",
      "CSST",
-     "gas decommissioning"
+     "gas decommissioning",
+     "gas lines",
+     "gas service line"
     ],
     "questions": [
      {
@@ -23020,7 +23022,9 @@
      "HV switchgear",
      "thermography",
      "arc flash",
-     "supply capacity"
+     "supply capacity",
+     "mains supply",
+     "electrical mains"
     ],
     "questions": [
      {
@@ -25075,7 +25079,8 @@
      "lift modernisation",
      "goods lifts",
      "fire-fighting lifts",
-     "lift maintenance"
+     "lift maintenance",
+     "open-protocol lift controls"
     ],
     "questions": [
      {
@@ -26198,7 +26203,8 @@
      "rooftop plant",
      "replacement routes",
      "refrigerant detection",
-     "basement plant"
+     "basement plant",
+     "plant room faults"
     ],
     "questions": [
      {
@@ -31573,7 +31579,8 @@
      "atria",
      "dormers",
      "lanterns",
-     "smoke vents"
+     "smoke vents",
+     "rooflights"
     ],
     "questions": [
      {
