@@ -15,12 +15,12 @@ The server is public and unauthenticated because every operation is read-only an
 
 ## HTTP request boundary
 
-The Streamable HTTP entry applies the MCP TypeScript SDK's `Host` and `Origin` validation before any protocol request is handled.
+The Streamable HTTP entry applies the MCP TypeScript SDK's `Host` validation before any protocol request is handled. `Origin` is validated only when an operator configures an allowlist.
 
 - Production Host is `mcp.moyneross.com`; Vercel's generated deployment, branch alias and production alias hosts are accepted when Vercel exposes them, plus optional comma-separated `ALLOWED_HOSTS`.
-- Browser Origins for moyneross.com, current Claude surfaces, ChatGPT and loopback MCP Inspector use are allowed by default.
-- `ALLOWED_ORIGINS` is an exact-origin override (scheme and port preserved, no defaults silently added). A malformed or unapproved Origin is rejected with `403` before MCP handling, without echoing it in CORS headers. Wildcard Origins are not supported.
-- Requests without an Origin header (ordinary non-browser MCP clients) pass.
+- By default any `Origin` is admitted. The endpoint is public, read-only and unauthenticated and carries no cookies, session or client data, so a browser request can reach nothing an anonymous request could not. An Origin allowlist also restricts only callers that declare an Origin: directories and uptime monitors do and were refused, while a client that omits the header always passed.
+- Host validation is the control that answers DNS-rebinding-style requests. It applies to every request and does not depend on the Origin header.
+- `ALLOWED_ORIGINS` is an exact-origin allowlist for an operator who wants one (scheme and port preserved, no defaults silently added). When it is set, a malformed or unlisted Origin is rejected with `403` before MCP handling, without echoing it in CORS headers. A concrete legacy `ALLOWED_ORIGIN` keeps its exact single-origin restriction.
 
 ## Content pipeline
 
@@ -28,7 +28,11 @@ The Streamable HTTP entry applies the MCP TypeScript SDK's `Host` and `Origin` v
 
 ## Telemetry
 
-Each tool call writes one JSON line to stderr (`evt: "tool_call"`): tool name, query length, scope, counts, match strength, a coarse client family and a timestamp. Questions, addresses, names, emails and IP addresses are not logged by the application. Logging can never affect a response. See https://moyneross.com/privacy#connector.
+Each tool call writes one JSON line (`evt: "tool_call"`): tool name, query length, scope, counts, match strength, a coarse client family and a timestamp. Questions, addresses, names, emails and IP addresses are not logged by the application. Logging can never affect a response.
+
+Each HTTP request to the MCP endpoint also writes one line (`evt: "mcp_request"`) with the method named in the routing header, the client family, the status and the duration. When a request is refused, the line adds the JSON-RPC error code, a clipped error message and the protocol revision the client declared, so the cause of a refusal can be identified; no request body or other header is recorded.
+
+The log level follows the outcome. Over HTTP, served requests and tool calls are written to stdout, refused requests (4xx) as warnings and server faults (5xx) as errors, so a hosted log viewer shows an error only when something is wrong. Under the local stdio transport all telemetry stays on stderr, because stdout is the protocol channel. See https://moyneross.com/privacy#connector.
 
 ## Input and contract controls
 

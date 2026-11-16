@@ -30,6 +30,11 @@ const request = (method, url, headers = {}) => ({ method, url, headers: { host: 
 const call = (handler, req) => { const res = new MockResponse(); handler(req, res); return res; };
 const json = (res) => (res.body ? JSON.parse(res.body) : null);
 const quiet = console.error; console.error = () => {}; // REST telemetry lines
+// Routine telemetry is written to stdout and refusals as warnings; keep both
+// out of this run's output without hiding the results printed below.
+const dropTelemetry = (write) => (...args) => { if (!(typeof args[0] === 'string' && args[0].startsWith('{"evt"'))) write(...args); };
+console.log = dropTelemetry(console.log);
+console.warn = dropTelemetry(console.warn);
 
 try {
   // Search: canonical links stay clean; attribution sits in referralUrl.

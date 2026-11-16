@@ -171,24 +171,123 @@ async function main() {
   assert.match(preflight.headers.get('access-control-allow-methods') ?? '', /POST/);
   assert.equal(preflight.headers.get('access-control-allow-origin'), 'https://claude.ai');
 
-  const rejectedOrigin = await handleMcpRequest(
-    new Request(ENDPOINT, {
-      method: 'OPTIONS',
-      headers: {
-        Host: 'test.local',
-        Origin: 'https://attacker.example',
-        'Access-Control-Request-Method': 'POST',
-      },
-    }),
-  );
-  assert.equal(rejectedOrigin.status, 403);
-  assert.equal(rejectedOrigin.headers.has('access-control-allow-origin'), false);
+  // With no ALLOWED_ORIGINS configured, Origin does not gate the endpoint.
+  // Directory crawlers, uptime monitors and browser inspectors all announce an
+  // Origin, and this server is public, read-only and unauthenticated, so an
+  // unknown Origin is admitted and reflected rather than refused.
+  for (const origin of [
+    'https://mcpbeat.com',
+    'https://mcptoplist.com',
+    'https://catalog.agentage.io',
+    'https://cursor.com',
+    'https://unknown-directory.example',
+  ]) {
+    const admitted = await handleMcpRequest(
+      new Request(ENDPOINT, {
+        method: 'OPTIONS',
+        headers: {
+          Host: 'test.local',
+          Origin: origin,
+          'Access-Control-Request-Method': 'POST',
+        },
+      }),
+    );
+    assert.equal(admitted.status, 204, `${origin} must be admitted by default`);
+    assert.equal(admitted.headers.get('access-control-allow-origin'), origin);
+    assert.match(admitted.headers.get('vary') ?? '', /Origin/i);
+  }
 
+  // Host validation is the control that actually answers DNS rebinding, and it
+  // is unchanged: it must still refuse a foreign Host, with or without an Origin.
   const rejectedHost = await handleMcpRequest(
     new Request(ENDPOINT, { method: 'POST', headers: { Host: 'attacker.example' } }),
   );
   assert.equal(rejectedHost.status, 403);
   assert.equal(rejectedHost.headers.has('access-control-allow-origin'), false);
+  const rebindAttempt = await handleMcpRequest(
+    new Request(ENDPOINT, { method: 'POST', headers: { Host: 'attacker.example', Origin: 'https://attacker.example' } }),
+  );
+  assert.equal(rebindAttempt.status, 403);
+  assert.equal(rebindAttempt.headers.has('access-control-allow-origin'), false);
+
+  // A client that declares a protocol revision this server does not know (a
+  // draft, a future date) must still be able to complete discovery. A tool
+  // call from the same client stays refused.
+  const legacyPost = (version, body, method) => handleMcpRequest(
+    new Request(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Host: 'test.local',
+        'Content-Type': 'application/json',
+        Accept: 'application/json, text/event-stream',
+        'MCP-Protocol-Version': version,
+        'Mcp-Method': method,
+      },
+      body: JSON.stringify(body),
+    }),
+  );
+  const strictToolCall = { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'list_papers', arguments: {} } };
+  for (const version of ['2025-12-01', '2027-01-01', 'draft']) {
+    const notified = await legacyPost(version, { jsonrpc: '2.0', method: 'notifications/initialized' }, 'notifications/initialized');
+    assert.equal(notified.status, 202, `notifications/initialized must be served for unknown revision ${version}`);
+    const listedTools = await legacyPost(version, { jsonrpc: '2.0', id: 1, method: 'tools/list' }, 'tools/list');
+    assert.equal(listedTools.status, 200, `tools/list must be served for unknown revision ${version}`);
+    assert.equal((await parseJsonRpc(listedTools)).result.tools.length, 14);
+  }
+  assert.equal((await legacyPost('2025-12-01', strictToolCall, 'tools/call')).status, 400, 'tools/call must stay refused for an unknown revision');
+
+  // The lists come from a bundled snapshot and cannot change within a
+  // deployment, so list-change notifications are not advertised, and a client
+  // that opens subscriptions/listen anyway is acknowledged and released at
+  // once rather than held open until the platform's time limit.
+  const advertised = (await postModern({ id: 'caps', method: 'server/discover' })).payload.result.capabilities;
+  for (const area of ['tools', 'resources', 'prompts']) {
+    assert.equal(advertised[area]?.listChanged, false, `${area}.listChanged must not be advertised`);
+  }
+  assert.ok(advertised.extensions?.['io.modelcontextprotocol/ui'], 'the MCP Apps view capability must still be advertised');
+  const listenResponse = await handleMcpRequest(
+    new Request(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Host: 'test.local',
+        'Content-Type': 'application/json',
+        Accept: 'application/json, text/event-stream',
+        'MCP-Protocol-Version': MODERN_VERSION,
+        'Mcp-Method': 'subscriptions/listen',
+      },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        id: 'listen',
+        method: 'subscriptions/listen',
+        params: { notifications: { toolsListChanged: true, promptsListChanged: true, resourcesListChanged: true }, _meta: modernMeta() },
+      }),
+    }),
+  );
+  assert.equal(listenResponse.status, 200);
+  const listenBody = await Promise.race([
+    listenResponse.text(),
+    new Promise((resolve) => setTimeout(() => resolve(null), 2000)),
+  ]);
+  assert.notEqual(listenBody, null, 'a subscriptions/listen stream must close promptly, not stay open');
+
+  // Log level follows the outcome: a served request is routine (stdout), a
+  // refused request is a warning, and neither is written as an error.
+  const captured = { log: [], warn: [], error: [] };
+  const originals = { log: console.log, warn: console.warn, error: console.error };
+  try {
+    for (const level of ['log', 'warn', 'error']) console[level] = (value) => captured[level].push(String(value));
+    await postModern({ id: 'logged', method: 'tools/call', name: 'list_papers', params: { name: 'list_papers', arguments: {} } });
+    await legacyPost('2025-12-01', strictToolCall, 'tools/call');
+  } finally {
+    Object.assign(console, originals);
+  }
+  assert.ok(captured.log.some((line) => line.includes('"evt":"mcp_request"') && line.includes('"status":200')), 'a served request must log to stdout');
+  assert.ok(captured.log.some((line) => line.includes('"evt":"tool_call"')), 'a tool call must log to stdout');
+  const refusedLine = captured.warn.find((line) => line.includes('"status":400'));
+  assert.ok(refusedLine, 'a refused request must log as a warning');
+  assert.match(refusedLine, /"declared":"2025-12-01"/, 'a refusal must record the declared revision');
+  assert.match(refusedLine, /"reason":"/, 'a refusal must record its reason');
+  assert.equal(captured.error.length, 0, 'routine traffic must not be logged as errors');
 
   const getResponse = await handleMcpRequest(new Request(ENDPOINT, { headers: { Host: 'test.local' } }));
   assert.equal(getResponse.status, 405);

@@ -7,6 +7,11 @@ const t0 = performance.now();
 const { handleMcpRequest } = await import('../dist/src/http-handler.js');
 const coldMs = performance.now() - t0;
 const quiet = console.error; console.error = () => {};
+// Routine telemetry is written to stdout and refusals as warnings; keep both
+// out of this run's output without hiding the results printed below.
+const dropTelemetry = (write) => (...args) => { if (!(typeof args[0] === 'string' && args[0].startsWith('{"evt"'))) write(...args); };
+console.log = dropTelemetry(console.log);
+console.warn = dropTelemetry(console.warn);
 
 const ENDPOINT = 'https://test.local/mcp';
 const meta = { 'io.modelcontextprotocol/protocolVersion': '2026-07-28', 'io.modelcontextprotocol/clientInfo': { name: 'edge-test', version: '1.0.0' }, 'io.modelcontextprotocol/clientCapabilities': {} };

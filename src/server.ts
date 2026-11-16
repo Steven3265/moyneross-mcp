@@ -102,7 +102,14 @@ function errorResult(text: string) {
 function logUse(tool: string, detail: Record<string, unknown>): void {
   try {
     const client = currentClient();
-    console.error(JSON.stringify({ evt: 'tool_call', tool, ...(client ? { client } : {}), ...detail, at: new Date().toISOString() }));
+    const line = JSON.stringify({ evt: 'tool_call', tool, ...(client ? { client } : {}), ...detail, at: new Date().toISOString() });
+    // Under stdio, stdout is the protocol channel, so telemetry must go to
+    // stderr. Over HTTP there is no such constraint, and hosted log viewers
+    // show everything on stderr as an error: a healthy tool call written
+    // there reads as a fault. A client label is only ever present on the HTTP
+    // path, so it decides the channel.
+    if (client) console.log(line);
+    else console.error(line);
   } catch {
     // Never let telemetry interfere with serving the request.
   }
@@ -150,8 +157,19 @@ export function createMcpServer(): McpServer {
   const server = new McpServer(
     { name: SERVER_NAME, version: SERVER_VERSION, title: SERVER_TITLE, description: SERVER_DESCRIPTION, websiteUrl: SERVER_WEBSITE_URL, icons: SERVER_ICONS },
     {
-      // MCP Apps: the graph tools come with an interactive view (see app-view.ts).
-      capabilities: { extensions: { 'io.modelcontextprotocol/ui': { mimeTypes: [APP_VIEW_MIME] } } },
+      capabilities: {
+        // MCP Apps: the graph tools come with an interactive view (see app-view.ts).
+        extensions: { 'io.modelcontextprotocol/ui': { mimeTypes: [APP_VIEW_MIME] } },
+        // The lists this server serves come from a snapshot bundled at build
+        // time. They cannot change while a deployment is running, so there is
+        // never a list_changed notification to send. Advertising listChanged
+        // invited clients to hold a subscriptions/listen stream open for news
+        // that never comes; on a short-lived serverless function each of those
+        // streams ran until the platform killed it at its time limit.
+        tools: { listChanged: false },
+        resources: { listChanged: false },
+        prompts: { listChanged: false },
+      },
       cacheHints: {
         'server/discover': PUBLIC_CACHE,
         'tools/list': { ttlMs: 86_400_000, cacheScope: 'public' },

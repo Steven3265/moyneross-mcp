@@ -19,7 +19,7 @@ The website is a build-time content source only. The deployed server has no rout
 
 ## Request path
 
-`POST /mcp` → Host and Origin validation (DNS-rebinding defence; exact-origin override fails closed) → a new stateless MCP server for the request → a read-only handler → `data/corpus.json`. No session store, database or cross-request state.
+`POST /mcp` → Host validation (DNS-rebinding defence), plus exact Origin validation when `ALLOWED_ORIGINS` is configured (fails closed) → a new stateless MCP server for the request → a read-only handler → `data/corpus.json`. No session store, database or cross-request state.
 
 ## Ranking
 

@@ -158,7 +158,9 @@ export function addReferralUrls<T>(value: T, source: string): T {
 
 export function logApi(route: string, detail: Record<string, unknown>): void {
   try {
-    console.error(JSON.stringify({ evt: 'rest_call', route, ...detail, at: new Date().toISOString() }));
+    // Routine telemetry goes to stdout: hosted log viewers show everything
+    // on stderr as an error. The REST adapters never run under stdio.
+    console.log(JSON.stringify({ evt: 'rest_call', route, ...detail, at: new Date().toISOString() }));
   } catch {
     // Telemetry must never interfere with a read-only response.
   }

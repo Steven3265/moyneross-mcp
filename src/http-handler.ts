@@ -1,8 +1,4 @@
-import {
-  createMcpHandler,
-  hostHeaderValidationResponse,
-  originValidationResponse,
-} from '@modelcontextprotocol/server';
+import { createMcpHandler, hostHeaderValidationResponse } from '@modelcontextprotocol/server';
 import { createMcpServer } from './server.js';
 import { clientLabel, runWithClient } from './client-label.js';
 
@@ -31,6 +27,17 @@ const EXPOSED_HEADERS = [
 ].join(', ');
 
 const DEFAULT_ALLOWED_HOSTNAMES = ['mcp.moyneross.com'];
+// The browser surfaces this server is known to be reached from. By default
+// this list no longer gates anything: it is the reference set reported by
+// allowedOriginHostnames() for diagnostics, and a starting point for an
+// operator composing an ALLOWED_ORIGINS restriction.
+//
+// It is kept as a list rather than deleted because naming the known surfaces
+// is useful; it is no longer enforced because enumerating them cannot be kept
+// current. The ecosystem adds directories, monitors and inspectors faster than
+// any allowlist can follow, and each omission presents as an outage rather
+// than a refusal: a monitor that is refused reports the server as down, and a
+// directory that is refused records it as unreachable and stops retrying.
 const DEFAULT_ALLOWED_ORIGIN_HOSTNAMES = [
   'moyneross.com',
   'www.moyneross.com',
@@ -39,23 +46,9 @@ const DEFAULT_ALLOWED_ORIGIN_HOSTNAMES = [
   'claude.com',
   'chatgpt.com',
   'chat.openai.com',
-  // The official MCP Inspector web UI runs on loopback and may connect to a
-  // deployed remote server from the browser. These origins carry no customer
-  // credentials here; the MCP endpoint is public and read-only.
   'localhost',
   '127.0.0.1',
   '[::1]',
-  // Public MCP directories run browser-based inspectors and playgrounds that
-  // connect to a listed server from the visitor's own browser. A CORS
-  // preflight from these origins is how a directory establishes that a server
-  // is reachable and enumerable; rejecting it leaves the listing permanently
-  // "not tested", with no try-it path for anyone evaluating the connector.
-  //
-  // Admitting them costs nothing here: this endpoint is public, read-only,
-  // unauthenticated and carries no customer data, so a browser request from
-  // these origins can reach nothing a plain fetch could not already reach.
-  // Host validation above still binds the endpoint to its own hostnames, and
-  // ALLOWED_ORIGINS continues to override this list exactly when set.
   'glama.ai',
   'www.glama.ai',
   'smithery.ai',
@@ -172,9 +165,31 @@ function originForbiddenResponse(message: string): Response {
   );
 }
 
+// Origin is validated only when an operator has configured an explicit
+// allowlist. Without one, any Origin is admitted.
+//
+// Origin validation exists to blunt DNS rebinding, where a browser is steered
+// into reaching a resource that is private to the victim's network or that
+// trusts the browser's ambient credentials. Neither applies here. This
+// endpoint is public, read-only, unauthenticated and carries no cookies, no
+// session and no customer data; its whole corpus is already published as
+// static files and mirrored in a public repository. A browser admitted by
+// this function can reach nothing that `curl` could not already reach
+// anonymously, so refusing it protects no secret.
+//
+// It also never protected one. Origin is set by browsers; any non-browser
+// client can simply omit the header, and the request is then admitted
+// unconditionally. An Origin allowlist is therefore a restriction only on
+// callers honest enough to identify themselves, which inverts the intent: the
+// well-behaved directory crawler and uptime monitor announce who they are and
+// are refused, while an impolite client is waved through.
+//
+// Host validation is unchanged and still runs ahead of this, binding the
+// endpoint to its own hostnames. That is the control that actually answers
+// rebinding, and it does not depend on the caller's candour.
 function exactOriginValidationResponse(request: Request): Response | undefined {
   const configured = configuredOriginOverride();
-  if (configured === undefined) return originValidationResponse(request, allowedOriginHostnames());
+  if (configured === undefined) return undefined;
 
   const rawOrigin = request.headers.get('Origin')?.trim();
   if (!rawOrigin) return undefined;
@@ -254,13 +269,17 @@ function rpcMethods(request: Request): string[] {
 // the disagreement costs nothing and the request is retried on the legacy
 // stateless path rather than refused. Public directories and index crawlers
 // routinely mis-declare this way, and a refused tools/list is the difference
-// between a listed connector and an unlisted one.
+// between a listed connector and an unlisted one. The same applies to a client
+// that names a revision this server does not know at all.
 //
 // tools/call is deliberately absent. There, a client that has misread its own
 // revision may also misread the result, and a research answer about a real
 // building is not worth serving into that uncertainty.
 const LENIENT_METHODS = new Set([
   'initialize',
+  // The notification that completes the handshake. Harmless, carries no id,
+  // and a crawler whose initialize succeeded should not be refused here.
+  'notifications/initialized',
   'server/discover',
   'tools/list',
   'resources/list',
@@ -290,6 +309,19 @@ function isEnvelopeMismatch(payload: unknown): boolean {
   return typeof message === 'string' && /envelope|headers and body disagree/i.test(message);
 }
 
+// True when the SDK refused the request because the client named a protocol
+// revision this server does not know at all (a draft, a future date, a typo),
+// as opposed to a known revision whose body disagrees with it.
+function isUnsupportedRevision(payload: unknown): boolean {
+  if (!payload || typeof payload !== 'object') return false;
+  const error = (payload as { error?: unknown }).error;
+  if (!error || typeof error !== 'object') return false;
+
+  const { code, message } = error as { code?: unknown; message?: unknown };
+  if (code !== -32000 && code !== -32022) return false;
+  return typeof message === 'string' && /unsupported protocol version/i.test(message);
+}
+
 // The request's JSON-RPC method names, but only when every message in it is
 // one of the lenient methods. A batch mixing a tool call into a discovery
 // batch is not retried.
@@ -311,9 +343,38 @@ function lenientMethodNames(body: string): string[] | undefined {
   return names as string[];
 }
 
-function logRequest(methods: string[], client: string, endpoint: string, status: number, durationMs: number): void {
+type Refusal = { code?: number; reason?: string; declared?: string };
+
+// Why a request was refused, for the log line. The JSON-RPC error code and a
+// clipped message are enough to tell one cause from another, and the revision
+// the client declared is the usual culprit. Nothing else from the request is
+// recorded: no body, no other header, no identifier.
+async function refusalDetail(response: Response, request: Request): Promise<Refusal | undefined> {
+  if (response.status < 400) return undefined;
+  const clean = (value: string, max: number) => value.replace(/[^\x20-\x7E]/g, ' ').slice(0, max);
+  const detail: Refusal = {};
+  const declared = request.headers.get('MCP-Protocol-Version')?.trim();
+  if (declared) detail.declared = clean(declared, 40);
   try {
-    console.error(JSON.stringify({ evt: 'mcp_request', methods, client, endpoint, status, durationMs, at: new Date().toISOString() }));
+    const payload = (await response.clone().json()) as { error?: { code?: unknown; message?: unknown } };
+    if (typeof payload?.error?.code === 'number') detail.code = payload.error.code;
+    if (typeof payload?.error?.message === 'string') detail.reason = clean(payload.error.message, 160);
+  } catch {
+    // A refusal without a JSON body still gets logged with its status.
+  }
+  return detail;
+}
+
+// One line per request. The level follows the outcome, because hosted log
+// viewers colour by level: a served request is routine (stdout), a request the
+// server refused is a warning, and only a fault of the server's own is an
+// error. This handler never runs under stdio, so stdout is free to use.
+function logRequest(methods: string[], client: string, endpoint: string, status: number, durationMs: number, refusal?: Refusal): void {
+  try {
+    const line = JSON.stringify({ evt: 'mcp_request', methods, client, endpoint, status, durationMs, ...(refusal ? { refusal } : {}), at: new Date().toISOString() });
+    if (status >= 500) console.error(line);
+    else if (status >= 400) console.warn(line);
+    else console.log(line);
   } catch {
     // Never let telemetry interfere with protocol handling.
   }
@@ -327,10 +388,11 @@ export type McpEndpointOptions = {
 
 export async function handleMcpRequest(request: Request, options: McpEndpointOptions = {}): Promise<Response> {
   const endpoint = options.endpoint ?? 'standard';
-  // MCP 2026-07-28 requires Origin validation when an Origin header is present.
-  // Host validation is applied alongside it to defend the bare fetch endpoint
-  // against DNS-rebinding-style requests. Non-browser clients normally omit
-  // Origin and therefore continue to pass this boundary unchanged.
+  // Host validation defends the bare fetch endpoint against DNS-rebinding-style
+  // requests and applies to every caller. Origin is additionally validated only
+  // when ALLOWED_ORIGINS or a concrete legacy ALLOWED_ORIGIN is configured; by
+  // default any Origin is admitted, because this endpoint is public, read-only
+  // and unauthenticated. See exactOriginValidationResponse.
   const rejected = validateRequestBoundary(request);
   if (rejected) return rejected;
 
@@ -394,13 +456,15 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
 
         if (result.status === 406 && acceptIncomplete) {
           corrected.set('Accept', STREAMABLE_HTTP_ACCEPT);
-        } else if (
-          result.status === 400 &&
-          corrected.has('MCP-Protocol-Version') &&
-          isEnvelopeMismatch(await result.clone().json().catch(() => undefined))
-        ) {
-          // Drop the disputed revision header and let the SDK's stateless
-          // compatibility path serve the discovery call.
+        } else if (result.status === 400 && corrected.has('MCP-Protocol-Version')) {
+          // Drop a revision header that is disputed (it disagrees with the
+          // body) or unknown (a draft or future revision this server has never
+          // heard of) and let the SDK's stateless compatibility path serve the
+          // discovery call. A monitor that declares a revision newer than this
+          // server knows was otherwise refused on every check, then served
+          // when it retried without the header.
+          const payload = await result.clone().json().catch(() => undefined);
+          if (!isEnvelopeMismatch(payload) && !isUnsupportedRevision(payload)) break;
           corrected.delete('MCP-Protocol-Version');
         } else {
           break;
@@ -410,8 +474,9 @@ export async function handleMcpRequest(request: Request, options: McpEndpointOpt
       }
     }
 
+    const refusal = await refusalDetail(result, request);
     const response = withCommonHeaders(result, request);
-    logRequest(methods, client, endpoint, response.status, Date.now() - started);
+    logRequest(methods, client, endpoint, response.status, Date.now() - started, refusal);
     return response;
   } catch (error) {
     logRequest(methods, client, endpoint, 500, Date.now() - started);
