@@ -93,6 +93,16 @@
       "rule": "report",
       "within": 3,
       "note": "30 capital and method questions in loose everyday wording, written after the papers' plain-wording terms and never tuned on: the honest measure of capital questions. 17 of 30 in the top three before the terms, 18 after; 21 within five. Keyword matching does not bridge wording this loose; this set is the yardstick for any semantic retrieval."
+    },
+    "field-f": {
+      "rule": "report",
+      "within": 3,
+      "note": "60 questions in an institutional investor's or acquisitions team's wording (underwriting, appraisal, purchaser, NOI, IRR, price chip). Used to build the investor lexicon, so not unseen: 39 of 60 right and strong before the lexicon, 50 after."
+    },
+    "field-g": {
+      "rule": "report",
+      "within": 3,
+      "note": "20 investor questions written after the investor lexicon and never tuned on: the honest measure of investor wording. 8 of 20 right and strong before the lexicon, 11 after; in the top three, 15 before and 18 after. Add new unseen investor questions here."
     }
   },
   "cases": [
@@ -6147,6 +6157,735 @@
         "https://moyneross.com/insights/physical-assets-under-management"
       ],
       "kind": "method"
+    },
+    {
+      "id": "field-f:how-should-an-institutional-investor-account-for-deferred-ma",
+      "category": "field-f",
+      "query": "How should an institutional investor account for deferred maintenance when underwriting a commercial property?",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-f:how-do-investors-forecast-lifecycle-capex",
+      "category": "field-f",
+      "query": "How do investors forecast lifecycle capex?",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/a-register-read-end-to-end",
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/samples/capital-strategy"
+      ]
+    },
+    {
+      "id": "field-f:how-should-technical-due-diligence-inform-acquisition-pricin",
+      "category": "field-f",
+      "query": "How should technical due diligence inform acquisition pricing?",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-f:how-do-you-distinguish-building-condition-from-capital-risk",
+      "category": "field-f",
+      "query": "How do you distinguish building condition from capital risk?",
+      "expected": [
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/methodology/mr-index"
+      ]
+    },
+    {
+      "id": "field-f:how-does-deferred-maintenance-affect-property-investment-ret",
+      "category": "field-f",
+      "query": "How does deferred maintenance affect property investment returns?",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/the-building-that-has-to-earn-its-hedge",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-f:capex-reserve-assumptions-in-an-acquisition-model",
+      "category": "field-f",
+      "query": "capex reserve assumptions in an acquisition model",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ]
+    },
+    {
+      "id": "field-f:how-much-capex-should-i-underwrite-for-a-1980s-office",
+      "category": "field-f",
+      "query": "How much capex should I underwrite for a 1980s office?",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation"
+      ]
+    },
+    {
+      "id": "field-f:does-a-cap-rate-reflect-future-capital-expenditure",
+      "category": "field-f",
+      "query": "Does a cap rate reflect future capital expenditure?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-f:why-do-valuations-miss-building-condition",
+      "category": "field-f",
+      "query": "Why do valuations miss building condition?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-f:price-chip-after-due-diligence-findings",
+      "category": "field-f",
+      "query": "price chip after due diligence findings",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/due-diligence-across-three-markets"
+      ]
+    },
+    {
+      "id": "field-f:how-does-capex-affect-net-operating-income-and-irr",
+      "category": "field-f",
+      "query": "How does capex affect net operating income and IRR?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/the-building-that-has-to-earn-its-hedge"
+      ]
+    },
+    {
+      "id": "field-f:is-real-estate-still-an-inflation-hedge-after-capex",
+      "category": "field-f",
+      "query": "Is real estate still an inflation hedge after capex?",
+      "expected": [
+        "https://moyneross.com/insights/the-building-that-has-to-earn-its-hedge"
+      ]
+    },
+    {
+      "id": "field-f:stranded-asset-risk-from-energy-regulation",
+      "category": "field-f",
+      "query": "stranded asset risk from energy regulation",
+      "expected": [
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule",
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study",
+        "https://moyneross.com/insights/the-markets-right-to-know"
+      ]
+    },
+    {
+      "id": "field-f:how-should-a-fund-budget-for-unknown-building-defects",
+      "category": "field-f",
+      "query": "How should a fund budget for unknown building defects?",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/what-age-conceals"
+      ]
+    },
+    {
+      "id": "field-f:contingency-allowance-for-latent-defects-in-an-acquisition",
+      "category": "field-f",
+      "query": "contingency allowance for latent defects in an acquisition",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/what-age-conceals"
+      ]
+    },
+    {
+      "id": "field-f:hold-or-sell-decision-for-an-ageing-office-asset",
+      "category": "field-f",
+      "query": "hold or sell decision for an ageing office asset",
+      "expected": [
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit",
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset"
+      ]
+    },
+    {
+      "id": "field-f:refurbish-versus-redevelop-feasibility-for-a-1970s-office",
+      "category": "field-f",
+      "query": "refurbish versus redevelop feasibility for a 1970s office",
+      "expected": [
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/the-1970s-office",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ]
+    },
+    {
+      "id": "field-f:what-is-the-brown-discount-for-a-poorly-rated-office",
+      "category": "field-f",
+      "query": "What is the brown discount for a poorly rated office?",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule",
+        "https://moyneross.com/insights/three-kinds-of-obsolescence",
+        "https://moyneross.com/insights/the-markets-right-to-know"
+      ]
+    },
+    {
+      "id": "field-f:portfolio-level-capital-planning-across-many-buildings",
+      "category": "field-f",
+      "query": "portfolio-level capital planning across many buildings",
+      "expected": [
+        "https://moyneross.com/insights/physical-assets-under-management",
+        "https://moyneross.com/insights/the-living-record",
+        "https://moyneross.com/insights/what-a-capital-strategy-is"
+      ]
+    },
+    {
+      "id": "field-f:how-should-an-asset-manager-prioritise-capital-works",
+      "category": "field-f",
+      "query": "How should an asset manager prioritise capital works?",
+      "expected": [
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/insights/a-building-is-forty-decisions",
+        "https://moyneross.com/methodology/mr-index"
+      ]
+    },
+    {
+      "id": "field-f:what-is-a-property-condition-assessment-and-how-is-it-differ",
+      "category": "field-f",
+      "query": "What is a property condition assessment and how is it different in the UK?",
+      "expected": [
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/same-thing-different-name"
+      ]
+    },
+    {
+      "id": "field-f:who-bears-capex-under-a-triple-net-lease",
+      "category": "field-f",
+      "query": "who bears capex under a triple net lease",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ]
+    },
+    {
+      "id": "field-f:how-does-lease-expiry-change-the-capital-plan",
+      "category": "field-f",
+      "query": "How does lease expiry change the capital plan?",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases",
+        "https://moyneross.com/insights/bringing-the-owners-intentions-to-bear",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ]
+    },
+    {
+      "id": "field-f:long-term-investor-versus-short-hold-how-does-it-change-main",
+      "category": "field-f",
+      "query": "long-term investor versus short hold: how does it change maintenance?",
+      "expected": [
+        "https://moyneross.com/insights/patient-capital-and-the-long-building"
+      ]
+    },
+    {
+      "id": "field-f:why-do-core-funds-underinvest-in-building-maintenance",
+      "category": "field-f",
+      "query": "Why do core funds underinvest in building maintenance?",
+      "expected": [
+        "https://moyneross.com/insights/patient-capital-and-the-long-building",
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/forty-years-of-cheap-money"
+      ]
+    },
+    {
+      "id": "field-f:impact-of-rising-interest-rates-on-building-upkeep",
+      "category": "field-f",
+      "query": "impact of rising interest rates on building upkeep",
+      "expected": [
+        "https://moyneross.com/insights/forty-years-of-cheap-money"
+      ]
+    },
+    {
+      "id": "field-f:how-does-climate-risk-change-capex-planning-for-a-property-f",
+      "category": "field-f",
+      "query": "How does climate risk change capex planning for a property fund?",
+      "expected": [
+        "https://moyneross.com/insights/climate-as-physical-risk"
+      ]
+    },
+    {
+      "id": "field-f:grid-capacity-constraints-and-property-value",
+      "category": "field-f",
+      "query": "grid capacity constraints and property value",
+      "expected": [
+        "https://moyneross.com/insights/energy-becomes-a-building-function"
+      ]
+    },
+    {
+      "id": "field-f:can-rooftop-solar-income-be-underwritten-for-a-logistics-ass",
+      "category": "field-f",
+      "query": "Can rooftop solar income be underwritten for a logistics asset?",
+      "expected": [
+        "https://moyneross.com/insights/after-rent",
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station",
+        "https://moyneross.com/insights/the-roof-nobody-designed-for-solar"
+      ]
+    },
+    {
+      "id": "field-f:office-to-residential-conversion-feasibility",
+      "category": "field-f",
+      "query": "office to residential conversion feasibility",
+      "expected": [
+        "https://moyneross.com/insights/conversion-is-an-engineering-question"
+      ]
+    },
+    {
+      "id": "field-f:what-does-ai-mean-for-office-demand",
+      "category": "field-f",
+      "query": "What does AI mean for office demand?",
+      "expected": [
+        "https://moyneross.com/insights/the-10-office",
+        "https://moyneross.com/insights/what-ai-takes-out-of-the-building"
+      ]
+    },
+    {
+      "id": "field-f:how-do-i-read-a-capital-register-as-an-investor",
+      "category": "field-f",
+      "query": "How do I read a capital register as an investor?",
+      "expected": [
+        "https://moyneross.com/insights/a-register-read-end-to-end",
+        "https://moyneross.com/methodology/capital-register"
+      ]
+    },
+    {
+      "id": "field-f:what-does-an-mr-4-rating-mean-for-an-acquisition",
+      "category": "field-f",
+      "query": "What does an MR 4 rating mean for an acquisition?",
+      "expected": [
+        "https://moyneross.com/methodology/mr-index"
+      ]
+    },
+    {
+      "id": "field-f:how-reliable-is-a-desktop-assessment-without-an-inspection",
+      "category": "field-f",
+      "query": "How reliable is a desktop assessment without an inspection?",
+      "expected": [
+        "https://moyneross.com/insights/what-public-evidence-can-tell-you",
+        "https://moyneross.com/insights/documented-observed-inferred"
+      ]
+    },
+    {
+      "id": "field-f:evidence-grading-in-technical-due-diligence",
+      "category": "field-f",
+      "query": "evidence grading in technical due diligence",
+      "expected": [
+        "https://moyneross.com/insights/documented-observed-inferred"
+      ]
+    },
+    {
+      "id": "field-f:vendor-due-diligence-report-versus-the-buyer-s-own",
+      "category": "field-f",
+      "query": "vendor due diligence report versus the buyer's own",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/the-register-not-the-report"
+      ]
+    },
+    {
+      "id": "field-f:why-is-a-ten-year-capex-schedule-better-than-a-condition-rep",
+      "category": "field-f",
+      "query": "Why is a ten-year capex schedule better than a condition report?",
+      "expected": [
+        "https://moyneross.com/insights/the-register-not-the-report",
+        "https://moyneross.com/methodology/capital-register"
+      ]
+    },
+    {
+      "id": "field-f:owners-corporation-refusing-to-fund-major-works-investor-ris",
+      "category": "field-f",
+      "query": "owners corporation refusing to fund major works: investor risk",
+      "expected": [
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ]
+    },
+    {
+      "id": "field-f:mees-compliance-cost-for-a-uk-office-portfolio",
+      "category": "field-f",
+      "query": "MEES compliance cost for a UK office portfolio",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule"
+      ]
+    },
+    {
+      "id": "field-f:local-law-97-penalties-and-capital-planning",
+      "category": "field-f",
+      "query": "Local Law 97 penalties and capital planning",
+      "expected": [
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study"
+      ]
+    },
+    {
+      "id": "field-f:heritage-listed-building-acquisition-risk",
+      "category": "field-f",
+      "query": "heritage listed building acquisition risk",
+      "expected": [
+        "https://moyneross.com/insights/the-economics-of-heritage"
+      ]
+    },
+    {
+      "id": "field-f:what-capital-expenditure-should-a-buyer-expect-in-a-1970s-of",
+      "category": "field-f",
+      "query": "What capital expenditure should a buyer expect in a 1970s office tower?",
+      "expected": [
+        "https://moyneross.com/insights/the-1970s-office"
+      ]
+    },
+    {
+      "id": "field-f:retail-asset-repositioning-capital-requirements",
+      "category": "field-f",
+      "query": "retail asset repositioning capital requirements",
+      "expected": [
+        "https://moyneross.com/insights/retail-as-service-infrastructure",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ]
+    },
+    {
+      "id": "field-f:embodied-carbon-case-for-retaining-existing-buildings",
+      "category": "field-f",
+      "query": "embodied carbon case for retaining existing buildings",
+      "expected": [
+        "https://moyneross.com/insights/most-of-the-buildings-of-2050-already-exist"
+      ]
+    },
+    {
+      "id": "field-f:does-deferred-capex-show-up-on-the-balance-sheet",
+      "category": "field-f",
+      "query": "Does deferred capex show up on the balance sheet?",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-f:sale-readiness-what-will-a-purchaser-s-surveyor-look-for",
+      "category": "field-f",
+      "query": "sale readiness: what will a purchaser's surveyor look for?",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ]
+    },
+    {
+      "id": "field-f:how-should-an-owner-s-business-plan-shape-the-capex-programm",
+      "category": "field-f",
+      "query": "How should an owner's business plan shape the capex programme?",
+      "expected": [
+        "https://moyneross.com/insights/bringing-the-owners-intentions-to-bear"
+      ]
+    },
+    {
+      "id": "field-f:how-do-nabers-ratings-affect-leasing-and-value-in-australia",
+      "category": "field-f",
+      "query": "How do NABERS ratings affect leasing and value in Australia?",
+      "expected": [
+        "https://moyneross.com/insights/australia-supply-constraint-and-the-staircase-code",
+        "https://moyneross.com/insights/the-markets-right-to-know"
+      ]
+    },
+    {
+      "id": "field-f:real-assets-allocation-and-the-physical-building",
+      "category": "field-f",
+      "query": "real assets allocation and the physical building",
+      "expected": [
+        "https://moyneross.com/insights/the-movement-to-real"
+      ]
+    },
+    {
+      "id": "field-f:industrial-policy-and-reshoring-what-do-factories-need",
+      "category": "field-f",
+      "query": "industrial policy and reshoring: what do factories need?",
+      "expected": [
+        "https://moyneross.com/insights/industrial-policy-comes-home"
+      ]
+    },
+    {
+      "id": "field-f:data-centre-and-battery-loads-in-existing-buildings",
+      "category": "field-f",
+      "query": "data centre and battery loads in existing buildings",
+      "expected": [
+        "https://moyneross.com/insights/the-building-as-host-to-machines",
+        "https://moyneross.com/insights/energy-becomes-a-building-function"
+      ]
+    },
+    {
+      "id": "field-f:how-do-i-model-end-of-life-plant-replacement-in-a-dcf",
+      "category": "field-f",
+      "query": "How do I model end-of-life plant replacement in a DCF?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/a-register-read-end-to-end",
+        "https://moyneross.com/methodology/capital-register"
+      ]
+    },
+    {
+      "id": "field-f:what-capex-is-non-recoverable-from-tenants",
+      "category": "field-f",
+      "query": "what capex is non-recoverable from tenants",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ]
+    },
+    {
+      "id": "field-f:underwriting-a-value-add-office-refurbishment",
+      "category": "field-f",
+      "query": "underwriting a value-add office refurbishment",
+      "expected": [
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit",
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/the-1970s-office",
+        "https://moyneross.com/insights/the-services-generation"
+      ]
+    },
+    {
+      "id": "field-f:lender-requirements-for-building-condition",
+      "category": "field-f",
+      "query": "lender requirements for building condition",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ]
+    },
+    {
+      "id": "field-f:annual-capital-plan-review-process",
+      "category": "field-f",
+      "query": "annual capital plan review process",
+      "expected": [
+        "https://moyneross.com/insights/the-living-record",
+        "https://moyneross.com/insights/physical-assets-under-management"
+      ]
+    },
+    {
+      "id": "field-f:what-is-the-difference-between-condition-and-criticality-in-",
+      "category": "field-f",
+      "query": "What is the difference between condition and criticality in a capex plan?",
+      "expected": [
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating",
+        "https://moyneross.com/methodology/mr-index"
+      ]
+    },
+    {
+      "id": "field-f:how-should-lifecycle-replacement-of-chillers-be-budgeted",
+      "category": "field-f",
+      "query": "How should lifecycle replacement of chillers be budgeted?",
+      "expected": [
+        "https://moyneross.com/technical/central-cooling-plant",
+        "https://moyneross.com/insights/the-services-generation"
+      ]
+    },
+    {
+      "id": "field-f:facade-remediation-liability-on-acquisition",
+      "category": "field-f",
+      "query": "facade remediation liability on acquisition",
+      "expected": [
+        "https://moyneross.com/technical/cladding-and-wall-systems",
+        "https://moyneross.com/insights/what-age-conceals",
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ]
+    },
+    {
+      "id": "field-f:how-do-appraisers-treat-upcoming-roof-replacement",
+      "category": "field-f",
+      "query": "How do appraisers treat upcoming roof replacement?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-g:what-should-an-acquisitions-team-look-for-in-a-1990s-office-",
+      "category": "field-g",
+      "query": "What should an acquisitions team look for in a 1990s office tower?",
+      "expected": [
+        "https://moyneross.com/insights/the-services-generation"
+      ]
+    },
+    {
+      "id": "field-g:how-do-appraisals-deal-with-deferred-capital-works",
+      "category": "field-g",
+      "query": "How do appraisals deal with deferred capital works?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ]
+    },
+    {
+      "id": "field-g:should-urgent-repairs-be-prioritised-over-expensive-ones",
+      "category": "field-g",
+      "query": "Should urgent repairs be prioritised over expensive ones?",
+      "expected": [
+        "https://moyneross.com/insights/timing-is-not-risk",
+        "https://moyneross.com/insights/why-cost-is-the-wrong-rating"
+      ]
+    },
+    {
+      "id": "field-g:latent-conditions-in-older-commercial-buildings",
+      "category": "field-g",
+      "query": "latent conditions in older commercial buildings",
+      "expected": [
+        "https://moyneross.com/insights/what-age-conceals"
+      ]
+    },
+    {
+      "id": "field-g:why-do-institutional-owners-neglect-building-maintenance",
+      "category": "field-g",
+      "query": "Why do institutional owners neglect building maintenance?",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/patient-capital-and-the-long-building",
+        "https://moyneross.com/insights/forty-years-of-cheap-money"
+      ]
+    },
+    {
+      "id": "field-g:underwriting-assumptions-for-plant-replacement",
+      "category": "field-g",
+      "query": "underwriting assumptions for plant replacement",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/the-services-generation",
+        "https://moyneross.com/insights/pricing-what-you-do-not-know"
+      ]
+    },
+    {
+      "id": "field-g:how-should-a-purchaser-use-a-vendor-technical-report",
+      "category": "field-g",
+      "query": "How should a purchaser use a vendor technical report?",
+      "expected": [
+        "https://moyneross.com/insights/what-the-next-buyer-will-read",
+        "https://moyneross.com/insights/due-diligence-across-three-markets",
+        "https://moyneross.com/insights/the-register-not-the-report"
+      ]
+    },
+    {
+      "id": "field-g:what-does-a-logistics-shed-need-for-electrification",
+      "category": "field-g",
+      "query": "What does a logistics shed need for electrification?",
+      "expected": [
+        "https://moyneross.com/insights/when-the-shed-becomes-a-power-station"
+      ]
+    },
+    {
+      "id": "field-g:cash-flow-impact-of-deferred-maintenance",
+      "category": "field-g",
+      "query": "cash flow impact of deferred maintenance",
+      "expected": [
+        "https://moyneross.com/insights/deferred-maintenance-is-debt",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof"
+      ]
+    },
+    {
+      "id": "field-g:how-do-you-forecast-capital-expenditure-over-a-ten-year-hold",
+      "category": "field-g",
+      "query": "How do you forecast capital expenditure over a ten year hold?",
+      "expected": [
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/methodology/capital-register",
+        "https://moyneross.com/insights/a-register-read-end-to-end",
+        "https://moyneross.com/samples/capital-strategy",
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/patient-capital-and-the-long-building"
+      ]
+    },
+    {
+      "id": "field-g:value-add-strategy-for-a-tired-suburban-office",
+      "category": "field-g",
+      "query": "value-add strategy for a tired suburban office",
+      "expected": [
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit",
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/the-1970s-office",
+        "https://moyneross.com/insights/the-services-generation"
+      ]
+    },
+    {
+      "id": "field-g:does-noi-growth-hide-a-capital-problem",
+      "category": "field-g",
+      "query": "Does NOI growth hide a capital problem?",
+      "expected": [
+        "https://moyneross.com/insights/the-cap-rate-does-not-see-the-roof",
+        "https://moyneross.com/insights/the-building-that-has-to-earn-its-hedge",
+        "https://moyneross.com/insights/deferred-maintenance-is-debt"
+      ]
+    },
+    {
+      "id": "field-g:how-should-uncertainty-be-reflected-in-an-acquisition-price",
+      "category": "field-g",
+      "query": "How should uncertainty be reflected in an acquisition price?",
+      "expected": [
+        "https://moyneross.com/insights/pricing-what-you-do-not-know",
+        "https://moyneross.com/insights/what-the-next-buyer-will-read"
+      ]
+    },
+    {
+      "id": "field-g:energy-rating-risk-for-an-institutional-office-portfolio-in-",
+      "category": "field-g",
+      "query": "energy rating risk for an institutional office portfolio in London",
+      "expected": [
+        "https://moyneross.com/insights/britain-when-the-energy-rating-becomes-a-letting-rule",
+        "https://moyneross.com/insights/three-kinds-of-obsolescence"
+      ]
+    },
+    {
+      "id": "field-g:reserve-study-versus-sinking-fund-forecast",
+      "category": "field-g",
+      "query": "reserve study versus sinking fund forecast",
+      "expected": [
+        "https://moyneross.com/insights/same-thing-different-name",
+        "https://moyneross.com/insights/united-states-performance-standards-and-the-reserve-study",
+        "https://moyneross.com/insights/why-shared-buildings-defer"
+      ]
+    },
+    {
+      "id": "field-g:when-is-redevelopment-a-better-return-than-refurbishment",
+      "category": "field-g",
+      "query": "When is redevelopment a better return than refurbishment?",
+      "expected": [
+        "https://moyneross.com/insights/when-the-building-is-not-the-asset",
+        "https://moyneross.com/insights/hold-improve-reposition-or-exit"
+      ]
+    },
+    {
+      "id": "field-g:projection-of-major-plant-renewals-for-a-shopping-centre",
+      "category": "field-g",
+      "query": "projection of major plant renewals for a shopping centre",
+      "expected": [
+        "https://moyneross.com/insights/retail-as-service-infrastructure",
+        "https://moyneross.com/insights/what-a-capital-strategy-is",
+        "https://moyneross.com/methodology/capital-register"
+      ]
+    },
+    {
+      "id": "field-g:how-do-net-leases-shift-capital-risk-to-the-tenant",
+      "category": "field-g",
+      "query": "How do net leases shift capital risk to the tenant?",
+      "expected": [
+        "https://moyneross.com/insights/who-pays-make-good-dilapidations-and-net-leases"
+      ]
+    },
+    {
+      "id": "field-g:what-disclosure-do-buyers-get-about-building-energy-performa",
+      "category": "field-g",
+      "query": "What disclosure do buyers get about building energy performance?",
+      "expected": [
+        "https://moyneross.com/insights/the-markets-right-to-know"
+      ]
+    },
+    {
+      "id": "field-g:how-should-an-investor-read-the-mr-index",
+      "category": "field-g",
+      "query": "How should an investor read the MR Index?",
+      "expected": [
+        "https://moyneross.com/methodology/mr-index"
+      ]
     }
   ]
 }

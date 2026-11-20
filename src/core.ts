@@ -302,6 +302,21 @@ export const SYNONYMS: Record<string, string> = {
   ppm: 'planned preventive maintenance', afss: 'annual fire safety statement', esm: 'essential safety measures', ews1: 'external wall fire cladding',
   grenfell: 'combustible cladding', ncc: 'national construction code', bca: 'building code', nabers: 'energy rating', stranded: 'obsolescence',
   fines: 'penalties', fine: 'penalty', demolish: 'redevelopment', demolition: 'redevelopment', rebuild: 'redevelopment', reshoring: 'manufacturing industrial',
+  // What an investor or their adviser says, and what the papers call it. The
+  // papers speak of valuation, buyers and deferral; an acquisitions team
+  // speaks of underwriting, purchasers and underinvestment.
+  underwrite: 'valuation acquisition', underwrites: 'valuation acquisition', underwriting: 'valuation acquisition',
+  underwritten: 'valuation acquisition', underwrote: 'valuation acquisition',
+  appraiser: 'valuation valuer', appraisers: 'valuation valuer', appraisal: 'valuation', appraisals: 'valuation', appraise: 'valuation', appraised: 'valuation',
+  institutional: 'investor allocator', purchaser: 'buyer', purchasers: 'buyer', acquire: 'acquisition buyer', acquires: 'acquisition buyer',
+  acquired: 'acquisition buyer', acquiring: 'acquisition buyer', acquisition: 'buyer purchase', acquisitions: 'buyer purchase',
+  noi: 'net operating income', irr: 'return returns', dcf: 'valuation cash flow', projection: 'forecast', projections: 'forecast',
+  latent: 'concealed hidden', rectification: 'remediation repair',
+  prioritise: 'timing urgent', prioritize: 'timing urgent', prioritising: 'timing urgent', prioritizing: 'timing urgent',
+  prioritised: 'timing urgent', prioritized: 'timing urgent', prioritisation: 'timing urgent', prioritization: 'timing urgent', priority: 'timing urgent', priorities: 'timing urgent',
+  criticality: 'risk consequence', underinvest: 'deferred maintenance', underinvests: 'deferred maintenance', underinvested: 'deferred maintenance',
+  underinvesting: 'deferred maintenance', underinvestment: 'deferred maintenance', neglect: 'deferred maintenance', neglected: 'deferred maintenance',
+  logistics: 'industrial warehouse', upcoming: 'future',
   // What an occupant says, and what the page calls it.
   stuffy: 'ventilation fresh air', musty: 'damp mould', bouncy: 'deflection', springy: 'deflection', flickering: 'lighting', noisy: 'noise vibration',
   rust: 'corrosion', rusting: 'corrosion', rusty: 'corrosion', rusted: 'corrosion', corroding: 'corrosion', backup: 'standby emergency', preventative: 'preventive',
@@ -333,6 +348,10 @@ export const PHRASES: [RegExp, string][] = [
   [/\bgrease (trap|interceptor)s?\b/, 'grease arrestor trade waste'],
   [/\bfire (door|damper)s?\b/, 'passive fire'],
   [/\bthermal imag(ing|e|es)\b/, 'thermography thermographic'],
+  [/\bbrown discounts?\b/, 'energy rating obsolescence'],
+  [/\bvalue[- ]add\b/, 'reposition improve'],
+  [/\bprice chip(s|ping|ped)?\b/, 'sale price buyer due diligence'],
+  [/\bnet operating income\b/, 'income valuation'],
 ];
 
 export type QueryTerm = { term: string; alternatives: string[]; idf: number };

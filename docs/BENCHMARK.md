@@ -92,3 +92,21 @@ Match strength: coverage weighted by each word's distinctiveness (IDF), counting
 ## Adding cases
 
 Add to `data/retrieval-cases.json` with a category, the `query`, and `expected` canonical URLs where there is a right answer. A new off-topic case that is judged strong today needs `maxStrong` raised in the same change, with a note why; otherwise the gate fails. Run `npm run benchmark` to see the effect, and `npm run calibrate` if the ranking needs refitting.
+
+## Investor wording (November 2026)
+
+The papers speak of valuation, buyers and deferral. An acquisitions team speaks of underwriting, purchasers, appraisals, NOI and underinvestment, and a question in those words found the right paper and was then judged weak, because the word carrying most weight was one the paper does not use: "how should an institutional investor account for deferred maintenance when underwriting a commercial property" reached *Deferred maintenance is debt* as background only.
+
+The lexicon in `src/core.ts` now carries that vocabulary (`SYNONYMS`: underwrite, appraise, purchaser, acquire, institutional, NOI, IRR, DCF, latent, prioritise, criticality, underinvest, neglect, logistics; `PHRASES`: brown discount, value-add, price chip, net operating income). Nothing else changed: no ranking setting, no strength rule.
+
+| | Before | After |
+|---|---|---|
+| `field-f`: 60 investor questions, right and strong | 39 | 50 |
+| `field-g`: 20 written afterwards and never tuned on, right and strong | 8 | 11 |
+| `field-g` in the top three | 15 | 18 |
+| Every gated category, and `field-a` to `field-e` | | unchanged |
+| Off-topic questions judged strong (`outside`) | 1 of 122 | 1 of 122 |
+
+Setting aside framing words ("how serious", "what should a team look for"), which lifted the Homechecker guides, was measured here and not adopted: it gained two investor questions and cost an authored FAQ, a wrapped question and an off-topic strong. The library grades how serious a finding is, so "serious" is a subject word in this corpus.
+
+Three off-topic questions written for this pass are judged strong and were so before it ("capital city of Australia", "balance sheet for a small business", "contingency plan for an IT outage"). They are not in the `outside` ratchet; they are the next candidates for it.
