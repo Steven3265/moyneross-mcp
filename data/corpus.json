@@ -1,7 +1,7 @@
 {
  "schemaVersion": 3,
- "corpusVersion": "2026-11-14.10f6044f",
- "generatedAt": "2026-11-14",
+ "corpusVersion": "2026-11-19.f328f0be",
+ "generatedAt": "2026-11-19",
  "source": "https://moyneross.com",
  "publication": {
   "name": "Capital Made Physical",
@@ -4918,7 +4918,7 @@
      "fire-detection-and-alarm-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4859,
@@ -5002,7 +5002,7 @@
     "canonicalUrl": "https://moyneross.com/technical/accessibility-lifts",
     "resourceUri": "moyneross://technical/accessibility-lifts",
     "layout": "topic",
-    "searchTitle": "Platform lifts and stair lifts: outages, orphaned products, safety devices and access",
+    "searchTitle": "Accessibility lifts: platform lifts, stair lifts, outages",
     "alsoKnownAs": [
      "platform lifts",
      "wheelchair lifts",
@@ -5302,7 +5302,7 @@
      "heat-rejection-plant"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2772,
@@ -5356,7 +5356,7 @@
     "canonicalUrl": "https://moyneross.com/technical/air-handling-units",
     "resourceUri": "moyneross://technical/air-handling-units",
     "layout": "topic",
-    "searchTitle": "Air handling units: hygiene, outside air, coils, fans and when to refurbish",
+    "searchTitle": "Air handling units (AHUs): hygiene, coils and renewal",
     "alsoKnownAs": [
      "AHU",
      "air handling unit",
@@ -5608,7 +5608,7 @@
      "recreational-facilities"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2611,
@@ -5637,7 +5637,7 @@
     "canonicalUrl": "https://moyneross.com/technical/ancillary-structures",
     "resourceUri": "moyneross://technical/ancillary-structures",
     "layout": "topic",
-    "searchTitle": "Ancillary structures: sheds, carports, shade sails and flagpoles, and how they fail",
+    "searchTitle": "Ancillary structures: sheds, carports and shade sails",
     "alsoKnownAs": [
      "outbuildings",
      "sheds",
@@ -5854,7 +5854,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2897,
@@ -5903,7 +5903,7 @@
     "canonicalUrl": "https://moyneross.com/technical/architectural-and-decorative-features",
     "resourceUri": "moyneross://technical/architectural-and-decorative-features",
     "layout": "topic",
-    "searchTitle": "Façade ornament: cornices, terracotta, stone decay, cramps and falling fragments",
+    "searchTitle": "Architectural and decorative features: cornices and stone",
     "alsoKnownAs": [
      "ornament",
      "cornices",
@@ -6131,7 +6131,7 @@
      "passive-fire-protection"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2930,
@@ -6195,7 +6195,7 @@
     "canonicalUrl": "https://moyneross.com/technical/automatic-sprinkler-systems",
     "resourceUri": "moyneross://technical/automatic-sprinkler-systems",
     "layout": "topic",
-    "searchTitle": "Sprinkler systems: change of hazard, impairments, corrosion and testing",
+    "searchTitle": "Automatic sprinkler systems: impairments and testing",
     "alsoKnownAs": [
      "sprinklers",
      "fire sprinklers",
@@ -6496,7 +6496,7 @@
      "structural-frame"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2569,
@@ -6550,7 +6550,7 @@
     "canonicalUrl": "https://moyneross.com/technical/basement-cellars-and-retaining-walls",
     "resourceUri": "moyneross://technical/basement-cellars-and-retaining-walls",
     "layout": "topic",
-    "searchTitle": "Basements and retaining walls: leaks, leaning walls, drainage and radon",
+    "searchTitle": "Basements, cellars and retaining walls: leaks and leaning",
     "alsoKnownAs": [
      "basements",
      "cellars",
@@ -6799,7 +6799,7 @@
      "sub-floor-and-crawlspace"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3345,
@@ -6843,7 +6843,7 @@
     "canonicalUrl": "https://moyneross.com/technical/bathrooms-and-wet-areas",
     "resourceUri": "moyneross://technical/bathrooms-and-wet-areas",
     "layout": "topic",
-    "searchTitle": "Bathrooms and wet areas: shower leaks, failed membranes, thresholds, mould and safety",
+    "searchTitle": "Bathrooms and wet areas: shower leaks, membranes, mould",
     "alsoKnownAs": [
      "bathrooms",
      "wet areas",
@@ -7127,7 +7127,7 @@
      "roof-structure"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2753,
@@ -7181,7 +7181,7 @@
     "canonicalUrl": "https://moyneross.com/technical/building-maintenance-units",
     "resourceUri": "moyneross://technical/building-maintenance-units",
     "layout": "topic",
-    "searchTitle": "Building maintenance units and façade access: inspections, controls, anchors, coverage",
+    "searchTitle": "Building maintenance units (BMU): inspection and controls",
     "alsoKnownAs": [
      "BMU",
      "building maintenance unit",
@@ -7427,7 +7427,7 @@
      "energy-efficiency-upgrades"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2694,
@@ -7466,7 +7466,7 @@
     "canonicalUrl": "https://moyneross.com/technical/building-management-and-control-system",
     "resourceUri": "moyneross://technical/building-management-and-control-system",
     "layout": "topic",
-    "searchTitle": "Building management systems: overrides, drifted sensors, obsolescence and cyber risk",
+    "searchTitle": "Building management systems (BMCS): faults and upgrades",
     "alsoKnownAs": [
      "BMS",
      "BAS",
@@ -7694,7 +7694,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2886,
@@ -7738,7 +7738,7 @@
     "canonicalUrl": "https://moyneross.com/technical/canopies-and-awnings",
     "resourceUri": "moyneross://technical/canopies-and-awnings",
     "layout": "topic",
-    "searchTitle": "Shop awnings and canopies: slack tie rods, hidden anchorages, ponding and glass",
+    "searchTitle": "Canopies and awnings: tie rods, anchorages and glass",
     "alsoKnownAs": [
      "awnings",
      "shop awnings",
@@ -7984,7 +7984,7 @@
      "energy-efficiency-upgrades"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3414,
@@ -8043,7 +8043,7 @@
     "canonicalUrl": "https://moyneross.com/technical/central-cooling-plant",
     "resourceUri": "moyneross://technical/central-cooling-plant",
     "layout": "topic",
-    "searchTitle": "Chillers and central cooling plant: refrigerant, tubes, low delta T and replacement",
+    "searchTitle": "Central cooling plant: chillers, refrigerant and renewal",
     "alsoKnownAs": [
      "chillers",
      "central plant",
@@ -8311,7 +8311,7 @@
      "building-management-and-control-system"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3397,
@@ -8380,7 +8380,7 @@
     "canonicalUrl": "https://moyneross.com/technical/central-heating-plant",
     "resourceUri": "moyneross://technical/central-heating-plant",
     "layout": "topic",
-    "searchTitle": "Boilers and central heating plant: sludge, condensing performance, heat pump retrofit",
+    "searchTitle": "Central heating plant and boilers: sludge and heat pumps",
     "alsoKnownAs": [
      "boilers",
      "central heating",
@@ -8614,7 +8614,7 @@
      "commercial-kitchens"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4945,
@@ -8703,7 +8703,7 @@
     "canonicalUrl": "https://moyneross.com/technical/chimney-stacks-and-flues",
     "resourceUri": "moyneross://technical/chimney-stacks-and-flues",
     "layout": "topic",
-    "searchTitle": "Chimney stacks and flues: lean, staining, liner failure and when a flue is unsafe",
+    "searchTitle": "Chimney stacks and flues: lean, liners and unsafe flues",
     "alsoKnownAs": [
      "chimneys",
      "chimney stacks",
@@ -9003,7 +9003,7 @@
      "structural-frame"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3978,
@@ -9072,7 +9072,7 @@
     "canonicalUrl": "https://moyneross.com/technical/cladding-and-wall-systems",
     "resourceUri": "moyneross://technical/cladding-and-wall-systems",
     "layout": "topic",
-    "searchTitle": "Cladding and wall systems: leaks behind the face, fixings, stone, combustible panels",
+    "searchTitle": "Cladding and wall systems: leaks, fixings and fire risk",
     "alsoKnownAs": [
      "cladding",
      "external walls",
@@ -9344,7 +9344,7 @@
      "public-amenities"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2772,
@@ -9403,7 +9403,7 @@
     "canonicalUrl": "https://moyneross.com/technical/commercial-kitchens",
     "resourceUri": "moyneross://technical/commercial-kitchens",
     "layout": "topic",
-    "searchTitle": "Commercial kitchens: grease duct fires, suppression, make-up air, cool rooms and floors",
+    "searchTitle": "Commercial kitchens: grease ducts, suppression, floors",
     "alsoKnownAs": [
      "commercial kitchens",
      "restaurant kitchens",
@@ -9693,7 +9693,7 @@
      "glazing-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3448,
@@ -9747,7 +9747,7 @@
     "canonicalUrl": "https://moyneross.com/technical/commercial-office-areas",
     "resourceUri": "moyneross://technical/commercial-office-areas",
     "layout": "topic",
-    "searchTitle": "Office floors: comfort complaints, fit-out drift, sprinkler coverage, grade and refurbishment",
+    "searchTitle": "Commercial office areas: comfort, fit-out and renewal",
     "alsoKnownAs": [
      "office floors",
      "base building",
@@ -10044,7 +10044,7 @@
      "commercial-office-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2671,
@@ -10103,7 +10103,7 @@
     "canonicalUrl": "https://moyneross.com/technical/common-circulation-areas",
     "resourceUri": "moyneross://technical/common-circulation-areas",
     "layout": "topic",
-    "searchTitle": "Corridors and lift lobbies: blocked escape routes, fire doors, smoke vents and wear",
+    "searchTitle": "Common circulation areas: corridors, lobbies, fire doors",
     "alsoKnownAs": [
      "corridors",
      "lift lobbies",
@@ -10439,7 +10439,7 @@
      "kitchen"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2750,
@@ -10478,7 +10478,7 @@
     "canonicalUrl": "https://moyneross.com/technical/common-internal-areas",
     "resourceUri": "moyneross://technical/common-internal-areas",
     "layout": "topic",
-    "searchTitle": "Apartment common areas: flat entrance doors, e-bike charging, intercoms and funding",
+    "searchTitle": "Common internal areas: flat doors, e-bikes and intercoms",
     "alsoKnownAs": [
      "common property",
      "strata common areas",
@@ -10766,7 +10766,7 @@
      "lightning-protection"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2490,
@@ -10800,7 +10800,7 @@
     "canonicalUrl": "https://moyneross.com/technical/communications-security-and-specialist-systems",
     "resourceUri": "moyneross://technical/communications-security-and-specialist-systems",
     "layout": "topic",
-    "searchTitle": "Communications and security: copper retirement, lift phones, access control, CCTV",
+    "searchTitle": "Communications and security systems: lift phones and CCTV",
     "alsoKnownAs": [
      "CCTV",
      "access control",
@@ -11021,7 +11021,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2740,
@@ -11065,7 +11065,7 @@
     "canonicalUrl": "https://moyneross.com/technical/disabled-access",
     "resourceUri": "moyneross://technical/disabled-access",
     "layout": "topic",
-    "searchTitle": "Disabled access in existing buildings: what fails and what triggers upgrades",
+    "searchTitle": "Disabled access (DDA): what fails, what triggers upgrades",
     "alsoKnownAs": [
      "accessibility",
      "DDA compliance",
@@ -11360,7 +11360,7 @@
      "stormwater-drainage"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 5308,
@@ -11399,7 +11399,7 @@
     "canonicalUrl": "https://moyneross.com/technical/dock-levellers-and-goods-hoists",
     "resourceUri": "moyneross://technical/dock-levellers-and-goods-hoists",
     "layout": "topic",
-    "searchTitle": "Dock levellers and goods hoists: free fall, trailer creep, interlocks and dock safety",
+    "searchTitle": "Dock levellers and goods hoists: free fall and interlocks",
     "alsoKnownAs": [
      "dock levellers",
      "loading docks",
@@ -11673,7 +11673,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2558,
@@ -11747,7 +11747,7 @@
     "canonicalUrl": "https://moyneross.com/technical/ductwork-and-air-distribution",
     "resourceUri": "moyneross://technical/ductwork-and-air-distribution",
     "layout": "topic",
-    "searchTitle": "Ductwork and air distribution: fire dampers, condensation, dirty ducts and balance",
+    "searchTitle": "Ductwork and air distribution: fire dampers, condensation",
     "alsoKnownAs": [
      "ductwork",
      "air distribution",
@@ -12008,7 +12008,7 @@
      "solar-photovoltaic-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2561,
@@ -12057,7 +12057,7 @@
     "canonicalUrl": "https://moyneross.com/technical/electric-vehicle-charging",
     "resourceUri": "moyneross://technical/electric-vehicle-charging",
     "layout": "topic",
-    "searchTitle": "EV charging in existing buildings: capacity, safety and what fails",
+    "searchTitle": "Electric vehicle (EV) charging: capacity, safety, faults",
     "alsoKnownAs": [
      "EV chargers",
      "electric vehicle chargers",
@@ -12315,7 +12315,7 @@
      "commercial-office-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2745,
@@ -12394,7 +12394,7 @@
     "canonicalUrl": "https://moyneross.com/technical/electrical-and-communications-risers",
     "resourceUri": "moyneross://technical/electrical-and-communications-risers",
     "layout": "topic",
-    "searchTitle": "Electrical and communications risers: fire stopping, abandoned cable, heat and capacity",
+    "searchTitle": "Electrical and communications risers: fire stopping, heat",
     "alsoKnownAs": [
      "risers",
      "electrical risers",
@@ -12692,7 +12692,7 @@
      "passive-fire-protection"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2634,
@@ -12756,7 +12756,7 @@
     "canonicalUrl": "https://moyneross.com/technical/emergency-lighting",
     "resourceUri": "moyneross://technical/emergency-lighting",
     "layout": "topic",
-    "searchTitle": "Emergency lighting and exit signs: failed duration tests, coverage gaps and testing",
+    "searchTitle": "Emergency lighting and exit signs: failed duration tests",
     "alsoKnownAs": [
      "emergency lighting",
      "exit signs",
@@ -13034,7 +13034,7 @@
      "passenger-and-goods-lifts"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2702,
@@ -13098,7 +13098,7 @@
     "canonicalUrl": "https://moyneross.com/technical/emergency-power",
     "resourceUri": "moyneross://technical/emergency-power",
     "layout": "topic",
-    "searchTitle": "Standby generators and UPS: load testing, wet stacking, fuel, batteries and capacity",
+    "searchTitle": "Emergency power: standby generators, UPS and load testing",
     "alsoKnownAs": [
      "standby generators",
      "emergency power",
@@ -13334,7 +13334,7 @@
      "insulation"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2601,
@@ -13383,7 +13383,7 @@
     "canonicalUrl": "https://moyneross.com/technical/energy-efficiency-upgrades",
     "resourceUri": "moyneross://technical/energy-efficiency-upgrades",
     "layout": "topic",
-    "searchTitle": "Energy efficiency upgrades: why savings fail and what to fix first",
+    "searchTitle": "Energy efficiency upgrades: why savings fail, what to fix",
     "alsoKnownAs": [
      "energy upgrades",
      "energy retrofit",
@@ -13611,7 +13611,7 @@
      "stormwater-drainage"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 5335,
@@ -13670,7 +13670,7 @@
     "canonicalUrl": "https://moyneross.com/technical/escalators-and-moving-walks",
     "resourceUri": "moyneross://technical/escalators-and-moving-walks",
     "layout": "topic",
-    "searchTitle": "Escalators and moving walks: falls, entrapment, safety devices and modernisation",
+    "searchTitle": "Escalators and moving walks: falls, entrapment, upgrades",
     "alsoKnownAs": [
      "escalators",
      "moving walks",
@@ -13959,7 +13959,7 @@
      "architectural-and-decorative-features"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2819,
@@ -14053,7 +14053,7 @@
     "canonicalUrl": "https://moyneross.com/technical/external-coating-systems",
     "resourceUri": "moyneross://technical/external-coating-systems",
     "layout": "topic",
-    "searchTitle": "External paint, render and coatings: peeling, blistering, render debonding, lead",
+    "searchTitle": "External coating systems: peeling paint, render and lead",
     "alsoKnownAs": [
      "external paint",
      "render",
@@ -14295,7 +14295,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2609,
@@ -14364,7 +14364,7 @@
     "canonicalUrl": "https://moyneross.com/technical/fencing-gates-and-signage",
     "resourceUri": "moyneross://technical/fencing-gates-and-signage",
     "layout": "topic",
-    "searchTitle": "Fencing, gates and signage: powered gate safety, pool barriers and boundary walls",
+    "searchTitle": "Fencing, gates and signage: powered gates, pool barriers",
     "alsoKnownAs": [
      "powered gates",
      "automatic gates",
@@ -14623,7 +14623,7 @@
      "ductwork-and-air-distribution"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3177,
@@ -14707,7 +14707,7 @@
     "canonicalUrl": "https://moyneross.com/technical/fire-detection-and-alarm-systems",
     "resourceUri": "moyneross://technical/fire-detection-and-alarm-systems",
     "layout": "topic",
-    "searchTitle": "Fire detection and alarm systems: unsupported panels, isolations and unwanted alarms",
+    "searchTitle": "Fire detection and alarm systems: panels and false alarms",
     "alsoKnownAs": [
      "fire alarms",
      "fire detection",
@@ -14980,7 +14980,7 @@
      "main-electrical-supply"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2871,
@@ -15034,7 +15034,7 @@
     "canonicalUrl": "https://moyneross.com/technical/fire-pumping-systems",
     "resourceUri": "moyneross://technical/fire-pumping-systems",
     "layout": "topic",
-    "searchTitle": "Fire pumps: failure to start, performance decline, flow testing and power supply",
+    "searchTitle": "Fire pumping systems: failure to start and flow testing",
     "alsoKnownAs": [
      "fire pumps",
      "sprinkler pumps",
@@ -15296,7 +15296,7 @@
      "fire-detection-and-alarm-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2703,
@@ -15340,7 +15340,7 @@
     "canonicalUrl": "https://moyneross.com/technical/fireplaces",
     "resourceUri": "moyneross://technical/fireplaces",
     "layout": "topic",
-    "searchTitle": "Fireplaces and heaters: carbon monoxide, spillage, clearances, flues and unflued heaters",
+    "searchTitle": "Fireplaces and heaters: carbon monoxide and flues",
     "alsoKnownAs": [
      "fireplaces",
      "wood heaters",
@@ -15618,7 +15618,7 @@
      "residential-units-guest-rooms"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2661,
@@ -15667,7 +15667,7 @@
     "canonicalUrl": "https://moyneross.com/technical/flooring",
     "resourceUri": "moyneross://technical/flooring",
     "layout": "topic",
-    "searchTitle": "Flooring: lifting vinyl, cupped timber, tenting tiles, noise, slips and asbestos tiles",
+    "searchTitle": "Flooring: lifting vinyl, cupped timber, slips, asbestos",
     "alsoKnownAs": [
      "flooring",
      "vinyl",
@@ -15931,7 +15931,7 @@
      "stormwater-drainage"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2911,
@@ -15985,7 +15985,7 @@
     "canonicalUrl": "https://moyneross.com/technical/foundations",
     "resourceUri": "moyneross://technical/foundations",
     "layout": "topic",
-    "searchTitle": "Foundations: subsidence, heave, settlement, stumps and when to underpin",
+    "searchTitle": "Foundations: subsidence, heave, settlement, underpinning",
     "alsoKnownAs": [
      "footings",
      "subsidence",
@@ -16280,7 +16280,7 @@
      "lightning-protection"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2528,
@@ -16314,7 +16314,7 @@
     "canonicalUrl": "https://moyneross.com/technical/gas-services",
     "resourceUri": "moyneross://technical/gas-services",
     "layout": "topic",
-    "searchTitle": "Gas services: leaks, corroded pipes, emergency shut-offs, LPG and decommissioning",
+    "searchTitle": "Gas services: leaks, corroded pipes, shut-offs and LPG",
     "alsoKnownAs": [
      "gas",
      "gas piping",
@@ -16539,7 +16539,7 @@
      "verandahs-balconies-and-balustrades"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3554,
@@ -16653,7 +16653,7 @@
     "canonicalUrl": "https://moyneross.com/technical/glazing-systems",
     "resourceUri": "moyneross://technical/glazing-systems",
     "layout": "topic",
-    "searchTitle": "Windows, curtain walls and glazing: leaks, misted units, glass breakage, SSG",
+    "searchTitle": "Glazing systems: windows, curtain walls, leaks, breakage",
     "alsoKnownAs": [
      "windows",
      "curtain walls",
@@ -16919,7 +16919,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2543,
@@ -16973,7 +16973,7 @@
     "canonicalUrl": "https://moyneross.com/technical/hazardous-materials",
     "resourceUri": "moyneross://technical/hazardous-materials",
     "layout": "topic",
-    "searchTitle": "Hazardous materials in buildings: asbestos, lead and PCBs, and what to do",
+    "searchTitle": "Hazardous materials: asbestos, lead and PCBs in buildings",
     "alsoKnownAs": [
      "asbestos",
      "asbestos register",
@@ -17212,7 +17212,7 @@
      "ventilation-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2901,
@@ -17256,7 +17256,7 @@
     "canonicalUrl": "https://moyneross.com/technical/heat-rejection-plant",
     "resourceUri": "moyneross://technical/heat-rejection-plant",
     "layout": "topic",
-    "searchTitle": "Cooling towers and heat rejection: Legionella, water treatment, fill and recirculation",
+    "searchTitle": "Heat rejection plant: cooling towers and Legionella",
     "alsoKnownAs": [
      "cooling towers",
      "evaporative condensers",
@@ -17512,7 +17512,7 @@
      "disabled-access"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2533,
@@ -17556,7 +17556,7 @@
     "canonicalUrl": "https://moyneross.com/technical/hot-and-warm-water-plant",
     "resourceUri": "moyneross://technical/hot-and-warm-water-plant",
     "layout": "topic",
-    "searchTitle": "Hot water systems: Legionella, scalding, TMVs, loop temperatures and heat pumps",
+    "searchTitle": "Hot and warm water plant: Legionella, scalding and TMVs",
     "alsoKnownAs": [
      "hot water",
      "water heaters",
@@ -17822,7 +17822,7 @@
      "fire-detection-and-alarm-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2709,
@@ -17901,7 +17901,7 @@
     "canonicalUrl": "https://moyneross.com/technical/hydrant-and-hose-reel-systems",
     "resourceUri": "moyneross://technical/hydrant-and-hose-reel-systems",
     "layout": "topic",
-    "searchTitle": "Hydrants, hose reels and rising mains: access, pressure and testing",
+    "searchTitle": "Hydrant and hose reel systems: access, pressure, testing",
     "alsoKnownAs": [
      "fire hydrants",
      "hose reels",
@@ -18184,7 +18184,7 @@
      "main-electrical-supply"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4594,
@@ -18253,7 +18253,7 @@
     "canonicalUrl": "https://moyneross.com/technical/insulation",
     "resourceUri": "moyneross://technical/insulation",
     "layout": "topic",
-    "searchTitle": "Roof insulation: gaps, condensation, wet insulation and hazardous materials",
+    "searchTitle": "Insulation in roofs: gaps, condensation, wet insulation",
     "alsoKnownAs": [
      "roof insulation",
      "ceiling insulation",
@@ -18523,7 +18523,7 @@
      "passenger-and-goods-lifts"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2681,
@@ -18587,7 +18587,7 @@
     "canonicalUrl": "https://moyneross.com/technical/integrated-building-systems",
     "resourceUri": "moyneross://technical/integrated-building-systems",
     "layout": "topic",
-    "searchTitle": "Integrated building systems: fire interfaces, cause and effect, integrated testing, cyber",
+    "searchTitle": "Integrated building systems: fire interfaces and testing",
     "alsoKnownAs": [
      "systems integration",
      "cause and effect matrix",
@@ -18869,7 +18869,7 @@
      "partitioning-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2751,
@@ -18963,7 +18963,7 @@
     "canonicalUrl": "https://moyneross.com/technical/internal-doors-and-hardware",
     "resourceUri": "moyneross://technical/internal-doors-and-hardware",
     "layout": "topic",
-    "searchTitle": "Internal doors and hardware: locked exits, failed closers, fire doors held open, access",
+    "searchTitle": "Internal doors and hardware: locked exits and fire doors",
     "alsoKnownAs": [
      "internal doors",
      "door hardware",
@@ -19271,7 +19271,7 @@
      "maintenance-access-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2941,
@@ -19340,7 +19340,7 @@
     "canonicalUrl": "https://moyneross.com/technical/internal-stairwells",
     "resourceUri": "moyneross://technical/internal-stairwells",
     "layout": "topic",
-    "searchTitle": "Fire stairs: propped doors, locked re-entry, storage, falls and blocked final exits",
+    "searchTitle": "Internal stairwells and fire stairs: doors and exits",
     "alsoKnownAs": [
      "stairwells",
      "fire stairs",
@@ -19718,7 +19718,7 @@
      "partitioning-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2683,
@@ -19762,7 +19762,7 @@
     "canonicalUrl": "https://moyneross.com/technical/internal-wall-and-ceiling-finishes",
     "resourceUri": "moyneross://technical/internal-wall-and-ceiling-finishes",
     "layout": "topic",
-    "searchTitle": "Ceilings and wall finishes: sagging plaster, cracks, mould, asbestos and suspended ceilings",
+    "searchTitle": "Internal wall and ceiling finishes: cracks and mould",
     "alsoKnownAs": [
      "ceilings",
      "lath and plaster",
@@ -20000,7 +20000,7 @@
      "commercial-kitchens"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2813,
@@ -20039,7 +20039,7 @@
     "canonicalUrl": "https://moyneross.com/technical/kitchen",
     "resourceUri": "moyneross://technical/kitchen",
     "layout": "topic",
-    "searchTitle": "Residential kitchens: hidden leaks, flexible hoses, gas clearances, extraction and safety",
+    "searchTitle": "Kitchens in homes: hidden leaks, hoses, gas, extraction",
     "alsoKnownAs": [
      "kitchens",
      "kitchen renovation",
@@ -20299,7 +20299,7 @@
      "pavements-and-hardstand"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2639,
@@ -20333,7 +20333,7 @@
     "canonicalUrl": "https://moyneross.com/technical/landscaping-and-irrigation",
     "resourceUri": "moyneross://technical/landscaping-and-irrigation",
     "layout": "topic",
-    "searchTitle": "Landscaping and irrigation: trees, roots, podium planters and damage to buildings",
+    "searchTitle": "Landscaping and irrigation: trees, roots, podium planters",
     "alsoKnownAs": [
      "landscaping",
      "trees",
@@ -20564,7 +20564,7 @@
      "internal-stairwells"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2593,
@@ -20603,7 +20603,7 @@
     "canonicalUrl": "https://moyneross.com/technical/lift-cars-and-machine-rooms",
     "resourceUri": "moyneross://technical/lift-cars-and-machine-rooms",
     "layout": "topic",
-    "searchTitle": "Lift cars and machine rooms: worn interiors, accessibility, heat, water in pits",
+    "searchTitle": "Lift cars and machine rooms: interiors, heat, wet pits",
     "alsoKnownAs": [
      "lift cars",
      "lift interiors",
@@ -20884,7 +20884,7 @@
      "energy-efficiency-upgrades"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2410,
@@ -20913,7 +20913,7 @@
     "canonicalUrl": "https://moyneross.com/technical/lighting-control-system",
     "resourceUri": "moyneross://technical/lighting-control-system",
     "layout": "topic",
-    "searchTitle": "Lighting controls: lights on all night, overridden sensors, daylight dimming, DALI",
+    "searchTitle": "Lighting control systems: overrides, dimming and DALI",
     "alsoKnownAs": [
      "lighting controls",
      "occupancy sensors",
@@ -21183,7 +21183,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2540,
@@ -21232,7 +21232,7 @@
     "canonicalUrl": "https://moyneross.com/technical/lighting",
     "resourceUri": "moyneross://technical/lighting",
     "layout": "topic",
-    "searchTitle": "Building lighting: LED conversion, dim stairs and car parks, corroded columns, PCBs",
+    "searchTitle": "Lighting: LED conversion, dim stairs and car parks, PCBs",
     "alsoKnownAs": [
      "lighting",
      "LED conversion",
@@ -21479,7 +21479,7 @@
      "communications-security-and-specialist-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2547,
@@ -21518,7 +21518,7 @@
     "canonicalUrl": "https://moyneross.com/technical/lightning-protection",
     "resourceUri": "moyneross://technical/lightning-protection",
     "layout": "topic",
-    "searchTitle": "Lightning protection: broken conductors, unbonded plant, earthing and surge protection",
+    "searchTitle": "Lightning protection: conductors, earthing and surge",
     "alsoKnownAs": [
      "lightning protection",
      "lightning conductors",
@@ -21743,7 +21743,7 @@
      "upper-floor-slabs-and-structures"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2557,
@@ -21802,7 +21802,7 @@
     "canonicalUrl": "https://moyneross.com/technical/load-bearing-masonry",
     "resourceUri": "moyneross://technical/load-bearing-masonry",
     "layout": "topic",
-    "searchTitle": "Load-bearing masonry: bowing walls, removed walls, lintels and restraint",
+    "searchTitle": "Load-bearing masonry: bowing walls, lintels and restraint",
     "alsoKnownAs": [
      "load-bearing walls",
      "solid brick walls",
@@ -22047,7 +22047,7 @@
      "service-corridors"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2759,
@@ -22096,7 +22096,7 @@
     "canonicalUrl": "https://moyneross.com/technical/loading-docks-and-goods-handling",
     "resourceUri": "moyneross://technical/loading-docks-and-goods-handling",
     "layout": "topic",
-    "searchTitle": "Loading docks: vehicle and pedestrian safety, dock doors, impact, flooding and waste",
+    "searchTitle": "Loading docks and goods handling: vehicle safety, doors",
     "alsoKnownAs": [
      "loading docks",
      "goods handling",
@@ -22341,7 +22341,7 @@
      "maintenance-access-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2766,
@@ -22400,7 +22400,7 @@
     "canonicalUrl": "https://moyneross.com/technical/lobbies-and-atria",
     "resourceUri": "moyneross://technical/lobbies-and-atria",
     "layout": "topic",
-    "searchTitle": "Lobbies and atria: overhead glass, open edges, smoke control, comfort and access at height",
+    "searchTitle": "Lobbies and atria: overhead glass, edges, smoke control",
     "alsoKnownAs": [
      "atria",
      "atriums",
@@ -22668,7 +22668,7 @@
      "plant-screens-and-parapets"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2895,
@@ -22707,7 +22707,7 @@
     "canonicalUrl": "https://moyneross.com/technical/localised-hvac",
     "resourceUri": "moyneross://technical/localised-hvac",
     "layout": "topic",
-    "searchTitle": "Split systems, VRF and packaged units: leaks, refrigerant, noise and replacement",
+    "searchTitle": "Localised HVAC: split systems, VRF and packaged units",
     "alsoKnownAs": [
      "split systems",
      "air conditioners",
@@ -22954,7 +22954,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2817,
@@ -23013,7 +23013,7 @@
     "canonicalUrl": "https://moyneross.com/technical/main-electrical-supply",
     "resourceUri": "moyneross://technical/main-electrical-supply",
     "layout": "topic",
-    "searchTitle": "Main switchboards and supply: hot spots, breakers, arc flash and capacity",
+    "searchTitle": "Main electrical supply: switchboards, arc flash, capacity",
     "alsoKnownAs": [
      "main switchboard",
      "MSB",
@@ -23267,7 +23267,7 @@
      "disabled-access"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2916,
@@ -23331,7 +23331,7 @@
     "canonicalUrl": "https://moyneross.com/technical/main-entrance-and-reception-areas",
     "resourceUri": "moyneross://technical/main-entrance-and-reception-areas",
     "layout": "topic",
-    "searchTitle": "Building entrances and receptions: slips, door safety, access, security and draughts",
+    "searchTitle": "Main entrances and reception areas: slips, doors, access",
     "alsoKnownAs": [
      "entrances",
      "reception",
@@ -23628,7 +23628,7 @@
      "storage-and-archive-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2786,
@@ -23687,7 +23687,7 @@
     "canonicalUrl": "https://moyneross.com/technical/maintenance-access-areas",
     "resourceUri": "moyneross://technical/maintenance-access-areas",
     "layout": "topic",
-    "searchTitle": "Maintenance access: ceiling voids, roof spaces, hatches, confined spaces and safe routes",
+    "searchTitle": "Maintenance access areas: ceiling voids, hatches, routes",
     "alsoKnownAs": [
      "maintenance access",
      "ceiling voids",
@@ -23972,7 +23972,7 @@
      "rainwater-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4897,
@@ -24056,7 +24056,7 @@
     "canonicalUrl": "https://moyneross.com/technical/masonry-brickwork",
     "resourceUri": "moyneross://technical/masonry-brickwork",
     "layout": "topic",
-    "searchTitle": "Brickwork: reading cracks, wall ties, lintels, shelf angles, damp and repointing",
+    "searchTitle": "Masonry and brickwork: cracks, wall ties and repointing",
     "alsoKnownAs": [
      "brickwork",
      "brick walls",
@@ -24326,7 +24326,7 @@
      "disabled-access"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2699,
@@ -24390,7 +24390,7 @@
     "canonicalUrl": "https://moyneross.com/technical/occupational-health-and-safety",
     "resourceUri": "moyneross://technical/occupational-health-and-safety",
     "layout": "topic",
-    "searchTitle": "Workplace safety in buildings: plant access, stairs, slips, glazing and confined spaces",
+    "searchTitle": "Occupational health and safety (OHS): access and slips",
     "alsoKnownAs": [
      "OHS",
      "WHS",
@@ -24662,7 +24662,7 @@
      "upper-floor-slabs-and-structures"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2670,
@@ -24716,7 +24716,7 @@
     "canonicalUrl": "https://moyneross.com/technical/partitioning-systems",
     "resourceUri": "moyneross://technical/partitioning-systems",
     "layout": "topic",
-    "searchTitle": "Partitions: lost fire and acoustic rating, cracking, glazed walls and operable walls",
+    "searchTitle": "Partitioning systems: fire and acoustic rating, glass",
     "alsoKnownAs": [
      "partitions",
      "partition walls",
@@ -24986,7 +24986,7 @@
      "stormwater-drainage"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 5742,
@@ -25070,7 +25070,7 @@
     "canonicalUrl": "https://moyneross.com/technical/passenger-and-goods-lifts",
     "resourceUri": "moyneross://technical/passenger-and-goods-lifts",
     "layout": "topic",
-    "searchTitle": "Passenger and goods lifts: breakdowns, modernisation, safety failures and inspections",
+    "searchTitle": "Passenger and goods lifts: breakdowns and modernisation",
     "alsoKnownAs": [
      "lifts",
      "elevators",
@@ -25417,7 +25417,7 @@
      "structural-frame"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2806,
@@ -25511,7 +25511,7 @@
     "canonicalUrl": "https://moyneross.com/technical/passive-fire-protection",
     "resourceUri": "moyneross://technical/passive-fire-protection",
     "layout": "topic",
-    "searchTitle": "Passive fire protection: fire stopping, fire doors and compartment walls",
+    "searchTitle": "Passive fire protection: fire stopping, fire doors, walls",
     "alsoKnownAs": [
      "fire stopping",
      "fire doors",
@@ -25820,7 +25820,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2586,
@@ -25869,7 +25869,7 @@
     "canonicalUrl": "https://moyneross.com/technical/pavements-and-hardstand",
     "resourceUri": "moyneross://technical/pavements-and-hardstand",
     "layout": "topic",
-    "searchTitle": "Pavements and hardstand: cracking, potholes, trip hazards and when to reseal or rebuild",
+    "searchTitle": "Pavements and hardstand: cracking, potholes and resealing",
     "alsoKnownAs": [
      "car parks",
      "asphalt",
@@ -26135,7 +26135,7 @@
      "commercial-kitchens"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2722,
@@ -26194,7 +26194,7 @@
     "canonicalUrl": "https://moyneross.com/technical/plant-rooms",
     "resourceUri": "moyneross://technical/plant-rooms",
     "layout": "topic",
-    "searchTitle": "Plant rooms: replacement routes, refrigerant detection, flooding, heat and storage",
+    "searchTitle": "Plant rooms: replacement routes, flooding and heat",
     "alsoKnownAs": [
      "plant rooms",
      "switch rooms",
@@ -26453,7 +26453,7 @@
      "rainwater-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4823,
@@ -26542,7 +26542,7 @@
     "canonicalUrl": "https://moyneross.com/technical/plant-screens-and-parapets",
     "resourceUri": "moyneross://technical/plant-screens-and-parapets",
     "layout": "topic",
-    "searchTitle": "Parapets and plant screens: lean, loose copings, ornament and roof edge protection",
+    "searchTitle": "Plant screens and parapets: lean, copings and edge safety",
     "alsoKnownAs": [
      "parapets",
      "parapet walls",
@@ -26832,7 +26832,7 @@
      "main-electrical-supply"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2609,
@@ -26881,7 +26881,7 @@
     "canonicalUrl": "https://moyneross.com/technical/portable-fire-equipment",
     "resourceUri": "moyneross://technical/portable-fire-equipment",
     "layout": "topic",
-    "searchTitle": "Fire extinguishers and blankets: missing units, wrong types, servicing and battery risks",
+    "searchTitle": "Portable fire equipment: extinguishers and servicing",
     "alsoKnownAs": [
      "fire extinguishers",
      "fire blankets",
@@ -27164,7 +27164,7 @@
      "lighting"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2593,
@@ -27218,7 +27218,7 @@
     "canonicalUrl": "https://moyneross.com/technical/power-distribution",
     "resourceUri": "moyneross://technical/power-distribution",
     "layout": "topic",
-    "searchTitle": "Electrical distribution and wiring: rubber wiring, RCDs, scorched outlets, risers",
+    "searchTitle": "Power distribution: old wiring, RCDs and scorched outlets",
     "alsoKnownAs": [
      "wiring",
      "distribution boards",
@@ -27464,7 +27464,7 @@
      "disabled-access"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2631,
@@ -27493,7 +27493,7 @@
     "canonicalUrl": "https://moyneross.com/technical/public-amenities",
     "resourceUri": "moyneross://technical/public-amenities",
     "layout": "topic",
-    "searchTitle": "Shared toilets and end-of-trip: leaks, odour, fixture numbers, Legionella and access",
+    "searchTitle": "Public amenities: shared toilets, end-of-trip and leaks",
     "alsoKnownAs": [
      "amenities",
      "toilets",
@@ -27765,7 +27765,7 @@
      "passenger-and-goods-lifts"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2465,
@@ -27819,7 +27819,7 @@
     "canonicalUrl": "https://moyneross.com/technical/pumping-systems",
     "resourceUri": "moyneross://technical/pumping-systems",
     "layout": "topic",
-    "searchTitle": "Sump, sewage and booster pumps: basement flooding, alarms, backup power",
+    "searchTitle": "Pumping systems: sump, sewage and booster pumps, alarms",
     "alsoKnownAs": [
      "sump pumps",
      "sewage pumps",
@@ -28071,7 +28071,7 @@
      "solar-photovoltaic-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4950,
@@ -28125,7 +28125,7 @@
     "canonicalUrl": "https://moyneross.com/technical/rainwater-systems",
     "resourceUri": "moyneross://technical/rainwater-systems",
     "layout": "topic",
-    "searchTitle": "Gutters, box gutters and downpipes: storm leaks, overflows and when to resize",
+    "searchTitle": "Rainwater systems: gutters, box gutters and downpipes",
     "alsoKnownAs": [
      "gutters",
      "box gutters",
@@ -28402,7 +28402,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2496,
@@ -28451,7 +28451,7 @@
     "canonicalUrl": "https://moyneross.com/technical/recreational-facilities",
     "resourceUri": "moyneross://technical/recreational-facilities",
     "layout": "topic",
-    "searchTitle": "Recreational facilities: playground safety, surfacing, courts and gyms",
+    "searchTitle": "Recreational facilities: playgrounds, courts and gyms",
     "alsoKnownAs": [
      "playgrounds",
      "play equipment",
@@ -28686,7 +28686,7 @@
      "common-circulation-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2863,
@@ -28725,7 +28725,7 @@
     "canonicalUrl": "https://moyneross.com/technical/residential-units-guest-rooms",
     "resourceUri": "moyneross://technical/residential-units-guest-rooms",
     "layout": "topic",
-    "searchTitle": "Apartments and guest rooms: leaks between units, mould, noise, smoke alarms and who pays",
+    "searchTitle": "Residential units and guest rooms: leaks, mould and noise",
     "alsoKnownAs": [
      "apartments",
      "residential units",
@@ -29034,7 +29034,7 @@
      "loading-docks-and-goods-handling"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2832,
@@ -29073,7 +29073,7 @@
     "canonicalUrl": "https://moyneross.com/technical/retail-tenancies",
     "resourceUri": "moyneross://technical/retail-tenancies",
     "layout": "topic",
-    "searchTitle": "Retail tenancies: services for the tenant type, fire separation, make-good and vacancy",
+    "searchTitle": "Retail tenancies: services, fire separation and make-good",
     "alsoKnownAs": [
      "retail tenancies",
      "shops",
@@ -29345,7 +29345,7 @@
      "plant-screens-and-parapets"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 5786,
@@ -29479,7 +29479,7 @@
     "canonicalUrl": "https://moyneross.com/technical/roof-coverings",
     "resourceUri": "moyneross://technical/roof-coverings",
     "layout": "topic",
-    "searchTitle": "How roof coverings fail: leak or condensation, repair or replace",
+    "searchTitle": "Roof coverings: leak or condensation, repair or replace",
     "alsoKnownAs": [
      "roofing",
      "roof sheeting",
@@ -29816,7 +29816,7 @@
      "solar-photovoltaic-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4820,
@@ -29920,7 +29920,7 @@
     "canonicalUrl": "https://moyneross.com/technical/roof-safety-systems",
     "resourceUri": "moyneross://technical/roof-safety-systems",
     "layout": "topic",
-    "searchTitle": "Roof safety systems: anchors, static lines, guardrails, fragile roofs and rescue",
+    "searchTitle": "Roof safety systems: anchors, static lines and guardrails",
     "alsoKnownAs": [
      "roof anchors",
      "static lines",
@@ -30231,7 +30231,7 @@
      "solar-photovoltaic-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 5004,
@@ -30340,7 +30340,7 @@
     "canonicalUrl": "https://moyneross.com/technical/roof-structure",
     "resourceUri": "moyneross://technical/roof-structure",
     "layout": "topic",
-    "searchTitle": "Roof structure: spread, sagging, truss defects, overload, RAAC and tie-down",
+    "searchTitle": "Roof structure: spread, sagging, truss defects and RAAC",
     "alsoKnownAs": [
      "roof framing",
      "trusses",
@@ -30591,7 +30591,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2524,
@@ -30630,7 +30630,7 @@
     "canonicalUrl": "https://moyneross.com/technical/sanitary-and-drainage-systems",
     "resourceUri": "moyneross://technical/sanitary-and-drainage-systems",
     "layout": "topic",
-    "searchTitle": "Drains, stacks and wet areas: repeated blockages, sewer odour, leaks and relining",
+    "searchTitle": "Sanitary and drainage systems: blockages, odour, relining",
     "alsoKnownAs": [
      "drains",
      "drainage",
@@ -30867,7 +30867,7 @@
      "building-maintenance-units"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3600,
@@ -30951,7 +30951,7 @@
     "canonicalUrl": "https://moyneross.com/technical/sealants-and-joints",
     "resourceUri": "moyneross://technical/sealants-and-joints",
     "layout": "topic",
-    "searchTitle": "Façade sealants and joints: adhesive and cohesive failure, fire-rated joints, PCBs",
+    "searchTitle": "Sealants and joints: adhesive failure, fire joints, PCBs",
     "alsoKnownAs": [
      "sealants",
      "caulking",
@@ -31201,7 +31201,7 @@
      "retail-tenancies"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2734,
@@ -31235,7 +31235,7 @@
     "canonicalUrl": "https://moyneross.com/technical/service-corridors",
     "resourceUri": "moyneross://technical/service-corridors",
     "layout": "topic",
-    "searchTitle": "Service corridors and back-of-house: blocked exits, propped doors, damage and pests",
+    "searchTitle": "Service corridors: blocked exits, propped doors and pests",
     "alsoKnownAs": [
      "service corridors",
      "back-of-house",
@@ -31496,7 +31496,7 @@
      "smoke-management-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4731,
@@ -31570,7 +31570,7 @@
     "canonicalUrl": "https://moyneross.com/technical/skylights-dormers-and-glazed-atria",
     "resourceUri": "moyneross://technical/skylights-dormers-and-glazed-atria",
     "layout": "topic",
-    "searchTitle": "Skylights, roof lights and atria: fragility, leaks, overhead glass and smoke vents",
+    "searchTitle": "Skylights, dormers and glazed atria: fragility and leaks",
     "alsoKnownAs": [
      "skylights",
      "roof lights",
@@ -31812,7 +31812,7 @@
      "sanitary-and-drainage-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2488,
@@ -31876,7 +31876,7 @@
     "canonicalUrl": "https://moyneross.com/technical/slab-on-ground",
     "resourceUri": "moyneross://technical/slab-on-ground",
     "layout": "topic",
-    "searchTitle": "Concrete slabs on ground: cracking, curling, joints, moisture and flatness",
+    "searchTitle": "Slab on ground: cracking, curling, joints and moisture",
     "alsoKnownAs": [
      "ground slab",
      "warehouse floor",
@@ -32134,7 +32134,7 @@
      "emergency-power"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2677,
@@ -32208,7 +32208,7 @@
     "canonicalUrl": "https://moyneross.com/technical/smoke-management-systems",
     "resourceUri": "moyneross://technical/smoke-management-systems",
     "layout": "topic",
-    "searchTitle": "Smoke control: stair pressurisation, smoke exhaust, dampers and integrated testing",
+    "searchTitle": "Smoke management systems: pressurisation and exhaust",
     "alsoKnownAs": [
      "smoke control",
      "stair pressurisation",
@@ -32468,7 +32468,7 @@
      "waterproofing-membranes"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2493,
@@ -32502,7 +32502,7 @@
     "canonicalUrl": "https://moyneross.com/technical/solar-photovoltaic-systems",
     "resourceUri": "moyneross://technical/solar-photovoltaic-systems",
     "layout": "topic",
-    "searchTitle": "Rooftop solar PV: DC fire risk, failed inverters, low output and the roof beneath",
+    "searchTitle": "Solar photovoltaic (PV) systems: DC fire risk, inverters",
     "alsoKnownAs": [
      "solar PV",
      "solar panels",
@@ -32736,7 +32736,7 @@
      "plant-rooms"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2773,
@@ -32795,7 +32795,7 @@
     "canonicalUrl": "https://moyneross.com/technical/specialised-occupancy-areas",
     "resourceUri": "moyneross://technical/specialised-occupancy-areas",
     "layout": "topic",
-    "searchTitle": "Laboratories, clinical and teaching spaces: fume cupboards, medical gases, isolation rooms",
+    "searchTitle": "Specialised occupancy areas: laboratories and clinics",
     "alsoKnownAs": [
      "laboratories",
      "fume cupboards",
@@ -33031,7 +33031,7 @@
      "ventilation-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2683,
@@ -33065,7 +33065,7 @@
     "canonicalUrl": "https://moyneross.com/technical/specialist-and-non-standard-features",
     "resourceUri": "moyneross://technical/specialist-and-non-standard-features",
     "layout": "topic",
-    "searchTitle": "Specialist features: indoor pools, saunas, cellars, smart homes and their effect on buildings",
+    "searchTitle": "Specialist and non-standard features: pools, saunas",
     "alsoKnownAs": [
      "indoor pools",
      "spas",
@@ -33302,7 +33302,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2460,
@@ -33356,7 +33356,7 @@
     "canonicalUrl": "https://moyneross.com/technical/specialist-hydraulics",
     "resourceUri": "moyneross://technical/specialist-hydraulics",
     "layout": "topic",
-    "searchTitle": "Pools, spas and recycled water: entrapment, pool gates, chemicals and cross-connections",
+    "searchTitle": "Specialist hydraulics: pools, spas and recycled water",
     "alsoKnownAs": [
      "swimming pools",
      "spas",
@@ -33597,7 +33597,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2720,
@@ -33671,7 +33671,7 @@
     "canonicalUrl": "https://moyneross.com/technical/specialist-suppression-systems",
     "resourceUri": "moyneross://technical/specialist-suppression-systems",
     "layout": "topic",
-    "searchTitle": "Gas suppression, kitchen and foam systems: room integrity, halon, PFAS and safety",
+    "searchTitle": "Specialist suppression systems: gas, kitchen and foam",
     "alsoKnownAs": [
      "gas suppression",
      "clean agent systems",
@@ -33928,7 +33928,7 @@
      "commercial-office-areas"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2704,
@@ -33987,7 +33987,7 @@
     "canonicalUrl": "https://moyneross.com/technical/storage-and-archive-areas",
     "resourceUri": "moyneross://technical/storage-and-archive-areas",
     "layout": "topic",
-    "searchTitle": "Storage and archives: overloaded floors, sprinkler clearance, chemicals, batteries, damp",
+    "searchTitle": "Storage and archive areas: floor loads, sprinklers, damp",
     "alsoKnownAs": [
      "storage rooms",
      "archives",
@@ -34240,7 +34240,7 @@
      "landscaping-and-irrigation"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2579,
@@ -34279,7 +34279,7 @@
     "canonicalUrl": "https://moyneross.com/technical/stormwater-drainage",
     "resourceUri": "moyneross://technical/stormwater-drainage",
     "layout": "topic",
-    "searchTitle": "Stormwater drainage: blocked pits, detention tanks, flooding and what to fix first",
+    "searchTitle": "Stormwater drainage: blocked pits, detention and flooding",
     "alsoKnownAs": [
      "stormwater",
      "site drainage",
@@ -34512,7 +34512,7 @@
      "foundations"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2518,
@@ -34571,7 +34571,7 @@
     "canonicalUrl": "https://moyneross.com/technical/structural-core",
     "resourceUri": "moyneross://technical/structural-core",
     "layout": "topic",
-    "searchTitle": "Cores, shear walls and bracing: openings, removed bracing and seismic retrofit",
+    "searchTitle": "Structural core: shear walls, bracing, seismic retrofit",
     "alsoKnownAs": [
      "lift core",
      "shear walls",
@@ -34789,7 +34789,7 @@
      "passive-fire-protection"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2863,
@@ -34858,7 +34858,7 @@
     "canonicalUrl": "https://moyneross.com/technical/structural-frame",
     "resourceUri": "moyneross://technical/structural-frame",
     "layout": "topic",
-    "searchTitle": "Concrete and steel frames: corrosion, spalling, ASR, punching shear and repair",
+    "searchTitle": "Structural frame: concrete and steel corrosion, spalling",
     "alsoKnownAs": [
      "concrete frame",
      "steel frame",
@@ -35120,7 +35120,7 @@
      "sanitary-and-drainage-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2513,
@@ -35174,7 +35174,7 @@
     "canonicalUrl": "https://moyneross.com/technical/sub-floor-and-crawlspace",
     "resourceUri": "moyneross://technical/sub-floor-and-crawlspace",
     "layout": "topic",
-    "searchTitle": "Sub-floors and crawlspaces: rot, termites, stumps, ventilation and damp",
+    "searchTitle": "Sub-floor and crawlspace: rot, termites, stumps and damp",
     "alsoKnownAs": [
      "sub-floor",
      "crawlspace",
@@ -35424,7 +35424,7 @@
      "building-management-and-control-system"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2470,
@@ -35696,7 +35696,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2575,
@@ -35725,7 +35725,7 @@
     "canonicalUrl": "https://moyneross.com/technical/terminal-units",
     "resourceUri": "moyneross://technical/terminal-units",
     "layout": "topic",
-    "searchTitle": "Fan coils, VAV boxes and chilled beams: leaks, comfort complaints and controls",
+    "searchTitle": "Terminal units: fan coils, VAV boxes and chilled beams",
     "alsoKnownAs": [
      "fan coil units",
      "FCUs",
@@ -35968,7 +35968,7 @@
      "stormwater-drainage"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2376,
@@ -36007,7 +36007,7 @@
     "canonicalUrl": "https://moyneross.com/technical/trade-waste-systems",
     "resourceUri": "moyneross://technical/trade-waste-systems",
     "layout": "topic",
-    "searchTitle": "Grease arrestors and trade waste: blockages, pump-outs, utility notices, oil interceptors",
+    "searchTitle": "Trade waste systems: grease arrestors and pump-outs",
     "alsoKnownAs": [
      "grease arrestors",
      "grease traps",
@@ -36227,7 +36227,7 @@
      "load-bearing-masonry"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2494,
@@ -36286,7 +36286,7 @@
     "canonicalUrl": "https://moyneross.com/technical/upper-floor-slabs-and-structures",
     "resourceUri": "moyneross://technical/upper-floor-slabs-and-structures",
     "layout": "topic",
-    "searchTitle": "Upper floors: sagging, overload, cut tendons, decking corrosion and timber joists",
+    "searchTitle": "Upper floor slabs and structures: sagging and overload",
     "alsoKnownAs": [
      "floor slabs",
      "suspended slabs",
@@ -36540,7 +36540,7 @@
      "occupational-health-and-safety"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2522,
@@ -36604,7 +36604,7 @@
     "canonicalUrl": "https://moyneross.com/technical/ventilation-systems",
     "resourceUri": "moyneross://technical/ventilation-systems",
     "layout": "topic",
-    "searchTitle": "Exhaust and ventilation: car parks, kitchen grease, fume cupboards and make-up air",
+    "searchTitle": "Ventilation systems: car park and kitchen exhaust",
     "alsoKnownAs": [
      "exhaust systems",
      "car park ventilation",
@@ -36873,7 +36873,7 @@
      "disabled-access"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 3912,
@@ -36947,7 +36947,7 @@
     "canonicalUrl": "https://moyneross.com/technical/verandahs-balconies-and-balustrades",
     "resourceUri": "moyneross://technical/verandahs-balconies-and-balustrades",
     "layout": "topic",
-    "searchTitle": "Balconies, decks and balustrades: dropped cantilevers, leaks, loose rails and glass",
+    "searchTitle": "Verandahs, balconies and balustrades: leaks, loose rails",
     "alsoKnownAs": [
      "balconies",
      "decks",
@@ -37215,7 +37215,7 @@
      "sub-metering"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2564,
@@ -37254,7 +37254,7 @@
     "canonicalUrl": "https://moyneross.com/technical/water-conservation",
     "resourceUri": "moyneross://technical/water-conservation",
     "layout": "topic",
-    "searchTitle": "Water conservation in buildings: leaks, urinals, cooling towers and what to fix",
+    "searchTitle": "Water conservation: leaks, urinals and cooling towers",
     "alsoKnownAs": [
      "water efficiency",
      "water saving",
@@ -37477,7 +37477,7 @@
      "hazardous-materials"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 2573,
@@ -37516,7 +37516,7 @@
     "canonicalUrl": "https://moyneross.com/technical/water-supply",
     "resourceUri": "moyneross://technical/water-supply",
     "layout": "topic",
-    "searchTitle": "Water supply pipework: brown water, pinhole leaks, backflow, lead and pressure",
+    "searchTitle": "Water supply: brown water, pinhole leaks, backflow, lead",
     "alsoKnownAs": [
      "water supply",
      "cold water",
@@ -37759,7 +37759,7 @@
      "solar-photovoltaic-systems"
     ],
     "publishedAt": "2026-11-07",
-    "updatedAt": "2026-11-11",
+    "updatedAt": "2026-11-19",
     "reviewedAt": "2026-11-11",
     "reviewDue": "2027-11-07",
     "wordCount": 4993,
@@ -37863,7 +37863,7 @@
     "canonicalUrl": "https://moyneross.com/technical/waterproofing-membranes",
     "resourceUri": "moyneross://technical/waterproofing-membranes",
     "layout": "topic",
-    "searchTitle": "Flat roof membranes: leaks, wet insulation, ponding and when to repair or replace",
+    "searchTitle": "Waterproofing membranes: flat roof leaks and ponding",
     "alsoKnownAs": [
      "flat roofs",
      "roof membranes",
@@ -39555,7 +39555,7 @@
     "title": "Moyne Ross",
     "kind": "The practice",
     "blurb": "Building and capital advice for commercial property: a reviewed ten-year Capital Strategy.",
-    "text": "Moyne Ross Capital Strategy commercial building 10 year capital programme portfolio intelligence documented observed inferred evidence structure services space Moyne Ross | Capital Strategy for the Built Environment Skip to content Moyne Ross Approach Insights About Portal Start your strategy Building & capital advice Every building is a capital story. What will yours be? Explore what your building could become, with a Capital Strategy shaped around your ambitions. Start your strategy ↗ How we work ↓ Where people start Whatever you’re weighing up, the building has a say. Buying Does this asset fit your plans? Owning Where should capital go, and when? Reimagining What could this building become? 01 / Your strategy Start with the building. Understand what lies ahead. An address is enough to begin. We read your building and you see it expressed in capital: what it is likely to ask of you, when, and what is still uncertain. You may arrive through Capital Made Physical , or with a question about a particular building. Either way, the conversation starts with something concrete. The physical reality behind the investment. 02 / Working it through A clearer picture. A better conversation. Every building raises decisions, and the right answer depends on what you want from it. We bring your plans and what you know together with the strategy, and work through the possibilities with you until the way forward feels right. Where something important is still unknown, we agree what will settle it, and fold the answer in. Your building has a private place of its own, where the strategy, our notes and what we have agreed sit together, and the record grows as the work goes on. 03 / Ongoing Someone who knows the building. And the plan. Plans change, quotes arrive, opportunities appear. When they do, it helps to have someone close who already understands the building and the thinking behind the plan. In practice One roof, followed through. From a wide range to a line in the budget. Every relationship begins the same way: we read your building first, and you decide where to go from there. Here is one line from a real strategy, followed through all three stages. Roof · Item 4.1 · Metal deck roofing 01 · Your strategy Read from what can be seen $1.8M–$3.4M From aerial imagery and the building’s age. A wide range, honestly stated. A reviewed read 02 · Working it through Made yours $2.2M–$2.8M Your roof report and an inspection narrow it. The direction: re-sheet the older bays in two stages. Working sessions 03 · Ongoing Kept true $2.46M A contractor’s quote, tested line by line. Stage one goes in the 2027 budget. A review each year, and a call when it matters One row from a real strategy, carried forward. Later figures are illustrative. How we do it ↓ Our engine Fast where it should be. Careful where it counts. We built our own engine, and it gets better with every building it reads. What once took weeks now takes hours, and that time goes into the part that matters most: your plans, your evidence, and the call we make with you. Every cost and every date in a strategy stays tied to the evidence and assumptions behind it, so you can see how we got there and question any line. How the engine works ↗ Inside the Capital Register ↗ The MR Index ↗ About the practice → Technology creates room for a more considered practice. Samples See one for yourself. Open a full Capital Strategy: the register line by line, the timing, the MR Index and the questions we would ask next. Capital Strategy · Sample A warehouse and office on an established industrial estate A tilt-panel and steel portal frame building with first-floor offices, read in full: the register line by line, the timing, the MR Index and what to establish first. Open the strategy → 10-year capital requirement $331K 1 YR $13K 2–5 YR $217K 6–10 YR $102K MR Index MR 2 Routine profile Start your strategy → Buying or owning a home? Try Home checker → Capital Made Physical What commercial property is becoming, and what it asks of capital. Part I · 01 The Movement to Real After four decades moving toward abstraction, toward financialisation, asset-light models, and platforms over production, the current is reversing. Thesis · 12 min read Read → Part IV · 05 The Cap Rate Doesn’t See the Roof Income-based valuation is built to price rent, not concrete. Capital requirements enter as broad allowances, if at all, which leaves a gap between what a building is worth on paper and what it will cost to own. Thesis · 4 min read Read → Part V · 01 Reading a Building as Capital A building can be read as architecture, as a set of defects, or as income. Reading it as capital means asking what each part will ask of its owner, when, and how sure we are. Method Note · 4 min read Read → A working view in seven parts, from the forces turning capital back toward the physical to how a single building is read as capital . Each paper answers one question, so start wherever yours is. Read the seven parts → A building. An ambition. A conversation. Send us a building. We’ll read it. Start your strategy → Moyne Ross Capital strategy for commercial and multi‑unit buildings. Research Insights Technical Library Moyne Ross Approach About Contact AI How we use AI For AI assistants © 2026 Moyne Ross Privacy Terms Cookie settings"
+    "text": "Moyne Ross Capital Strategy commercial building 10 year capital programme portfolio intelligence documented observed inferred evidence structure services space Moyne Ross | Capital Strategy for the Built Environment Skip to content Moyne Ross Approach Insights About Portal Start your strategy Building & capital advice Every building is a capital story. What will yours be? Explore what your building could become, with a Capital Strategy shaped around your ambitions. Start your strategy ↗ How we work ↓ Where people start Whatever you’re weighing up, the building has a say. Buying Does this asset fit your plans? Owning Where should capital go, and when? Reimagining What could this building become? 01 / Your strategy Start with the building. Understand what lies ahead. An address is enough to begin. We read your building and you see it expressed in capital: what it is likely to ask of you, when, and what is still uncertain. You may arrive through Capital Made Physical , or with a question about a particular building. Either way, the conversation starts with something concrete. The film 1:32 The physical reality behind the investment. 02 / Working it through A clearer picture. A better conversation. Every building raises decisions, and the right answer depends on what you want from it. We bring your plans and what you know together with the strategy, and work through the possibilities with you until the way forward feels right. Where something important is still unknown, we agree what will settle it, and fold the answer in. Your building has a private place of its own, where the strategy, our notes and what we have agreed sit together, and the record grows as the work goes on. 03 / Ongoing Someone who knows the building. And the plan. Plans change, quotes arrive, opportunities appear. When they do, it helps to have someone close who already understands the building and the thinking behind the plan. The film 1:27 In practice One roof, followed through. From a wide range to a line in the budget. Every relationship begins the same way: we read your building first, and you decide where to go from there. Here is one line from a real strategy, followed through all three stages. Roof · Item 4.1 · Metal deck roofing 01 · Your strategy Read from what can be seen $1.8M–$3.4M From aerial imagery and the building’s age. A wide range, honestly stated. A reviewed read 02 · Working it through Made yours $2.2M–$2.8M Your roof report and an inspection narrow it. The direction: re-sheet the older bays in two stages. Working sessions 03 · Ongoing Kept true $2.46M A contractor’s quote, tested line by line. Stage one goes in the 2027 budget. A review each year, and a call when it matters One row from a real strategy, carried forward. Later figures are illustrative. How we do it ↓ Our engine Fast where it should be. Careful where it counts. We built our own engine, and it gets better with every building it reads. What once took weeks now takes hours, and that time goes into the part that matters most: your plans, your evidence, and the call we make with you. Every cost and every date in a strategy stays tied to the evidence and assumptions behind it, so you can see how we got there and question any line. How the engine works ↗ Inside the Capital Register ↗ The MR Index ↗ About the practice → Technology creates room for a more considered practice. Samples See one for yourself. Open a full Capital Strategy: the register line by line, the timing, the MR Index and the questions we would ask next. Capital Strategy · Sample A warehouse and office on an established industrial estate A tilt-panel and steel portal frame building with first-floor offices, read in full: the register line by line, the timing, the MR Index and what to establish first. Open the strategy → 10-year capital requirement $331K 1 YR $13K 2–5 YR $217K 6–10 YR $102K MR Index MR 2 Routine profile Start your strategy → Buying or owning a home? Try Home checker → Capital Made Physical What commercial property is becoming, and what it asks of capital. Seven films about nine minutes Part I The turn 1:37 Part II What buildings become 1:18 Part III The stock we already have 1:14 Part IV How capital should behave 1:12 Part V Reading a building 1:32 Part VI Three markets, one building 1:09 Part VII From thesis to building 1:27 A working view in seven parts, each with a short film and seven papers, from the forces turning capital back toward the physical to how a single building is read as capital . Start wherever your question is. Read the seven parts → A building. An ambition. A conversation. Send us a building. We’ll read it. Start your strategy → Moyne Ross Capital strategy for commercial and multi‑unit buildings. Research Insights Technical Library Moyne Ross Approach About Contact AI How we use AI For AI assistants © 2026 Moyne Ross Privacy Terms Cookie settings"
    },
    {
     "url": "https://moyneross.com/ai",
