@@ -1,43 +1,58 @@
 # OpenAI public plugin submission — Moyne Ross
 
-**Submit this endpoint: `https://mcp.moyneross.com/mcp/openai`.** It is the same production server and corpus as `/mcp`, offering the eight research tools only: `search_research`, `list_papers`, `get_paper`, `list_technical_pages`, `get_technical_page`, `explain_method`, `get_sample_strategy` and `cite_paper`. The hand-over (`start_strategy_link`) and the engagement description (`working_with_moyne_ross`) are not offered there, and no answer links to the Start your strategy form or states a fee, in line with OpenAI's rule against promoting digital services. Do not submit `/mcp` here.
+Submitted for review on 23 November 2026 from the Moyne Ross Portal organisation in the OpenAI Platform (platform.openai.com/plugins). This folder is the plugin as uploaded.
 
-Use OpenAI's plugin submission portal and create a **With MCP** plugin. Submit the `/mcp/openai` endpoint, run **Scan Tools**, then add the bundled `commercial-capital-research` skill. Complete the listing, test cases, policy attestations, business verification and review fields in the portal. Do not invent a `plugin_asdk_app...` reference; the portal scans the production server itself.
+**Submit this endpoint: `https://mcp.moyneross.com/mcp/openai`.** It is the same production server and corpus as `/mcp`, offering the twelve research tools only: `search_research`, `list_papers`, `get_paper`, `list_technical_pages`, `get_technical_page`, `compare_technical_sections`, `building_brief`, `trace_connections`, `translate_term`, `explain_method`, `get_sample_strategy` and `cite_paper`. The hand-over (`start_strategy_link`) and the engagement description (`working_with_moyne_ross`) are not offered there, and no answer links to the Start your strategy form or states a fee, in line with OpenAI's rule against promoting digital services. Do not submit `/mcp` here.
 
-## Listing copy
+## What is in this folder
+
+| Path | What it is |
+| --- | --- |
+| `.codex-plugin/plugin.json` | The manifest: identity, author, the listing (`interface`) and the review block (`extensions.com.openai.review`) with the test cases |
+| `.mcp.json` | The MCP server the plugin connects to: `/mcp/openai`, streamable HTTP, no authentication |
+| `skills/commercial-capital-research/` | The bundled skill |
+| `assets/logo.png`, `assets/icon.png` | The MR mark for the listing and the composer |
+
+The two dot-files are hidden by default on Windows and macOS; show hidden files before zipping.
+
+## Uploading a new version
+
+1. Raise `version` in `.codex-plugin/plugin.json` when anything changes.
+2. Zip the contents of this folder (`.codex-plugin`, `.mcp.json`, `skills`, `assets`) with those items at the root of the zip, not inside a parent folder. Leave this file out.
+3. In the portal, open the Moyne Ross plugin and choose **Upload new version**. The validator checks the manifest straight away.
+4. On the MCPs tab, choose **Rescan** so the tool list is current.
+5. Check **Review information**: countries, test cases (read from the manifest), the video walkthrough and release notes.
+6. Submit for review.
+
+## Manifest rules the validator enforces
+
+Learnt on the first upload, when the earlier manifest was rejected:
+
+- `skills` and `mcpServers` are relative paths inside the plugin root, starting with `./` (`"./skills/"`, `"./.mcp.json"`). `mcpServers` is a path to the config file, not an inline object.
+- `author` is required.
+- `interface` is required, with `displayName`, `shortDescription`, `longDescription`, `developerName`, `category` and `capabilities`, plus `supportURL`.
+- `shortDescription` (the subtitle) is 30 characters or fewer.
+- `category` must be one of the portal's values; `Education & Research` is accepted, as for Homechecker.
+- Review test cases live in `extensions.com.openai.review.test_cases`: exactly five `positive` (`description`, `prompt`, `tools_triggered`, `expected_behavior`) and three `negative` (`description`, `prompt`).
+
+## Domain verification
+
+Done. OpenAI's token is served from `public/.well-known/openai-apps-challenge` in this repository at `https://mcp.moyneross.com/.well-known/openai-apps-challenge`. Do not remove that file; the listing depends on it.
+
+## Listing
 
 **Name:** Moyne Ross
-**Short:** What buildings reveal about capital.
-**Long:** Research on commercial property and capital from Moyne Ross: search and cite the Capital Made Physical papers and the Technical Library (one page for each building element and functional space: how it fails, what you will notice, how serious a finding is, what fixes it), understand the Capital Register and the MR Index, and see what a ten-year Capital Strategy contains. General research only; it does not assess a particular building.
+**Subtitle:** Building capital research
+**Category:** Education & Research
+**Description:** as `interface.longDescription` in the manifest.
+**Links:** website moyneross.com/assistants, support moyneross.com/contact, privacy moyneross.com/privacy, terms moyneross.com/terms.
 
-## Policy and review answers
+## Review materials
 
-- **Commerce:** The app does not sell, promote or link to any purchase. It returns published research and links only to free public pages on moyneross.com.
-- **Authentication:** None. The server is public and read-only.
-- **Tools:** Eight read-only tools, each with `readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true` and `openWorldHint: false` set explicitly (the corpus is a bounded, published catalogue).
-- **Response minimisation:** answers carry no session, trace or request identifiers and no timestamps beyond the papers' own publication dates; the corpus version identifies the cited text.
-- **Data:** No personal data is collected or stored. See https://moyneross.com/privacy#connector.
-- **Corpus:** 49 papers, 103 Technical Library pages, the two methodology references and one sample Capital Strategy. Library pages carry the shape of a cost, never a price.
-- **Supporting evidence:** The same server is published in the official MCP Registry (`io.github.Steven3265/moyneross`).
-
-## Before submitting
-
-1. Verify the organisation in the OpenAI Platform (business verification with the registered business name and ABN, so the listing shows "Moyne Ross").
-2. Verify the domain: OpenAI issues a token to serve at a well-known path on `mcp.moyneross.com`. Add it as one file under `public/.well-known/` and redeploy.
-3. In ChatGPT Developer Mode, connect `/mcp/openai` and run the cases below, confirming no answer contains `moyneross.com/contact`, a fee or "Start your strategy".
-
-## Positive review cases
-
-1. "What does it mean that deferred maintenance is debt?"
-2. "Should an owner refurbish or redevelop an ageing 1970s office?"
-3. "What is the MR Index and how are its bands read?"
-4. "Show me what a capital strategy for a warehouse looks like."
-5. "Who pays for make good at the end of a commercial lease?"
-6. "Why is a metal roof dripping on cold mornings when it hasn't rained?" (Technical Library, cited to the section)
-7. "How serious is corroding reinforcement in a car park slab?"
-
-## Negative / boundary cases
-
-1. "What will my building at 12 Example Street cost to maintain?" — must not invent a building-specific figure.
-2. "Should I buy this office tower?" — must not give investment advice; the research is general.
-3. "What are mortgage rates today?" — outside the corpus; the match is weak and must be said to be.
+- **Test cases:** in the manifest. The positive cases cover a paper (deferred maintenance), a Technical Library severity grading (car park reinforcement), the MR Index, the sample Capital Strategy and a market translation (make good). The negative cases are a building-specific cost, investment advice and an out-of-corpus question.
+- **Video walkthrough:** https://www.youtube.com/watch?v=k2NhO0L7jAc (unlisted; shown to reviewers only).
+- **Commerce:** none. The plugin returns published research and links only to free public pages on moyneross.com.
+- **Authentication:** none. The server is public and read-only; no reviewer credentials are needed.
+- **Tools:** all twelve set `readOnlyHint: true`, `destructiveHint: false`, `idempotentHint: true` and `openWorldHint: false`.
+- **Data:** no personal data is collected or stored. Telemetry logs only the tool name, a coarse client family and counts. See https://moyneross.com/privacy.
+- **Supporting evidence:** the same server is in the official MCP Registry (`io.github.Steven3265/moyneross`) and the Claude directory; Homechecker, from the same organisation, is already published in the ChatGPT directory.
