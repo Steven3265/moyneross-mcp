@@ -1,6 +1,3 @@
-Here's the full `README.md`:
-
-````markdown
 <p align="center">
   <a href="https://moyneross.com"><img src="https://mcp.moyneross.com/moyneross-icon-256.png" width="96" height="96" alt="Moyne Ross"></a>
 </p>
@@ -207,4 +204,3 @@ npm run start:stdio     # run over stdio
 ```
 
 Licence: MIT for the server code. The content is not MIT licensed; see [data/TERMS.md](data/TERMS.md).
-````
