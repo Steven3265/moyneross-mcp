@@ -22,8 +22,15 @@ for (const p of ['plugin.json', '.claude-plugin/plugin.json', 'gemini-extension.
 eq('marketplace plugin version', json('.claude-plugin/marketplace.json').plugins?.[0]?.version, version);
 eq('Copilot marketplace version', json('.github/plugin/marketplace.json').metadata?.version, version);
 eq('Copilot plugin version', json('.github/plugin/marketplace.json').plugins?.[0]?.version, version);
-eq('OpenAI package version', json('distribution/openai/moyneross/.codex-plugin/plugin.json').version, version);
-eq('OpenAI package endpoint', json('distribution/openai/moyneross/.codex-plugin/plugin.json').mcpServers?.moyneross?.url, id('SERVER_OPENAI_ENDPOINT_URL'));
+// OpenAI's plugin validator requires mcpServers to be a "./" path, relative
+// to the plugin root, to a separate MCP config file; the endpoint lives there.
+const openaiDir = 'distribution/openai/moyneross';
+const openaiManifest = json(`${openaiDir}/.codex-plugin/plugin.json`);
+eq('OpenAI package version', openaiManifest.version, version);
+const openaiMcpPath = typeof openaiManifest.mcpServers === 'string' && openaiManifest.mcpServers.startsWith('./') ? openaiManifest.mcpServers.slice(2) : null;
+if (!openaiMcpPath || openaiMcpPath.includes('..')) errors.push(`${openaiDir}/.codex-plugin/plugin.json: mcpServers must be a "./" path inside the plugin to its MCP config file`);
+else if (!existsSync(new URL(`../${openaiDir}/${openaiMcpPath}`, import.meta.url))) errors.push(`${openaiDir}/${openaiMcpPath} is missing`);
+else eq('OpenAI package endpoint', json(`${openaiDir}/${openaiMcpPath}`).mcpServers?.moyneross?.url, id('SERVER_OPENAI_ENDPOINT_URL'));
 const sec = read('public/.well-known/security.txt');
 const expires = Date.parse(sec.match(/^Expires: (.+)$/m)?.[1] ?? '');
 if (!(expires > Date.now() + 30 * 86400000)) errors.push('public/.well-known/security.txt expires within 30 days; renew it');

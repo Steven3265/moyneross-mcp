@@ -5,14 +5,15 @@ One server, one corpus, several ways in. Each channel below points at the same e
 | Channel | What to submit | Where it stands |
 |---|---|---|
 | Official MCP Registry | `server.json` (Actions → Publish to MCP Registry) | `io.github.Steven3265/moyneross` 1.1.0, active since 8 Nov 2026. Changes behind the live endpoint need no new registry version. |
-| Claude directory: connector | `https://mcp.moyneross.com/mcp` | Pack in `anthropic/SUBMISSION.md` |
-| Claude directory: plugin bundle | This repository (`.claude-plugin/`, `skills/`) | Submit after the connector and pair the two |
-| OpenAI app directory | `https://mcp.moyneross.com/mcp/openai` | Pack in `openai/moyneross/SUBMISSION.md` |
+| Claude directory: connector | `https://mcp.moyneross.com/mcp` | Listed (Community) since 23 Nov 2026 as **Moyne Ross**, slug `moyne-ross`. Pack in `anthropic/SUBMISSION.md` |
+| Claude directory: plugin bundle | This repository (`.claude-plugin/`, `skills/`) | Not yet submitted. Submit from the same account and pair it with the listed connector |
+| OpenAI app directory | `https://mcp.moyneross.com/mcp/openai`, as the plugin in `openai/moyneross/` | Submitted for review 23 Nov 2026; domain verified. Pack and upload steps in `openai/moyneross/SUBMISSION.md` |
 | GitHub Copilot | `.github/plugin/marketplace.json` | In the repository |
 | GitHub Agent Finder | `github-agentfinder/` | Pull request to `github/agentfinder-catalog` |
 | Gemini CLI | `gemini-extension.json`, `GEMINI.md` | `gemini extensions install https://github.com/Steven3265/moyneross-mcp` |
 | Agent Plugins 1.0.0 | `plugin.json`, `mcp.json`, `skills/` | In the repository |
-| Glama | `glama.json` | Claim the listing at glama.ai once it is indexed from the registry |
+| Glama | `glama.json` | Indexed from the registry (server and connector pages). Claim the listing and run its test; the connector page shows "Not tested" |
+| Microsoft 365 Copilot | Federated connector via Partner Center | Not started: confirm whether a no-sign-in server is accepted, then enrol and submit |
 | Smithery, LobeHub, M8ven | Nothing to file | They index from the registry and GitHub without a submission |
 | Domain discovery | `/.well-known/ai-catalog.json` here and on moyneross.com; `/mcp/server-card`; `/llms.txt`; `/openapi.json` | Live with this release |
 

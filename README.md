@@ -10,8 +10,8 @@ Public, read-only, and separate from every client system. The server bundles a s
 
 | Client | How |
 |---|---|
-| Claude | Settings → Connectors → Add custom connector → `https://mcp.moyneross.com/mcp` |
-| ChatGPT and the OpenAI directory | `https://mcp.moyneross.com/mcp/openai` (the eleven research tools; no hand-over or engagement terms) |
+| Claude | Listed in the Claude directory: find **Moyne Ross** under Connectors and connect. Or add it as a custom connector: `https://mcp.moyneross.com/mcp` |
+| ChatGPT and the OpenAI directory | `https://mcp.moyneross.com/mcp/openai` (the twelve research tools; no hand-over or engagement terms). Submitted to the ChatGPT directory; until it is listed, add it in Developer mode |
 | Claude Code | `claude mcp add --transport http moyneross https://mcp.moyneross.com/mcp`, or install this repository as a plugin |
 | Any MCP client | Streamable HTTP at `https://mcp.moyneross.com/mcp`; no authentication |
 
