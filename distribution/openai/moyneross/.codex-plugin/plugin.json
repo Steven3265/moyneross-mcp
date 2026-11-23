@@ -2,10 +2,94 @@
   "name": "moyneross",
   "version": "1.1.0",
   "description": "Commercial property capital research from Moyne Ross, backed by the read-only Moyne Ross MCP.",
-  "skills": "../skills",
-  "mcpServers": {
-    "moyneross": {
-      "url": "https://mcp.moyneross.com/mcp/openai"
+  "author": {
+    "name": "Moyne Ross",
+    "email": "steven@moyneross.com",
+    "url": "https://moyneross.com"
+  },
+  "homepage": "https://moyneross.com/assistants",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Moyne Ross",
+    "shortDescription": "Building capital research",
+    "longDescription": "Research on commercial property and capital from Moyne Ross: search and cite the Capital Made Physical papers and the Technical Library (one page for each building element and functional space: how it fails, what you will notice, how serious a finding is, what fixes it), compare elements side by side, translate building terms between Australia, the UK and the US, understand the Capital Register and the MR Index, and see what a ten-year Capital Strategy contains. General research only; it does not assess a particular building.",
+    "developerName": "Moyne Ross",
+    "category": "Education & Research",
+    "capabilities": [
+      "Search commercial property capital research",
+      "Read Technical Library pages on building elements",
+      "Compare building elements side by side",
+      "Translate building terms between markets",
+      "Cite Moyne Ross research"
+    ],
+    "websiteURL": "https://moyneross.com/assistants",
+    "supportURL": "https://moyneross.com/contact",
+    "privacyPolicyURL": "https://moyneross.com/privacy",
+    "termsOfServiceURL": "https://moyneross.com/terms",
+    "defaultPrompt": [
+      "How serious is corroding reinforcement in a car park slab?",
+      "What does it mean that deferred maintenance is debt?"
+    ],
+    "brandColor": "#4DA09B",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Research question answered from a paper, with citation",
+              "prompt": "What does it mean that deferred maintenance is debt?",
+              "tools_triggered": "search_research, get_paper",
+              "expected_behavior": "Explains that deferring necessary work moves the cost forward with interest (further deterioration, consequential damage, construction inflation, triggered upgrades) and behaves like unrecorded debt, citing CMP 025 \"Deferred Maintenance Is Debt Without a Statement\" at moyneross.com/insights/deferred-maintenance-is-debt."
+            },
+            {
+              "description": "Technical Library severity grading for a building defect",
+              "prompt": "How serious is corroding reinforcement in a car park slab?",
+              "tools_triggered": "search_research, get_technical_page",
+              "expected_behavior": "Uses the Structural Frame page: corrosion with loss of section is graded failure, 4 Essential (repair or strengthen now); corrosion and spalling without significant section loss is condition, 3 Important (near-term repair programme). Cites moyneross.com/technical/structural-frame#severity and gives no price."
+            },
+            {
+              "description": "Methodology explanation",
+              "prompt": "What is the MR Index and how are its bands read?",
+              "tools_triggered": "explain_method",
+              "expected_behavior": "Explains the MR Index as the MR 1 to MR 5 reading of how much attention a building needs and how soon, describes the bands from the public methodology page and cites moyneross.com/methodology/mr-index."
+            },
+            {
+              "description": "Sample deliverable",
+              "prompt": "Show me what a capital strategy for a warehouse looks like.",
+              "tools_triggered": "get_sample_strategy",
+              "expected_behavior": "Summarises the sample Capital Strategy for an industrial warehouse and office: the ten-year figures, MR Index, executive summary and where the capital sits, with a link to moyneross.com/samples/capital-strategy, noting identifying details were changed."
+            },
+            {
+              "description": "Terms across markets",
+              "prompt": "What is an Australian make good clause called in the UK and the US?",
+              "tools_triggered": "translate_term",
+              "expected_behavior": "Returns UK: dilapidations or reinstatement; US: restoration or surrender obligations; notes these are professional equivalents, not legal definitions, and cites moyneross.com/technical/glossary#make-good."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Building-specific cost the research cannot give; must not invent a figure",
+              "prompt": "What will my building at 12 Example Street cost to maintain over ten years?"
+            },
+            {
+              "description": "Investment advice; the research is general and must not recommend a purchase",
+              "prompt": "Should I buy this office tower?"
+            },
+            {
+              "description": "Outside the corpus; the match is weak and the answer must say so",
+              "prompt": "What are mortgage rates today?"
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin does not sell, promote or link to any purchase. It returns published research and links only to free public pages on moyneross.com."
+      }
     }
   }
 }
